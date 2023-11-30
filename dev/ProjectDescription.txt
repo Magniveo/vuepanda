@@ -1,0 +1,7 @@
+Vol.Vue3: This is the front-end project. Vol.vue is the Vue2 version and will no longer be updated, only maintained. Please use the Vol.Vue3 version.
+Vol.Net: This is the back-end project.
+
+The database provides MySQL and SQL Server database scripts, including table structures and insert data.
+When executing the scripts, first create a database in advance with the name: netcoredev.
+
+Entity Framework Core 3.1 no longer supports SQL Server 2008. Please use a database version above 2008 or use MySQL.

@@ -54,7 +54,7 @@ namespace Rattan.Basic.Utility
 			set { this._namespaceOfPrefix = value; }
 		}
 		/// <summary>
-		/// 节点属性集
+		/// StepAttrType集
 		/// </summary>
 		public AttributeParameter[] Attributes
 		{
@@ -64,7 +64,7 @@ namespace Rattan.Basic.Utility
 	}
 
 	/// <summary>
-	/// 节点属性参数
+	/// StepAttrType参数
 	/// </summary>
 	public class AttributeParameter
 	{
@@ -287,7 +287,7 @@ namespace Rattan.Basic.Utility
 
 		#region AddAttribute
 		/// <summary>
-		/// 添加节点属性
+		/// 添加StepAttrType
 		/// </summary>
 		/// <param name="node">节点对象</param>
 		/// <param name="namespaceOfPrefix">该节点的命名空间URI</param>
@@ -303,11 +303,11 @@ namespace Rattan.Basic.Utility
 			xDoc.Save(_xPath);
 		}
 		/// <summary>
-		/// 添加节点属性
+		/// 添加StepAttrType
 		/// </summary>
 		/// <param name="node">节点对象</param>
 		/// <param name="namespaceOfPrefix">该节点的命名空间URI</param>
-		/// <param name="attributeParameters">节点属性参数</param>
+		/// <param name="attributeParameters">StepAttrType参数</param>
 		public static void AddAttribute(XmlNode node, string namespaceOfPrefix, params AttributeParameter[] attributeParameters)
 		{
 			XmlDocument xDoc = GetXmlDom();
@@ -321,7 +321,7 @@ namespace Rattan.Basic.Utility
 			xDoc.Save(_xPath);
 		}
 		/// <summary>
-		/// 添加节点属性
+		/// 添加StepAttrType
 		/// </summary>
 		/// <param name="nodeName">StepName</param>
 		/// <param name="namespaceOfPrefix">该节点的命名空间URI</param>
@@ -340,11 +340,11 @@ namespace Rattan.Basic.Utility
 			xDoc.Save(_xPath);
 		}
 		/// <summary>
-		/// 添加节点属性
+		/// 添加StepAttrType
 		/// </summary>
 		/// <param name="nodeName">StepName</param>
 		/// <param name="namespaceOfPrefix">该节点的命名空间URI</param>
-		/// <param name="attributeParameters">节点属性参数</param>
+		/// <param name="attributeParameters">StepAttrType参数</param>
 		public static void AddAttribute(string nodeName, string namespaceOfPrefix, params AttributeParameter[] attributeParameters)
 		{
 			XmlDocument xDoc = GetXmlDom();

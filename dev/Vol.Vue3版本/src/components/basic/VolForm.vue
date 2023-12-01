@@ -24,7 +24,7 @@
             :render="item.render"
             :par="12"
           ></form-expand>
-          <!-- 2021.10.17增加表单实时方法计算 -->
+          <!-- 2021.10.17增加Form实时方法计算 -->
           <span
             v-else-if="
               item.readonly && typeof formFields[item.field] == 'function'
@@ -522,7 +522,7 @@ const rule = {
     'drop',
     'radio',
     'cascader'
-  ], // 2020.05.31增加级联类型
+  ], // 2020.05.31增加级联AppType
   phone: /^[1][3,4,5,6,7,8,9][0-9]{9}$/,
   decimal: /(^[\-0-9][0-9]*(.[0-9]+)?)$/,
   number: /(^[\-0-9][0-9]*([0-9]+)?)$/
@@ -538,7 +538,7 @@ const types = {
   date: 'date',
   mail: 'email'
 };
-//表单验证注意：每次验证都必须执行callback,否则验证不执行回调方法
+//Form验证注意：每次验证都必须执行callback,否则验证不执行回调方法
 const colPow = Math.pow(10, 3);
 import FormExpand from './VolForm/VolFormRender';
 import {
@@ -568,17 +568,17 @@ export default defineComponent({
       default: true
     },
     width: {
-      // 表单宽度
+      // Form宽度
       type: Number,
       default: 0
     },
     labelWidth: {
-      // 表单左边label文字标签的宽度
+      // Form左边label文字标签的宽度
       type: Number,
       default: 100
     },
     formRules: {
-      // 表单配置规则，如字段类型，是否必填
+      // FormConfig规则，如字段AppType，是否必填
       type: Array,
       default: []
     },
@@ -665,7 +665,7 @@ export default defineComponent({
           initUpload(item, init);
           // 初始化数据源空对象
           if (item.dataKey) {
-            // 下拉框都强制设置为字符串类型
+            // 下拉框都强制设置为字符串AppType
             item.columnType = 'string';
             if (!item.data) {
               item.data = [];
@@ -818,7 +818,7 @@ export default defineComponent({
           try {
             callback(valid);
           } catch (error) {
-            let msg = `表单验证回调方法异常：${error.message}`;
+            let msg = `Form验证回调方法异常：${error.message}`;
             appContext.config.globalProperties.$message.error(msg);
             console.log(msg);
           }
@@ -859,10 +859,10 @@ export default defineComponent({
   },
   methods: {
     getColWidth(item) {
-      //2021.08.30 增加动态计算表单宽度
+      //2021.08.30 增加动态计算Form宽度
       let _span = 0;
       this.formRules.forEach((row, xIndex) => {
-        //2022.05.06 追加表单中隐藏的元素不参与动态计算表单宽度
+        //2022.05.06 追加Form中隐藏的元素不参与动态计算Form宽度
         let rowLength = row.filter((item) => {
           return !item.hidden;
         }).length;
@@ -966,7 +966,7 @@ export default defineComponent({
       callback();
     },
     convertArrayValue(data, val) {
-      // 2020.12.13增加表单多选只转换字典
+      // 2020.12.13增加Form多选只转换字典
       // Edit多选table显示
       //2023.04.20修复只读为label时原数据被字典替换了的问题
       let valArr = Array.isArray(val)
@@ -985,7 +985,7 @@ export default defineComponent({
       return valArr.join(',');
     },
     getText(formFields, item) {
-      // 2019.10.24修复表单select组件为只读的属性时没有绑定数据源
+      // 2019.10.24修复Formselect组件为只读的属性时没有绑定数据源
       let text = formFields[item.field];
       if (typeof text === 'function') return text(formFields);
       if (text === 'null' || text === '' || text === null || text === undefined)
@@ -994,7 +994,7 @@ export default defineComponent({
       if (item.type == 'date') {
         return text.replace('T', ' ').split(' ')[0];
       }
-      //2021.03.31修复表单switch只读时没有转换值的问题
+      //2021.03.31修复Formswitch只读时没有转换值的问题
       if (item.type == 'switch') {
         return text ? '是' : '否';
       }
@@ -1044,7 +1044,7 @@ export default defineComponent({
       ) {
         return;
       }
-      // 弹出框或初始化表单时给data设置数组默认值2
+      // 弹出框或初始化Form时给data设置数组默认值2
       // 2020.09.26修复Enable搜索自定义url不起作用的问题
       let url;
       if (typeof item.url === 'function') {
@@ -1071,7 +1071,7 @@ export default defineComponent({
       return new Date(date);
     },
     reset(sourceObj) {
-      // 重置表单时，禁用Enable查询
+      // 重置Form时，禁用Enable查询
       this.$refs['volform'].resetFields();
       if (this.rangeFields.length) {
         this.rangeFields.forEach((key) => {
@@ -1102,7 +1102,7 @@ export default defineComponent({
       return item.readonly || item.disabled;
     },
     getRule(item, formFields) {
-      //2021.07.17增加只读表单不验证
+      //2021.07.17增加只读Form不验证
       //range与swtich暂时不做校验
       if (
         // item.readonly ||

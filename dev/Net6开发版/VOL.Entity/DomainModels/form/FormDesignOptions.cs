@@ -13,7 +13,7 @@ using VOL.Entity.SystemModels;
 
 namespace VOL.Entity.DomainModels
 {
-    [Entity(TableCnName = "表单设计",TableName = "FormDesignOptions")]
+    [Entity(TableCnName = "FormDesign",TableName = "FormDesignOptions")]
     public class FormDesignOptions:BaseEntity
     {
         /// <summary>
@@ -26,9 +26,9 @@ namespace VOL.Entity.DomainModels
        public Guid FormId { get; set; }
 
        /// <summary>
-       ///表单ExpertName
+       ///FormExpertName
        /// </summary>
-       [Display(Name ="表单ExpertName")]
+       [Display(Name ="FormExpertName")]
        [MaxLength(1000)]
        [Column(TypeName="nvarchar(1000)")]
        [Editable(true)]
@@ -36,41 +36,41 @@ namespace VOL.Entity.DomainModels
        public string Title { get; set; }
 
        /// <summary>
-       ///设计器配置
+       ///DaraggeOptions
        /// </summary>
-       [Display(Name ="设计器配置")]
+       [Display(Name ="DaraggeOptions")]
        [Column(TypeName="nvarchar(max)")]
        [Editable(true)]
        public string DaraggeOptions { get; set; }
 
        /// <summary>
-       ///表单参数
+       ///FormOptions
        /// </summary>
-       [Display(Name ="表单参数")]
+       [Display(Name ="FormOptions")]
        [Column(TypeName="nvarchar(max)")]
        [Editable(true)]
        public string FormOptions { get; set; }
 
        /// <summary>
-       ///表单配置
+       ///FormConfig
        /// </summary>
-       [Display(Name ="表单配置")]
+       [Display(Name ="FormConfig")]
        [Column(TypeName="nvarchar(max)")]
        [Editable(true)]
        public string FormConfig { get; set; }
 
        /// <summary>
-       ///表单字段
+       ///FormFields
        /// </summary>
-       [Display(Name ="表单字段")]
+       [Display(Name ="FormFields")]
        [Column(TypeName="nvarchar(max)")]
        [Editable(true)]
        public string FormFields { get; set; }
 
        /// <summary>
-       ///表格配置
+       ///TableConfig
        /// </summary>
-       [Display(Name ="表格配置")]
+       [Display(Name ="TableConfig")]
        [Column(TypeName="nvarchar(max)")]
        [Editable(true)]
        public string TableConfig { get; set; }

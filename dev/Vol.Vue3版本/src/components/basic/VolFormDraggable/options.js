@@ -81,7 +81,7 @@ const components = [
     },
     {
         id: 9,
-        name: "图片上传",
+        name: "ImageUpload",
         type: "img",
         url: "",
         maxSize: 3,
@@ -190,7 +190,7 @@ const tableOption = [
     { field: 'title', title: '字段中文名', edit: { type: "text", keep: true }, width: 120 },
     { field: 'show', title: '是否显示', edit: { type: "switch", keep: true }, width: 90 },
     {
-        field: 'dataType', title: '显示类型', edit: { type: "select", keep: true }, width: 120, bind: {
+        field: 'dataType', title: '显示AppType', edit: { type: "select", keep: true }, width: 120, bind: {
             key: '', data: [
                 { "key": "switch", "value": "单选" },
                 { "key": "date", "value": "年月日" },
@@ -204,7 +204,7 @@ const tableOption = [
     { field: 'required', title: '是否必填', edit: { type: "switch", keep: true }, width: 90 },
     { field: 'edit', title: '是否可Edit', edit: { type: "switch", keep: true }, width: 90 },
     {
-        field: 'editType', title: 'Edit类型', edit: { type: "select", keep: true, }, width: 120, bind: {
+        field: 'editType', title: 'EditAppType', edit: { type: "select", keep: true, }, width: 120, bind: {
             key: '', data: [{ "key": "text", "value": "输入框" },
             { "key": "switch", "value": "单选" },
             { "key": "select", "value": "下拉框" },

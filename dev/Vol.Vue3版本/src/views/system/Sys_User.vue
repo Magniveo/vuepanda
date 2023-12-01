@@ -24,7 +24,7 @@
             const table = ref({
                 key: 'User_Id',
                 footer: "Foots",
-                cnName: '用户管理',
+                cnName: 'UserManagement',
                 name: 'Sys_User',
                 url: "/Sys_User/",
                 sortName: "User_Id"
@@ -33,27 +33,27 @@
             const editFormOptions = ref([[{"title":"UserName","required":true,"field":"UserName","disabled":true}],
                               [{"title":"UserTrueName","required":true,"field":"UserTrueName","type":"text"}],
                               [{"dataKey":"tree_roles","data":[],"title":"Role_Id","required":true,"field":"Role_Id","type":"cascader"}],
-                              [{"dataKey":"组织机构","data":[],"title":"组织构架","field":"DeptIds","colSize":12,"type":"treeSelect"}],
+                              [{"dataKey":"organization","data":[],"title":"DeptIds","field":"DeptIds","colSize":12,"type":"treeSelect"}],
                               [{"dataKey":"enable","data":[],"title":"Enable","required":true,"field":"Enable","type":"select"}],
-                              [{"dataKey":"gender","data":[],"title":"性别","field":"Gender","type":"select"}],
+                              [{"dataKey":"gender","data":[],"title":"Gender","field":"Gender","type":"select"}],
                               [{"title":"Remark","field":"Remark","colSize":12,"type":"textarea"}],
                               [{"title":"HeadImageUrl","field":"HeadImageUrl","type":"img"}]]);
             const searchFormFields = ref({"UserName":"","UserTrueName":"","Gender":"","DeptName":"","Role_Id":[],"Token":"","AppType":[],"CreateDate":"","IsRegregisterPhone":"","PhoneNo":"","Enable":"","LastLoginDate":"","Address":"","Email":""});
-            const searchFormOptions = ref([[{"title":"UserName","field":"UserName"},{"title":"UserTrueName","field":"UserTrueName"},{"dataKey":"gender","data":[],"title":"性别","field":"Gender","type":"select"}],[{"title":"Dept_Id","field":"DeptName"},{"dataKey":"tree_roles","data":[],"title":"Role_Id","field":"Role_Id","type":"select"},{"title":"Token","field":"Token"}],[{"dataKey":"ut","data":[],"title":"类型","field":"AppType","type":"selectList"},{"dataKey":"isphone","data":[],"title":"手机用户","field":"IsRegregisterPhone","type":"select"},{"title":"PhoneNo","field":"PhoneNo"}],[{"dataKey":"enable","data":[],"title":"Enable","field":"Enable","type":"select"},{"title":"Address","field":"Address"},{"title":"Email","field":"Email"}],[{"title":"CreateDate","field":"CreateDate","type":"datetime"},{"title":"LastLoginDate","field":"LastLoginDate","type":"datetime"}]]);
+            const searchFormOptions = ref([[{"title":"UserName","field":"UserName"},{"title":"UserTrueName","field":"UserTrueName"},{"dataKey":"gender","data":[],"title":"Gender","field":"Gender","type":"select"}],[{"title":"Dept_Id","field":"DeptName"},{"dataKey":"tree_roles","data":[],"title":"Role_Id","field":"Role_Id","type":"select"},{"title":"Token","field":"Token"}],[{"dataKey":"ut","data":[],"title":"AppType","field":"AppType","type":"selectList"},{"dataKey":"isphone","data":[],"title":"IsRegregisterPhone","field":"IsRegregisterPhone","type":"select"},{"title":"PhoneNo","field":"PhoneNo"}],[{"dataKey":"enable","data":[],"title":"Enable","field":"Enable","type":"select"},{"title":"Address","field":"Address"},{"title":"Email","field":"Email"}],[{"title":"CreateDate","field":"CreateDate","type":"datetime"},{"title":"LastLoginDate","field":"LastLoginDate","type":"datetime"}]]);
             const columns = ref([{field:'User_Id',title:'User_Id',type:'int',width:90,hidden:true,readonly:true,require:true,align:'left'},
                        {field:'UserName',title:'UserName',type:'string',link:true,width:120,readonly:true,require:true,align:'left',sort:true},
                        {field:'UserTrueName',title:'UserTrueName',type:'string',width:120,require:true,align:'left'},
-                       {field:'Gender',title:'性别',type:'int',bind:{ key:'gender',data:[]},width:80,align:'left'},
+                       {field:'Gender',title:'Gender',type:'int',bind:{ key:'gender',data:[]},width:80,align:'left'},
                        {field:'HeadImageUrl',title:'HeadImageUrl',type:'img',width:90,align:'left'},
                        {field:'Dept_Id',title:'Dept_Id',type:'int',width:90,hidden:true,align:'left'},
                        {field:'DeptName',title:'Dept_Id',type:'string',width:150,hidden:true,align:'left'},
                        {field:'Role_Id',title:'Role_Id',type:'int',bind:{ key:'tree_roles',data:[]},width:130,require:true,align:'left'},
                        {field:'RoleName',title:'Dept_Id',type:'string',width:90,hidden:true,align:'left'},
                        {field:'Token',title:'Token',type:'string',width:180,hidden:true,align:'left'},
-                       {field:'AppType',title:'类型',type:'int',bind:{ key:'ut',data:[]},width:150,hidden:true,align:'left'},
-                       {field:'DeptIds',title:'组织构架',type:'string',bind:{ key:'组织机构',data:[]},width:140,hidden:true,align:'left'},
+                       {field:'AppType',title:'AppType',type:'int',bind:{ key:'ut',data:[]},width:150,hidden:true,align:'left'},
+                       {field:'DeptIds',title:'DeptIds',type:'string',bind:{ key:'organization',data:[]},width:140,hidden:true,align:'left'},
                        {field:'CreateDate',title:'CreateDate',type:'datetime',width:150,readonly:true,align:'left',sort:true},
-                       {field:'IsRegregisterPhone',title:'手机用户',type:'int',bind:{ key:'isphone',data:[]},width:120,hidden:true,align:'left'},
+                       {field:'IsRegregisterPhone',title:'IsRegregisterPhone',type:'int',bind:{ key:'isphone',data:[]},width:120,hidden:true,align:'left'},
                        {field:'PhoneNo',title:'PhoneNo',type:'string',width:150,hidden:true,align:'left'},
                        {field:'Tel',title:'Tel',type:'string',width:90,hidden:true,align:'left'},
                        {field:'CreateID',title:'CreateID',type:'int',width:90,hidden:true,align:'left'},

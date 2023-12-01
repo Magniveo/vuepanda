@@ -174,7 +174,7 @@ namespace VOL.Core.Extensions
         /// <summary>
         /// 将集合转换为数据集。
         /// </summary>
-        /// <typeparam name="T">转换的元素类型。</typeparam>
+        /// <typeparam name="T">转换的元素AppType。</typeparam>
         /// <param name="list">集合。</param>
         /// <param name="generic">是否生成泛型数据集。</param>
         /// <returns>数据集。</returns>
@@ -197,7 +197,7 @@ namespace VOL.Core.Extensions
         /// <summary>
         /// 将集合转换为数据集。
         /// </summary>
-        /// <typeparam name="T">转换的元素类型。</typeparam>
+        /// <typeparam name="T">转换的元素AppType。</typeparam>
         /// <param name="list">集合。</param>
         /// <param name="generic">是否生成泛型数据集。</param>
         /// <returns>数据集。</returns>
@@ -209,7 +209,7 @@ namespace VOL.Core.Extensions
         /// <summary>
         /// 将实例转换为集合数据集。
         /// </summary>
-        /// <typeparam name="T">实例类型。</typeparam>
+        /// <typeparam name="T">实例AppType。</typeparam>
         /// <param name="o">实例。</param>
         /// <param name="generic">是否生成泛型数据集。</param>
         /// <returns>数据集。</returns>
@@ -228,7 +228,7 @@ namespace VOL.Core.Extensions
         /// <summary>
         /// 将可序列化实例转换为XmlDocument。
         /// </summary>
-        /// <typeparam name="T">实例类型。</typeparam>
+        /// <typeparam name="T">实例AppType。</typeparam>
         /// <param name="o">实例。</param>
         /// <returns>XmlDocument。</returns>
         public static XmlDocument ToXmlDocument<T>(this T o)
@@ -244,7 +244,7 @@ namespace VOL.Core.Extensions
         /// 将集合转换为数据集。
         /// </summary>
         /// <param name="list">集合。</param>
-        /// <param name="t">转换的元素类型。</param>
+        /// <param name="t">转换的元素AppType。</param>
         /// <param name="generic">是否生成泛型数据集。</param>
         /// <returns>转换后的数据集。</returns>
         private static DataSet ListToDataSet(IEnumerable list, Type t, bool generic)
@@ -270,7 +270,7 @@ namespace VOL.Core.Extensions
                 }
             }
             ds.Tables.Add(t.Name);
-            //如果集合中元素为DataSet扩展涉及到的基本类型时，进行特殊转换。
+            //如果集合中元素为DataSet扩展涉及到的基本AppType时，进行特殊转换。
             if (t.IsValueType || t == typeof(string))
             {
                 ds.Tables[0].TableName = "Info";
@@ -353,7 +353,7 @@ namespace VOL.Core.Extensions
         /// <summary>
         /// 将集合转换为数据集。
         /// </summary>
-        /// <typeparam name="T">转换的元素类型。</typeparam>
+        /// <typeparam name="T">转换的元素AppType。</typeparam>
         /// <param name="list">集合。</param>
         /// <param name="generic">是否生成泛型数据集。</param>
         /// <returns>数据集。</returns>
@@ -463,7 +463,7 @@ namespace VOL.Core.Extensions
         }
 
         /// <summary>
-        /// 将object转换为string类型信息。
+        /// 将object转换为stringAppType信息。
         /// </summary>
         /// <param name="o">object。</param>
         /// <param name="t">默认值。</param>
@@ -483,7 +483,7 @@ namespace VOL.Core.Extensions
         }
 
         /// <summary>
-        /// 将DateTime?转换为string类型信息。
+        /// 将DateTime?转换为stringAppType信息。
         /// </summary>
         /// <param name="o">DateTime?。</param>
         /// <param name="format">标准或自定义Date和时间格式的字符串。</param>
@@ -504,7 +504,7 @@ namespace VOL.Core.Extensions
         }
 
         /// <summary>
-        /// 将TimeSpan?转换为string类型信息。
+        /// 将TimeSpan?转换为stringAppType信息。
         /// </summary>
         /// <param name="o">TimeSpan?。</param>
         /// <param name="format">标准或自定义时间格式的字符串。</param>
@@ -527,7 +527,7 @@ namespace VOL.Core.Extensions
 
 
         /// <summary>
-        /// 将object转换为byte类型信息。
+        /// 将object转换为byteAppType信息。
         /// </summary>
         /// <param name="o">object。</param>
         /// <param name="t">默认值。</param>
@@ -541,7 +541,7 @@ namespace VOL.Core.Extensions
             return info;
         }
         /// <summary>
-        /// 将object转换为int类型信息。
+        /// 将object转换为intAppType信息。
         /// </summary>
         /// <param name="o">object。</param>
         /// <param name="t">默认值。</param>
@@ -556,7 +556,7 @@ namespace VOL.Core.Extensions
         }
 
         /// <summary>
-        /// 将object转换为double类型信息。
+        /// 将object转换为doubleAppType信息。
         /// </summary>
         /// <param name="o">object。</param>
         /// <param name="t">默认值。</param>
@@ -572,7 +572,7 @@ namespace VOL.Core.Extensions
         }
 
         /// <summary>
-        /// 将object转换为decimal类型信息。
+        /// 将object转换为decimalAppType信息。
         /// </summary>
         /// <param name="o">object。</param>
         /// <param name="t">默认值。</param>
@@ -588,7 +588,7 @@ namespace VOL.Core.Extensions
         }
 
         /// <summary>
-        /// 将object转换为float类型信息。
+        /// 将object转换为floatAppType信息。
         /// </summary>
         /// <param name="o">object。</param>
         /// <param name="t">默认值。</param>
@@ -603,7 +603,7 @@ namespace VOL.Core.Extensions
         }
 
         /// <summary>
-        /// 将object转换为long类型信息。
+        /// 将object转换为longAppType信息。
         /// </summary>
         /// <param name="o">object。</param>
         /// <param name="t">默认值。</param>
@@ -619,7 +619,7 @@ namespace VOL.Core.Extensions
         }
 
         /// <summary>
-        /// 将object转换为bool类型信息。
+        /// 将object转换为boolAppType信息。
         /// </summary>
         /// <param name="o">object。</param>
         /// <param name="t">默认值。</param>
@@ -635,7 +635,7 @@ namespace VOL.Core.Extensions
         }
 
         /// <summary>
-        /// 将object转换为sbyte类型信息。
+        /// 将object转换为sbyteAppType信息。
         /// </summary>
         /// <param name="o">object。</param>
         /// <param name="t">默认值。</param>
@@ -651,7 +651,7 @@ namespace VOL.Core.Extensions
         }
 
         /// <summary>
-        /// 将object转换为short类型信息。
+        /// 将object转换为shortAppType信息。
         /// </summary>
         /// <param name="o">object。</param>
         /// <param name="t">默认值。</param>
@@ -667,7 +667,7 @@ namespace VOL.Core.Extensions
         }
 
         /// <summary>
-        /// 将object转换为ushort类型信息。
+        /// 将object转换为ushortAppType信息。
         /// </summary>
         /// <param name="o">object。</param>
         /// <param name="t">默认值。</param>
@@ -683,7 +683,7 @@ namespace VOL.Core.Extensions
         }
 
         /// <summary>
-        /// 将object转换为ulong类型信息。
+        /// 将object转换为ulongAppType信息。
         /// </summary>
         /// <param name="o">object。</param>
         /// <param name="t">默认值。</param>
@@ -699,7 +699,7 @@ namespace VOL.Core.Extensions
         }
 
         /// <summary>
-        /// 将object转换为Enum[T]类型信息。
+        /// 将object转换为Enum[T]AppType信息。
         /// </summary>
         /// <param name="o">object。</param>
         /// <param name="t">默认值。</param>
@@ -715,7 +715,7 @@ namespace VOL.Core.Extensions
         }
 
         /// <summary>
-        /// 将object转换为DateTime类型信息。
+        /// 将object转换为DateTimeAppType信息。
         /// </summary>
         /// <param name="o">object。</param>
         /// <param name="t">默认值。</param>
@@ -735,7 +735,7 @@ namespace VOL.Core.Extensions
         }
 
         /// <summary>
-        /// 将object转换为TimeSpan类型信息。
+        /// 将object转换为TimeSpanAppType信息。
         /// </summary>
         /// <param name="o">object。</param>
         /// <param name="t">默认值。</param>
@@ -755,7 +755,7 @@ namespace VOL.Core.Extensions
         }
 
         /// <summary>
-        /// 将object转换为Guid类型信息。
+        /// 将object转换为GuidAppType信息。
         /// </summary>
         /// <param name="o">object。</param>
         /// <param name="t">默认值。</param>
@@ -773,7 +773,7 @@ namespace VOL.Core.Extensions
         private static Regex BoolRegex = new Regex("(?<info>(true|false))", RegexOptions.IgnoreCase | RegexOptions.Singleline);
 
         /// <summary>
-        /// 从object中获取bool类型信息。
+        /// 从object中获取boolAppType信息。
         /// </summary>
         /// <param name="o">object。</param>
         /// <returns>bool。</returns>
@@ -790,7 +790,7 @@ namespace VOL.Core.Extensions
         private static Regex DecimalRegex = new Regex("(?<info>-?\\d+(\\.\\d+)?)", RegexOptions.IgnoreCase | RegexOptions.Singleline);
 
         /// <summary>
-        /// 从object中获取decimal类型信息。
+        /// 从object中获取decimalAppType信息。
         /// </summary>
         /// <param name="o">object。</param>
         /// <returns>decimal。</returns>
@@ -824,7 +824,7 @@ namespace VOL.Core.Extensions
         private static Regex DateTimeRegex = new Regex("(?<info>(((\\d+)[/年-](0?[13578]|1[02])[/月-](3[01]|[12]\\d|0?\\d)[日]?)|((\\d+)[/年-](0?[469]|11)[/月-](30|[12]\\d|0?\\d)[日]?)|((\\d+)[/年-]0?2[/月-](2[0-8]|1\\d|0?\\d)[日]?))(\\s((2[0-3]|[0-1]\\d)):[0-5]\\d:[0-5]\\d)?)", RegexOptions.IgnoreCase | RegexOptions.Singleline);
 
         /// <summary>
-        /// 从object中获取DateTime?类型信息。
+        /// 从object中获取DateTime?AppType信息。
         /// </summary>
         /// <param name="o">object。</param>
         /// <returns>DateTime?。</returns>
@@ -841,7 +841,7 @@ namespace VOL.Core.Extensions
         private static Regex TimeSpanRegex = new Regex("(?<info>-?(\\d+\\.(([0-1]\\d)|(2[0-3])):[0-5]\\d:[0-5]\\d)|((([0-1]\\d)|(2[0-3])):[0-5]\\d:[0-5]\\d)|(\\d+))", RegexOptions.IgnoreCase | RegexOptions.Singleline);
 
         /// <summary>
-        /// 从object中获取TimeSpan?类型信息。
+        /// 从object中获取TimeSpan?AppType信息。
         /// </summary>
         /// <param name="o">object。</param>
         /// <returns>TimeSpan?。</returns>
@@ -858,7 +858,7 @@ namespace VOL.Core.Extensions
         private static Regex GuidRegex = new Regex("(?<info>\\{{0,1}([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}\\}{0,1})", RegexOptions.IgnoreCase | RegexOptions.Singleline);
 
         /// <summary>
-        /// 从object中获取Guid?类型信息。
+        /// 从object中获取Guid?AppType信息。
         /// </summary>
         /// <param name="o">object。</param>
         /// <returns>Guid?。</returns>
@@ -873,7 +873,7 @@ namespace VOL.Core.Extensions
         }
 
         /// <summary>
-        /// 将object转换为SqlServer中的DateTime?类型信息。
+        /// 将object转换为SqlServer中的DateTime?AppType信息。
         /// </summary>
         /// <param name="o">object。</param>
         /// <param name="t">默认值。</param>
@@ -913,8 +913,8 @@ namespace VOL.Core.Extensions
         /// <summary>
         /// 获取与指定键相关的值。
         /// </summary>
-        /// <typeparam name="TKey">键类型。</typeparam>
-        /// <typeparam name="TValue">值类型。</typeparam>
+        /// <typeparam name="TKey">键AppType。</typeparam>
+        /// <typeparam name="TValue">值AppType。</typeparam>
         /// <param name="dictionary">表示键/值对象的泛型集合。</param>
         /// <param name="key">键。</param>
         /// <param name="t">默认值。</param>
@@ -936,8 +936,8 @@ namespace VOL.Core.Extensions
         /// <summary>
         /// 获取与指定键相关或者第一个的值。
         /// </summary>
-        /// <typeparam name="TKey">键类型。</typeparam>
-        /// <typeparam name="TValue">值类型。</typeparam>
+        /// <typeparam name="TKey">键AppType。</typeparam>
+        /// <typeparam name="TValue">值AppType。</typeparam>
         /// <param name="dictionary">表示键/值对象的泛型集合。</param>
         /// <param name="key">键。</param>
         /// <param name="t">默认值。</param>

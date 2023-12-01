@@ -1,7 +1,7 @@
 import { h, resolveComponent } from 'vue';
 let extension = {
     components: { //动态扩充组件或组件路径
-        //表单header、content、footer对应位置扩充的组件
+        //Formheader、content、footer对应位置扩充的组件
         //扩展组件引入方式
         gridHeader: '',
         gridBody: {

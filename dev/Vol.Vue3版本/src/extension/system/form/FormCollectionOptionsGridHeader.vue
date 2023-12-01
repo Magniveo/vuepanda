@@ -4,7 +4,7 @@
       :on-model-close="onModelClose"
       :lazy="true"
       v-model="model"
-      title="表单设计"
+      title="FormDesign"
       :height="height"
       :width="width"
       :padding="0"

@@ -14,7 +14,7 @@ using VOL.Entity.SystemModels;
 
 namespace VOL.Entity.DomainModels
 {
-    [Entity(TableCnName = "用户管理",TableName = "Sys_User",ApiInput = typeof(ApiSys_UserInput),ApiOutput = typeof(ApiSys_UserOutput))]
+    [Entity(TableCnName = "UserManagement",TableName = "Sys_User",ApiInput = typeof(ApiSys_UserInput),ApiOutput = typeof(ApiSys_UserOutput))]
     public partial class Sys_User:BaseEntity
     {
         /// <summary>
@@ -37,9 +37,9 @@ namespace VOL.Entity.DomainModels
        public int User_Id { get; set; }
 
        /// <summary>
-       ///性别
+       ///Gender
        /// </summary>
-       [Display(Name ="性别")]
+       [Display(Name ="Gender")]
        [Column(TypeName="int")]
        [Editable(true)]
        public int? Gender { get; set; }
@@ -97,17 +97,17 @@ namespace VOL.Entity.DomainModels
        public string Token { get; set; }
 
        /// <summary>
-       ///类型
+       ///AppType
        /// </summary>
-       [Display(Name ="类型")]
+       [Display(Name ="AppType")]
        [Column(TypeName="int")]
        [Editable(true)]
        public int? AppType { get; set; }
 
        /// <summary>
-       ///组织构架
+       ///DeptIds
        /// </summary>
-       [Display(Name ="组织构架")]
+       [Display(Name ="DeptIds")]
        [MaxLength(2000)]
        [Column(TypeName="nvarchar(2000)")]
        [Editable(true)]
@@ -140,9 +140,9 @@ namespace VOL.Entity.DomainModels
        public DateTime? CreateDate { get; set; }
 
        /// <summary>
-       ///手机用户
+       ///IsRegregisterPhone
        /// </summary>
-       [Display(Name ="手机用户")]
+       [Display(Name ="IsRegregisterPhone")]
        [Column(TypeName="int")]
        public int? IsRegregisterPhone { get; set; }
 

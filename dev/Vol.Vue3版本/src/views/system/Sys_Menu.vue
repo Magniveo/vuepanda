@@ -414,8 +414,8 @@ export default defineComponent({
           ],
         },  
         {
-          // 2022.03.26增移动端加菜单类型
-          title: "菜单类型",
+          // 2022.03.26增移动端加菜单AppType
+          title: "菜单AppType",
           field: "menuType",
           required: true,
           type: "select",

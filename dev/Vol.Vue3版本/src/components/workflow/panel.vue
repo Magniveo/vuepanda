@@ -26,7 +26,7 @@
                 <!-- 给画布一个默认的宽度和高度 -->
                 <div style="position:absolute;top: 3000px;left: 4000px;">&nbsp;</div>
             </div>
-            <!-- 右侧表单 -->
+            <!-- 右侧Form -->
             <div style="width: 400px;border-left: 1px solid #dce3e8;background-color: #FBFBFB">
                 <el-scrollbar style="height: 100%;padding-bottom: 10px;">
                     <flow-node-form @delNode="deleteNode" ref="nodeForm" @setLineLabel="setLineLabel" :disabled="disabled"
@@ -126,7 +126,7 @@ export default {
             activeElement: {
                 // 可选值 node 、line
                 type: undefined,
-                // 节点ID
+                // StepId
                 nodeId: undefined,
                 // 连线ID
                 sourceId: undefined,
@@ -279,7 +279,7 @@ export default {
             for (var i = 0; i < this.data.nodeList.length; i++) {
                 let node = this.data.nodeList[i]
                 if (node.userId && node.userId != '') {
-                    // userId为数值类型
+                    // userId为数值AppType
                     if (typeof node.userId == 'number'){
                         node.userId = [node.userId]
                     } else {

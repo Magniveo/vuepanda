@@ -127,7 +127,7 @@ export default {
       default: true
     },
     img: {
-      //图片类型  img>excel>fileTypes三种文件类型优先级
+      //图片AppType  img>excel>fileTypes三种文件AppType优先级
       type: Boolean,
       default: false
     },
@@ -137,7 +137,7 @@ export default {
       default: false
     },
     fileTypes: {
-      //指定上传文件的类型
+      //指定上传文件的AppType
       type: Array,
       default: () => {
         return [];
@@ -370,7 +370,7 @@ export default {
         u8arr[n] = bstr.charCodeAt(n);
       }
       // new File返回File对象 第一个参数是 ArraryBuffer 或 Bolb 或Arrary 第二个参数是文件名
-      // 第三个参数是 要放到文件中的内容的 MIME 类型
+      // 第三个参数是 要放到文件中的内容的 MIME AppType
       return new File([u8arr], `${filename}.${suffix}`, {
         type: mime,
         input: true

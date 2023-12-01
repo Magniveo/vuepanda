@@ -17,7 +17,7 @@
     >
   </vol-box>
   <el-alert style="margin-bottom:10px;" :show-icon="false" type="success">
-    定时任务只有发布后才会运行(本地不会执行),<a
+    ScheduledTasks只有发布后才会运行(本地不会执行),<a
       style="color:#2d8cf0;margin-left:20px;"
       target="blank"
       href="http://v2.volcore.xyz/document/netCoreDev"

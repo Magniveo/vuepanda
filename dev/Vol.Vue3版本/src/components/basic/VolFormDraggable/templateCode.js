@@ -28,8 +28,8 @@ var code = `<template>
 // 使用方式：
 // 1、Add一个vue页面，把此页面内容复制进去
 // 2、router->index.js配置路由，页面上输入Address即可看到数据(也可以把菜单配置上)
-// 3、或者参照表单设计页面做动态页面
-//**表单设计器的table下载还在开发中
+// 3、或者参照FormDesign页面做动态页面
+//**FormDesign器的table下载还在开发中
 {import_VolTable}
 import VolForm from '@/components/basic/VolForm'
 export default {
@@ -57,7 +57,7 @@ export default {
         },
         reset () {
             this.$refs.form.reset();
-            this.$Message.success("表单已重置")
+            this.$Message.success("Form已重置")
         },
         download () {
             this.$Message.info("111")

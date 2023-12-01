@@ -43,9 +43,9 @@ namespace VOL.Entity.DomainModels
        public Guid? WorkFlowTableStep_Id { get; set; }
 
        /// <summary>
-       ///节点id
+       ///StepId
        /// </summary>
-       [Display(Name ="节点id")]
+       [Display(Name ="StepId")]
        [MaxLength(100)]
        [Column(TypeName="nvarchar(100)")]
        [Editable(true)]

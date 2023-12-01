@@ -11,10 +11,10 @@
 //{
 //    /// <summary>
 //    /// 生产者 控制器或Service里面构造函数注入即可调用
-//    /// Message.Key的数据类型为string、Message.Value的数据类型为string
+//    /// Message.Key的数据AppType为string、Message.Value的数据AppType为string
 //    /// </summary>
-//    /// <typeparam name="TKey">Message.Key 的数据类型</typeparam>
-//    /// <typeparam name="TValue">Message.Value 的数据类型</typeparam>
+//    /// <typeparam name="TKey">Message.Key 的数据AppType</typeparam>
+//    /// <typeparam name="TValue">Message.Value 的数据AppType</typeparam>
 //    public class KafkaProducer<TKey, TValue> : KafkaConfig, IKafkaProducer<TKey, TValue>
 //    {
 //        /// <summary>

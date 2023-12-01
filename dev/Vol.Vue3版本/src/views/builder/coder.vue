@@ -317,7 +317,7 @@ export default {
             keyInfo.columnType != 'bigint' &&
             !this.layOutOptins.fields.sortName
           ) {
-            this.$message.error('主键非自增类型,请设置上面表单的【OrderNo字段】');
+            this.$message.error('主键非自增AppType,请设置上面Form的【OrderNo字段】');
             return false;
           }
         }

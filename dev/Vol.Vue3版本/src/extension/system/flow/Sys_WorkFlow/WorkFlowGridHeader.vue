@@ -104,12 +104,12 @@ export default {
       let mainData = JSON.parse(JSON.stringify(this.$refs.flow.formFields));
 
       if (!mainData.WorkName) {
-        this.$message.error('请填写左侧表单【WorkName】')
+        this.$message.error('请填写左侧Form【WorkName】')
         return;
       }
 
       if (!mainData.WorkTable) {
-        this.$message.error('请选择左侧表单【流程实例】')
+        this.$message.error('请选择左侧Form【流程实例】')
         return;
       }
 
@@ -186,14 +186,14 @@ export default {
               ParentId: [node.StepId], //ParentId
               StepId: item.id,
               StepName: item.name,
-              StepAttrType: item.type, //节点类型.start开始，end结束 
-              StepType: item.auditType,//审核类型,Role_Id，用户，部门(这里后面考虑同时支持多个Role_Id、用户、部门)
+              StepAttrType: item.type, //节点AppType.start开始，end结束 
+              StepType: item.auditType,//审核AppType,Role_Id，用户，部门(这里后面考虑同时支持多个Role_Id、用户、部门)
               //审核选择的值Role_Id，用户，部门(这里后面考虑同时支持多个Role_Id、用户、部门)
               StepValue: item.auditType == 1 ? item.userId.join(',') : (item.auditType == 2 ? item.roleId : item.deptId),
-              AuditRefuse: item.auditRefuse,//审核未通过(返回上一节点,流程重新开始,流程结束)
-              AuditBack: item.auditBack, //驳回(返回上一节点,流程重新开始,流程结束)
-              AuditMethod: item.auditMethod,//审批方式(启用会签)
-              SendMail: 0, //审核后发送邮件通知：
+              AuditRefuse: item.auditRefuse,//AuditRefuse
+              AuditBack: item.auditBack, //AuditBack
+              AuditMethod: item.auditMethod,//AuditMethod
+              SendMail: 0, //SendMail：
               Filters: item.filters
             })
           }
@@ -226,7 +226,7 @@ export default {
         }
         if (step.StepAttrType == 'node' && !step.StepValue) {
           return this.$message.error(
-            `请选择【${step.StepName}】的审批类型`
+            `请选择【${step.StepName}】的审批AppType`
           );
         }
       }

@@ -93,7 +93,7 @@ export default {
         }
     },
     methods: {
-        // 根据类型获取左侧菜单对象
+        // 根据AppType获取左侧菜单对象
         getMenuByType(type) {
             for (let i = 0; i < this.menuList.length; i++) {
                 let children = this.menuList[i].children;

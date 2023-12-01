@@ -13,7 +13,7 @@ using VOL.Entity.SystemModels;
 
 namespace VOL.Entity.DomainModels
 {
-    [Entity(TableCnName = "数据采集",TableName = "FormCollectionObject")]
+    [Entity(TableCnName = "DataCollection",TableName = "FormCollectionObject")]
     public class FormCollectionObject:BaseEntity
     {
         /// <summary>
@@ -26,9 +26,9 @@ namespace VOL.Entity.DomainModels
        public Guid FormCollectionId { get; set; }
 
        /// <summary>
-       ///表单ID
+       ///FormID
        /// </summary>
-       [Display(Name ="表单ID")]
+       [Display(Name ="FormID")]
        [Column(TypeName="uniqueidentifier")]
        [Editable(true)]
        public Guid? FormId { get; set; }
@@ -42,9 +42,9 @@ namespace VOL.Entity.DomainModels
        public string Title { get; set; }
 
        /// <summary>
-       ///表单数据
+       ///Form数据
        /// </summary>
-       [Display(Name ="表单数据")]
+       [Display(Name ="Form数据")]
        [Column(TypeName="nvarchar(max)")]
        [Editable(true)]
        public string FormData { get; set; }

@@ -127,8 +127,8 @@ export default {
       ],
       grid: [
         {
-          name: '用户管理',
-          desc: 'System用户管理,注册用户3000000人。',
+          name: 'UserManagement',
+          desc: 'SystemUserManagement,注册用户3000000人。',
           icon: 'el-icon-user'
         },
         {

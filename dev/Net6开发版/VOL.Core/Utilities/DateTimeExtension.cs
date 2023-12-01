@@ -24,7 +24,7 @@ namespace VOL.Core.Utilities
     }
 
     /// <summary>
-    /// 将毫秒值转成 C#  DateTime 类型
+    /// 将毫秒值转成 C#  DateTime AppType
     /// </summary>
     /// <param name="time"></param>
     /// <returns></returns>

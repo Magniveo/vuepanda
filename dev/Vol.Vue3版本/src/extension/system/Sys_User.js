@@ -1,7 +1,7 @@
 import {  defineAsyncComponent } from "vue";
 let extension = {
     components: { //动态扩充组件或组件路径
-        //表单header、content、footer对应位置扩充的组件
+        //Formheader、content、footer对应位置扩充的组件
         gridHeader: defineAsyncComponent(() =>
             import("./Sys_User/Sys_UserGridHeader.vue")),
         gridBody: '',
@@ -74,7 +74,7 @@ let extension = {
                         x.disabled=isEDIT;
                     }
                 })
-                //不是Add，性别默认值设置为男
+                //不是Add，Gender默认值设置为男
                 if (!isEDIT) {
                     this.editFormFields.Gender = "0";
                 }

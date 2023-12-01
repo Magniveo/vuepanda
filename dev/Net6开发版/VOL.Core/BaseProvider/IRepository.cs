@@ -71,7 +71,7 @@ namespace VOL.Core.BaseProvider
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="predicate">查询条件</param>
-        /// <param name="selector">返回类型如:Find(x => x.UserName == loginInfo.userName, p => new { uname = p.UserName });</param>
+        /// <param name="selector">返回AppType如:Find(x => x.UserName == loginInfo.userName, p => new { uname = p.UserName });</param>
         /// <returns></returns>
         List<T> Find<T>(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, T>> selector);
 

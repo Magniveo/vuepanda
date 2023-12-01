@@ -1,10 +1,10 @@
 //author:jxx
-//此处是对表单的方法，组件，权限操作按钮等进行任意扩展(方法扩展可参照SellOrder.js)
+//此处是对Form的方法，组件，权限操作按钮等进行任意扩展(方法扩展可参照SellOrder.js)
 import  gridHeader from './FormCollectionOptionsGridHeader.vue'
 import { h, resolveComponent } from 'vue';
 let extension = {
     components: {//动态扩充组件或组件路径
-        //表单header、content、footer对应位置扩充的组件
+        //Formheader、content、footer对应位置扩充的组件
         gridHeader:gridHeader,//{ template: "<div>扩展组xx件</div>" },
         gridBody: {
             render() {
@@ -12,7 +12,7 @@ let extension = {
                 h(resolveComponent('el-alert'), {
                   style: { 'margin-bottom': '12px' },
                   'show-icon': true, type: 'success',
-                  closable: false, title: '1、点击Add随便输入,2、点击表格[表单设计]然后保存,3、点击预览(页面打开后提交数据),4、数据采集页面看查结果'
+                  closable: false, title: '1、点击Add随便输入,2、点击表格[FormDesign]然后保存,3、点击预览(页面打开后提交数据),4、DataCollection页面看查结果'
                 }, ''),
               ]
             }
@@ -35,11 +35,11 @@ let extension = {
         initFormButton() {
             this.columns.splice(this.columns.findIndex(x => { return x.field == 'FormFields' }), 1, ...[{
                 title: "操作",
-                field: "表单设计",
+                field: "FormDesign",
                 with: 80,
                 sort: false,
                 formatter: () => {
-                    return '<a style="color: #3a8ee6;">表单设计</a>'
+                    return '<a style="color: #3a8ee6;">FormDesign</a>'
                 },
                 click: (row) => {
                     this.$refs.gridHeader.open(row);

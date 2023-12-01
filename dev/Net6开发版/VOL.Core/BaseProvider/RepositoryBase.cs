@@ -650,7 +650,7 @@ namespace VOL.Core.BaseProvider
         /// </summary>
         /// <param name="field">x=>new {x.字段}</param>
         /// <param name="value">查询的类</param>
-        /// <param name="linqExpression">查询类型</param>
+        /// <param name="linqExpression">查询AppType</param>
         /// <returns></returns>
         public virtual IQueryable<TEntity> WhereIF([NotNull] Expression<Func<TEntity, object>> field, string value, LinqExpressionType linqExpression = LinqExpressionType.Equal)
         {

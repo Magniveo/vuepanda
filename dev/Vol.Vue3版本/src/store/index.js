@@ -1,6 +1,6 @@
 import { createStore } from 'vuex'
 const keys = { USER: 'user' }
-const locales = require.context('../locale',true,'ru_RU.json');
+//const locales = require.context('../locale',true,'ru_RU.json');
 function getUserInfo(state) {
   if (state.userInfo) return state.userInfo;
   let userInfo = localStorage.getItem(keys.USER);

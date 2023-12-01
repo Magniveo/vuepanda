@@ -13,7 +13,7 @@ using VOL.Entity.SystemModels;
 
 namespace VOL.Entity.DomainModels
 {
-    [Entity(TableCnName = "执行记录",TableName = "Sys_QuartzLog")]
+    [Entity(TableCnName = "ExecutionRecord",TableName = "Sys_QuartzLog")]
     public partial class Sys_QuartzLog:BaseEntity
     {
         /// <summary>
@@ -27,9 +27,9 @@ namespace VOL.Entity.DomainModels
        public Guid LogId { get; set; }
 
        /// <summary>
-       ///任务id
+       ///Id
        /// </summary>
-       [Display(Name ="任务id")]
+       [Display(Name ="Id")]
        [Column(TypeName="uniqueidentifier")]
        [Editable(true)]
        public Guid? Id { get; set; }
@@ -68,9 +68,9 @@ namespace VOL.Entity.DomainModels
        public DateTime? EndDate { get; set; }
 
        /// <summary>
-       ///是否成功
+       ///Result
        /// </summary>
-       [Display(Name ="是否成功")]
+       [Display(Name ="Result")]
        [Column(TypeName="int")]
        [Editable(true)]
        public int? Result { get; set; }

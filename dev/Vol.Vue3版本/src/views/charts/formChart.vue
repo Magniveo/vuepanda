@@ -12,7 +12,7 @@
       <div class="right">
         <VolHeader
           icon="md-apps"
-          text="基础表单"
+          text="基础Form"
           style="padding-left: 10px; margin-bottom: 20px"
         ></VolHeader>
         <VolForm
@@ -30,7 +30,7 @@
       <div class="left">
         <VolHeader
           icon="md-apps"
-          text="表单属性字段只读"
+          text="Form属性字段只读"
           style="padding-left: 10px; margin-bottom: 20px"
         ></VolHeader>
         <VolForm
@@ -44,7 +44,7 @@
       <div class="right">
         <VolHeader
           icon="md-apps"
-          text="饼状图表"
+          text="饼状Chart"
           style="padding-left: 10px"
         ></VolHeader>
         <div style="height: calc(100% - 30px)" :id="pie"></div>

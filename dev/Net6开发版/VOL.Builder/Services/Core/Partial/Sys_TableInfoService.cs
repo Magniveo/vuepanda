@@ -123,7 +123,7 @@ namespace VOL.Builder.Services
 
         /// <summary>
         /// 获取Mysql表结构信息
-        /// 2020.06.14增加对mysql数据类型double区分
+        /// 2020.06.14增加对mysql数据AppTypedouble区分
         /// </summary>
         /// <returns></returns>
         private string GetMySqlModelInfo()
@@ -690,11 +690,11 @@ DISTINCT
             string[] eidtTye = new string[] { "select", "selectList", "drop", "dropList", "checkbox" };
             if (sysColumnList.Exists(x => eidtTye.Contains(x.EditType) && string.IsNullOrEmpty(x.DropNo)))
             {
-                return $"Edit类型为[{string.Join(',', eidtTye)}]时必须选择数据源";
+                return $"EditAppType为[{string.Join(',', eidtTye)}]时必须选择数据源";
             }
             if (sysColumnList.Exists(x => eidtTye.Contains(x.SearchType) && string.IsNullOrEmpty(x.DropNo)))
             {
-                return $"查询类型为[{string.Join(',', eidtTye)}]时必须选择数据源";
+                return $"查询AppType为[{string.Join(',', eidtTye)}]时必须选择数据源";
             }
             if (isApp && !sysColumnList.Exists(x => x.Enable > 0))
             {
@@ -806,7 +806,7 @@ DISTINCT
                 var _name = detailTable.TableColumns.Where(x => x.IsImage < 4 && x.EditRowNo > 0).Select(s => s.ColumnName).FirstOrDefault();
                 //if (!string.IsNullOrEmpty(_name))
                 //{
-                //    return $"明细表【{_name}】字段【table显示类型】设置为了【文件或图片】,Edit行只能设置为0或不设置";
+                //    return $"明细表【{_name}】字段【table显示AppType】设置为了【文件或图片】,Edit行只能设置为0或不设置";
                 //}
                 //明细列数据
                 List<Sys_TableColumn> detailList = detailTable.TableColumns;
@@ -1389,7 +1389,7 @@ DISTINCT
                     {
                         colType = "file";
                     }
-                    //2021.07.27增加table列显示类型date(自动格式化)
+                    //2021.07.27增加table列显示AppTypedate(自动格式化)
                     else if (item.IsImage == 4)
                     {
                         colType = "date";
@@ -1431,7 +1431,7 @@ DISTINCT
                 {
                     sb.Append("readonly:true,");
                 }
-                //detail明细才启用表格Edit
+                //detail明细才启用FormEdit
                 if (item.EditRowNo != null && item.EditRowNo > 0 && detail)//!string.IsNullOrEmpty(item.EditType))
                 {
                     string editText = vue ? "edit" : "editor";
@@ -1585,7 +1585,7 @@ DISTINCT
                     AttributeBuilder.Append("       [JsonIgnore]");
                     AttributeBuilder.Append("\r\n");
                 }
-                //[Column(TypeName="bigint")]如果与字段类型不同会产生异常
+                //[Column(TypeName="bigint")]如果与字段AppType不同会产生异常
 
                 if (tableColumnInfo != null)
                 {
@@ -1660,7 +1660,7 @@ DISTINCT
                 {
                     columnType = columnType + "?";
                 }
-                //如果主键是string,则默认为是Guid或者使用的是mysql数据，字段类型是字符串并且长度是36则默认为是Guid
+                //如果主键是string,则默认为是Guid或者使用的是mysql数据，字段AppType是字符串并且长度是36则默认为是Guid
                 if ((column.IsKey == 1
                     && (column.ColumnType == "uniqueidentifier"))
                        || column.ColumnType == "guid"
@@ -1916,7 +1916,7 @@ DISTINCT
 
                 if (mainTableColumn.ColumnType?.ToLower() != tableColumn.ColumnType?.ToLower())
                 {
-                    return webResponse.Error($"明细表的字段[{tableColumn.ColumnName}]类型必须与主表的主键的类型相同");
+                    return webResponse.Error($"明细表的字段[{tableColumn.ColumnName}]AppType必须与主表的主键的AppType相同");
                 }
 
                 if (!IsMysql()) return webResponse;
@@ -1924,7 +1924,7 @@ DISTINCT
                 if (mainTableColumn.ColumnType?.ToLower() == "string"
                     && tableColumn.Maxlength != 36)
                 {
-                    return webResponse.Error($"主表主键类型为Guid，明细表[{tableInfo.DetailName}]配置的字段[{key}]长度必须是36，请重将明细表字段[{key}]长度设置为36，点击保存与生成Model");
+                    return webResponse.Error($"主表主键AppType为Guid，明细表[{tableInfo.DetailName}]配置的字段[{key}]长度必须是36，请重将明细表字段[{key}]长度设置为36，点击保存与生成Model");
                 }
 
 
@@ -1935,7 +1935,7 @@ DISTINCT
 
             //if (tableInfo.TableColumns.Exists(x => x.ColumnType == "string" && (x.Maxlength ?? 0) <= 0))
             //{
-            //    webResponse.Error("数据类型为string的列，必须输入[列最大长度]的值");
+            //    webResponse.Error("数据AppType为string的列，必须输入[列最大长度]的值");
             //}
             return webResponse;
         }

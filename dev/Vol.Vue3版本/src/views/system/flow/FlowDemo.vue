@@ -1,6 +1,6 @@
 <template>
   <div class="flow-demo">
-    <el-divider>发起流程</el-divider>
+    <el-divider>InitiateProcess</el-divider>
 
     <vol-form
       style="margin-top:20px;"

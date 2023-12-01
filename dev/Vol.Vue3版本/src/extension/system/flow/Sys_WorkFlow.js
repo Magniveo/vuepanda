@@ -69,7 +69,7 @@ let extension = {
       return true;
     },
     addBefore(formData) {
-      //Add保存前formData为对象，包括明细表，可以给给表单设置值，自己输出看formData的值
+      //Add保存前formData为对象，包括明细表，可以给给Form设置值，自己输出看formData的值
       return true;
     },
     updateBefore(formData) {

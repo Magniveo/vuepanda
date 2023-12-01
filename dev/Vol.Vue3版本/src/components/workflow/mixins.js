@@ -16,12 +16,12 @@ export const easyFlowMixin = {
                 // Del线的时候节点不Del
                 DeleteEndpointsOnDetach: false,
                 /**
-                 * 连线的两端端点类型：圆形
+                 * 连线的两端端点AppType：圆形
                  * radius: 圆的半径，越大圆越大
                  */
                 // Endpoint: ['Dot', {radius: 5, cssClass: 'ef-dot', hoverClass: 'ef-dot-hover'}],
                 /**
-                 * 连线的两端端点类型：矩形
+                 * 连线的两端端点AppType：矩形
                  * height: 矩形的高
                  * width: 矩形的宽
                  */

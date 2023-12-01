@@ -51,7 +51,7 @@ namespace VOL.Core.WorkFlow
             return await obj;
         }
         /// <summary>
-        /// 审批表单数据查询与数据源转换
+        /// 审批Form数据查询与数据源转换
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="tableKey"></param>
@@ -697,7 +697,7 @@ namespace VOL.Core.WorkFlow
                 {
                     string title = $"有新的任务待审批：流程【{workFlow.WorkName}】,任务【{nextStep.StepName}】";
                     MailHelper.Send(title, title, string.Join(";", emails));
-                    msg = $"审批流程发送邮件,WorkName：{workFlow.WorkName},流程id:{workFlow.WorkFlow_Id},步骤:{nextStep.StepName},步骤Id:{nextStep.StepId},收件人:{string.Join(";", emails)}";
+                    msg = $"审批流程发送邮件,WorkName：{workFlow.WorkName},WorkFlow_Id:{workFlow.WorkFlow_Id},步骤:{nextStep.StepName},步骤Id:{nextStep.StepId},收件人:{string.Join(";", emails)}";
                     Logger.AddAsync(msg);
                 }
                 catch (Exception ex)

@@ -30,7 +30,7 @@ namespace VOL.Entity.DomainModels
     {
         public string Name { get; set; }
         public string Value { get; set; }
-        //查询类型：LinqExpressionType
+        //查询AppType：LinqExpressionType
         public string DisplayType { get; set; }
     }
 

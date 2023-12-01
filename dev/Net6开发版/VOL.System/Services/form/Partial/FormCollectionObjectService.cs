@@ -79,8 +79,8 @@ namespace VOL.System.Services
                 }
                 catch (Exception ex)
                 {
-                    Logger.Error($"解析表单出错：{data.Title},表单配置：{data.FormConfig},{ex.Message}");
-                    return webResponse.Error("获取表单出错");
+                    Logger.Error($"解析Form出错：{data.Title},FormConfig：{data.FormConfig},{ex.Message}");
+                    return webResponse.Error("获取Form出错");
                 }
                 webResponse.Code = "-1";
                 return webResponse.OK(null, path.EncryptDES(AppSetting.Secret.ExportFile));

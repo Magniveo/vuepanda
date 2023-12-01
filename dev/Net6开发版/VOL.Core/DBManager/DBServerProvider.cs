@@ -78,10 +78,10 @@ namespace VOL.Core.DBManager
 
 
         /// <summary>
-        /// 扩展dapper 获取MSSQL数据库DbConnection，默认System获取配置文件的DBType数据库类型，
+        /// 扩展dapper 获取MSSQL数据库DbConnection，默认System获取配置文件的DBType数据库AppType，
         /// </summary>
         /// <param name="connString">如果connString为null 执行重载GetDbConnection(string connString = null)</param>
-        /// <param name="dapperType">指定连接数据库的类型：MySql/MsSql/PgSql</param>
+        /// <param name="dapperType">指定连接数据库的AppType：MySql/MsSql/PgSql</param>
         /// <returns></returns>
         public static IDbConnection GetDbConnection(string connString = null, DbCurrentType dbCurrentType=DbCurrentType.Default)
         {
@@ -161,7 +161,7 @@ namespace VOL.Core.DBManager
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="dbCurrentType">指定数据库类型：MySql/MsSql/PgSql</param>
+        /// <param name="dbCurrentType">指定数据库AppType：MySql/MsSql/PgSql</param>
         /// <param name="dbName">指定数据连串ExpertName</param>
         /// <returns></returns>
         public static ISqlDapper GetSqlDapper(DbCurrentType dbCurrentType, string dbName = null)

@@ -65,7 +65,7 @@ namespace VOL.Core.ObjectActionValidator
         /// </summary>
         public string CNName { get; set; }
         /// <summary>
-        /// 参数类型，目前只列出了这几种,不够自己再加
+        /// 参数AppType，目前只列出了这几种,不够自己再加
         /// </summary>
         public ParamType ParamType { get; set; }
         /// <summary>

@@ -1,7 +1,7 @@
 let columnType = [{ "key": 1, "value": "img" },
 { "key": 2, "value": "excel" },
 { "key": 3, "value": "file" },
-//2021.07.27增加table列显示类型date(自动格式化)
+//2021.07.27增加table列显示AppTypedate(自动格式化)
 { "key": 4, "value": "date" }
 ]
 
@@ -163,15 +163,15 @@ let data = {
     },
     { field: 'searchRowNo', title: '查询行', width: 90, align: 'left', edit: { type: "text" } },
     { field: 'searchColNo', title: '查询列', width: 90, align: 'left', edit: { type: "text" } },
-    { field: 'searchType', title: '查询类型', width: 150, align: 'left', edit: { type: "select" }, bind: { data: searchDataType } },
+    { field: 'searchType', title: '查询AppType', width: 150, align: 'left', edit: { type: "select" }, bind: { data: searchDataType } },
     { field: 'editRowNo', title: 'Edit行', width: 90, align: 'numberbox', edit: { type: "text" } },
     { field: 'editColNo', title: 'Edit列', width: 90, align: 'numberbox', edit: { type: "text" } },
-    { field: 'editType', title: 'Edit类型', width: 150, align: 'left', edit: { type: "select" }, bind: { data: dataType } },
+    { field: 'editType', title: 'EditAppType', width: 150, align: 'left', edit: { type: "select" }, bind: { data: dataType } },
     { field: 'dropNo', title: '数据源', width: 120, align: 'left', bind: { data: [] }, edit: { type: "select", data: [] } },
-    { field: 'isImage', title: 'table列显示类型', hidden: false, width: 130, align: 'left', edit: { type: "select" }, bind: { data: columnType } },
+    { field: 'isImage', title: 'table列显示AppType', hidden: false, width: 130, align: 'left', edit: { type: "select" }, bind: { data: columnType } },
     { field: 'orderNo', title: '列显示顺序', width: 120, align: 'left', edit: { type: "text" } },
     { field: 'maxlength', title: '字段最大长度', width: 130, align: 'left', edit: { type: "text" } },
-    { field: 'columnType', title: '数据类型', width: 120, align: 'left', edit: { type: "text" } },
+    { field: 'columnType', title: '数据AppType', width: 120, align: 'left', edit: { type: "text" } },
     { field: 'isNull', title: '可为空', width: 120, align: 'left', edit: { type: "switch", keep: true } },
     { field: 'isReadDataset', title: '是否只读', width: 120, align: 'left', edit: { type: "switch", keep: true } },
     { field: 'isColumnData', title: '数据列', width: 120, align: 'left', edit: { type: "switch", keep: true } },

@@ -3,7 +3,7 @@
         :class="nodeContainerClass">
         <!-- 最左侧的那条竖线 -->
         <div class="ef-node-left"></div>
-        <!-- 节点类型的图标 -->
+        <!-- 节点AppType的图标 -->
         <div class="ef-node-left-ico flow-node-drag">
             <i :class="nodeIcoClass"></i>
         </div>

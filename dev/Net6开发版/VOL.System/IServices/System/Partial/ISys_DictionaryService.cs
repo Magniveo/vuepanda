@@ -17,7 +17,7 @@ namespace VOL.System.IServices
         object GetSearchDictionary(string dicNo, string value);
 
         /// <summary>
-        /// 表单设置为Enable查询，重置或第一次添加表单时，获取字典的key、value
+        /// Form设置为Enable查询，重置或第一次添加Form时，获取字典的key、value
         /// </summary>
         /// <param name="dicNo"></param>
         /// <param name="value"></param>

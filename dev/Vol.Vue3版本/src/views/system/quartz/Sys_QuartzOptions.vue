@@ -24,7 +24,7 @@
             const table = ref({
                 key: 'Id',
                 footer: "Foots",
-                cnName: '定时任务',
+                cnName: 'ScheduledTasks',
                 name: 'quartz/Sys_QuartzOptions',
                 url: "/Sys_QuartzOptions/",
                 sortName: "TaskName"

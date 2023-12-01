@@ -42,7 +42,7 @@ let serviceFilter = {
   async addBeforeAsync (formData) { //异步处理,功能同上(2020.12.06)
     return true;
   },
-  addAfter (result) {//Add保存后result返回的状态及表单对象
+  addAfter (result) {//Add保存后result返回的状态及Form对象
     return true;
   },
   updateBefore (formData) { //Edit保存前formData为对象，包括明细表、Del行的Id
@@ -51,7 +51,7 @@ let serviceFilter = {
   async updateBeforeAsync (formData) { //异步处理,功能同上(2020.12.06)
     return true;
   },
-  updateAfter (result) {//Edit保存后result返回的状态及表单对象
+  updateAfter (result) {//Edit保存后result返回的状态及Form对象
     return true;
   },
   auditBefore (ids, rows) {//审核前
@@ -60,16 +60,16 @@ let serviceFilter = {
   auditAfter (result, rows) {// 审核后
     return true;
   },
-  resetAddFormBefore () { //重置Add表单前的内容
+  resetAddFormBefore () { //重置AddForm前的内容
     return true;
   },
-  resetAddFormAfter () { //重置Add表单后的内容
+  resetAddFormAfter () { //重置AddForm后的内容
     return true;
   },
-  resetUpdateFormBefore () { //重置Edit表单前的内容
+  resetUpdateFormBefore () { //重置EditForm前的内容
     return true;
   },
-  resetUpdateFormAfter () { //重置Edit表单后的内容
+  resetUpdateFormAfter () { //重置EditForm后的内容
     return true;
   },
   modelOpenBefore (row) { //点击Edit/Add按钮弹出框前，可以在此处写逻辑，如，从后台获取数据

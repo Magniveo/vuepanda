@@ -24,7 +24,7 @@
           id="pie-0001"
         ></div>
       </el-tab-pane>
-      <el-tab-pane name="line" :lazy="false" label="Role_Id管理">
+      <el-tab-pane name="line" :lazy="false" label="RoleManagement">
         <template #label>
           <span><i class="el-icon-date"></i> 折线图 </span>
         </template>

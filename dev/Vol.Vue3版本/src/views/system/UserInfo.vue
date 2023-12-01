@@ -183,7 +183,7 @@ export default {
         [
           {
             dataKey: "gender",
-            title: "性别",
+            title: "Gender",
             field: "gender",
             data: [],
             type: "select",

@@ -328,7 +328,7 @@ let options2=[
                 "elementIndex": 1
             },
             {
-                "title": "订单类型",
+                "title": "订单AppType",
                 "field": "OrderType",
                 "show": true,
                 "required": false,

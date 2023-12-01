@@ -129,7 +129,7 @@ let extension = {
       //点击行上的添加按钮事件
       if (this.addCurrnetRow) {
 
-        //获取当前组织构架的所有ParentId,用于设置Add时ParentId的默认值
+        //获取当前DeptIds的所有ParentId,用于设置Add时ParentId的默认值
 
         //获取数据数据源
         let data = [];
@@ -141,7 +141,7 @@ let extension = {
           })
         })
         let parentIds = this.base.getTreeAllParent(this.addCurrnetRow.DepartmentId, data).map(x => { return x.id });
-        //设置Edit表单上级组织的默认值
+        //设置EditFormParentId的默认值
         this.editFormFields.ParentId = parentIds;
         this.addCurrnetRow = null;
 

@@ -184,7 +184,7 @@ namespace VOL.Core.BaseProvider
             //如果没有OrderNo字段，则使用主键作为OrderNo字段
 
             PropertyInfo property = propertyInfo.GetKeyProperty();
-            //如果主键不是自增类型则使用appsettings.json中CreateMember->DateField配置的CreateDate作为OrderNo
+            //如果主键不是自增AppType则使用appsettings.json中CreateMember->DateField配置的CreateDate作为OrderNo
             if (property.PropertyType == typeof(int) || property.PropertyType == typeof(long))
             {
                 if (!propertyInfo.Any(x => x.Name.ToLower() == pageData.Sort))
@@ -259,7 +259,7 @@ namespace VOL.Core.BaseProvider
             //2020.08.15添加自定义原生查询sql或多租户
 
 
-            //判断列的数据类型数字，Date的需要判断值的格式是否正确
+            //判断列的数据AppType数字，Date的需要判断值的格式是否正确
             for (int i = 0; i < searchParametersList.Count; i++)
             {
                 SearchParameters x = searchParametersList[i];
@@ -272,7 +272,7 @@ namespace VOL.Core.BaseProvider
                 //2020.06.25增加字段null处理
                 if (property == null) continue;
                 // property
-                //移除查询的值与数据库类型不匹配的数据
+                //移除查询的值与数据库AppType不匹配的数据
                 object[] values = property.ValidationValueForDbType(x.Value.Split(',')).Where(q => q.Item1).Select(s => s.Item3).ToArray();
                 if (values == null || values.Length == 0)
                 {
@@ -1005,7 +1005,7 @@ namespace VOL.Core.BaseProvider
                 //}
             }
 
-            //获取主建类型的默认值用于判断后面数据是否正确,int long默认值为0,guid :0000-000....
+            //获取主建AppType的默认值用于判断后面数据是否正确,int long默认值为0,guid :0000-000....
             object keyDefaultVal =
                 mainKeyProperty.PropertyType == typeof(string)
                 ? ""
@@ -1020,13 +1020,13 @@ namespace VOL.Core.BaseProvider
             }
 
             object mainKeyVal = saveModel.MainData[mainKeyProperty.Name];
-            //判断主键类型是否正确
+            //判断主键AppType是否正确
             (bool, string, object) validation = mainKeyProperty.ValidationValueForDbType(mainKeyVal).FirstOrDefault();
             if (!validation.Item1)
                 return Response.Error(ResponseType.KeyError);
 
             object valueType = mainKeyVal.ToString().ChangeType(mainKeyProperty.PropertyType);
-            //判断主键值是不是当前类型的默认值
+            //判断主键值是不是当前AppType的默认值
             if (valueType == null ||
                 (!valueType.GetType().Equals(mainKeyProperty.PropertyType)
                 || valueType.ToString() == keyDefaultVal.ToString()
@@ -1084,7 +1084,7 @@ namespace VOL.Core.BaseProvider
 
             //明细操作
             PropertyInfo detailKeyInfo = detailType.GetKeyProperty();
-            //主键类型
+            //主键AppType
             //  string detailKeyType = mainKeyProperty.GetTypeCustomValue<ColumnAttribute>(c => new { c.TypeName });
             //判断明细是否包含了主表的主键
 
@@ -1395,7 +1395,7 @@ namespace VOL.Core.BaseProvider
 
         /// <summary>
         /// 将数据源映射到新的数据中,目前只支持List<TSource>映射到List<TResult>或TSource映射到TResult
-        /// 目前只支持Dictionary或实体类型
+        /// 目前只支持Dictionary或实体AppType
         /// </summary>
         /// <typeparam name="TSource"></typeparam>
         /// <typeparam name="TResult"></typeparam>

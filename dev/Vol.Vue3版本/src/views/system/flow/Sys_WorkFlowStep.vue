@@ -40,7 +40,7 @@
                        {field:'StepType',title:'StepType',type:'int',width:110,align:'left'},
                        {field:'StepValue',title:'StepValue',type:'int',width:110,align:'left'},
                        {field:'Remark',title:'Remark',type:'string',width:220,align:'left'},
-                       {field:'OrderId',title:'审批顺序',type:'int',width:80,align:'left'},
+                       {field:'OrderId',title:'OrderId',type:'int',width:80,align:'left'},
                        {field:'CreateDate',title:'CreateDate',type:'datetime',width:110,align:'left',sort:true},
                        {field:'CreateID',title:'CreateID',type:'int',width:80,hidden:true,align:'left'},
                        {field:'Creator',title:'Creator',type:'string',width:130,align:'left'},

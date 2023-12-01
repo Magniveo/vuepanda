@@ -68,7 +68,7 @@ namespace VOL.System.Services
 
                 _menus.ForEach(x =>
                 {
-                    // 2022.03.26增移动端加菜单类型
+                    // 2022.03.26增移动端加菜单AppType
                     x.MenuType ??= 0;
                     if (!string.IsNullOrEmpty(x.Auth) && x.Auth.Length > 10)
                     {
@@ -146,7 +146,7 @@ namespace VOL.System.Services
                     parentId = x.ParentId,
                     icon = x.Icon,
                     x.Enable,
-                    x.TableName, // 2022.03.26增移动端加菜单类型
+                    x.TableName, // 2022.03.26增移动端加菜单AppType
                     permission = x.Actions.Select(s => s.Value).ToArray()
                 }).ToList());
             }
@@ -163,7 +163,7 @@ namespace VOL.System.Services
                            parentId = b.ParentId,
                            icon = b.Icon,
                            b.Enable,
-                           b.TableName, // 2022.03.26增移动端加菜单类型
+                           b.TableName, // 2022.03.26增移动端加菜单AppType
                            permission = a.UserAuthArr
                        };
             return menu.ToList();
@@ -185,7 +185,7 @@ namespace VOL.System.Services
                 if (!webResponse.Status) return webResponse;
                 if (menu.TableName != "/" && menu.TableName != ".")
                 {
-                    // 2022.03.26增移动端加菜单类型判断
+                    // 2022.03.26增移动端加菜单AppType判断
                     Sys_Menu sysMenu = await repository.FindAsyncFirst(x => x.TableName == menu.TableName);
                     if (sysMenu != null)
                     {
@@ -228,7 +228,7 @@ namespace VOL.System.Services
                         p.OrderNo,
                         p.Icon,
                         p.Enable,
-                        p.MenuType,// 2022.03.26增移动端加菜单类型
+                        p.MenuType,// 2022.03.26增移动端加菜单AppType
                         p.TableName,
                         p.ModifyDate,
                         p.Modifier
@@ -290,7 +290,7 @@ namespace VOL.System.Services
                     p.OrderNo,
                     p.Icon,
                     p.Enable,
-                    // 2022.03.26增移动端加菜单类型
+                    // 2022.03.26增移动端加菜单AppType
                     MenuType = p.MenuType ?? 0,
                     p.CreateDate,
                     p.Creator,

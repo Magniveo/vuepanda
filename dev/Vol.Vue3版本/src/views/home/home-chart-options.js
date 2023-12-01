@@ -9,7 +9,7 @@ var chart1 = {
     },
     legend: {
         top: 'bottom',
-        icon: "circle",   //  这个字段控制形状  类型包括 circle，rect ，roundRect，triangle，diamond，pin，arrow，none
+        icon: "circle",   //  这个字段控制形状  AppType包括 circle，rect ，roundRect，triangle，diamond，pin，arrow，none
         itemWidth: 10,  // 设置宽度
         itemHeight: 10, // 设置高度
         itemGap: 7,// 设置间距
@@ -125,7 +125,7 @@ var chart3 = {
     },
     legend: {
         top: 'bottom',
-        icon: "circle",   //  这个字段控制形状  类型包括 circle，rect ，roundRect，triangle，diamond，pin，arrow，none
+        icon: "circle",   //  这个字段控制形状  AppType包括 circle，rect ，roundRect，triangle，diamond，pin，arrow，none
         itemWidth: 10,  // 设置宽度
         itemHeight: 10, // 设置高度
         itemGap: 7,// 设置间距

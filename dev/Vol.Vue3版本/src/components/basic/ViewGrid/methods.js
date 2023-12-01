@@ -292,7 +292,7 @@ let methods = {
   },
   getSearchParameters() {
     //获取查询参数
-    // 2020.09.11增加固定查询表单,如果设置固定了查询表单，点击查询时，不再关闭
+    // 2020.09.11增加固定查询Form,如果设置固定了查询Form，点击查询时，不再关闭
     if (!this.fiexdSearchForm) {
       this.searchBoxShow = false;
     }
@@ -488,7 +488,7 @@ let methods = {
   },
   resetForm(formName, sourceObj) {
     //   return;
-    //重置表单数据
+    //重置Form数据
     if (this.$refs[formName]) {
       this.$refs[formName].reset();
     }
@@ -502,7 +502,7 @@ let methods = {
       form = this.editFormFields;
       keyLeft = 'e' + '_b_';
     }
-    //获取数据源的data类型，否则如果数据源data的key是数字，重置的值是字符串就无法绑定值
+    //获取数据源的dataAppType，否则如果数据源data的key是数字，重置的值是字符串就无法绑定值
     if (!this.keyValueType._dinit) {
       this.getKeyValueType(this.editFormOptions, true);
       this.getKeyValueType(this.searchFormOptions, false);
@@ -521,7 +521,7 @@ let methods = {
           kv_type == 'treeSelect'
         ) {
           // 2020.05.31增加iview组件Cascader
-          // 2020.11.01增加iview组件Cascader表单重置时查询所有的父节点
+          // 2020.11.01增加iview组件CascaderForm重置时查询所有的父节点
           if (kv_type == 'cascader' || kv_type == 'treeSelect') {
             var treeDic = this.dicKeys.find((dic) => {
               return dic.fileds && dic.fileds.indexOf(key) != -1;
@@ -565,7 +565,7 @@ let methods = {
           }
           else if (typeof newVal=='number') {
             newVal= [newVal+''];
-            this.$message.error(`多选时数据库字段[${key}]必须是字符串类型`);
+            this.$message.error(`多选时数据库字段[${key}]必须是字符串AppType`);
           }
           else if (
             newVal != '' &&
@@ -860,7 +860,7 @@ let methods = {
       });
     });
     this.editFormFields;
-    //重置Edit表单数据
+    //重置EditForm数据
     this.editFormFields[this.table.key] = row[this.table.key];
 
     this.resetEditForm(row);
@@ -876,7 +876,7 @@ let methods = {
     this.resetDetailTable(row);
     this.setEditForm(row);
     this.setContinueAdd(false);
-    //设置Enable查询表单的默认key/value
+    //设置Enable查询Form的默认key/value
     this.getRemoteFormDefaultKeyValue();
     //点击Edit按钮弹出框后，可以在此处写逻辑，如，从后台获取数据
     this.modelOpenProcess(row);
@@ -944,19 +944,19 @@ let methods = {
     //初始化弹出框
     if (!(await this.initBox())) return;
     this.setContinueAdd(false);
-    //重置表单
+    //重置Form
     this.resetDetailTable();
 
-    //设置当前的数据到表单上
+    //设置当前的数据到Form上
     this.setEditForm(rows[0]);
-    //设置Enable查询表单的默认key/value
+    //设置Enable查询Form的默认key/value
     this.getRemoteFormDefaultKeyValue();
     //点击Edit按钮弹出框后，可以在此处写逻辑，如，从后台获取数据
     this.modelOpenProcess(rows[0]);
     // this.modelOpenAfter(rows[0]);
   },
   getRemoteFormDefaultKeyValue() {
-    //设置表单Enable数据源的默认key.value
+    //设置FormEnable数据源的默认key.value
     if (this.currentAction != this.const.EDIT || this.remoteKeys.length == 0)
       return;
     this.editFormOptions.forEach((x, xIndex) => {
@@ -1113,7 +1113,7 @@ let methods = {
     if (rows.length == 0) return this.$error('请选择要审核的行!');
     let auditStatus = Object.keys(rows[0]).find(x => { return x.toLowerCase() === 'auditstatus' });
     if (!auditStatus) {
-      return this.$message.error(`表必须包括审核字段【AuditStatus】,并且是int类型`)
+      return this.$message.error(`表必须包括审核字段【AuditStatus】,并且是intAppType`)
     }
     // let checkStatus = rows.every((x) => {
     //   return this.$global.audit.status.some(c => { return c === x[auditStatus] || !x[auditStatus] })
@@ -1145,15 +1145,15 @@ let methods = {
     this.viewModel = false;
   },
   initFormOptions(formOptions, keys, formFields, isEdit) {
-    //初始化查询、Edit对象的下拉框数据源、图片上传链接Address
+    //初始化查询、Edit对象的下拉框数据源、ImageUpload链接Address
     //let defaultOption = { key: "", value: "请选择" };
     //有上传的字段
     //2020.05.03新增
-    //Edit数据源的类型
+    //Edit数据源的AppType
     formOptions.forEach((item) => {
       item.forEach((d) => {
         if (d.type == 'number') {
-          //2022.08.22优化表单类型为number时的默认值
+          //2022.08.22优化FormAppType为number时的默认值
           if (formFields[d.field] === '') {
             formFields[d.field] = undefined;
           }
@@ -1180,15 +1180,15 @@ let methods = {
           d.data = []; //{ dicNo: d.dataKey, data: [] };
           return true;
         }
-        //2020.05.03增加Edit表单对checkbox的支持
+        //2020.05.03增加EditForm对checkbox的支持
         if (d.type == 'checkbox' && !(formFields[d.field] instanceof Array)) {
           formFields[d.field] = [];
         }
         if (keys.indexOf(d.dataKey) == -1) {
-          //2020.05.03增加记录Edit字段的数据源类型
+          //2020.05.03增加记录Edit字段的数据源AppType
 
           keys.push(d.dataKey);
-          //2020.05.03修复查询表单与Edit表单type类型变成强一致性的问题
+          //2020.05.03修复查询Form与EditFormtypeAppType变成强一致性的问题
           //this.dicKeys.push({ dicNo: d.dataKey, data: [], type: d.type });
           //  2020.11.01增加iview组件Cascader数据源存储
           let _dic = {
@@ -1213,7 +1213,7 @@ let methods = {
           });
         }
         if (d.type != 'cascader') {
-          //2020.01.30移除内部表单formOptions数据源配置格式data.data，所有参数改为与组件api格式相同
+          //2020.01.30移除内部FormformOptions数据源配置格式data.data，所有参数改为与组件api格式相同
           Object.assign(
             d,
             this.dicKeys.filter((f) => {
@@ -1253,7 +1253,7 @@ let methods = {
       } else {
         item.bind = dic[0];
       }
-      //2020.05.03优化table数据源checkbox与select类型从Edit列中选取
+      //2020.05.03优化table数据源checkbox与selectAppType从Edit列中选取
       item.bind.type = item.bind.e_type || 'string';
     });
   },
@@ -1324,7 +1324,7 @@ let methods = {
             newSource = new Array(source.length);
           for (let index = 0; index < source.length; index++) {
             newSource[index] = {
-              //默认从字典数据读出来的key都是string类型,但如果数据从sql中查询的可能为非string,否是async-validator需要重置设置格式
+              //默认从字典数据读出来的key都是stringAppType,但如果数据从sql中查询的可能为非string,否是async-validator需要重置设置格式
               key: source['key'] + '', //source[index][x.config.valueField] + "",
               value: source['value'] //source[index][x.config.textField]
             };
@@ -1547,7 +1547,7 @@ let methods = {
     this.$message.success(message);
   },
   setFiexdSearchForm(visiable) {
-    //2020.09.011增加固定查询表单功能,visiable=true默认将查询表单展开
+    //2020.09.011增加固定查询Form功能,visiable=true默认将查询Form展开
     this.fiexdSearchForm = true;
     let refreshBtn = this.buttons.find((x) => x.name == '刷 新');
     if (visiable) {

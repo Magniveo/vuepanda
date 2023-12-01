@@ -200,7 +200,7 @@ namespace VOL.Core.Controllers.Basic
         /// 调用service方法
         /// </summary>
         /// <param name="methodName"></param>
-        /// <param name="types">为要调用重载的方法参数类型：new Type[] { typeof(SaveDataModel)</param>
+        /// <param name="types">为要调用重载的方法参数AppType：new Type[] { typeof(SaveDataModel)</param>
         /// <param name="parameters"></param>
         /// <returns></returns>
         private object InvokeService(string methodName, Type[] types, object[] parameters)

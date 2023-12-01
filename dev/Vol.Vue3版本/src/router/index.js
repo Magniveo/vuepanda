@@ -13,7 +13,7 @@ const routes = [
     component: () => import('@/views/Index'),
     redirect: '/home',
     children: [
-      ...form,//Demo表单路由
+      ...form,//DemoForm路由
       ...formsMulti,
       ...tables,//tables
       ...viewgird,
@@ -38,12 +38,12 @@ const routes = [
         component: () => import('@/views/builder/coder.vue')
       },
       {
-        path: '/formDraggable',  //表单设计
+        path: '/formDraggable',  //FormDesign
         name: 'formDraggable',
         component: () => import('@/views/formDraggable/formDraggable.vue')
       },
       {
-        path: '/formSubmit',  //表单提交页面
+        path: '/formSubmit',  //Form提交页面
         name: 'formSubmit',
         component: () => import('@/views/formDraggable/FormSubmit.vue'),
         meta:{
@@ -51,7 +51,7 @@ const routes = [
         }
       },
       {
-        path: '/formCollectionResultTree',  //显示收集的数据表单
+        path: '/formCollectionResultTree',  //显示收集的数据Form
         name: 'formCollectionResultTree',
         component: () => import('@/views/formDraggable/FormCollectionResultTree.vue'),
         meta:{
@@ -67,7 +67,7 @@ const routes = [
         }
       },
       {
-        path: '/flowdemo', //发起流程示例
+        path: '/flowdemo', //InitiateProcess示例
         name: 'flowdemo',
         component: () => import('@/views/system/flow/FlowDemo.vue'),
         meta: {

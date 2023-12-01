@@ -33,7 +33,7 @@
     <div class="drag-center">
       <div class="center-top">
         <span>
-          <!-- <i class="el-icon-warning-outline"></i>高效的表单配置 -->
+          <!-- <i class="el-icon-warning-outline"></i>高效的FormConfig -->
         </span>
         <el-button type="primary" size="mini" plain @click="save"
           ><i class="el-icon-check"> </i>保存</el-button
@@ -56,16 +56,16 @@
       </div>
       <div>
         <el-alert
-          title="关于表单设计器"
+          title="关于FormDesign器"
           type="success"
           :show-icon="true"
           :closable="false"
         >
           <div>
-            1、表单设计器基于draggable开发,为本框架自定义页面功能的补充,框架仍以可视化代码生成器为核心
+            1、FormDesign器基于draggable开发,为本框架自定义页面功能的补充,框架仍以可视化代码生成器为核心
           </div>
           <div>
-            2、支持可视化设计1对1、1对多及表单下拉框自动绑定、table自动加载数据(分页、Edit)、自动上传文件、富文本Edit
+            2、支持可视化设计1对1、1对多及Form下拉框自动绑定、table自动加载数据(分页、Edit)、自动上传文件、富文本Edit
           </div>
         </el-alert>
       </div>

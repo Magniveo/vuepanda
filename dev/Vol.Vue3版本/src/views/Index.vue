@@ -490,7 +490,7 @@ export default defineComponent({
     };
     /**
      * 关闭其它标签页
-     * @param {*} par 关闭类型(left,right,other)
+     * @param {*} par 关闭AppType(left,right,other)
      */
     const closeTabs = (value) => {
       let _menuId = navigation[selectId.value * 1].id;

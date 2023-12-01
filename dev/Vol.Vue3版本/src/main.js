@@ -1,4 +1,4 @@
-import { createApp } from 'vue'
+import Vue, { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
@@ -13,9 +13,10 @@ import http from './api/http'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
 
-
 import permission from './api/permission'
 import viewgird from './components/basic/ViewGrid';
+import ruLocale from "@/locale/ru_RU.json";
+import cnLocale from "@/locale/zh_CH.json";
 const app = createApp(App);
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
     app.component(key, component)
@@ -60,5 +61,12 @@ app.use(store)
     .use(router)
     .use(viewgird)
     .mount('#app');
+app.config.globalProperties.$i18n = {
+    locale: 'ru-RU',
+}
+app.config.globalProperties.$locales = {
+    'ru-RU':ruLocale,
+    'zh-CH':cnLocale
+}
 app.config.globalProperties.$Message = app.config.globalProperties.$message;
-
+//this.$locales[this.$i18n.locale].Voltage

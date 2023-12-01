@@ -78,9 +78,9 @@ namespace VOL.Entity.DomainModels
        public string Remark { get; set; }
 
        /// <summary>
-       ///审批顺序
+       ///OrderId
        /// </summary>
-       [Display(Name ="审批顺序")]
+       [Display(Name ="OrderId")]
        [Column(TypeName="int")]
        [Editable(true)]
        public int? OrderId { get; set; }
@@ -138,68 +138,68 @@ namespace VOL.Entity.DomainModels
        public int? ModifyID { get; set; }
 
        /// <summary>
-       ///下一个审批节点
+       ///NextStepIds
        /// </summary>
-       [Display(Name ="下一个审批节点")]
+       [Display(Name ="NextStepIds")]
        [MaxLength(500)]
        [Column(TypeName="varchar(500)")]
        [Editable(true)]
        public string NextStepIds { get; set; }
 
        /// <summary>
-       ///父级节点
+       ///ParentId
        /// </summary>
-       [Display(Name ="父级节点")]
+       [Display(Name ="ParentId")]
        [MaxLength(2000)]
        [Column(TypeName="varchar(2000)")]
        [Editable(true)]
        public string ParentId { get; set; }
 
        /// <summary>
-       ///审核未通过(返回上一节点,流程重新开始,流程结束)
+       ///AuditRefuse
        /// </summary>
-       [Display(Name ="审核未通过(返回上一节点,流程重新开始,流程结束)")]
+       [Display(Name ="AuditRefuse")]
        [Column(TypeName="int")]
        [Editable(true)]
        public int? AuditRefuse { get; set; }
 
        /// <summary>
-       ///驳回(返回上一节点,流程重新开始,流程结束)
+       ///AuditBack
        /// </summary>
-       [Display(Name ="驳回(返回上一节点,流程重新开始,流程结束)")]
+       [Display(Name ="AuditBack")]
        [Column(TypeName="int")]
        [Editable(true)]
        public int? AuditBack { get; set; }
 
        /// <summary>
-       ///审批方式(启用会签)
+       ///AuditMethod
        /// </summary>
-       [Display(Name ="审批方式(启用会签)")]
+       [Display(Name ="AuditMethod")]
        [Column(TypeName="int")]
        [Editable(true)]
        public int? AuditMethod { get; set; }
 
        /// <summary>
-       ///审核后发送邮件通知
+       ///SendMail
        /// </summary>
-       [Display(Name ="审核后发送邮件通知")]
+       [Display(Name ="SendMail")]
        [Column(TypeName="int")]
        [Editable(true)]
        public int? SendMail { get; set; }
 
        /// <summary>
-       ///审核条件
+       ///Filters
        /// </summary>
-       [Display(Name ="审核条件")]
+       [Display(Name ="Filters")]
        [MaxLength(4000)]
        [Column(TypeName="nvarchar(4000)")]
        [Editable(true)]
        public string Filters { get; set; }
 
        /// <summary>
-       ///节点属性(start、node、end))
+       ///StepAttrType(start、node、end))
        /// </summary>
-       [Display(Name ="节点属性(start、node、end))")]
+       [Display(Name ="StepAttrType(start、node、end))")]
        [MaxLength(50)]
        [Column(TypeName="varchar(50)")]
        [Editable(true)]

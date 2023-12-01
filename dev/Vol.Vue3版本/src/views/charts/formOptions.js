@@ -8,7 +8,7 @@ let formFields1 = {
     IsTop: "还没想好..."
 }
 let formRules1 = [
-    //两列的表单，formRules数据格式为:[[{},{}]]
+    //两列的Form，formRules数据格式为:[[{},{}]]
     [
         {
             link:true,
@@ -88,10 +88,10 @@ let formFields2 = {
     IsChange: 1
 }
 let formRules2 = [
-    //两列的表单，formRules数据格式为:[[{},{}]]
+    //两列的Form，formRules数据格式为:[[{},{}]]
     [
         {
-            title: "商品类型",
+            title: "商品AppType",
             dataKey: "age",
             //如果这里绑定了data数据，后台不会加载此数据源
             data: [{ key: "1", value: "1" }, { key: "2", value: "2" }],

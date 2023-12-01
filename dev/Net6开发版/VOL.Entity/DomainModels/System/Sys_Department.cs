@@ -13,7 +13,7 @@ using VOL.Entity.SystemModels;
 
 namespace VOL.Entity.DomainModels
 {
-    [Entity(TableCnName = "组织架构",TableName = "Sys_Department")]
+    [Entity(TableCnName = "OrganizationalStructure",TableName = "Sys_Department")]
     public partial class Sys_Department:BaseEntity
     {
         /// <summary>
@@ -37,26 +37,26 @@ namespace VOL.Entity.DomainModels
        public string DepartmentName { get; set; }
 
        /// <summary>
-       ///组织编号
+       ///DepartmentCode
        /// </summary>
-       [Display(Name ="组织编号")]
+       [Display(Name ="DepartmentCode")]
        [MaxLength(50)]
        [Column(TypeName="nvarchar(50)")]
        [Editable(true)]
        public string DepartmentCode { get; set; }
 
        /// <summary>
-       ///上级组织
+       ///ParentId
        /// </summary>
-       [Display(Name ="上级组织")]
+       [Display(Name ="ParentId")]
        [Column(TypeName="uniqueidentifier")]
        [Editable(true)]
        public Guid? ParentId { get; set; }
 
        /// <summary>
-       ///部门类型
+       ///部门AppType
        /// </summary>
-       [Display(Name ="部门类型")]
+       [Display(Name ="部门AppType")]
        [MaxLength(50)]
        [Column(TypeName="nvarchar(50)")]
        [Editable(true)]

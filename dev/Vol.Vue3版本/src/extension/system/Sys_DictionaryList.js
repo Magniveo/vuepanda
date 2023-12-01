@@ -2,7 +2,7 @@
 
 let extension = {
     components: {//动态扩充组件或组件路径
-        //表单header、content、footer对应位置扩充的组件
+        //Formheader、content、footer对应位置扩充的组件
         gridHeader:'',
         gridbody:'',
         gridFooter: '',

@@ -152,7 +152,7 @@ namespace VOL.Entity.DomainModels
 
         /// <summary>
         /// 2022.03.26
-        /// 菜单类型1:移动端，0:PC端
+        /// 菜单AppType1:移动端，0:PC端
         /// </summary>
         /// </summary>
         [Display(Name = "Enable")]

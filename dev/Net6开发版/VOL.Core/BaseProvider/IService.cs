@@ -113,7 +113,7 @@ namespace VOL.Core.BaseProvider
 
         /// <summary>
         /// 将数据源映射到新的数据中,List<TSource>映射到List<TResult>或TSource映射到TResult
-        /// 目前只支持Dictionary或实体类型
+        /// 目前只支持Dictionary或实体AppType
         /// </summary>
         /// <typeparam name="TSource"></typeparam>
         /// <typeparam name="TResult"></typeparam>

@@ -34,13 +34,13 @@
             const searchFormFields = ref({});
             const searchFormOptions = ref([]);
             const columns = ref([{field:'Sys_WorkFlowTableStep_Id',title:'Sys_WorkFlowTableStep_Id',type:'guid',width:110,hidden:true,readonly:true,require:true,align:'left'},
-                       {field:'WorkFlowTable_Id',title:'主表id',type:'guid',width:110,require:true,align:'left',sort:true},
-                       {field:'WorkFlow_Id',title:'流程id',type:'guid',width:110,align:'left'},
-                       {field:'StepId',title:'节点id',type:'string',width:120,align:'left'},
+                       {field:'WorkFlowTable_Id',title:'WorkFlowTable_Id',type:'guid',width:110,require:true,align:'left',sort:true},
+                       {field:'WorkFlow_Id',title:'WorkFlow_Id',type:'guid',width:110,align:'left'},
+                       {field:'StepId',title:'StepId',type:'string',width:120,align:'left'},
                        {field:'StepName',title:'节ExpertName',type:'string',width:180,align:'left'},
-                       {field:'StepType',title:'审批类型',type:'int',width:110,align:'left'},
+                       {field:'StepType',title:'审批AppType',type:'int',width:110,align:'left'},
                        {field:'StepValue',title:'StepType',type:'int',width:110,align:'left'},
-                       {field:'OrderId',title:'审批顺序',type:'int',width:110,align:'left'},
+                       {field:'OrderId',title:'OrderId',type:'int',width:110,align:'left'},
                        {field:'Remark',title:'Remark',type:'string',width:220,align:'left'},
                        {field:'CreateDate',title:'CreateDate',type:'datetime',width:110,align:'left',sort:true},
                        {field:'CreateID',title:'CreateID',type:'int',width:80,hidden:true,align:'left'},

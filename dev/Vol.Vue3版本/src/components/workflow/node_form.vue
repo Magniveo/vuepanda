@@ -3,7 +3,7 @@
         <div class="ef-node-form">
             <div class="ef-node-pmenu-item">
                 <div style="flex:1;">
-                    <span class="name"><i class="el-icon-news"></i>节点属性</span>
+                    <span class="name"><i class="el-icon-news"></i>StepAttrType</span>
                     <!-- <span @click="nameClick(1)" :class="{ active: index === 1 }" class="name">审批条件</span> -->
                 </div>
                 <!-- <div><el-button link size="small" type="primary" @click="save"><i class="el-icon-check"></i>
@@ -44,7 +44,7 @@ export default {
         //     default: () => {
         //         return {
         //             name: '',
-        //             auditType: 1,//审核类型
+        //             auditType: 1,//审核AppType
         //             userId: null,
         //             roleId: null,
         //             deptId: null,
@@ -82,7 +82,7 @@ export default {
 
             node: {
                 name: '',
-                auditType: 1,//审核类型
+                auditType: 1,//审核AppType
                 userId: null,
                 roleId: null,
                 deptId: null,
@@ -104,7 +104,7 @@ export default {
                 [
                     {
                         dataKey: '',
-                        title: '审批类型',
+                        title: '审批AppType',
                         required: true,
                         hidden: false,
                         field: 'auditType',
@@ -187,7 +187,7 @@ export default {
                 [
                     {
                         dataKey: '',
-                        title: '审核后发送邮件通知',
+                        title: 'SendMail',
                         required: false,
                         hidden: false,
                         field: 'sendMail',
@@ -218,7 +218,7 @@ export default {
             this.index = index;
         },
         /**
-         * 表单修改，这里可以根据传入的ID进行业务信息获取
+         * Form修改，这里可以根据传入的ID进行业务信息获取
          * @param data
          * @param id
          */

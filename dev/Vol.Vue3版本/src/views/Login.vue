@@ -30,7 +30,7 @@
       </div>
       <div class="loging-btn">
         <el-button size="large" :loading="loading" color="#3a6cd1" :dark="true" @click="login" long>
-          <span v-if="!loading">登录</span>
+          <span v-if="!loading">{{ $locales[$i18n.locale].logIn }}</span>
           <span v-else>正在登录...</span>
         </el-button>
       </div>
@@ -91,7 +91,6 @@ import { useRouter, useRoute } from 'vue-router';
 import store from '../store/index';
 import http from '@/../src/api/http.js';
 export default defineComponent({
-  //...mapActions(['getLocalization']),
   setup(props, context) {
     store.commit('clearUserInfo', '');
     const loading = ref(false);
@@ -114,7 +113,7 @@ export default defineComponent({
     let appContext = getCurrentInstance().appContext;
     let $message = appContext.config.globalProperties.$message;
     let router = useRouter();
-
+    
     const login = () => {
       if (!userInfo.userName) return $message.error('请输入用户名');
       if (!userInfo.password) return $message.error('请输入UserPwd');
@@ -122,7 +121,7 @@ export default defineComponent({
         return $message.error('请输入验证码');
       }
       loading.value = true;
-      http.post('/api/user/login', userInfo, '正在登录....').then((result) => {
+      http.post('/api/user/login', userInfo, appContext.config.globalProperties.$locales[appContext.config.globalProperties.$i18n.locale].LoggingIn).then((result) => {
         if (!result.status) {
           loading.value = false;
           getVierificationCode();

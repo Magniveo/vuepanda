@@ -24,7 +24,7 @@
             const table = ref({
                 key: 'LogId',
                 footer: "Foots",
-                cnName: '执行记录',
+                cnName: 'ExecutionRecord',
                 name: 'quartz/Sys_QuartzLog',
                 url: "/Sys_QuartzLog/",
                 sortName: "StratDate"
@@ -32,14 +32,14 @@
             const editFormFields = ref({});
             const editFormOptions = ref([]);
             const searchFormFields = ref({"TaskName":"","ElapsedTime":[null,null],"StratDate":"","Result":""});
-            const searchFormOptions = ref([[{"title":"TaskName","field":"TaskName","type":"like"},{"title":"ElapsedTime","field":"ElapsedTime","type":"range"},{"title":"StratDate","field":"StratDate","type":"datetime"},{"dataKey":"enable","data":[],"title":"是否成功","field":"Result","type":"select"}]]);
+            const searchFormOptions = ref([[{"title":"TaskName","field":"TaskName","type":"like"},{"title":"ElapsedTime","field":"ElapsedTime","type":"range"},{"title":"StratDate","field":"StratDate","type":"datetime"},{"dataKey":"enable","data":[],"title":"Result","field":"Result","type":"select"}]]);
             const columns = ref([{field:'LogId',title:'LogId',type:'guid',width:110,hidden:true,readonly:true,require:true,align:'left'},
-                       {field:'Id',title:'任务id',type:'guid',width:110,hidden:true,align:'left'},
+                       {field:'Id',title:'Id',type:'guid',width:110,hidden:true,align:'left'},
                        {field:'TaskName',title:'TaskName',type:'string',width:120,align:'left',sort:true},
                        {field:'ElapsedTime',title:'ElapsedTime',type:'int',width:90,align:'left'},
                        {field:'StratDate',title:'StratDate',type:'datetime',width:150,align:'left',sort:true},
                        {field:'EndDate',title:'EndDate',type:'datetime',width:150,align:'left',sort:true},
-                       {field:'Result',title:'是否成功',type:'int',bind:{ key:'enable',data:[]},width:100,align:'left'},
+                       {field:'Result',title:'Result',type:'int',bind:{ key:'enable',data:[]},width:100,align:'left'},
                        {field:'ResponseContent',title:'ResponseContent',type:'string',width:250,align:'left'},
                        {field:'ErrorMsg',title:'ExceptionInfo',type:'string',width:150,align:'left'},
                        {field:'CreateID',title:'CreateID',type:'int',width:80,hidden:true,align:'left'},

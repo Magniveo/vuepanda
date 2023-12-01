@@ -39,7 +39,7 @@ namespace VOL.System.Controllers
         }
 
         /// <summary>
-        /// 表单设置为Enable查询，重置或第一次添加表单时，获取字典的key、value
+        /// Form设置为Enable查询，重置或第一次添加Form时，获取字典的key、value
         /// </summary>
         /// <param name="dicNo"></param>
         /// <param name="key"></param>

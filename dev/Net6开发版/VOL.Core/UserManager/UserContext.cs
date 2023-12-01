@@ -177,7 +177,7 @@ namespace VOL.Core.ManageUser
         }
         /// <summary>
         /// 2022.03.26
-        /// 菜单类型1:移动端，0:PC端
+        /// 菜单AppType1:移动端，0:PC端
         /// </summary>
         public static int MenuType
         {
@@ -193,7 +193,7 @@ namespace VOL.Core.ManageUser
         /// <returns></returns>
         public Permissions GetPermissions(Func<Permissions, bool> func)
         {
-            // 2022.03.26增移动端加菜单类型判断
+            // 2022.03.26增移动端加菜单AppType判断
             return GetPermissions(RoleId).Where(func).Where(x => x.MenuType == MenuType).FirstOrDefault();
         }
 
@@ -256,7 +256,7 @@ namespace VOL.Core.ManageUser
                         TableName = (a.TableName ?? "").ToLower(),
                         //MenuAuth = a.Auth,
                         UserAuth = a.Auth,
-                        // 2022.03.26增移动端加菜单类型
+                        // 2022.03.26增移动端加菜单AppType
                         MenuType = a.MenuType ?? 0
                     }).ToList();
                 return MenuActionToArray(permissions);
@@ -299,7 +299,7 @@ namespace VOL.Core.ManageUser
                                                       TableName = (a.TableName ?? "").ToLower(),
                                                       MenuAuth = a.Auth,
                                                       UserAuth = b.AuthValue ?? "",
-                                                      // 2022.03.26增移动端加菜单类型
+                                                      // 2022.03.26增移动端加菜单AppType
                                                       MenuType = a.MenuType ?? 0
                                                   }).ToList();
                 ActionToArray(_permissions);

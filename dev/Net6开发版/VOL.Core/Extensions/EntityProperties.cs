@@ -164,7 +164,7 @@ namespace VOL.Core.Extensions
                     {typeof(string),"nvarchar" }
         };
         /// <summary>
-        /// 返回属性的字段及数据库类型
+        /// 返回属性的字段及数据库AppType
         /// </summary>
         /// <param name="property"></param>
         /// <param name="lenght">是否包括后字段具体长度:nvarchar(100)</param>
@@ -226,7 +226,7 @@ namespace VOL.Core.Extensions
         /// 
         /// </summary>
         /// <param name="array">将数组转换成DbSql</param>
-        /// <param name="fieldType">指定FieldType数据库字段类型</param>
+        /// <param name="fieldType">指定FieldType数据库字段AppType</param>
         /// <param name="sql"></param>
         /// <returns></returns>
         public static string GetArraySql(this object[] array, FieldType fieldType)
@@ -246,7 +246,7 @@ namespace VOL.Core.Extensions
         /// </param>
         /// </summary>
         /// <param name="array"></param>
-        /// <param name="fieldType">指定生成的数组值的类型</param>
+        /// <param name="fieldType">指定生成的数组值的AppType</param>
         /// <param name="sql"></param>
         /// <returns></returns>
         public static string GetArraySql(this object[] array, FieldType fieldType, string sql)
@@ -264,7 +264,7 @@ namespace VOL.Core.Extensions
             return array.GetArraySql(typeof(T).GetFieldType(), sql);
         }
         /// <summary>
-        /// 根据实体获取key的类型，用于update或del操作
+        /// 根据实体获取key的AppType，用于update或del操作
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
@@ -559,7 +559,7 @@ namespace VOL.Core.Extensions
         /// 获取key列名
         /// </summary>
         /// <param name="properties"></param>
-        /// <param name="keyType">true获取key对应类型,false返回对象Key的ExpertName</param>
+        /// <param name="keyType">true获取key对应AppType,false返回对象Key的ExpertName</param>
         /// <returns></returns>
         public static string GetKeyName(this PropertyInfo[] properties, bool keyType)
         {
@@ -767,7 +767,7 @@ namespace VOL.Core.Extensions
         }
 
         /// <summary>
-        /// 获取数据库类型，不带长度，如varchar(100),只返回的varchar
+        /// 获取数据库AppType，不带长度，如varchar(100),只返回的varchar
         /// </summary>
         /// <param name="propertyInfo"></param>
         /// <returns></returns>
@@ -801,10 +801,10 @@ namespace VOL.Core.Extensions
         }
 
         /// <summary>
-        /// 验证数据库字段类型与值是否正确，
+        /// 验证数据库字段AppType与值是否正确，
         /// </summary>
         /// <param name="propertyInfo">propertyInfo为当字段，当前字段必须有ColumnAttribute属性,
-        /// 如字段:标识为数据库int类型[Column(TypeName="int")]  public int Id { get; set; }
+        /// 如字段:标识为数据库intAppType[Column(TypeName="int")]  public int Id { get; set; }
         /// 如果是小数float或Decimal必须对propertyInfo字段加DisplayFormatAttribute属性
         /// </param>
         /// <param name="value"></param>
@@ -838,7 +838,7 @@ namespace VOL.Core.Extensions
             { typeof(decimal),SqlDbTypeName.Decimal },
             { typeof(float),SqlDbTypeName.Float },
             { typeof(double),SqlDbTypeName.Double },
-            {  typeof(byte),SqlDbTypeName.Int },//类型待完
+            {  typeof(byte),SqlDbTypeName.Int },//AppType待完
             { typeof(Guid),SqlDbTypeName.UniqueIdentifier}
         };
         public static string GetProperWithDbType(this PropertyInfo propertyInfo)
@@ -852,9 +852,9 @@ namespace VOL.Core.Extensions
         }
 
         /// <summary>
-        /// 验证数据库字段类型与值是否正确，
+        /// 验证数据库字段AppType与值是否正确，
         /// </summary>
-        /// <param name="dbType">数据库字段类型(如varchar,nvarchar,decimal,不要带后面长度如:varchar(50))</param>
+        /// <param name="dbType">数据库字段AppType(如varchar,nvarchar,decimal,不要带后面长度如:varchar(50))</param>
         /// <param name="value">值</param>
         /// <param name="propertyInfo">要验证的类的属性，若不为null，则会判断字符串的长度是否正确</param>
         /// <returns>(bool, string, object)bool成否校验成功,string校验失败信息,object,当前校验的值</returns>
@@ -872,7 +872,7 @@ namespace VOL.Core.Extensions
             {
                 if (!value.IsInt())
                     reslutMsg = "只能为有效整数";
-            }  //2021.10.12增加属性校验long类型的支持
+            }  //2021.10.12增加属性校验longAppType的支持
             else if (dbType == SqlDbTypeName.BigInt)
             {
                 if (!long.TryParse(val, out _))
@@ -1163,7 +1163,7 @@ namespace VOL.Core.Extensions
                 //    hash.Remove(property.Name);
                 //    continue;
                 //}
-                //验证数据类型,不验证是否为空
+                //验证数据AppType,不验证是否为空
                 var result = property.ValidationProperty(dic[property.Name], false);
                 if (!result.Item1)
                     return result.Item2;
@@ -1288,7 +1288,7 @@ namespace VOL.Core.Extensions
 
         /// <summary>
         /// 将数据源映射到新的数据中,目前只支持List<TSource>映射到List<TResult>或TSource映射到TResult
-        /// 目前只支持Dictionary或实体类型
+        /// 目前只支持Dictionary或实体AppType
         /// </summary>
         /// <typeparam name="TSource"></typeparam>
         /// <typeparam name="TResult"></typeparam>

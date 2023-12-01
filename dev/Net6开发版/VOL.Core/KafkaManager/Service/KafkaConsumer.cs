@@ -11,11 +11,11 @@
 //namespace VOL.Core.KafkaManager.Service
 //{
 //    /// <summary>
-//    /// 消费者 (Message.Key的数据类型为string、Message.Value的数据类型为string）
+//    /// 消费者 (Message.Key的数据AppType为string、Message.Value的数据AppType为string）
 //    /// 消费者实现三种消费方式：1.订阅回调模式 2.批量消费模式 3.单笔消费模式
 //    /// </summary>
-//    /// <typeparam name="TKey">Message.Key 的数据类型</typeparam>
-//    /// <typeparam name="TValue">Message.Value 的数据类型</typeparam>
+//    /// <typeparam name="TKey">Message.Key 的数据AppType</typeparam>
+//    /// <typeparam name="TValue">Message.Value 的数据AppType</typeparam>
 //    public class KafkaConsumer<TKey, TValue> : KafkaConfig, IKafkaConsumer<TKey, TValue>
 //    {
 //        /// <summary>

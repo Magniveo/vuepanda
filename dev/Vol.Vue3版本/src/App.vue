@@ -14,7 +14,7 @@ export default {
   },
   data() {
     return {
-      locale: ru,
+      locale: ru
     };
   },
 };

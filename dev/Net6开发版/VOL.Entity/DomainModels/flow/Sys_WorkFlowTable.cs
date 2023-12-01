@@ -26,9 +26,9 @@ namespace VOL.Entity.DomainModels
        public Guid WorkFlowTable_Id { get; set; }
 
        /// <summary>
-       ///流程id
+       ///WorkFlow_Id
        /// </summary>
-       [Display(Name ="流程id")]
+       [Display(Name ="WorkFlow_Id")]
        [Column(TypeName="uniqueidentifier")]
        public Guid? WorkFlow_Id { get; set; }
 
@@ -65,9 +65,9 @@ namespace VOL.Entity.DomainModels
        public string WorkTableName { get; set; }
 
        /// <summary>
-       ///审核节点ID
+       ///审核StepId
        /// </summary>
-       [Display(Name ="审核节点ID")]
+       [Display(Name ="审核StepId")]
        [MaxLength(100)]
        [Column(TypeName="nvarchar(100)")]
        public string CurrentStepId { get; set; }

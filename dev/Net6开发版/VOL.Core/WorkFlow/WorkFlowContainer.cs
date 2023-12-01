@@ -260,7 +260,7 @@ namespace VOL.Core.WorkFlow
                     catch (Exception ex)
                     {
 
-                        string message = $"流程:【{workFlow.WorkName}】,节点:【{item.StepName}】条件异常,请检查【值】与【字段的类型】是否匹配,节点配置：{item.Filters}";
+                        string message = $"流程:【{workFlow.WorkName}】,节点:【{item.StepName}】条件异常,请检查【值】与【字段的AppType】是否匹配,节点配置：{item.Filters}";
 
                         Console.WriteLine(message + ex.Message);
                         if (showError)

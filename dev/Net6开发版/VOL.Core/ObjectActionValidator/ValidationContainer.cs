@@ -11,7 +11,7 @@ namespace VOL.Core.ObjectActionValidator
     /// <summary>
     /// 对方法指定属性校验,此处配置完成就Dept_Id每处都写if esle判断值是合法
     /// 与自带模型校验相比，此处可以通过表达式校验指定字段，也Dept_Id担心model字段变化后还去手动修改配置的问题
-    /// 目前只支持普通属性，不支持复杂类型
+    /// 目前只支持普通属性，不支持复杂AppType
     /// </summary>
     public static class ValidatorContainer
     {

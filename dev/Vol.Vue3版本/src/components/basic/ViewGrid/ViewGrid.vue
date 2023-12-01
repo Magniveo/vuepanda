@@ -58,9 +58,9 @@
       ref="gridHeader"
       @parentCall="parentCall"
     ></component>
-    <!--主界面查询与table表单布局-->
+    <!--主界面查询与tableFormLayout-->
     <div class="view-container">
-      <!-- 2020.09.11增加固定查询表单 -->
+      <!-- 2020.09.11增加固定查询Form -->
       <!--查询条件-->
       <div class="grid-search">
         <div
@@ -483,7 +483,7 @@ var vueParam = {
       workFlowSteps: [],
       //树形结构的主键字段，如果设置值默认会开启树形table；注意rowKey字段的值必须是唯一（2021.05.02）
       rowKey: undefined,
-      fiexdSearchForm: false, //2020.09.011是否固定查询表单，true查询表单将固定显示在表单的最上面
+      fiexdSearchForm: false, //2020.09.011是否固定查询Form，true查询Form将固定显示在Form的最上面
       _inited: false,
       doubleEdit: false, //2021.03.19是否开启查询界面表格双击Edit
       single: false, //表是否单选
@@ -544,7 +544,7 @@ var vueParam = {
         textInline: true, //明细表行内容显示在一行上，如果需要换行显示，请设置为false
         doubleEdit: true, //使用双击Edit
         clickEdit: false, //是否开启点击单元格Edit，点击其他行时结束Edit
-        currentReadonly: false, //当前用户没有Edit或Add权限时，表单只读(可用于判断用户是否有Edit或Add权限)
+        currentReadonly: false, //当前用户没有Edit或Add权限时，FormReadOnly(可用于判断用户是否有Edit或Add权限)
         //开启Edit时
         beginEdit: (row, column, index) => {
           return true;

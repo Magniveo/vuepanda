@@ -38,7 +38,7 @@ namespace VOL.Core.ObjectActionValidator
         public static Dictionary<string, GeneralOptions> ValidatorGeneralCollection { get; } = new Dictionary<string, GeneralOptions>();
 
         /// <summary>
-        /// 默认校验的是string类型
+        /// 默认校验的是stringAppType
         /// </summary>
         /// <param name="general">普通参数名</param>
         /// <param name="CNName">校验错误时显示的提示名字</param>
@@ -67,7 +67,7 @@ namespace VOL.Core.ObjectActionValidator
         /// </summary>
         /// <param name="general">普通参数名</param>
         /// <param name="CNName">校验错误时显示的提示名字</param>
-        /// <param name="type">参数类型</param>
+        /// <param name="type">参数AppType</param>
         /// <param name="min">最大小度(最小值)</param>
         /// <param name="max">最大长度(最大值)</param>
         public static void Add(this ValidatorGeneral general, string CNName, ParamType type, int? min = null, int? max = null)
@@ -271,7 +271,7 @@ namespace VOL.Core.ObjectActionValidator
             if (options.Min == null && options.Max == null) return;
             switch (options.ParamType)
             {
-                //待完ParamType.Long,Byte类型
+                //待完ParamType.Long,ByteAppType
                 case ParamType.Int:
                     //case ParamType.Long:
                     //case ParamType.Byte:
@@ -308,7 +308,7 @@ namespace VOL.Core.ObjectActionValidator
                         actionContext.ActionErrorResult($"[{options.CNName}]应该是Date格式");
                     }
                     break;
-                //min,max应该是decimal类型，待完
+                //min,max应该是decimalAppType，待完
                 case ParamType.Decimal:
                     if (!decimal.TryParse(model.ToString(), out decimal _decimal))
                     {
@@ -328,7 +328,7 @@ namespace VOL.Core.ObjectActionValidator
                 case ParamType.Guid:
                     if (!Guid.TryParse(model.ToString(), out _))
                     {
-                        actionContext.ActionErrorResult($"[{options.CNName}]不是Guid类型");
+                        actionContext.ActionErrorResult($"[{options.CNName}]不是GuidAppType");
                     }
                     break;
                 default:

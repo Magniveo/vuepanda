@@ -176,7 +176,7 @@ namespace VOL.Core.Utilities
                             continue;
                         }
 
-                        //验证导入与实体数据类型是否相同
+                        //验证导入与实体数据AppType是否相同
                         (bool, string, object) result = property.ValidationProperty(value, options.Requierd);
 
                         if (!result.Item1)
@@ -340,7 +340,7 @@ namespace VOL.Core.Utilities
             var dicNoKeys = cellOptions
                  .Where(x => !string.IsNullOrEmpty(x.DropNo) && x.KeyValues != null && x.KeyValues.Keys.Count > 0)
                  .Select(x => new { x.DropNo, x.ColumnName, x.SearchType, x.EditType }).Distinct().ToList();
-            //2021.01.24修复多选类型，导出excel文件没有转换数据源的问题
+            //2021.01.24修复多选AppType，导出excel文件没有转换数据源的问题
             var selectList = dicNoKeys.Where(x => x.SearchType == "checkbox" || x.SearchType == "selectList" || x.EditType == "checkbox" || x.EditType == "selectList")
                   .Select(s => s.ColumnName).ToArray();
 
@@ -444,7 +444,7 @@ namespace VOL.Core.Utilities
                     package.SaveAs(new FileInfo(fullPath));
                     return fullPath;
                 }
-                //2021.01.24修复多选类型，导出excel文件没有转换数据源的问题
+                //2021.01.24修复多选AppType，导出excel文件没有转换数据源的问题
                 IEnumerable<string> GetListValues(string cellValues, string propertyName)
                 {
                     var values = cellValues.Split(",");
@@ -474,7 +474,7 @@ namespace VOL.Core.Utilities
                         }
                         if (cellValue != null && dicNoKeys.Exists(x => x.ColumnName == propertyInfo[j].Name))
                         {
-                            //2021.01.24修复多选类型，导出excel文件没有转换数据源的问题
+                            //2021.01.24修复多选AppType，导出excel文件没有转换数据源的问题
                             if (selectList.Contains(propertyInfo[j].Name))
                             {
                                 cellValue = string.Join(",", GetListValues(cellValue.ToString(), propertyInfo[j].Name));
@@ -655,7 +655,7 @@ namespace VOL.Core.Utilities
         public int ColumnWidth { get; set; }//导出列的宽度,代码生成维护的宽度
         public bool Requierd { get; set; } //是否必填
         public int Index { get; set; }//列所在模板的序号(导入用)
-        //2021.01.24修复多选类型，导出excel文件没有转换数据源的问题
+        //2021.01.24修复多选AppType，导出excel文件没有转换数据源的问题
         public string EditType { get; set; }
         public string SearchType { get; set; }
         //对应字典项维护的Key,Value

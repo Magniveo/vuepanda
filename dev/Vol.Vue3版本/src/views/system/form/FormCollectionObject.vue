@@ -24,20 +24,20 @@
             const table = ref({
                 key: 'FormCollectionId',
                 footer: "Foots",
-                cnName: '数据采集',
+                cnName: 'DataCollection',
                 name: 'form/FormCollectionObject',
                 url: "/FormCollectionObject/",
                 sortName: "CreateDate"
             });
             const editFormFields = ref({"Title":"","FormData":""});
             const editFormOptions = ref([[{"title":"Title","field":"Title"},
-                               {"title":"表单数据","field":"FormData"}]]);
+                               {"title":"Form数据","field":"FormData"}]]);
             const searchFormFields = ref({"Title":"","Creator":"","CreateDate":""});
             const searchFormOptions = ref([[{"title":"Title","field":"Title","type":"like"},{"title":"Creator","field":"Creator","type":"like"},{"title":"CreateDate","field":"CreateDate","type":"datetime"}]]);
             const columns = ref([{field:'FormCollectionId',title:'FormCollectionId',type:'guid',width:110,hidden:true,readonly:true,require:true,align:'left'},
-                       {field:'FormId',title:'表单ID',type:'guid',width:110,hidden:true,align:'left'},
+                       {field:'FormId',title:'FormID',type:'guid',width:110,hidden:true,align:'left'},
                        {field:'Title',title:'Title',type:'string',width:110,align:'left',sort:true},
-                       {field:'FormData',title:'表单数据',type:'string',width:110,hidden:true,align:'left'},
+                       {field:'FormData',title:'Form数据',type:'string',width:110,hidden:true,align:'left'},
                        {field:'Creator',title:'Creator',type:'string',width:100,align:'left'},
                        {field:'CreateDate',title:'CreateDate',type:'datetime',width:145,align:'left',sort:true},
                        {field:'CreateID',title:'CreateID',type:'int',width:80,hidden:true,align:'left'},

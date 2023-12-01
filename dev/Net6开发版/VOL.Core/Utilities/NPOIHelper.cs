@@ -117,10 +117,10 @@
 //                    string drValue = row[column].ToString();
 //                    switch (column.DataType.ToString())
 //                    {
-//                        case "System.String"://字符串类型
+//                        case "System.String"://字符串AppType
 //                            newCell.SetCellValue(drValue);
 //                            break;
-//                        case "System.DateTime"://Date类型
+//                        case "System.DateTime"://DateAppType
 //                            DateTime dateV;
 //                            DateTime.TryParse(drValue, out dateV);
 //                            newCell.SetCellValue(dateV);
@@ -342,10 +342,10 @@
 //            //        string drValue = row[column].ToString();
 //            //        switch (column.DataType.ToString())
 //            //        {
-//            //            case "System.String"://字符串类型
+//            //            case "System.String"://字符串AppType
 //            //                newCell.SetCellValue(drValue);
 //            //                break;
-//            //            case "System.DateTime"://Date类型
+//            //            case "System.DateTime"://DateAppType
 //            //                DateTime dateV;
 //            //                DateTime.TryParse(drValue, out dateV);
 //            //                newCell.SetCellValue(dateV);
@@ -502,10 +502,10 @@
 //                    string drValue = row[column].ToString();
 //                    switch (column.DataType.ToString())
 //                    {
-//                        case "System.String"://字符串类型
+//                        case "System.String"://字符串AppType
 //                            newCell.SetCellValue(drValue);
 //                            break;
-//                        case "System.DateTime"://Date类型
+//                        case "System.DateTime"://DateAppType
 //                            if (drValue.Length > 0)
 //                            {
 //                                DateTime dateV;

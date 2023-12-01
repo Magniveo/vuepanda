@@ -24,7 +24,7 @@
             const table = ref({
                 key: 'Role_Id',
                 footer: "Foots",
-                cnName: 'Role_Id管理',
+                cnName: 'RoleManagement',
                 name: 'Sys_Role',
                 url: "/Sys_Role/",
                 sortName: "Role_Id"

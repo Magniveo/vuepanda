@@ -24,23 +24,23 @@
             const table = ref({
                 key: 'DepartmentId',
                 footer: "Foots",
-                cnName: '组织架构',
+                cnName: 'OrganizationalStructure',
                 name: 'system/Sys_Department',
                 url: "/Sys_Department/",
                 sortName: "CreateDate"
             });
             const editFormFields = ref({"DepartmentName":"","DepartmentCode":"","ParentId":[],"Remark":""});
             const editFormOptions = ref([[{"title":"组织ExpertName","required":true,"field":"DepartmentName"}],
-                              [{"title":"组织编号","field":"DepartmentCode"}],
-                              [{"dataKey":"组织机构","data":[],"title":"上级组织","field":"ParentId","type":"cascader"}],
+                              [{"title":"DepartmentCode","field":"DepartmentCode"}],
+                              [{"dataKey":"organization","data":[],"title":"ParentId","field":"ParentId","type":"cascader"}],
                               [{"title":"Remark","field":"Remark","type":"textarea"}]]);
             const searchFormFields = ref({"DepartmentName":"","DepartmentCode":"","Creator":"","CreateDate":""});
-            const searchFormOptions = ref([[{"title":"组织ExpertName","field":"DepartmentName","type":"like"},{"title":"组织编号","field":"DepartmentCode"},{"title":"Creator","field":"Creator"},{"title":"CreateDate","field":"CreateDate","type":"datetime"}]]);
+            const searchFormOptions = ref([[{"title":"组织ExpertName","field":"DepartmentName","type":"like"},{"title":"DepartmentCode","field":"DepartmentCode"},{"title":"Creator","field":"Creator"},{"title":"CreateDate","field":"CreateDate","type":"datetime"}]]);
             const columns = ref([{field:'DepartmentId',title:'DepartmentId',type:'guid',width:110,hidden:true,readonly:true,require:true,align:'left'},
                        {field:'DepartmentName',title:'组织ExpertName',type:'string',link:true,width:180,require:true,align:'left',sort:true},
-                       {field:'DepartmentCode',title:'组织编号',type:'string',width:90,align:'left'},
-                       {field:'ParentId',title:'上级组织',type:'guid',bind:{ key:'组织机构',data:[]},width:110,hidden:true,align:'left'},
-                       {field:'DepartmentType',title:'组织类型',type:'string',width:110,hidden:true,align:'left'},
+                       {field:'DepartmentCode',title:'DepartmentCode',type:'string',width:90,align:'left'},
+                       {field:'ParentId',title:'ParentId',type:'guid',bind:{ key:'organization',data:[]},width:110,hidden:true,align:'left'},
+                       {field:'DepartmentType',title:'DepartmentType',type:'string',width:110,hidden:true,align:'left'},
                        {field:'Enable',title:'Enable',type:'int',width:110,hidden:true,align:'left'},
                        {field:'Remark',title:'Remark',type:'string',width:100,align:'left'},
                        {field:'CreateID',title:'CreateID',type:'int',width:100,hidden:true,align:'left'},

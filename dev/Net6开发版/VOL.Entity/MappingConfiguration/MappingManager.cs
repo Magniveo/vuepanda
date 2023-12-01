@@ -67,7 +67,7 @@ namespace VOL.Entity.MappingConfiguration
 //    }
 
 //    /// <summary>
-//    /// decimal类型设置精度
+//    /// decimalAppType设置精度
 //    /// </summary>
 //    /// <param name="propertyBuilder"></param>
 //    /// <param name="precision">精度</param>

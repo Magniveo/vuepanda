@@ -13,7 +13,7 @@ using VOL.Entity.SystemModels;
 
 namespace VOL.Entity.DomainModels
 {
-    [Entity(TableCnName = "定时任务",TableName = "Sys_QuartzOptions")]
+    [Entity(TableCnName = "ScheduledTasks",TableName = "Sys_QuartzOptions")]
     public partial class Sys_QuartzOptions:BaseEntity
     {
         /// <summary>

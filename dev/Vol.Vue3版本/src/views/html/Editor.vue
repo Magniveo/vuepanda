@@ -2,7 +2,7 @@
     <div class="editor-example">
     <el-alert type="info" show-icon  style="margin-bottom: 15px;" :closable="false" title="Edit器使用">
         <p>Edit器集成的是wangeditor,框架只做了一个基本功能集成</p>
-        框架代码生成器默认集成了Edit器,代码生成器里面Edit类型选择editor即可自动生成,更多功能：<a href="https://www.wangeditor.com/" target="_blank">查看wangeditor文档</a>
+        框架代码生成器默认集成了Edit器,代码生成器里面EditAppType选择editor即可自动生成,更多功能：<a href="https://www.wangeditor.com/" target="_blank">查看wangeditor文档</a>
     </el-alert>
     <vol-wang-editor v-model="content" :height="350" url="api/App_Expert/Upload"></vol-wang-editor>
     </div>

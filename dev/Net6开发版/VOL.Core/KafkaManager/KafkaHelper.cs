@@ -179,7 +179,7 @@
 //        public string Operator { get; set; }
 
 //        /// <summary>
-//        /// 操作类型 如:Query,Add,Update,Delete,Export等,可自定义
+//        /// 操作AppType 如:Query,Add,Update,Delete,Export等,可自定义
 //        /// </summary>
 //        public string OperationType { get; set; }
 

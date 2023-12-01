@@ -92,8 +92,8 @@ namespace VOL.Core.Extensions
 
         /// <summary>
         /// 创建lambda表达式：p=>false
-        /// 在已知TKey字段类型时,如动态OrderNoOrderBy(x=>x.ID)会用到此功能,返回的就是x=>x.ID
-        /// Expression<Func<Out_Scheduling, DateTime>> expression = x => x.CreateDate;指定了类型
+        /// 在已知TKey字段AppType时,如动态OrderNoOrderBy(x=>x.ID)会用到此功能,返回的就是x=>x.ID
+        /// Expression<Func<Out_Scheduling, DateTime>> expression = x => x.CreateDate;指定了AppType
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
@@ -105,8 +105,8 @@ namespace VOL.Core.Extensions
         }
         /// <summary>
         /// 创建lambda表达式：p=>false
-        /// object不能确认字段类型(datetime,int,string),如动态OrderNoOrderBy(x=>x.ID)会用到此功能,返回的就是x=>x.ID
-        /// Expression<Func<Out_Scheduling, object>> expression = x => x.CreateDate;任意类型的字段
+        /// object不能确认字段AppType(datetime,int,string),如动态OrderNoOrderBy(x=>x.ID)会用到此功能,返回的就是x=>x.ID
+        /// Expression<Func<Out_Scheduling, object>> expression = x => x.CreateDate;任意AppType的字段
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
@@ -128,7 +128,7 @@ namespace VOL.Core.Extensions
         /// <typeparam name="T"></typeparam>
         /// <param name="propertyName">字段名</param>
         /// <param name="propertyValue">表达式的值</param>
-        /// <param name="expressionType">创建表达式的类型,如:p=>p.propertyName != propertyValue 
+        /// <param name="expressionType">创建表达式的AppType,如:p=>p.propertyName != propertyValue 
         /// p=>p.propertyName.Contains(propertyValue)</param>
         /// <returns></returns>
         public static Expression<Func<T, bool>> CreateExpression<T>(this string propertyName, object propertyValue, LinqExpressionType expressionType)
@@ -142,7 +142,7 @@ namespace VOL.Core.Extensions
         /// <typeparam name="T"></typeparam>
         /// <param name="propertyName">字段名</param>
         /// <param name="propertyValue">表达式的值</param>
-        /// <param name="expressionType">创建表达式的类型,如:p=>p.propertyName != propertyValue 
+        /// <param name="expressionType">创建表达式的AppType,如:p=>p.propertyName != propertyValue 
         /// p=>p.propertyName.Contains(propertyValue)</param>
         /// <returns></returns>
         private static Expression<Func<T, bool>> CreateExpression<T>(
@@ -160,7 +160,7 @@ namespace VOL.Core.Extensions
             MemberExpression memberProperty = Expression.PropertyOrField(parameter, propertyName);
             if (expressionType == LinqExpressionType.In)
             {
-                if (!(propertyValue is System.Collections.IList list) || list.Count == 0) throw new Exception("属性值类型不正确");
+                if (!(propertyValue is System.Collections.IList list) || list.Count == 0) throw new Exception("属性值AppType不正确");
 
                 bool isStringValue = true;
                 List<object> objList = new List<object>();
@@ -177,7 +177,7 @@ namespace VOL.Core.Extensions
 
                 if (isStringValue)
                 {
-                    //string 类型的字段，如果值带有'单引号,EF会默认变成''两个单引号
+                    //string AppType的字段，如果值带有'单引号,EF会默认变成''两个单引号
                     MethodInfo method = typeof(System.Collections.IList).GetMethod("Contains");
                     //创建集合常量并设置为常量的值
                     ConstantExpression constantCollection = Expression.Constant(list);
@@ -203,7 +203,7 @@ namespace VOL.Core.Extensions
             ConstantExpression constant = proType.ToString() == "System.String"
                 ? Expression.Constant(propertyValue) : Expression.Constant(propertyValue.ToString().ChangeType(proType));
 
-            // DateTime只选择了Date的时候自动在结束Date加一天，修复DateTime类型使用Date区间查询无法查询到结束Date的问题
+            // DateTime只选择了Date的时候自动在结束Date加一天，修复DateTimeAppType使用Date区间查询无法查询到结束Date的问题
             if ((proType == typeof(DateTime) || proType == typeof(DateTime?)) && expressionType == LinqExpressionType.LessThanOrEqual && propertyValue.ToString().Length == 10)
             {
                 expressionType = LinqExpressionType.LessThan;
@@ -373,7 +373,7 @@ namespace VOL.Core.Extensions
         /// <typeparam name="T"></typeparam>
         /// <param name="listParas">ExpressionParameters
         /// 1、Field生成的字段
-        /// 2、ExpressionType 表达式类型大于、小于、于大=、小于=、contains
+        /// 2、ExpressionType 表达式AppType大于、小于、于大=、小于=、contains
         /// 3、Value表达式的值
         /// </param>
         /// <returns></returns>

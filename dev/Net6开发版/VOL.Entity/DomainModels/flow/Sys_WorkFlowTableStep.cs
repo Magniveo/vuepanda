@@ -26,24 +26,24 @@ namespace VOL.Entity.DomainModels
        public Guid Sys_WorkFlowTableStep_Id { get; set; }
 
        /// <summary>
-       ///主表id
+       ///WorkFlowTable_Id
        /// </summary>
-       [Display(Name ="主表id")]
+       [Display(Name ="WorkFlowTable_Id")]
        [Column(TypeName="uniqueidentifier")]
        [Required(AllowEmptyStrings=false)]
        public Guid WorkFlowTable_Id { get; set; }
 
        /// <summary>
-       ///流程id
+       ///WorkFlow_Id
        /// </summary>
-       [Display(Name ="流程id")]
+       [Display(Name ="WorkFlow_Id")]
        [Column(TypeName="uniqueidentifier")]
        public Guid? WorkFlow_Id { get; set; }
 
        /// <summary>
-       ///节点id
+       ///StepId
        /// </summary>
-       [Display(Name ="节点id")]
+       [Display(Name ="StepId")]
        [MaxLength(100)]
        [Column(TypeName="nvarchar(100)")]
        public string StepId { get; set; }
@@ -57,9 +57,9 @@ namespace VOL.Entity.DomainModels
        public string StepName { get; set; }
 
        /// <summary>
-       ///审批类型
+       ///审批AppType
        /// </summary>
-       [Display(Name ="审批类型")]
+       [Display(Name ="审批AppType")]
        [Column(TypeName="int")]
        public int? StepType { get; set; }
 
@@ -72,9 +72,9 @@ namespace VOL.Entity.DomainModels
        public string StepValue { get; set; }
 
        /// <summary>
-       ///审批顺序
+       ///OrderId
        /// </summary>
-       [Display(Name ="审批顺序")]
+       [Display(Name ="OrderId")]
        [Column(TypeName="int")]
        public int? OrderId { get; set; }
 
@@ -167,9 +167,9 @@ namespace VOL.Entity.DomainModels
        public DateTime? AuditDate { get; set; }
 
        /// <summary>
-       ///节点属性(start、node、end))
+       ///StepAttrType(start、node、end))
        /// </summary>
-       [Display(Name ="节点属性(start、node、end))")]
+       [Display(Name ="StepAttrType(start、node、end))")]
        [MaxLength(50)]
        [Column(TypeName="varchar(50)")]
        public string StepAttrType { get; set; }

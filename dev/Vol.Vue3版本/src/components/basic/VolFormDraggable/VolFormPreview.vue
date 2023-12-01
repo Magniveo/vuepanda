@@ -164,7 +164,7 @@ export default {
     submit() {},
     reset() {
       this.$refs.form.reset();
-      this.$Message.success("表单已重置");
+      this.$Message.success("Form已重置");
     },
     download() {
       downloadForm.call(this);

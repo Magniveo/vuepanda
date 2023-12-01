@@ -555,7 +555,7 @@ export default defineComponent({
       default: true
     },
     index: {
-      // 是否创建索引号,如果需要表格Edit功能，这里需要设置为true
+      // 是否创建索引号,如果需要FormEdit功能，这里需要设置为true
       type: Boolean,
       default: false
     },
@@ -784,13 +784,13 @@ export default defineComponent({
               });
             }
             columnBind.forEach((c) => {
-              // 转换数据源的类型与列的类型一致(2020.04.04)
+              // 转换数据源的AppType与列的AppType一致(2020.04.04)
               if (
                 c.key == x.dicNo &&
                 (c.valueTyoe == 'int' || c.valueTyoe == 'sbyte')
               ) {
                 x.data.forEach((d) => {
-                  // 2020.09.01增加对数字类型的二次判断
+                  // 2020.09.01增加对数字AppType的二次判断
                   if (!isNaN(d.key)) {
                     d.key = ~~d.key;
                   }

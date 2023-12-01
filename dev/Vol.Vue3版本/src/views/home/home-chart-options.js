@@ -139,7 +139,7 @@ var chart3 = {
             radius: '55%',
             data: [
                 { value: 748, name: '多租户' },
-                { value: 435, name: '多角色' },
+                { value: 435, name: '多Role_Id' },
                 { value: 580, name: '多数据库' },
                 { value: 280, name: '主从分库' },
                 { value: 284, name: '国际化' },

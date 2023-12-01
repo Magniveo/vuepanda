@@ -163,7 +163,7 @@ let remoteColumns = [
   },
   {
     field: "AuditStatus",
-    title: "审核状态",
+    title: "AuditStatus",
     width: 120,
     bind: {
       //如果后面返回的数据为数据源的数据，请配置此bind属性，可以从后台字典数据源加载，也只以直接写上

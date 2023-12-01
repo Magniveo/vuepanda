@@ -12,7 +12,7 @@ let extension = {
         modelFooter: ''//扩展同上
     },
     tableAction:'SellOrder',//设置获取指定表的权限按钮
-    text: "此处为主从表扩展示例,doc_viewGird.vue与doc_viewGirdExtension.js可由代码生成,其他两个文件自己写的扩展", //查询界面文字描述
+    text: "此处为主从表扩展示例,doc_viewGird.vue与doc_viewGirdExtension.js可由代码生成,其他两个文件自己写的扩展", //查询界面文字Describe
     buttons: { //扩展的按钮
         //查询界面的按钮
         view: [{

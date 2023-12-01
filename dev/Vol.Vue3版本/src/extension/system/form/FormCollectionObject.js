@@ -6,7 +6,7 @@ let extension = {
         gridHeader: '',//{ template: "<div>扩展组xx件</div>" },
         gridBody: '',
         gridFooter: '',
-        //弹出框(修改、编辑、查看)header、content、footer对应位置扩充的组件
+        //弹出框(修改、Edit、查看)header、content、footer对应位置扩充的组件
         modelHeader: '',
         modelBody: '',
         modelFooter: ''
@@ -28,11 +28,11 @@ let extension = {
         loadById(item) {
             let columns = [
                 {
-                    title: "提交人",
+                    title: "Creator",
                     field: "Creator"
                 },
                 {
-                    title: "提交时间",
+                    title: "CreateDate",
                     field: "CreateDate"
                 }];
             JSON.parse(item.formOptions).formOptions.forEach(x => {

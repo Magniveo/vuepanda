@@ -15,7 +15,7 @@ namespace VOL.Entity.DomainModels
         public string TableName { get; set; }
         public string Sort { get; set; }
         /// <summary>
-        /// 排序方式
+        /// OrderNo方式
         /// </summary>
         public string Order { get; set; }
         public string Wheres { get; set; }

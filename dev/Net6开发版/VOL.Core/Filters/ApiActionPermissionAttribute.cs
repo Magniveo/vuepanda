@@ -10,7 +10,7 @@ namespace VOL.Core.Filters
         {
         }
         /// <summary>
-        /// 限定角色访问
+        /// 限定Role_Id访问
         /// </summary>
         /// <param name="roles"></param>
         public ApiActionPermissionAttribute(int roleId)
@@ -18,7 +18,7 @@ namespace VOL.Core.Filters
         {
         }
         /// <summary>
-        /// 限定角色访问
+        /// 限定Role_Id访问
         /// </summary>
         /// <param name="roles"></param>
         public ApiActionPermissionAttribute(ActionRolePermission actionRolePermission)
@@ -47,7 +47,7 @@ namespace VOL.Core.Filters
     public enum ActionRolePermission
     {
         /// <summary>
-        /// 角色ID为1
+        /// Role_Id为1
         /// </summary>
         SuperAdmin = 1,
         Admin=2

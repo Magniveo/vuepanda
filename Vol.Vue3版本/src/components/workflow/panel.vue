@@ -69,8 +69,8 @@ export default {
             formRules: [
                 [
                     {
-                        dataKey: '流程名称',
-                        title: '流程名称',
+                        dataKey: 'WorkName',
+                        title: 'WorkName',
                         field: 'WorkName',
                         required: true
                     }],
@@ -95,7 +95,7 @@ export default {
                     }
                 }],
                 [{
-                    title: '权重(相同条件权重大优先)',
+                    title: 'Weight(相同条件Weight大优先)',
                     field: 'Weight',
                     type: "number",
                 }
@@ -109,7 +109,7 @@ export default {
                 }
                 ],
                 [{
-                    title: '备注',
+                    title: 'Remark',
                     field: 'Remark'
                 }
                 ]

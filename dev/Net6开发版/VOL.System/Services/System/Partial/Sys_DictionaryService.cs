@@ -63,7 +63,7 @@ namespace VOL.System.Services
 
 
         /// <summary>
-        /// 通过远程搜索
+        /// 通过Enable搜索
         /// </summary>
         /// <param name="dicNo"></param>
         /// <param name="value"></param>
@@ -86,7 +86,7 @@ namespace VOL.System.Services
         }
 
         /// <summary>
-        /// 表单设置为远程查询，重置或第一次添加表单时，获取字典的key、value
+        /// 表单设置为Enable查询，重置或第一次添加表单时，获取字典的key、value
         /// </summary>
         /// <param name="dicNo"></param>
         /// <param name="value"></param>
@@ -179,10 +179,10 @@ namespace VOL.System.Services
             if (saveDataModel.MainData.DicKeyIsNullOrEmpty("DicNo")
                 || saveDataModel.MainData.DicKeyIsNullOrEmpty("Dic_ID"))
                 return base.Add(saveDataModel);
-            //判断修改的字典编号是否在其他ID存在
+            //判断修改的DicNo是否在其他ID存在
             string dicNo = saveDataModel.MainData["DicNo"].ToString().Trim();
             if (base.repository.Exists(x => x.DicNo == dicNo && x.Dic_ID != saveDataModel.MainData["Dic_ID"].GetInt()))
-                return new WebResponseContent().Error($"字典编号:{ dicNo}已存在。!");
+                return new WebResponseContent().Error($"DicNo:{ dicNo}已存在。!");
 
             base.UpdateOnExecuting = (Sys_Dictionary dictionary, object addList, object editList, List<object> obj) =>
             {
@@ -207,7 +207,7 @@ namespace VOL.System.Services
             if (dictionaryLists == null || dictionaryLists.Count == 0) return webResponse.OK();
 
             if (dictionaryLists.GroupBy(g => g.DicName).Any(x => x.Count() > 1))
-                return webResponse.Error("【字典项名称】不能有重复的值");
+                return webResponse.Error("【字典项ExpertName】不能有重复的值");
 
             if (dictionaryLists.GroupBy(g => g.DicValue).Any(x => x.Count() > 1))
                 return webResponse.Error("【字典项Key】不能有重复的值");
@@ -221,7 +221,7 @@ namespace VOL.System.Services
 
             //   source = source.Replace("'", "''");
             source = Regex.Replace(source, "-", "", RegexOptions.IgnoreCase);
-            //去除执行SQL语句的命令关键字
+            //去除执行DbSql的命令关键字
             source = Regex.Replace(source, "insert ", "", RegexOptions.IgnoreCase);
             // source = Regex.Replace(source, "sys.", "", RegexOptions.IgnoreCase);
             source = Regex.Replace(source, "update ", "", RegexOptions.IgnoreCase);
@@ -246,7 +246,7 @@ namespace VOL.System.Services
 
             string dicNo = saveDataModel.MainData["DicNo"].ToString();
             if (base.repository.Exists(x => x.DicNo == dicNo))
-                return new WebResponseContent().Error("字典编号:" + dicNo + "已存在");
+                return new WebResponseContent().Error("DicNo:" + dicNo + "已存在");
 
             base.AddOnExecuting = (Sys_Dictionary dic, object obj) =>
             {
@@ -261,12 +261,12 @@ namespace VOL.System.Services
 
         public override WebResponseContent Del(object[] keys, bool delList = false)
         {
-            //delKeys删除的key
+            //delKeysDel的key
             base.DelOnExecuting = (object[] delKeys) =>
             {
                 return new WebResponseContent(true);
             };
-            //true将子表数据同时删除
+            //true将子表数据同时Del
             return RemoveCache(base.Del(keys, true));
         }
 

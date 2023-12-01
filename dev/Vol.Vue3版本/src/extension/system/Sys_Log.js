@@ -6,7 +6,7 @@ let extension = {
     gridHeader: "", //{ template: "<div>扩展组xx件</div>" },
     gridBody: '',
     gridFooter: "",
-    //弹出框(修改、编辑、查看)header、content、footer对应位置扩充的组件
+    //弹出框(修改、Edit、查看)header、content、footer对应位置扩充的组件
     modelHeader: "",
     modelBody: "",
     modelFooter: ""

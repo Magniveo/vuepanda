@@ -32,21 +32,21 @@ let extension = {
           children: [
             { field: 'Name', title: '用户姓名', type: 'string', link: true, width: 100, sortable: true },
             { field: 'PhoneNo', title: '电话', type: 'string', width: 130 },
-            { field: 'Describe', title: '描述信息', type: 'string', width: 180 },
+            { field: 'Describe', title: 'Describe信息', type: 'string', width: 180 },
           ]
         },
         {
           field: 'Name', title: '创建人信息', type: 'string', align: 'center',
           children: [
             { field: 'Id', title: '主键ID', type: 'string', width: 90, hidden: true },
-            { field: 'CreateDate', title: '创建时间', type: 'datetime', width: 120, sortable: true },
+            { field: 'CreateDate', title: 'CreateDate', type: 'datetime', width: 120, sortable: true },
             { field: 'Creator', title: '创建人', type: 'string', width: 130, align: 'left' }]
         },
         {
           field: 'Name', title: '修改人信息', type: 'string', align: 'center',
           children: [
             { field: 'Modifier', title: '修 改 人', type: 'string', width: 130, align: 'left' },
-            { field: 'ModifyDate', title: '修改时间', type: 'datetime', width: 150, sortable: true }]
+            { field: 'ModifyDate', title: 'ModifyDate', type: 'datetime', width: 150, sortable: true }]
         }
       ]
       )

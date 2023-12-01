@@ -115,7 +115,7 @@ export default {
           {
             title: "手动绑定数据源",
             dataKey: "age",
-            placeholder: "在这里可设置提示描述",
+            placeholder: "在这里可设置提示Describe",
             //如果这里绑定了data数据，后台不会加载此数据源
             data: [
               { key: 1, value: "是" },
@@ -362,7 +362,7 @@ export default {
         ],
         [
           {
-            title: "备注",
+            title: "Remark",
             required: true,
             field: "IsTop",
             min: 3,

@@ -11,7 +11,7 @@ namespace VOL.Core.Dapper
     public interface ISqlDapper
     {
         /// <summary>
-        ///  超时时间(秒)2021.05.05
+        ///  TimeOut2021.05.05
         /// </summary>
         /// <param name="timeout"></param>
         /// <returns></returns>
@@ -124,7 +124,7 @@ namespace VOL.Core.Dapper
         int UpdateRange<T>(IEnumerable<T> entities, Expression<Func<T, object>> updateFileds = null, bool beginTransaction = false);
 
         /// <summary>
-        /// 使用key批量删除
+        /// 使用key批量Del
         /// 调用方式：
         ///    List<int> keys = new List<int>();
         ///    DBServerProvider.SqlDapper.DelWithKey<Sys_Log, int>(keys);

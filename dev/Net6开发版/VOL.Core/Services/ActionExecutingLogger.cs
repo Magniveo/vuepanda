@@ -13,12 +13,12 @@ namespace VOL.Core.Services
         //    this.HttpContext = httpContextAccessor.HttpContext;
         //}
         /// <summary>
-        /// 记录action执行的开始时间
+        /// 记录action执行的StratDate
         /// </summary>
         public DateTime RequestDate { get; set; }
 
         /// <summary>
-        /// 当前请求是否已经写过日志,防止手动与系统自动重复写日志
+        /// 当前请求是否已经写过日志,防止手动与System自动重复写日志
         /// </summary>
         public bool IsWrite { get; set; }
 

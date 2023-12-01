@@ -16,7 +16,7 @@ let extension = {
             }
         },
         gridFooter: '',
-        //弹出框(修改、编辑、查看)header、content、footer对应位置扩充的组件
+        //弹出框(修改、Edit、查看)header、content、footer对应位置扩充的组件
         modelHeader: '',
         modelBody: '',
         modelFooter: ''
@@ -24,7 +24,7 @@ let extension = {
     buttons: [], //扩展的按钮
     methods: { //事件扩展
         onInit () {
-            //点击单元格编辑与结束编辑(默认是点击单元格编辑，鼠标离开结束编辑)
+            //点击单元格Edit与结束Edit(默认是点击单元格Edit，鼠标离开结束Edit)
             this.detailOptions.clickEdit = true;
             this.editFormOptions.forEach(x => {
                 x.forEach(item => {
@@ -32,7 +32,7 @@ let extension = {
                         item.min = 0;
                     }
                     if (item.field == "DbSql") {
-                        item.placeholder = "如果从数据库加载数据源，请按此格式配置sql语句：select orderType as key,orderName as value from order  如果需要根据用户信息加载数据源，请配置好此sql,再修改后台DictionaryHandler.GetCustomDBSql方法";
+                        item.placeholder = "如果从数据库加载数据源，请按此格式配置DbSql：select orderType as key,orderName as value from order  如果需要根据用户信息加载数据源，请配置好此sql,再修改后台DictionaryHandler.GetCustomDBSql方法";
                     }
                 })
             })
@@ -41,7 +41,7 @@ let extension = {
                     x.summary = true;
                 }
             })
-            //保存后不关闭编辑框
+            //保存后不关闭Edit框
             this.boxOptions.saveClose = false;
         },
         onInited () {
@@ -59,7 +59,7 @@ let extension = {
                 (this.editFormFields.DbSql.indexOf('value') == -1 ||
                     this.editFormFields.DbSql.indexOf('key') == -1)
             ) {
-                this.$message.error("sql语句必须包括key/value字段,如:select orderType as key,orderName as value from order");
+                this.$message.error("DbSql必须包括key/value字段,如:select orderType as key,orderName as value from order");
                 return false;
             }
             return true;

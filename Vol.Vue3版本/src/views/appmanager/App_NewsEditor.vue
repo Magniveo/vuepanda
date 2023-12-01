@@ -55,7 +55,7 @@
                        {field:'CreateDate',title:'发布时间',type:'datetime',width:140,readonly:true,align:'left',sortable:true},
                        {field:'ModifyID',title:'修改人ID',type:'int',width:80,hidden:true,align:'left'},
                        {field:'Modifier',title:'修改人',type:'string',width:130,hidden:true,align:'left'},
-                       {field:'ModifyDate',title:'修改时间',type:'datetime',width:140,readonly:true,align:'left',sortable:true}]);
+                       {field:'ModifyDate',title:'ModifyDate',type:'datetime',width:140,readonly:true,align:'left',sortable:true}]);
             const detail = ref({
                 cnName: "#detailCnName",
                 columns: [],

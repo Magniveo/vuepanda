@@ -1,5 +1,5 @@
 <template>
-  <vol-box :lazy="false" v-model="model" :title="isAdd ? '新建流程' : '编辑流程'" :width="width" :padding="0">
+  <vol-box :lazy="false" v-model="model" :title="isAdd ? 'Add流程' : 'Edit流程'" :width="width" :padding="0">
     <div :style="{ height: height + 'px' }">
       <flow-panel ref="flow"></flow-panel>
     </div>
@@ -104,7 +104,7 @@ export default {
       let mainData = JSON.parse(JSON.stringify(this.$refs.flow.formFields));
 
       if (!mainData.WorkName) {
-        this.$message.error('请填写左侧表单【流程名称】')
+        this.$message.error('请填写左侧表单【WorkName】')
         return;
       }
 
@@ -183,12 +183,12 @@ export default {
             _obj.ParentId.push(node.StepId);
           } else {
             rootNode.push({
-              ParentId: [node.StepId], //父级id
+              ParentId: [node.StepId], //ParentId
               StepId: item.id,
               StepName: item.name,
               StepAttrType: item.type, //节点类型.start开始，end结束 
-              StepType: item.auditType,//审核类型,角色，用户，部门(这里后面考虑同时支持多个角色、用户、部门)
-              //审核选择的值角色，用户，部门(这里后面考虑同时支持多个角色、用户、部门)
+              StepType: item.auditType,//审核类型,Role_Id，用户，部门(这里后面考虑同时支持多个Role_Id、用户、部门)
+              //审核选择的值Role_Id，用户，部门(这里后面考虑同时支持多个Role_Id、用户、部门)
               StepValue: item.auditType == 1 ? item.userId.join(',') : (item.auditType == 2 ? item.roleId : item.deptId),
               AuditRefuse: item.auditRefuse,//审核未通过(返回上一节点,流程重新开始,流程结束)
               AuditBack: item.auditBack, //驳回(返回上一节点,流程重新开始,流程结束)
@@ -222,7 +222,7 @@ export default {
       for (let index = 0; index < rootNode.length; index++) {
         const step = rootNode[index];
         if (!step.StepName) {
-          return this.$message.error(`请输入节点名称`);
+          return this.$message.error(`请输入StepName`);
         }
         if (step.StepAttrType == 'node' && !step.StepValue) {
           return this.$message.error(

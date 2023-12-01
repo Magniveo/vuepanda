@@ -41,7 +41,7 @@
 					<view class="f-form-content f-form-content-select" style="text-align: left;"
 						@click="showPicker(item,0)">
 						<view style="color:rgb(192 196 204);font-size:15px;" v-show="!inFormFields[item.field][0]">
-							开始时间
+							StratDate
 						</view>
 						<view style="flex:1;">
 							<view style="font-size:15px;">
@@ -54,7 +54,7 @@
 					<view class="f-form-content f-form-content-select" @click="showPicker(item,1)">
 						<view style="color:rgb(192 196 204);font-size:15px;text-align: right; width: 100%;"
 							v-show="!inFormFields[item.field][1]">
-							结束时间
+							EndDate
 						</view>
 						<view style="flex:1;">
 							<view style="font-size:15px;text-align: right;">
@@ -613,7 +613,7 @@
 			pickerConfirm(e) {
 				this.pickerModel = false;
 				if (this.pickerCurrentItem.range && this.pickerCurrentRangeIndex == 1) {
-					//判断结束时间大于开始时间
+					//判断EndDate大于StratDate
 				}
 				if (typeof e.value == 'number') {
 					let timeFormat = this.pickerCurrentItem.type == 'date' ? 'yyyy-mm-dd' : 'yyyy-mm-dd hh:MM';

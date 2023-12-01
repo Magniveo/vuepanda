@@ -43,12 +43,12 @@ namespace VOL.Core.Filters
         protected abstract object GetDetailSummary<Detail>(IQueryable<Detail> queryeable);
 
         /// <summary>
-        /// 是否开启用户数据权限,true=用户只能操作自己(及下级角色)创建的数据,如:查询、删除、修改等操作
+        /// 是否开启用户数据权限,true=用户只能操作自己(及下级Role_Id)创建的数据,如:查询、Del、修改等操作
         /// 注意：需要在代码生成器界面选择【是】及生成Model才会生效)
         /// </summary>
         protected bool LimitCurrentUserPermission { get; set; } = false;
 
-        ///默认导出最大表数量：0不限制 
+        ///默认导出最大表Quantity：0不限制 
         protected int Limit { get; set; } = 0;
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace VOL.Core.Filters
         protected string QuerySql = null;
 
         /// <summary>
-        /// 查询前,对现在有的查询字符串条件增加或删除
+        /// 查询前,对现在有的查询字符串条件增加或Del
         /// </summary>
         protected Action<List<SearchParameters>> QueryRelativeList { get; set; }
 
@@ -79,15 +79,15 @@ namespace VOL.Core.Filters
         protected Expression<Func<T, object>> Columns { get; set; }
 
         /// <summary>
-        /// 设置查询排序参数及方式,参数格式为：
+        /// 设置查询OrderNo参数及方式,参数格式为：
         ///  Expression<Func<T, Dictionary<object, bool>>> orderBy = x => new Dictionary<object, QueryOrderBy>() 
         ///            {{ x.ID, QueryOrderBy.Asc },{ x.DestWarehouseName, QueryOrderBy.Desc } };
-        /// 返回的是new Dictionary<object, bool>(){{}}key为排序字段，QueryOrderBy为排序方式
+        /// 返回的是new Dictionary<object, bool>(){{}}key为OrderNo字段，QueryOrderBy为OrderNo方式
         /// </summary>
         protected Expression<Func<T, Dictionary<object, QueryOrderBy>>> OrderByExpression;
 
         /// <summary>
-        /// 设置查询的表名(已弃用)
+        /// 设置查询的WorkTable(已弃用)
         /// </summary>
         protected string TableName { get; set; }
 
@@ -97,22 +97,22 @@ namespace VOL.Core.Filters
         protected Action<PageGridData<T>> GetPageDataOnExecuted;
 
         /// <summary>
-        /// 调用新建处理前(SaveModel为传入的原生数据)
+        /// 调用Add处理前(SaveModel为传入的原生数据)
         /// </summary>
         protected Func<SaveModel, WebResponseContent> AddOnExecute;
 
         /// <summary>
-        /// 调用新建保存数据库前处理(已将提交的原生数据转换成了对象)
+        /// 调用Add保存数据库前处理(已将提交的原生数据转换成了对象)
         ///  Func<T, object,ResponseData>  T为主表数据，object为明细数据(如果需要使用明细对象,请用 object as List<T>转换) 
         /// </summary>
         protected Func<T, object, WebResponseContent> AddOnExecuting;
 
         /// <summary>
-        /// 调用新建保存数据库后处理。
+        /// 调用Add保存数据库后处理。
         /// **实现当前方法时，内部默认已经开启事务，如果实现的方法操作的是同一数据库,则不需要在AddOnExecuted中事务
         ///  Func<T, object,ResponseData>  T为主表数据，object为明细数据(如果需要使用明细对象,请用 object as List<T>转换) 
         ///  此处已开启了DbContext事务(重点),如果还有其他业务处事，直接在这里写EF代码,不需要再开启事务
-        /// 如果执行的是手写sql请用repository.DbContext.Database.ExecuteSqlCommand()或 repository.DbContext.Set<T>().FromSql执行具体sql语句
+        /// 如果执行的是手写sql请用repository.DbContext.Database.ExecuteSqlCommand()或 repository.DbContext.Set<T>().FromSql执行具体DbSql
         /// </summary>
         protected Func<T, object, WebResponseContent> AddOnExecuted;
 
@@ -134,35 +134,35 @@ namespace VOL.Core.Filters
 
         /// <summary>
         ///  调用更新方法保存数据库前处理
-        ///  (已将提交的原生数据转换成了对象,将明细新增、修改、删除的数据分别用object1/2/3标识出来 )
+        ///  (已将提交的原生数据转换成了对象,将明细新增、修改、Del的数据分别用object1/2/3标识出来 )
         ///  T=更新的主表对象
         ///  object1=为新增明细的对象，使用时将object as List<T>转换一下
         ///  object2=为更新明细的对象
-        ///  List<object>=为删除的细的对象Key
+        ///  List<object>=为Del的细的对象Key
         /// </summary>
         protected Func<T, object, object, List<object>, WebResponseContent> UpdateOnExecuting;
 
         /// <summary>
         ///  调用更新方法保存数据库后处理
         ///   **实现当前方法时，内部默认已经开启事务，如果实现的方法操作的是同一数据库,则不需要在UpdateOnExecuted中事务
-        ///  (已将提交的原生数据转换成了对象,将明细新增、修改、删除的数据分别用object1/2/3标识出来 )
+        ///  (已将提交的原生数据转换成了对象,将明细新增、修改、Del的数据分别用object1/2/3标识出来 )
         ///  T=更新的主表对象
         ///  object1=为新增明细的对象，使用时将object as List<T>转换一下
         ///  object2=为更新明细的对象
-        ///  List<object>=为删除的细的对象Key
+        ///  List<object>=为Del的细的对象Key
         /// 此处已开启了DbContext事务(重点),如果还有其他业务处事，直接在这里写EF代码,不需要再开启事务
-        /// 如果执行的是手写sql请用repository.DbContext.Database.ExecuteSqlCommand()或 repository.DbContext.Set<T>().FromSql执行具体sql语句
+        /// 如果执行的是手写sql请用repository.DbContext.Database.ExecuteSqlCommand()或 repository.DbContext.Set<T>().FromSql执行具体DbSql
         /// </summary>
         protected Func<T, object, object, List<object>, WebResponseContent> UpdateOnExecuted;
 
         /// <summary>
-        /// 删除前处理,object[]准备删除的主键
+        /// Del前处理,object[]准备Del的主键
         /// </summary>
         protected Func<object[], WebResponseContent> DelOnExecuting;
 
         /// <summary>
-        /// 删除后处理,object[]已删除的主键,此处已开启了DbContext事务(重点),如果还有其他业务处事，直接在这里写EF代码,不需要再开启事务
-        /// 如果执行的是手写sql请用repository.DbContext.Database.ExecuteSqlCommand()或 repository.DbContext.Set<T>().FromSql执行具体sql语句
+        /// Del后处理,object[]已Del的主键,此处已开启了DbContext事务(重点),如果还有其他业务处事，直接在这里写EF代码,不需要再开启事务
+        /// 如果执行的是手写sql请用repository.DbContext.Database.ExecuteSqlCommand()或 repository.DbContext.Set<T>().FromSql执行具体DbSql
         /// </summary>
         protected Func<object[], WebResponseContent> DelOnExecuted;
 
@@ -179,7 +179,7 @@ namespace VOL.Core.Filters
         /// <summary>
         /// 审批流程审核前
         /// T:当前审核的数据
-        /// AuditStatus:审核状态
+        /// AuditStatus:AuditStatus
         /// bool:当前数据是否为最后一个人审核
         /// </summary>
         protected Func<T, AuditStatus, bool, WebResponseContent> AuditWorkFlowExecuting;
@@ -187,7 +187,7 @@ namespace VOL.Core.Filters
         /// <summary>
         /// 审批流程审核后
         /// T:当前审核的数据
-        /// AuditStatus:审核状态
+        /// AuditStatus:AuditStatus
         /// list:下一个节点的审批人id
         /// bool:当前数据是否为最后一个人审核
         /// </summary>

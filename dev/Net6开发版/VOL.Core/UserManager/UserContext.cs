@@ -63,14 +63,14 @@ namespace VOL.Core.ManageUser
         private UserInfo _userInfo { get; set; }
 
         /// <summary>
-        /// 角色ID为1的默认为超级管理员
+        /// Role_Id为1的默认为超级管理员
         /// </summary>
         public bool IsSuperAdmin
         {
             get { return IsRoleIdSuperAdmin(this.RoleId); }
         }
         /// <summary>
-        /// 角色ID为1的默认为超级管理员
+        /// Role_Id为1的默认为超级管理员
         /// </summary>
         public static bool IsRoleIdSuperAdmin(int roleId)
         {
@@ -95,7 +95,7 @@ namespace VOL.Core.ManageUser
                     User_Id = userId,
                     Role_Id = s.Role_Id.GetInt(),
                     RoleName = s.RoleName,
-                    //2022.08.15增加部门id
+                    //2022.08.15增加Dept_Id
                     DeptId = s.Dept_Id??0,
                     Token = s.Token,
                     UserName = s.UserName,
@@ -121,17 +121,17 @@ namespace VOL.Core.ManageUser
         }
 
         /// <summary>
-        /// 获取角色权限时通过安全字典锁定的角色id
+        /// 获取Role_Id权限时通过安全字典锁定的Role_Id
         /// </summary>
         private static ConcurrentDictionary<string, object> objKeyValue = new ConcurrentDictionary<string, object>();
 
         /// <summary>
-        /// 角色权限的版本号
+        /// Role_Id权限的版本号
         /// </summary>
         private static readonly Dictionary<int, string> rolePermissionsVersion = new Dictionary<int, string>();
 
         /// <summary>
-        /// 每个角色ID对应的菜单权限（已做静态化处理）
+        /// 每个Role_Id对应的菜单权限（已做静态化处理）
         /// 每次获取权限时用当前服务器的版本号与redis/memory缓存的版本比较,如果不同会重新刷新缓存
         /// </summary>
         private static readonly Dictionary<int, List<Permissions>> rolePermissions = new Dictionary<int, List<Permissions>>();
@@ -252,7 +252,7 @@ namespace VOL.Core.ManageUser
                     {
                         Menu_Id = a.Menu_Id,
                         ParentId = a.ParentId,
-                        //2020.05.06增加默认将表名转换成小写，权限验证时不再转换
+                        //2020.05.06增加默认将WorkTable转换成小写，权限验证时不再转换
                         TableName = (a.TableName ?? "").ToLower(),
                         //MenuAuth = a.Auth,
                         UserAuth = a.Auth,
@@ -264,7 +264,7 @@ namespace VOL.Core.ManageUser
             ICacheService cacheService = CacheService;
             string roleKey = roleId.GetRoleIdKey();
 
-            //角色有缓存，并且当前服务器的角色版本号与redis/memory缓存角色的版本号相同直接返回静态对象角色权限
+            //Role_Id有缓存，并且当前服务器的Role_Id版本号与redis/memory缓存Role_Id的版本号相同直接返回静态对象Role_Id权限
             string currnetVeriosn = "";
             if (rolePermissionsVersion.TryGetValue(roleId, out currnetVeriosn)
                 && currnetVeriosn == cacheService.Get(roleKey))
@@ -272,9 +272,9 @@ namespace VOL.Core.ManageUser
                 return rolePermissions.ContainsKey(roleId) ? rolePermissions[roleId] : new List<Permissions>();
             }
 
-            //锁定每个角色，通过安全字典减少锁粒度，否则多个同时角色获取缓存会导致阻塞
+            //锁定每个Role_Id，通过安全字典减少锁粒度，否则多个同时Role_Id获取缓存会导致阻塞
             object objId = objKeyValue.GetOrAdd(roleId.ToString(), new object());
-            //锁定每个角色
+            //锁定每个Role_Id
             lock (objId)
             {
                 if (rolePermissionsVersion.TryGetValue(roleId, out currnetVeriosn)
@@ -283,7 +283,7 @@ namespace VOL.Core.ManageUser
                     return rolePermissions.ContainsKey(roleId) ? rolePermissions[roleId] : new List<Permissions>();
                 }
 
-                //没有redis/memory缓存角色的版本号或与当前服务器的角色版本号不同时，刷新缓存
+                //没有redis/memory缓存Role_Id的版本号或与当前服务器的Role_Id版本号不同时，刷新缓存
                 var dbContext = DBServerProvider.DbContext;
                 List<Permissions> _permissions = (from a in dbContext.Set<Sys_Menu>()
                                                   join b in dbContext.Set<Sys_RoleAuth>()
@@ -295,7 +295,7 @@ namespace VOL.Core.ManageUser
                                                   {
                                                       Menu_Id = a.Menu_Id,
                                                       ParentId = a.ParentId,
-                                                      //2020.05.06增加默认将表名转换成小写，权限验证时不再转换
+                                                      //2020.05.06增加默认将WorkTable转换成小写，权限验证时不再转换
                                                       TableName = (a.TableName ?? "").ToLower(),
                                                       MenuAuth = a.Auth,
                                                       UserAuth = b.AuthValue ?? "",
@@ -311,10 +311,10 @@ namespace VOL.Core.ManageUser
                     //将版本号写入缓存
                     cacheService.Add(roleKey, _version);
                 }
-                //刷新当前服务器角色的权限
+                //刷新当前服务器Role_Id的权限
                 rolePermissions[roleId] = _permissions;
 
-                //写入当前服务器的角色最新版本号
+                //写入当前服务器的Role_Id最新版本号
                 rolePermissionsVersion[roleId] = _version;
                 return _permissions;
             }

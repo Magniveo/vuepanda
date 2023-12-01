@@ -35,7 +35,7 @@ namespace VOL.System.Controllers
         }
 
         //[ActionPermission("Sys_Menu", "1", ActionPermissionOptions.Add)]
-        //只有角色ID为1的才能进行保存操作
+        //只有Role_Id为1的才能进行保存操作
         [HttpPost, Route("save"), ApiActionPermission(ActionRolePermission.SuperAdmin)]
         public async Task<ActionResult> Save([FromBody] Sys_Menu menu)
         {
@@ -43,7 +43,7 @@ namespace VOL.System.Controllers
         }
 
         /// <summary>
-        /// 限制只能超级管理员才删除菜单 
+        /// 限制只能超级管理员才Del菜单 
         /// </summary>
         /// <param name="keys"></param>
         /// <returns></returns>

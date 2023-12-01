@@ -28,52 +28,52 @@ namespace VOL.Entity.DomainModels
        public Guid WorkStepFlow_Id { get; set; }
 
        /// <summary>
-       ///流程主表id
+       ///WorkFlow_Id
        /// </summary>
-       [Display(Name ="流程主表id")]
+       [Display(Name ="WorkFlow_Id")]
        [Column(TypeName="uniqueidentifier")]
        [Editable(true)]
        public Guid? WorkFlow_Id { get; set; }
 
        /// <summary>
-       ///流程节点Id
+       ///StepId
        /// </summary>
-       [Display(Name ="流程节点Id")]
+       [Display(Name ="StepId")]
        [MaxLength(100)]
        [Column(TypeName="varchar(100)")]
        [Editable(true)]
        public string StepId { get; set; }
 
        /// <summary>
-       ///节点名称
+       ///StepName
        /// </summary>
-       [Display(Name ="节点名称")]
+       [Display(Name ="StepName")]
        [MaxLength(200)]
        [Column(TypeName="nvarchar(200)")]
        [Editable(true)]
        public string StepName { get; set; }
 
        /// <summary>
-       ///节点类型(1=按用户审批,2=按角色审批)
+       ///StepType
        /// </summary>
-       [Display(Name ="节点类型(1=按用户审批,2=按角色审批)")]
+       [Display(Name ="StepType")]
        [Column(TypeName="int")]
        [Editable(true)]
        public int? StepType { get; set; }
 
        /// <summary>
-       ///审批用户id或角色id
+       ///StepValue
        /// </summary>
-       [Display(Name ="审批用户id或角色id")]
+       [Display(Name ="StepValue")]
        [MaxLength(500)]
        [Column(TypeName="varchar(500)")]
        [Editable(true)]
        public string StepValue { get; set; }
 
        /// <summary>
-       ///备注
+       ///Remark
        /// </summary>
-       [Display(Name ="备注")]
+       [Display(Name ="Remark")]
        [MaxLength(500)]
        [Column(TypeName="nvarchar(500)")]
        [Editable(true)]
@@ -88,9 +88,9 @@ namespace VOL.Entity.DomainModels
        public int? OrderId { get; set; }
 
        /// <summary>
-       ///创建时间
+       ///CreateDate
        /// </summary>
-       [Display(Name ="创建时间")]
+       [Display(Name ="CreateDate")]
        [Column(TypeName="datetime")]
        [Editable(true)]
        public DateTime? CreateDate { get; set; }
@@ -126,9 +126,9 @@ namespace VOL.Entity.DomainModels
        public string Modifier { get; set; }
 
        /// <summary>
-       ///修改时间
+       ///ModifyDate
        /// </summary>
-       [Display(Name ="修改时间")]
+       [Display(Name ="ModifyDate")]
        [Column(TypeName="datetime")]
        public DateTime? ModifyDate { get; set; }
 
@@ -208,9 +208,9 @@ namespace VOL.Entity.DomainModels
        public string StepAttrType { get; set; }
 
        /// <summary>
-       ///权重(相同条件权重大的优先匹配)
+       ///Weight(相同条件Weight大的优先匹配)
        /// </summary>
-       [Display(Name ="权重(相同条件权重大的优先匹配)")]
+       [Display(Name ="Weight(相同条件Weight大的优先匹配)")]
        [Column(TypeName="int")]
        [Editable(true)]
        public int? Weight { get; set; }

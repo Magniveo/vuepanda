@@ -37,7 +37,7 @@
                               //  {"dataKey":"isphone","title":"用户类型","required":true,"field":"IsRegregisterPhone","type":"drop"}],
                               [{"dataKey":"gender","title":"性别","field":"Gender","type":"drop"},
                                {"dataKey":"enable","title":"是否可用","required":true,"field":"Enable","type":"drop"}],
-                              [{"title":"备注","field":"Remark","colSize":12,"type":"textarea"}],
+                              [{"title":"Remark","field":"Remark","colSize":12,"type":"textarea"}],
                               [{"title":"头像","field":"HeadImageUrl","type":"img"}]],
                 searchFormFileds: {"UserName":""},
                 searchFormOptions: [[{"title":"帐号","field":"UserName",type:'like'}]],

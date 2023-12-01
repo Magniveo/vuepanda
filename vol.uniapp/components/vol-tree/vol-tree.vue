@@ -193,7 +193,7 @@
 				item.open = !item.open;
 			},
 			getTreeAllChildren(id, data) {
-				//递归获取某个节点的所有子节点信息
+				//递归获取某个节点的所有子NodeConfig
 				var _children = data.filter((x) => {
 					return x.parentId === id;
 				});

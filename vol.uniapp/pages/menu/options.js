@@ -34,7 +34,7 @@ export default function() {
 			},
 			{
 				field: 'Describe',
-				title: '描述',
+				title: 'Describe',
 				type: 'string',
 				require: true,
 				sort: true,
@@ -48,7 +48,7 @@ export default function() {
 			},
 			{
 				field: 'CreateDate',
-				title: '创建时间',
+				title: 'CreateDate',
 				type: 'date'
 			}
 		],
@@ -70,7 +70,7 @@ export default function() {
 				"field": "Name",
 				"disabled": true
 			}, {
-				"title": "描述",
+				"title": "Describe",
 				"required": true,
 				"field": "Describe",
 				"disabled": true
@@ -83,7 +83,7 @@ export default function() {
 			}, {
 				type: 'group'
 			}, {
-				"title": "创建时间",
+				"title": "CreateDate",
 				"field": "CreateDate",
 				type: 'date'
 			}, {
@@ -116,7 +116,7 @@ export default function() {
 				"field": "PhoneNo",
 				"disabled": true
 			}, {
-				"title": "创建时间",
+				"title": "CreateDate",
 				"field": "CreateDate",
 				range: true,
 				type: 'date'

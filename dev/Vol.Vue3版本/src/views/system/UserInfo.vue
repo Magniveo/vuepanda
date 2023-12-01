@@ -1,7 +1,7 @@
 <template>
   <input ref="input" type="file" accept=".png, .jpg, .jpeg" style="display: none" @change="handleChange"
     :multiple="false" />
-  <VolBox :width="500" :height="270" v-model="modifyOptions.model" title="修改密码">
+  <VolBox :width="500" :height="270" v-model="modifyOptions.model" title="修改UserPwd">
     <div style="padding:10px;20px;">
       <VolForm ref="pwd" :formRules="modifyOptions.data" :formFields="modifyOptions.fields"></VolForm>
     </div>
@@ -21,12 +21,12 @@
               <span style="font-size: 13px">{{ userInfo.userName }}</span>
             </p>
             <p class="date">
-              <span>注册日期：{{ userInfo.createDate }}</span>
+              <span>注册Date：{{ userInfo.createDate }}</span>
             </p>
             <p>
-              <el-button type="error" @click="modifyPwd" size="small" plain long>修改密码</el-button>
+              <el-button type="error" @click="modifyPwd" size="small" plain long>修改UserPwd</el-button>
               <el-button style="padding: 3px 16px" @click="showUpload" plain type="primary" size="mini"
-                ghost>修改头像</el-button>
+                ghost>修改HeadImageUrl</el-button>
             </p>
           </div>
         </div>
@@ -59,7 +59,7 @@ export default {
       if (
         this.modifyOptions.fields.newPwd != this.modifyOptions.fields.newPwd1
       ) {
-        return this.$message.error("两次密码不一致");
+        return this.$message.error("两次UserPwd不一致");
       }
       let url =
         "/api/user/modifyPwd?oldPwd=" +
@@ -131,7 +131,7 @@ export default {
             {
               columnType: "string",
               required: true,
-              title: "旧密码",
+              title: "旧UserPwd",
               field: "oldPwd",
             },
           ],
@@ -139,7 +139,7 @@ export default {
             {
               type: "password",
               required: true,
-              title: "新密码",
+              title: "新UserPwd",
               field: "newPwd",
             },
           ],
@@ -147,7 +147,7 @@ export default {
             {
               type: "password",
               required: true,
-              title: "确认密码",
+              title: "确认UserPwd",
               field: "newPwd1",
             },
           ],
@@ -174,7 +174,7 @@ export default {
         [
           {
             columnType: "string",
-            title: "姓名",
+            title: "UserTrueName",
             field: "userTrueName",
             required: true,
             type: "text",
@@ -192,7 +192,7 @@ export default {
         [
           {
             columnType: "string",
-            title: "备注",
+            title: "Remark",
             field: "remark",
             colSize: 12,
             type: "textarea",

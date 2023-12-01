@@ -190,7 +190,7 @@ export default {
 
         [
           {
-            title: "备注",
+            title: "Remark",
             required: true,
             field: "Remark",
             placeholder: "你可以设置colSize属性决定标签的长度，可选值12/8/6/4",

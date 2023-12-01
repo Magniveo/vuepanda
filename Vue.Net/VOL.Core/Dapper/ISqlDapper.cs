@@ -11,7 +11,7 @@ namespace VOL.Core.Dapper
     public interface ISqlDapper
     {
         /// <summary>
-        ///  超时时间(秒)2021.05.05
+        ///  TimeOut2021.05.05
         /// </summary>
         /// <param name="timeout"></param>
         /// <returns></returns>

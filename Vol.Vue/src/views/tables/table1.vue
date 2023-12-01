@@ -293,7 +293,7 @@ export default {
         },
         {
           field: "AuditStatus",
-          title: "审核状态",
+          title: "AuditStatus",
           type: "int",
           bind: {
             //如果后面返回的数据为数据源的数据，请配置此bind属性，可以从后台字典数据源加载，也只以直接写上
@@ -319,7 +319,7 @@ export default {
         },
         {
           field: "CreateDate",
-          title: "创建时间",
+          title: "CreateDate",
           type: "datetime",
           width: 150,
           readonly: true,

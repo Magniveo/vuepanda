@@ -207,7 +207,7 @@ export default {
         },
         {
           field: "CreateDate",
-          title: "创建时间",
+          title: "CreateDate",
           type: "datetime",
           width: 140,
           sort: true,

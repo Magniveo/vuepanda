@@ -196,7 +196,7 @@ namespace VOL.System.Services
                             if ((menu.Menu_Id > 0 && sysMenu.Menu_Id != menu.Menu_Id)
                             || menu.Menu_Id <= 0)
                             {
-                                return webResponse.Error($"视图/表名【{menu.TableName}】已被其他菜单使用");
+                                return webResponse.Error($"视图/WorkTable【{menu.TableName}】已被其他菜单使用");
                             }
                         }
                     }

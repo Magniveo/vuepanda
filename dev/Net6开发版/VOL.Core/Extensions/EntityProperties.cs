@@ -87,7 +87,7 @@ namespace VOL.Core.Extensions
             return "";
         }
         /// <summary>
-        /// 获取对象里指定成员名称
+        /// 获取对象里指定成员ExpertName
         /// </summary>
         /// <typeparam name="TEntity"></typeparam>
         /// <param name="properties"> 格式 Expression<Func<entityt, object>> exp = x => new { x.字段1, x.字段2 };或x=>x.Name</param>
@@ -115,7 +115,7 @@ namespace VOL.Core.Extensions
         }
 
         /// <summary>
-        /// 获取所有字段的名称 
+        /// 获取所有字段的ExpertName 
         /// </summary>
         /// <param name="typeinfo"></param>
         /// <returns></returns>
@@ -225,7 +225,7 @@ namespace VOL.Core.Extensions
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="array">将数组转换成sql语句</param>
+        /// <param name="array">将数组转换成DbSql</param>
         /// <param name="fieldType">指定FieldType数据库字段类型</param>
         /// <param name="sql"></param>
         /// <returns></returns>
@@ -240,7 +240,7 @@ namespace VOL.Core.Extensions
             return arrrayEntityList.GetEntitySql(false, null, null, null, fieldType);
         }
         /// <summary>
-        ///<param name="sql">要执行的sql语句如：通过EntityToSqlTempName.Temp_Insert0.ToString()字符串占位，生成的的sql语句会把EntityToSqlTempName.Temp_Insert0.ToString()替换成生成的sql临时表数据
+        ///<param name="sql">要执行的DbSql如：通过EntityToSqlTempName.Temp_Insert0.ToString()字符串占位，生成的的DbSql会把EntityToSqlTempName.Temp_Insert0.ToString()替换成生成的sql临时表数据
         ///    string sql = " ;DELETE FROM " + typeEntity.Name + " where " + typeEntity.GetKeyName() +
         ///      " in (select * from " + EntityToSqlTempName.Temp_Insert0.ToString() + ")";
         /// </param>
@@ -335,13 +335,13 @@ namespace VOL.Core.Extensions
             declareTable.Append("CREATE TABLE " + tempTablbe + " (" + cols + ")");
             declareTable.Append("\r\n");
 
-            //参数总数量
+            //参数总Quantity
             int parCount = (dictProperties.Count) * (entityList.Count());
             int takeCount = 0;
             int maxParsCount = 2050;
             if (parCount > maxParsCount)
             {
-                //如果参数总数量超过2100，设置每次分批循环写入表的大小
+                //如果参数总Quantity超过2100，设置每次分批循环写入表的大小
                 takeCount = maxParsCount / dictProperties.Count;
             }
 
@@ -438,13 +438,13 @@ namespace VOL.Core.Extensions
             }
 
 
-            //参数总数量
+            //参数总Quantity
             int parCount = (dictCloumn.Count) * (table.Rows.Count);
             int takeCount = 0;
             int maxParsCount = 2050;
             if (parCount > maxParsCount)
             {
-                //如果参数总数量超过2100，设置每次分批循环写入表的大小
+                //如果参数总Quantity超过2100，设置每次分批循环写入表的大小
                 takeCount = maxParsCount / dictCloumn.Count;
             }
 
@@ -559,7 +559,7 @@ namespace VOL.Core.Extensions
         /// 获取key列名
         /// </summary>
         /// <param name="properties"></param>
-        /// <param name="keyType">true获取key对应类型,false返回对象Key的名称</param>
+        /// <param name="keyType">true获取key对应类型,false返回对象Key的ExpertName</param>
         /// <returns></returns>
         public static string GetKeyName(this PropertyInfo[] properties, bool keyType)
         {
@@ -616,7 +616,7 @@ namespace VOL.Core.Extensions
             }
         }
         /// <summary>
-        /// 获取实体所有可以编辑的列
+        /// 获取实体所有可以Edit的列
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
@@ -887,7 +887,7 @@ namespace VOL.Core.Extensions
                 )
             {
                 if (!value.IsDate())
-                    reslutMsg = "必须为日期格式";
+                    reslutMsg = "必须为Date格式";
             }
             else if (dbType == SqlDbTypeName.Float || dbType == SqlDbTypeName.Decimal || dbType == SqlDbTypeName.Double)
             {
@@ -1127,10 +1127,10 @@ namespace VOL.Core.Extensions
                 if (property.Name == keyName || (ignoreFields != null && ignoreFields.Contains(property.Name)))
                     continue;
 
-                //不在编辑中的列，是否也要必填
+                //不在Edit中的列，是否也要必填
                 if (!dic.ContainsKey(property.Name))
                 {
-                    //移除主键默认为新增数据，将不在编辑列中的有默认值的数据设置为默认值
+                    //移除主键默认为新增数据，将不在Edit列中的有默认值的数据设置为默认值
                     //如果为true默认为添加功能，添加操作所有不能为空的列也必须要提交
                     if (property.GetCustomAttributes(typeof(RequiredAttribute)).Count() > 0
                         && property.PropertyType != typeof(int)
@@ -1144,7 +1144,7 @@ namespace VOL.Core.Extensions
                     continue;
                 }
                 bool isEdit = property.ContainsCustomAttributes(typeof(EditableAttribute));
-                //不是编辑列的直接移除,并且不是主键
+                //不是Edit列的直接移除,并且不是主键
                 //removerKey=true，不保留主键，直接移除
                 //removerKey=false,保留主键，属性与主键不同的直接移除
                 //  if (!isEdit && (removerKey || (!removerKey && property.Name != keyName)))
@@ -1152,7 +1152,7 @@ namespace VOL.Core.Extensions
                 {
                     if (property.GetCustomAttributes(typeof(RequiredAttribute)).Count() > 0)
                     {
-                        return property.GetTypeCustomValue<DisplayAttribute>(x => x.Name) + "没有配置好Model为编辑列";
+                        return property.GetTypeCustomValue<DisplayAttribute>(x => x.Name) + "没有配置好Model为Edit列";
                     }
                     dic.Remove(property.Name);
                     continue;
@@ -1175,7 +1175,7 @@ namespace VOL.Core.Extensions
             return string.Empty;
         }
         /// <summary>
-        /// 获取表带有EntityAttribute属性的真实表名
+        /// 获取表带有EntityAttribute属性的真实WorkTable
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
@@ -1189,7 +1189,7 @@ namespace VOL.Core.Extensions
             return type.Name;
         }
         /// <summary>
-        /// 获取表带有EntityAttribute属性的表中文名
+        /// 获取表带有EntityAttribute属性的WorkTableName
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
@@ -1357,7 +1357,7 @@ namespace VOL.Core.Extensions
         /// </summary>
         /// <param name="saveDataModel"></param>
         /// <param name="setType">true=新增设置"CreateID", "Creator", "CreateDate"值
-        /// false=编辑设置"ModifyID", "Modifier", "ModifyDate"值
+        /// false=Edit设置"ModifyID", "Modifier", "ModifyDate"值
         /// </param>
         public static SaveModel SetDefaultVal(this SaveModel saveDataModel, TableDefaultColumns defaultColumns, UserInfo userInfo = null)
         {
@@ -1387,7 +1387,7 @@ namespace VOL.Core.Extensions
         /// </summary>
         /// <param name="saveDataModel"></param>
         /// <param name="setType">true=新增设置"CreateID", "Creator", "CreateDate"值
-        /// false=编辑设置"ModifyID", "Modifier", "ModifyDate"值
+        /// false=Edit设置"ModifyID", "Modifier", "ModifyDate"值
         /// </param>
         private static TSource SetDefaultVal<TSource>(this TSource source, TableDefaultColumns defaultColumns, UserInfo userInfo = null)
         {

@@ -12,13 +12,13 @@ let extension = {
                 h(resolveComponent('el-alert'), {
                   style: { 'margin-bottom': '12px' },
                   'show-icon': true, type: 'success',
-                  closable: false, title: '1、点击新建随便输入,2、点击表格[表单设计]然后保存,3、点击预览(页面打开后提交数据),4、数据采集页面看查结果'
+                  closable: false, title: '1、点击Add随便输入,2、点击表格[表单设计]然后保存,3、点击预览(页面打开后提交数据),4、数据采集页面看查结果'
                 }, ''),
               ]
             }
           },
         gridFooter: '',
-        //弹出框(修改、编辑、查看)header、content、footer对应位置扩充的组件
+        //弹出框(修改、Edit、查看)header、content、footer对应位置扩充的组件
         modelHeader: '',
         modelBody: '',
         modelFooter: ''

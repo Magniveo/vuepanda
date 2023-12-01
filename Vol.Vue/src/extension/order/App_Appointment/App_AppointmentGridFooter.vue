@@ -119,7 +119,7 @@ export default {
           sortable: true,
           edit:{type:"text"}
         },
-        { field: "Describe", title: "描述", type: "string", width: 180, edit:{type:"text"} },
+        { field: "Describe", title: "Describe", type: "string", width: 180, edit:{type:"text"} },
         { field: "PhoneNo", title: "电话", type: "string", width: 130 , edit:{type:"text"}},
         {
           field: "CreateID",

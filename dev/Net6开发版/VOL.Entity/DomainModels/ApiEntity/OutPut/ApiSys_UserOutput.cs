@@ -31,9 +31,9 @@ namespace VOL.Entity.DomainModels
        public string DeptName { get; set; }
 
        /// <summary>
-       ///角色
+       ///Role_Id
        /// </summary>
-       [Display(Name ="角色")]
+       [Display(Name ="Role_Id")]
        [Column(TypeName="int")]
        [Editable(true)]
        [Required(AllowEmptyStrings=false)]

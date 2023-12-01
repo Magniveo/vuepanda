@@ -39,7 +39,7 @@ export default {
         },
         {
           field: "tableName",
-          title: "表名",
+          title: "WorkTable",
           width: 150,
           align: "left"
         },
@@ -60,7 +60,7 @@ export default {
         },
         {
           field: "createDate",
-          title: "创建时间",
+          title: "CreateDate",
           width: 120,
           align: "left",
           edit: { type: "date", status: false}

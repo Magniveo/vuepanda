@@ -69,7 +69,7 @@ namespace VOL.WebApi.Controllers
         }
 
         /// <summary>
-        /// Login配置的规则用户名与密码必填
+        /// Login配置的规则用户名与UserPwd必填
         /// </summary>
         /// <param name="loginInfo"></param>
         /// <returns></returns>
@@ -81,7 +81,7 @@ namespace VOL.WebApi.Controllers
         }
 
         /// <summary>
-        /// LoginOnlyPassWord配置的规则密码必填
+        /// LoginOnlyPassWord配置的规则UserPwd必填
         /// </summary>
         /// <param name="loginInfo"></param>
         /// <returns></returns>
@@ -95,7 +95,7 @@ namespace VOL.WebApi.Controllers
 
         /// <summary>
         /// 同时验证实体LoginInfo与单个参数phoneNo
-        ///  Login配置的规则用户名与密码必填,手机号必填
+        ///  Login配置的规则用户名与UserPwd必填,PhoneNo必填
         /// </summary>
         /// <param name="loginInfo"></param>
         /// <returns></returns>

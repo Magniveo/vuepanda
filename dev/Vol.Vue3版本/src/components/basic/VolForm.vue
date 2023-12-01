@@ -246,7 +246,7 @@
                 v-model="formFields[item.field][0]"
                 :type="item.type"
                 :disabledDate="(val) => getDateOptions(val, item)"
-                placeholder="开始时间"
+                placeholder="StratDate"
                 @change="
                   (val) => {
                     dateRangeChange(val, item);
@@ -263,7 +263,7 @@
                 :disabled="item.readonly || item.disabled"
                 style="flex: 1; width: auto"
                 v-model="formFields[item.field][1]"
-                placeholder="结束时间"
+                placeholder="EndDate"
                 :type="item.type"
                 :disabledDate="(val) => getDateOptions(val, item)"
                 @change="
@@ -589,7 +589,7 @@ export default defineComponent({
       }
     },
     editor: {
-      // 2021.01.16编辑器信息 {uploadImgUrl:"",upload:null//上传方法}
+      // 2021.01.16Edit器信息 {uploadImgUrl:"",upload:null//上传方法}
       type: Object,
       default: () => {
         return {};
@@ -600,7 +600,7 @@ export default defineComponent({
       default: 'large'
     },
     select2Count: {
-      //超出数量显示select2组件
+      //超出Quantity显示select2组件
       type: Number,
       default: 2000
     }
@@ -655,7 +655,7 @@ export default defineComponent({
           if (item.type == 'number') {
             numberFields.push(item.field);
           }
-          // 目前只支持select单选远程搜索，remote远程从后台字典数据源进行搜索，url从指定的url搜索
+          // 目前只支持select单选Enable搜索，remoteEnable从后台字典数据源进行搜索，url从指定的url搜索
           if (item.remote || item.url) {
             // item.remoteData = [];
             item.loading = false;
@@ -952,7 +952,7 @@ export default defineComponent({
         return callback();
       }
       if (!rule.phone.test((value || '').trim())) {
-        return callback(new Error('请输入正确的手机号'));
+        return callback(new Error('请输入正确的PhoneNo'));
       }
       callback();
     },
@@ -961,13 +961,13 @@ export default defineComponent({
         return callback();
       }
       if ((value + '').trim().length < 6) {
-        return callback(new Error('密码长度不能小于6位'));
+        return callback(new Error('UserPwd长度不能小于6位'));
       }
       callback();
     },
     convertArrayValue(data, val) {
       // 2020.12.13增加表单多选只转换字典
-      // 编辑多选table显示
+      // Edit多选table显示
       //2023.04.20修复只读为label时原数据被字典替换了的问题
       let valArr = Array.isArray(val)
         ? val.map((x) => {
@@ -990,7 +990,7 @@ export default defineComponent({
       if (typeof text === 'function') return text(formFields);
       if (text === 'null' || text === '' || text === null || text === undefined)
         return '--';
-      //2021.03.02增加只读时日期处理
+      //2021.03.02增加只读时Date处理
       if (item.type == 'date') {
         return text.replace('T', ' ').split(' ')[0];
       }
@@ -1008,7 +1008,7 @@ export default defineComponent({
       return _item ? _item.value : text;
     },
     onClear(item, formFields) {
-      // 远程select标签清空选项
+      // Enableselect标签清空选项
       item.data.splice(0);
       // console.log(2);
     },
@@ -1032,7 +1032,7 @@ export default defineComponent({
       return item.data;
     },
 
-    // 远程搜索(打开弹出框时应该禁止搜索)
+    // Enable搜索(打开弹出框时应该禁止搜索)
     remoteSearch(item, formFields, val) {
       if (!item.remote && !item.url) {
         return;
@@ -1045,7 +1045,7 @@ export default defineComponent({
         return;
       }
       // 弹出框或初始化表单时给data设置数组默认值2
-      // 2020.09.26修复远程搜索自定义url不起作用的问题
+      // 2020.09.26修复Enable搜索自定义url不起作用的问题
       let url;
       if (typeof item.url === 'function') {
         url = item.url(val, item.dataKey, item);
@@ -1071,7 +1071,7 @@ export default defineComponent({
       return new Date(date);
     },
     reset(sourceObj) {
-      // 重置表单时，禁用远程查询
+      // 重置表单时，禁用Enable查询
       this.$refs['volform'].resetFields();
       if (this.rangeFields.length) {
         this.rangeFields.forEach((key) => {
@@ -1205,7 +1205,7 @@ export default defineComponent({
         };
       }
 
-      // 手机、密码验证
+      // 手机、UserPwd验证
       if (item.type == 'password' || item.type == 'phone') {
         return {
           validator:
@@ -1222,7 +1222,7 @@ export default defineComponent({
       if (inputTypeArr.indexOf(item.type) != -1) {
         let message =
           item.title +
-          (item.type == 'mail' ? '必须是一个邮箱地址' : '不能为空');
+          (item.type == 'mail' ? '必须是一个邮箱Address' : '不能为空');
         let type = item.type == 'mail' ? 'email' : types[item.columnType];
         let _rule = {
           required: item.required,
@@ -1284,7 +1284,7 @@ export default defineComponent({
             if (this.isReadonly(item)) return callback();
             // 用户自定义的方法，如果返回了值，直接显示返回的值，验证不通过
             if (!val || (item.range && !val.length)) {
-              return callback(new Error('请选择日期'));
+              return callback(new Error('请选择Date'));
             }
             return callback();
           }

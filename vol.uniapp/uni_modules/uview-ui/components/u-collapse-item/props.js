@@ -10,7 +10,7 @@ export default {
             type: String,
             default: uni.$u.props.collapseItem.value
         },
-        // 标题下方的描述信息
+        // 标题下方的Describe信息
         label: {
             type: String,
             default: uni.$u.props.collapseItem.label

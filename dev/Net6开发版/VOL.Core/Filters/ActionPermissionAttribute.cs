@@ -15,7 +15,7 @@ namespace VOL.Core.Filters
             Arguments = new object[] { new ActionPermissionRequirement() { IsApi = isApi } };
         }
         /// <summary>
-        /// 限定角色访问
+        /// 限定Role_Id访问
         /// </summary>
         /// <param name="roles"></param>
         public ActionPermissionAttribute(int roleId, bool isApi = false)
@@ -38,7 +38,7 @@ namespace VOL.Core.Filters
             Arguments = new object[] { new ActionPermissionRequirement() { RoleIds = roles.ToArray(), IsApi = isApi } };
         }
         /// <summary>
-        /// 限定角色访问
+        /// 限定Role_Id访问
         /// </summary>
         /// <param name="roles"></param>
         public ActionPermissionAttribute(int[] roleIds, bool isApi = false)

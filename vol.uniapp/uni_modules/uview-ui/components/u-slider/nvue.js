@@ -41,11 +41,11 @@ export default {
                 this.initX()
             })
         },
-        // 获取节点信息
+        // 获取NodeConfig
         // 获取slider尺寸
         getSliderRect() {
             // 获取滑块条的尺寸信息
-            // 通过nvue的dom模块，查询节点信息
+            // 通过nvue的dom模块，查询NodeConfig
             return new Promise((resolve) => {
                 this.$nextTick(() => {
                     dom.getComponentRect(this.$refs.slider, (res) => {

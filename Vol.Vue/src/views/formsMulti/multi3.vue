@@ -153,7 +153,7 @@ var vueParam = {
         },
         {
           field: "Describe",
-          title: "描述",
+          title: "Describe",
           type: "string",
           width: 190,
           require: true,
@@ -208,7 +208,7 @@ var vueParam = {
         },
         {
           field: "ModifyDate",
-          title: "修改时间",
+          title: "ModifyDate",
           type: "datetime",
           width: 150,
           hidden: true,

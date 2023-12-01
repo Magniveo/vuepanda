@@ -32,7 +32,7 @@
 		mixins: [uni.$u.mpMixin, uni.$u.mixin,props],
 		data() {
 			return {
-				// 节点信息
+				// NodeConfig
 				rect: {},
 				index: 0,
 				show: true,

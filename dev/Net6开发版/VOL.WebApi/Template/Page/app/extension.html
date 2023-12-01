@@ -15,7 +15,7 @@ export default function() {
 
 				//设置table为水平显示或者list列表显示
 				//this.direction = 'horizontal'//list
-				//如果为list列表显示，指定list的标题列
+				//如果为list列表显示，指定list的Title列
 				//this.titleField="字段";
 
 				//设置自定义格式显示
@@ -45,24 +45,24 @@ export default function() {
 				// }
 				//return row[column.field]
 			},
-			rowClick(index, row, column) { //行点击事件(默认触发编辑)
+			rowClick(index, row, column) { //行点击事件(默认触发Edit)
 				return true;
 			},
-            cellClick(index, row, column) { //单元格击事件(默认触发编辑)
+            cellClick(index, row, column) { //单元格击事件(默认触发Edit)
 			    //仅onInited中设置：this.direction = "horizontal", this.columns的字段设置为click=true后生效
 				return true;
 			},
 			rowButtons(index, row) { //列表显示的按钮
 				//自定义按钮,仅onInited中设置：this.direction = "list"后生效
 				// return [{
-				// 	text: "测试",
+				// 	text: "Modifier",
 				// 	icon: "edit-pen",
 				// 	type: "primary",
 				// 	plain:true,
 				// 	shape:"circle",
 				// 	disabled: false
 				// },{
-				// 	text: "删除",
+				// 	text: "Del",
 				// 	icon: "trash",
 				// 	type: "error",
 				// 	plain:true,
@@ -72,8 +72,8 @@ export default function() {
 				// }];
 			},
 			rowButtonClick(btn,index, row){ //列表显示的按钮点击事件
-			 //    if(btn.text=='删除'){
-				// 	this.$toast('删除')
+			 //    if(btn.text=='Del'){
+				// 	this.$toast('Del')
 				// }
 			},
 			searchBefore(params){ //查询前
@@ -82,15 +82,15 @@ export default function() {
 			updateBefore(formData) { //更新保存前操作
 				return true;
 			},
-			addBefore(formData) {//新建保存前操作
+			addBefore(formData) {//Add保存前操作
 				return true;
 			},
-	        searchFormOnChange(field,value){ //查询弹出框下拉框或日期选中事件
+	        searchFormOnChange(field,value){ //查询弹出框下拉框或Date选中事件
 				//if(field=="字段"){
                 // 	console.log(value)
 				//}
 			},
-			editFormOnChange(field,value){ //新建编辑弹出框下拉框或日期选中事件
+			editFormOnChange(field,value){ //AddEdit弹出框下拉框或Date选中事件
 				//if(field=="字段"){
                 // 	console.log(value)
 				//}

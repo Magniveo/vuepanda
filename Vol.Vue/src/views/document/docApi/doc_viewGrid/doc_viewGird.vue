@@ -25,8 +25,8 @@
                 table: {
                     key: 'Order_Id', //排序字段
                     footer: "Foots",
-                    cnName: '主从表ViewGird组件使用',//表中文名
-                    name: 'SellOrder',//表名(代码生码的别名)
+                    cnName: '主从表ViewGird组件使用',//WorkTableName
+                    name: 'SellOrder',//WorkTable(代码生码的别名)
                     url: "/SellOrder/",//后台控制名
                     sortName: "CreateDate" //后台排序字段
                 },
@@ -39,9 +39,9 @@
                                {"type":"text","title":"运单号","required":true,"field":"TranNo"},
                                {"type":"number","title":"销售数量","required":true,"field":"Qty"}],
                               [ {"type":"text","title":"销售订单号","required":true,"field":"SellNo"},{"type":"text","title":"创建人","field":"Creator","disabled":true},
-                               {"type":"datetime","title":"创建时间","field":"CreateDate","disabled":true}
+                               {"type":"datetime","title":"CreateDate","field":"CreateDate","disabled":true}
                              ],
-                              [{"title":"备注","field":"Remark","colSize":12,"type":"textarea"}
+                              [{"title":"Remark","field":"Remark","colSize":12,"type":"textarea"}
                               ]],
                 //查询字段,第一个字段为快捷查询字段
                 searchFormFileds: {"OrderType":"","TranNo":"","SellNo":"","AuditStatus":"","AuditDate":"","Auditor":"","Creator":"","CreateDate":"","ModifyDate":""},
@@ -53,14 +53,14 @@
                         {"dataKey":"ordertype","title":"订单类型","field":"OrderType","type":"select"}
                     ],
                     [
-                        {"columnType":"int","dataKey":"audit","title":"审核状态","field":"AuditStatus","type":"select"},
+                        {"columnType":"int","dataKey":"audit","title":"AuditStatus","field":"AuditStatus","type":"select"},
                         {"title":"审核时间","field":"AuditDate","type":"datetime"},
-                        {"type":"text","title":"审核人","field":"Auditor"}
+                        {"type":"text","title":"Auditor","field":"Auditor"}
                     ],
                     [
                         {"type":"text","title":"创建人","field":"Creator"},
-                        {"title":"创建时间","field":"CreateDate","type":"datetime"},
-                        {"title":"修改时间","field":"ModifyDate","type":"datetime"}
+                        {"title":"CreateDate","field":"CreateDate","type":"datetime"},
+                        {"title":"ModifyDate","field":"ModifyDate","type":"datetime"}
                     ]
                 ],
                 //主表table配置
@@ -70,14 +70,14 @@
                        {field:'TranNo',title:'运单号(点击可弹出框)',type:'string',link:true,width:140,require:true},
                        {field:'SellNo',title:'销售订单号',type:'string',width:140,require:true},
                        {field:'Qty',title:'销售数量',type:'int',width:90,require:true},
-                       {field:'Remark',title:'备注',type:'string',width:170},
+                       {field:'Remark',title:'Remark',type:'string',width:170},
                        {field:'Creator',title:'创建人',type:'string',width:100,readonly:true},
-                       {field:'CreateDate',title:'创建时间',type:'datetime',width:90,readonly:true,sortable:true},
+                       {field:'CreateDate',title:'CreateDate',type:'datetime',width:90,readonly:true,sortable:true},
                        {field:'ModifyID',title:'ModifyID',type:'int',width:80,hidden:true}
                     ],
                 //从表明细表配置
                 detail: {
-                    cnName:"订单明细",//明细表中文名
+                    cnName:"订单明细",//明细WorkTableName
                     //明细表table配置
                     columns: [
                         {field:'OrderList_Id',title:'OrderList_Id',type:'string',width:90,hidden:true,require:true},
@@ -86,13 +86,13 @@
                        {field:'MO',title:'批次',type:'string',width:100,edit:{type:''},require:true},
                        {field:'Qty',title:'数量',type:'int',width:90,edit:{type:'drop'},require:true},
                        {field:'Weight',title:'重量',type:'decimal',width:90,edit:{type:''}},
-                       {field:'Remark',title:'备注',type:'string',width:120,edit:{type:''}},
+                       {field:'Remark',title:'Remark',type:'string',width:120,edit:{type:''}},
                        {field:'CreateID',title:'CreateID',type:'int',width:80,hidden:true},
                        {field:'Creator',title:'创建人',type:'string',width:130},
-                       {field:'CreateDate',title:'创建时间',type:'datetime',width:90,sortable:true},
+                       {field:'CreateDate',title:'CreateDate',type:'datetime',width:90,sortable:true},
                        {field:'ModifyID',title:'ModifyID',type:'int',width:80,hidden:true},
                        {field:'Modifier',title:'修改人',type:'string',width:100},
-                       {field:'ModifyDate',title:'修改时间',type:'datetime',width:90,sortable:true}
+                       {field:'ModifyDate',title:'ModifyDate',type:'datetime',width:90,sortable:true}
                     ],
                     //明细表排序字段
                     sortName: "CreateDate",

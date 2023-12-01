@@ -26,7 +26,7 @@
 //        }
 
 //        /// <summary>
-//        ///  Kafka地址(包含端口号)
+//        ///  KafkaAddress(包含端口号)
 //        /// </summary>
 //        public string Servers
 //        {

@@ -273,7 +273,7 @@ export default {
 <span> </span>//&nbsp; &nbsp;CreateDate datetime<br />
 <span> </span>// )<br />
 <br />
-<span> </span>//下拉框绑定设置页面修改:【审核状态】数据源配置，参照演示环境配置<br />
+<span> </span>//下拉框绑定设置页面修改:【AuditStatus】数据源配置，参照演示环境配置<br />
 <br />
 <span> </span>//增加组织架构(部门表)、这两张表需要生成代码，（生成代码时选system类库、文件夹输入system）<br />
 <span> </span>//CREATE TABLE [dbo].[Sys_Department](<br />
@@ -735,7 +735,7 @@ export default {
           desc: "优化vue3版本voltable、volform组件time类型"
         },
         { date: "2022-11-21 00:29:43", desc: "移除voltable中的tag无效属性" },
-        { date: "2022-11-21 00:26:45", desc: "增加审核时审核状态选择判断" },
+        { date: "2022-11-21 00:26:45", desc: "增加审核时AuditStatus选择判断" },
         { date: "2022-11-21 00:21:32", desc: "增加node版本18以上启动异常说明" },
         { date: "2022-11-19 11:35:49", desc: "优化.net6版本启动命令" },
         { date: "2022-11-17 15:08:32", desc: "移除H5项目，使用vol.uniapp开发" },
@@ -850,7 +850,7 @@ export default {
         },
         {
           date: "2022-10-17 01:39:21",
-          desc: "移除代码生成器表名首字母强制大写"
+          desc: "移除代码生成器WorkTable首字母强制大写"
         },
         {
           date: "2022-10-11 15:10:11",
@@ -952,7 +952,7 @@ export default {
     
     <div style="margin-top:20px;">  4、增加菜单页面菜单</div>
 
-   <div style="margin-top:20px;">   5、增加数据字典：下拉框绑定设置中添加数据字典：参照现有字典配置：请求方式</div>
+   <div style="margin-top:20px;">   5、增加数据字典：下拉框绑定设置中添加数据字典：参照现有字典配置：Method</div>
 
 `
         },
@@ -1053,7 +1053,7 @@ export default {
         },
         {
           date: "2022-08-16 23:26:38",
-          desc: "优化vue3版本http.js文件强制url地址以/结尾"
+          desc: "优化vue3版本http.js文件强制ApiUrl以/结尾"
         },
         {
           date: "2022-08-16 23:22:53",
@@ -1741,11 +1741,11 @@ export default {
         {
           date: "20211-12-28 16:05:17",
           desc:
-            "1.显示控制器xml注释内容 2.添加过滤器 可自定义添加对控制器的注释描述"
+            "1.显示控制器xml注释内容 2.添加过滤器 可自定义添加对控制器的注释Describe"
         },
         {
           date: "20211-12-28 15:21:01",
-          desc: "swagger文档分组显示，swagger对控制器描述"
+          desc: "swagger文档分组显示，swagger对控制器Describe"
         },
         {
           date: "20211-12-20 22:29:48",
@@ -2077,7 +2077,7 @@ export default {
         },
         {
           date: "2021-07-27 21:48:12",
-          desc: "修复代码生成器明细表中文名不能二次修改的问题"
+          desc: "修复代码生成器明细WorkTableName不能二次修改的问题"
         },
         { date: "2021-07-27 12:36:50", desc: "同步mysql脚本字典" },
         {
@@ -2127,7 +2127,7 @@ export default {
         { date: "2021-07-11 22:52:03", desc: "修复不能获取三级以下角色的问题" },
         {
           date: "2021-07-11 16:15:14",
-          desc: "移除sqlserver初始化数据库脚本重复表名"
+          desc: "移除sqlserver初始化数据库脚本重复WorkTable"
         },
         {
           date: "2021-07-04 23:15:20",
@@ -2137,7 +2137,7 @@ export default {
         {
           date: "2021-07-04 23:13:54",
           desc:
-            "增加删除、修改、新增时可以设置Code='-1'强制返回执行结果(具体见【后台基础代码扩展实现】文档)"
+            "增加删除、修改、新增时可以设置Code='-1'强制返回Result(具体见【后台基础代码扩展实现】文档)"
         },
         { date: "2021-07-04 22:58:32", desc: "增加自定排序按条件表达式" },
 
@@ -2219,7 +2219,7 @@ export default {
         { date: "2021-05-14 00:05:40", desc: "重写菜单、权限分配页面样式" },
         {
           date: "2021-05-12 20:03:30",
-          desc: "修复repository删除时实际表名获取错误的问题"
+          desc: "修复repository删除时实际WorkTable获取错误的问题"
         },
         { date: "2021-05-08 20:02:28", desc: "修复token续期刷新失败的问题" },
         { date: "2021-05-07 21:04:55", desc: "修复H5表单拼写错误的问题" },
@@ -2783,7 +2783,7 @@ export default {
         { date: "2020-08-05 09:58:17", desc: "修正pgsql表结构大小写问题" },
         { date: "2020-08-03 00:48:52", desc: "增加H5项目" },
         { date: "2020-08-01 20:57:07", desc: "移除无用代码" },
-        { date: "2020-08-01 19:43:49", desc: "统一mysql脚本表名大写" },
+        { date: "2020-08-01 19:43:49", desc: "统一mysql脚本WorkTable大写" },
         {
           date: "2020-08-01 19:22:38",
           desc: "修复Dapper删除方法执行错误的问题"
@@ -2813,7 +2813,7 @@ export default {
         {
           date: "2020-07-10 16:33:03",
           desc:
-            "修复登陆页IE底部显示问题、优化首页菜单border、修改代码生成器字段描述"
+            "修复登陆页IE底部显示问题、优化首页菜单border、修改代码生成器字段Describe"
         },
         { date: "2020.06", type: "month" },
         { date: "2020-06-26 18:43:14", desc: "添加首页大屏显示" },
@@ -2862,14 +2862,14 @@ export default {
         {
           date: "2020-06-14 16:12:12",
           desc:
-            "增加代码生成器pgsql实体直实表名使用小写,dapper获取pgsql的NpgsqlConnection"
+            "增加代码生成器pgsql实体直实WorkTable使用小写,dapper获取pgsql的NpgsqlConnection"
         },
         { date: "2020-06-14 15:28:33", desc: "增加pgsql数据库配置" },
         {
           date: "2020-06-14 15:20:50",
           desc: "Merge pull request #81 from xuegaoge/master"
         },
-        { date: "2020-06-07 14:49:00", desc: "修复级联操作文档描述错误的问题" },
+        { date: "2020-06-07 14:49:00", desc: "修复级联操作文档Describe错误的问题" },
         {
           date: "2020-06-06 22:51:34",
           desc:
@@ -2944,7 +2944,7 @@ export default {
           date: "2020-05-25 00:16:10",
           desc: "修复http同时发起多个请求时，遮罩层不能正确关闭的问题"
         },
-        { date: "2020-05-24 20:35:15", desc: "增加代码生成器常用问题描述" },
+        { date: "2020-05-24 20:35:15", desc: "增加代码生成器常用问题Describe" },
         { date: "2020-05-17 15:17:01", desc: "优化首页tab选项卡border样式" },
         {
           date: "2020-05-17 15:04:17",
@@ -3005,7 +3005,7 @@ export default {
         { date: "2020-04-21 10:58:15", desc: "将默认皮肤黑色改为蓝色" },
         {
           date: "2020-04-20 14:43:39",
-          desc: "修复动态刷新数据源文档描述错误的问题"
+          desc: "修复动态刷新数据源文档Describe错误的问题"
         },
         {
           date: "2020-04-14 19:55:14",
@@ -3067,7 +3067,7 @@ export default {
           date: "2020-03-24 10:10:30",
           desc: "移除mysql连接字符串AllowLoadLocalInfile属性"
         },
-        { date: "2020-03-23 19:10:26", desc: "修改代码生成器文档参数描述" },
+        { date: "2020-03-23 19:10:26", desc: "修改代码生成器文档参数Describe" },
         { date: "2020-03-19 23:28:22", desc: "文档整理" },
         {
           date: "2020-03-19 21:50:16",
@@ -3077,7 +3077,7 @@ export default {
           date: "2020-03-18 22:10:29",
           desc: "导出数据时，默认导出table上可见的列"
         },
-        { date: "2020-03-18 22:07:11", desc: "修改备注说明" },
+        { date: "2020-03-18 22:07:11", desc: "修改Remark说明" },
         { date: "2020-03-17 13:00:17", desc: "优化菜单自定义按权限按钮显示" },
         { date: "2020-03-15 21:55:10", desc: "添加预请求过期时间" },
         { date: "2020-03-15 20:42:55", desc: "移除后台校验日期限制" },
@@ -3172,7 +3172,7 @@ export default {
         { date: "2019-12-23 19:04:37", desc: "无" },
         { date: "2019-12-23 11:01:14", desc: "添加最新菜单脚本" },
         { date: "2019-12-23 10:22:27", desc: "增加静态页面提示" },
-        { date: "2019-12-22 14:47:20", desc: "增加静态页面发布描述" },
+        { date: "2019-12-22 14:47:20", desc: "增加静态页面发布Describe" },
         { date: "2019-12-22 14:19:27", desc: "优化代码生成器页面" },
         {
           date: "2019-12-22 01:14:09",
@@ -3307,7 +3307,7 @@ export default {
         {
           date: "2019-11-28 13:13:44",
           desc:
-            "修复代码生成器对sqlserver数据非主键GUID生成的model错误的问题，修复从表别名后删除时未获取到真实表名的问题"
+            "修复代码生成器对sqlserver数据非主键GUID生成的model错误的问题，修复从表别名后删除时未获取到真实WorkTable的问题"
         },
         { date: "2019-11-28 11:50:47", desc: "优化登陆界面" },
         { date: "2019-11-27 15:02:22", desc: "优化表单组件对password的提示" },
@@ -3356,7 +3356,7 @@ export default {
         },
         {
           date: "2019-11-22 10:44:30",
-          desc: "修复代码生成器没有生成表描述属性的问题"
+          desc: "修复代码生成器没有生成表Describe属性的问题"
         },
         { date: "2019-11-22 10:14:10", desc: "优化查询按钮显示" },
         { date: "2019-11-21 18:02:15", desc: "整理文档" },
@@ -3464,7 +3464,7 @@ export default {
         {
           date: "2019-11-11 11:16:56",
           desc:
-            "修复SaveChanges方法拼写错误的问题，增加菜单保存对表名重复性验证"
+            "修复SaveChanges方法拼写错误的问题，增加菜单保存对WorkTable重复性验证"
         },
         {
           date: "2019-11-08 15:19:02",
@@ -3493,7 +3493,7 @@ export default {
         },
         {
           date: "2019-11-04 09:53:00",
-          desc: "添加Demo的扩展js中，扩展按钮使用描述"
+          desc: "添加Demo的扩展js中，扩展按钮使用Describe"
         },
         {
           date: "2019-11-01 10:14:38",
@@ -3589,7 +3589,7 @@ export default {
           desc: "增加其他组件菜单下http请求，vuex状态管理等Demo"
         },
         { date: "2019.09", type: "month" },
-        { date: "2019-09-29 17:29:41", desc: "修改Demo描述" }
+        { date: "2019-09-29 17:29:41", desc: "修改DemoDescribe" }
       ]
     };
   }

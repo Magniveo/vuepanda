@@ -78,7 +78,7 @@ namespace VOL.Core.DBManager
 
 
         /// <summary>
-        /// 扩展dapper 获取MSSQL数据库DbConnection，默认系统获取配置文件的DBType数据库类型，
+        /// 扩展dapper 获取MSSQL数据库DbConnection，默认System获取配置文件的DBType数据库类型，
         /// </summary>
         /// <param name="connString">如果connString为null 执行重载GetDbConnection(string connString = null)</param>
         /// <param name="dapperType">指定连接数据库的类型：MySql/MsSql/PgSql</param>
@@ -117,7 +117,7 @@ namespace VOL.Core.DBManager
             {
                 if (!ConnectionPool.ContainsKey(dbName))
                 {
-                    throw new Exception("数据库连接名称错误");
+                    throw new Exception("数据库连接ExpertName错误");
                 }
                 context.Database.GetDbConnection().ConnectionString = ConnectionPool[dbName];
             }
@@ -128,7 +128,7 @@ namespace VOL.Core.DBManager
         {
             if (!ConnectionPool.ContainsKey(dbName))
             {
-                throw new Exception("数据库连接名称错误");
+                throw new Exception("数据库连接ExpertName错误");
             }
             beefContext.Database.GetDbConnection().ConnectionString = ConnectionPool[dbName];
         }
@@ -162,7 +162,7 @@ namespace VOL.Core.DBManager
         /// 
         /// </summary>
         /// <param name="dbCurrentType">指定数据库类型：MySql/MsSql/PgSql</param>
-        /// <param name="dbName">指定数据连串名称</param>
+        /// <param name="dbName">指定数据连串ExpertName</param>
         /// <returns></returns>
         public static ISqlDapper GetSqlDapper(DbCurrentType dbCurrentType, string dbName = null)
         {

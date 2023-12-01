@@ -16,7 +16,7 @@ namespace VOL.Core.WorkFlow
     public enum AuditType
     {
         用户审批 = 1,
-        角色审批 = 2,
+        Role_Id审批 = 2,
         部门审批 = 3
     }
 }

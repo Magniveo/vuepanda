@@ -92,7 +92,7 @@ namespace VOL.Core.Extensions
 
         /// <summary>
         /// 创建lambda表达式：p=>false
-        /// 在已知TKey字段类型时,如动态排序OrderBy(x=>x.ID)会用到此功能,返回的就是x=>x.ID
+        /// 在已知TKey字段类型时,如动态OrderNoOrderBy(x=>x.ID)会用到此功能,返回的就是x=>x.ID
         /// Expression<Func<Out_Scheduling, DateTime>> expression = x => x.CreateDate;指定了类型
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -105,7 +105,7 @@ namespace VOL.Core.Extensions
         }
         /// <summary>
         /// 创建lambda表达式：p=>false
-        /// object不能确认字段类型(datetime,int,string),如动态排序OrderBy(x=>x.ID)会用到此功能,返回的就是x=>x.ID
+        /// object不能确认字段类型(datetime,int,string),如动态OrderNoOrderBy(x=>x.ID)会用到此功能,返回的就是x=>x.ID
         /// Expression<Func<Out_Scheduling, object>> expression = x => x.CreateDate;任意类型的字段
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -203,7 +203,7 @@ namespace VOL.Core.Extensions
             ConstantExpression constant = proType.ToString() == "System.String"
                 ? Expression.Constant(propertyValue) : Expression.Constant(propertyValue.ToString().ChangeType(proType));
 
-            // DateTime只选择了日期的时候自动在结束日期加一天，修复DateTime类型使用日期区间查询无法查询到结束日期的问题
+            // DateTime只选择了Date的时候自动在结束Date加一天，修复DateTime类型使用Date区间查询无法查询到结束Date的问题
             if ((proType == typeof(DateTime) || proType == typeof(DateTime?)) && expressionType == LinqExpressionType.LessThanOrEqual && propertyValue.ToString().Length == 10)
             {
                 expressionType = LinqExpressionType.LessThan;
@@ -262,13 +262,13 @@ namespace VOL.Core.Extensions
         }
 
         /// <summary>
-        /// 表达式转换成KeyValList(主要用于多字段排序，并且多个字段的排序规则不一样)
-        /// 如有多个字段进行排序,参数格式为
+        /// 表达式转换成KeyValList(主要用于多字段OrderNo，并且多个字段的OrderNo规则不一样)
+        /// 如有多个字段进行OrderNo,参数格式为
         ///  Expression<Func<Out_Scheduling, Dictionary<object, bool>>> orderBy = x => new Dictionary<object, bool>() {
         ///            { x.ID, true },
         ///           { x.DestWarehouseName, true }
         ///      };
-        ///      返回的是new Dictionary<object, bool>(){{}}key为排序字段，bool为升降序
+        ///      返回的是new Dictionary<object, bool>(){{}}key为OrderNo字段，bool为升降序
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="expression"></param>
@@ -285,7 +285,7 @@ namespace VOL.Core.Extensions
                  (QueryOrderBy)(
                  exp.Arguments[1] as ConstantExpression != null
                   ? (exp.Arguments[1] as ConstantExpression).Value
-                 //2021.07.04增加自定排序按条件表达式
+                 //2021.07.04增加自定OrderNo按条件表达式
                  : Expression.Lambda<Func<QueryOrderBy>>(exp.Arguments[1] as Expression).Compile()()
                  ));
             }
@@ -293,20 +293,20 @@ namespace VOL.Core.Extensions
 
 
         /// <summary>
-        /// 表达式转换成KeyValList(主要用于多字段排序，并且多个字段的排序规则不一样)
-        /// 如有多个字段进行排序,参数格式为
+        /// 表达式转换成KeyValList(主要用于多字段OrderNo，并且多个字段的OrderNo规则不一样)
+        /// 如有多个字段进行OrderNo,参数格式为
         ///  Expression<Func<Out_Scheduling, Dictionary<object, QueryOrderBy>>> orderBy = x => new Dictionary<object, QueryOrderBy>() {
         ///            { x.ID, QueryOrderBy.Desc },
         ///           { x.DestWarehouseName, QueryOrderBy.Asc }
         ///      };
-        ///      返回的是new Dictionary<object, QueryOrderBy>(){{}}key为排序字段，QueryOrderBy为排序方式
+        ///      返回的是new Dictionary<object, QueryOrderBy>(){{}}key为OrderNo字段，QueryOrderBy为OrderNo方式
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="expression"></param>
         /// <returns></returns>
         public static Dictionary<string, QueryOrderBy> GetExpressionToDic<T>(this Expression<Func<T, Dictionary<object, QueryOrderBy>>> expression)
         {
-            //2020.09.14增加排序字段null值判断
+            //2020.09.14增加OrderNo字段null值判断
             if (expression == null)
             {
                 return new Dictionary<string, QueryOrderBy>();
@@ -314,11 +314,11 @@ namespace VOL.Core.Extensions
             return expression.GetExpressionToPair().Reverse().ToList().ToDictionary(x => x.Key, x => x.Value);
         }
         /// <summary>
-        /// 解析多字段排序
+        /// 解析多字段OrderNo
         /// </summary>
         /// <typeparam name="TEntity"></typeparam>
         /// <param name="queryable"></param>
-        /// <param name="orderBySelector">string=排序的字段,bool=true降序/false升序</param>
+        /// <param name="orderBySelector">string=OrderNo的字段,bool=true降序/false升序</param>
         /// <returns></returns>
         public static IQueryable<TEntity> GetIQueryableOrderBy<TEntity>(this IQueryable<TEntity> queryable, Dictionary<string, QueryOrderBy> orderBySelector)
         {
@@ -364,7 +364,7 @@ namespace VOL.Core.Extensions
 
         /// <summary>
         /// 与下面and生成方式有所不同，如果直接用表达式1.2进行合并产会提示数据源不同的异常，只能使用下面的的and合并
-        /// 此种合并是在使用的同一个数据源(变量),生成的sql语句同样有性能问题(本身可以索引扫描的,生成的sql语句的case when变成索引查找)
+        /// 此种合并是在使用的同一个数据源(变量),生成的DbSql同样有性能问题(本身可以索引扫描的,生成的DbSql的case when变成索引查找)
         /// <summary>
         /// 通过字段动态生成where and /or表达
         /// 如:有多个where条件，当条件成立时where 1=1 and/or 2=2,依次往后拼接
@@ -410,7 +410,7 @@ namespace VOL.Core.Extensions
         }
         /// <summary>
         /// https://blogs.msdn.microsoft.com/meek/2008/05/02/linq-to-entities-combining-predicates/
-        /// 表达式合并(合并生产的sql语句有性能问题)
+        /// 表达式合并(合并生产的DbSql有性能问题)
         /// 合并两个where条件，如：多个查询条件时，判断条件成立才where
         /// </summary>
         /// <typeparam name="T"></typeparam>

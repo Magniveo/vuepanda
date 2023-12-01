@@ -645,7 +645,7 @@ export default {
       }
     },
     localdataInit(resdata){
-      //替换enum类型为正确的描述
+      //替换enum类型为正确的Describe
       if(this.groupEnum.length>0){
         for (let i = 0; i < resdata.length; i++) {
           for (let j = 0; j < this.groupEnum.length; j++) {

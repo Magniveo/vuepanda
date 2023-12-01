@@ -22,7 +22,7 @@ export default function() {
                        {field:'Date',title:'日期',type:'date'},
                        {field:'IsTop',title:'置顶',type:'int',bind:{ key:'top',data:[]}},
                        {field:'Creator',title:'创建人',type:'string',readonly:true},
-                       {field:'CreateDate',title:'创建时间',type:'datetime',readonly:true}],
+                       {field:'CreateDate',title:'CreateDate',type:'datetime',readonly:true}],
 		table: {
 			key: 'Id',
 			footer: "Foots",

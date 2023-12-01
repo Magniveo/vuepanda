@@ -65,7 +65,7 @@ namespace VOL.System.Controllers
         }
 
         /// <summary>
-        /// 获取当前角色下的所有角色 
+        /// 获取当前Role_Id下的所有Role_Id 
         /// </summary>
         /// <returns></returns>
 
@@ -80,12 +80,12 @@ namespace VOL.System.Controllers
             {
                 return Json(WebResponseContent.Instance.OK(null, data));
             }
-            //不是超级管理，将自己的角色查出来，在树形菜单上作为根节点
+            //不是超级管理，将自己的Role_Id查出来，在树形菜单上作为根节点
             var self = _repository.FindAsIQueryable(x => x.Role_Id == roleId)
                  .Select(s => new VOL.Core.UserManager.RoleNodes()
                  {
                      Id = s.Role_Id,
-                     ParentId = 0,//将自己的角色作为root节点
+                     ParentId = 0,//将自己的Role_Id作为root节点
                      RoleName = s.RoleName
                  }).ToList();
             data.AddRange(self);

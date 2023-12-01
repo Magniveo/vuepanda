@@ -15,7 +15,7 @@
 //    public class KafkaHelper
 //    {
 //        /// <summary>
-//        /// 获取当前应用程式名称(仅控制台应用程序和Windows应用程序可用)
+//        /// 获取当前应用程式ExpertName(仅控制台应用程序和Windows应用程序可用)
 //        /// </summary>
 //        /// <returns></returns>
 //        public static string GetApplicationName()
@@ -31,7 +31,7 @@
 //        }
 
 //        /// <summary>
-//        /// 获取服务器名称
+//        /// 获取服务器ExpertName
 //        /// </summary>
 //        /// <returns></returns>
 //        public static string GetServerName()
@@ -40,7 +40,7 @@
 //        }
 
 //        /// <summary>
-//        /// 获取服务器IP
+//        /// 获取ServiceIP
 //        /// </summary>
 //        /// <returns></returns>
 //        public static string GetServerIp()
@@ -129,7 +129,7 @@
 //        }
 
 //        /// <summary>
-//        /// 程式名称(默认获取当前程式名称,Web应用 默认为 ISD_Kafka)
+//        /// 程式ExpertName(默认获取当前程式ExpertName,Web应用 默认为 ISD_Kafka)
 //        /// </summary>
 //        public string ApplicationName { get; set; }
 
@@ -144,22 +144,22 @@
 //        public DateTime TimeStamp { get; set; }
 
 //        /// <summary>
-//        /// 开始时间
+//        /// StratDate
 //        /// </summary>
 //        public DateTime BeginDate { get; set; }
 
 //        /// <summary>
-//        /// 结束时间
+//        /// EndDate
 //        /// </summary>
 //        public DateTime EndDate { get; set; }
 
 //        /// <summary>
-//        /// 服务器IP(默认抓取当前服务器IP)
+//        /// ServiceIP(默认抓取当前ServiceIP)
 //        /// </summary>
 //        public string ServerIp { get; set; }
 
 //        /// <summary>
-//        /// 服务器名称(默认抓取当前服务器名称)
+//        /// 服务器ExpertName(默认抓取当前服务器ExpertName)
 //        /// </summary>
 //        public string ServerName { get; set; }
 

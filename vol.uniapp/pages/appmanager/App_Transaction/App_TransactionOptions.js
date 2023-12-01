@@ -14,7 +14,7 @@ export default function() {
                                {"key":"nav","data":[],"title":"类型","field":"CowType","type":"select"},
                                {"type":"group"},
                                {"title":"数量","required":true,"field":"Quantity","type":"number"},
-                               {"title":"描述","required":true,"field":"Describe"}],
+                               {"title":"Describe","required":true,"field":"Describe"}],
 		searchFormFields: {"Name":"","PhoneNo":"","TransactionType":"","CowType":"","Creator":"","CreateDate":""},
 		searchFormOptions: [{"title":"姓名","field":"Name","type":"text"},{"title":"电话","field":"PhoneNo","type":"text"},{"key":"cq","data":[],"title":"状态","field":"TransactionType","type":"select"},{"type":"group"},{"key":"nav","data":[],"title":"类型","field":"CowType","type":"select"},{"title":"提交人","field":"Creator"},{"title":"提交时间","field":"CreateDate","type":"date"}],
 		columns: [{field:'Name',title:'姓名',type:'string',link:true},

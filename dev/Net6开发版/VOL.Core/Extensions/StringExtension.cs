@@ -34,7 +34,7 @@ namespace VOL.Core.Extensions
             return (dateTime.ToUniversalTime().Ticks - longTime) / samllTime;
         }
         /// <summary>
-        /// 时间戳转换成日期
+        /// 时间戳转换成Date
         /// </summary>
         /// <param name="timeStamp"></param>
         /// <returns></returns>
@@ -62,7 +62,7 @@ namespace VOL.Core.Extensions
 
         }
         /// <summary>
-        /// 判断是不是正确的手机号码
+        /// 判断是不是正确的PhoneNo码
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>

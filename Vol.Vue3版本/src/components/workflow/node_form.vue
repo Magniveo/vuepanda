@@ -96,7 +96,7 @@ export default {
             formRules: [
                 [
                     {
-                        title: '节点名称',
+                        title: 'StepName',
                         field: 'name',
                         required: true,
                         colSize: 12

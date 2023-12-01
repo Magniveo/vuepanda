@@ -1,7 +1,7 @@
 <template>
   <div class="com-el-tree">
 
-      <div class="m-title"><i class="el-icon-warning-outline"></i>角色列表</div>
+      <div class="m-title"><i class="el-icon-warning-outline"></i>Role_Id列表</div>
 
     <el-scrollbar style="height: 100%; width: 200px" class="el-role-tree">
       <el-tree

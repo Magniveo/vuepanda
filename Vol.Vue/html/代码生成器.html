@@ -29,9 +29,9 @@
           点击新建
           <span>(如果只是做修改,跳过此步)</span>
           <br />-&gt;填写信息
-          <span>(项目命名空间：代码生成时所放在类库，项目文件夹：生成的文件放在文件夹,此文件夹可以不存在，表名:可以是视图或表,名字必须和数据库一样)</span>
+          <span>(项目命名空间：代码生成时所放在类库，项目文件夹：生成的文件放在文件夹,此文件夹可以不存在，WorkTable:可以是视图或表,名字必须和数据库一样)</span>
           <br />-&gt;确认
-          <span>(此时会从数据库载出表结构信息,如果只想创建一个空菜单，上面表名随便填写)</span>
+          <span>(此时会从数据库载出表结构信息,如果只想创建一个空菜单，上面WorkTable随便填写)</span>
           <br />-&gt;根据实际需要填写加载出来的表单及table表的的信息
           <br />
           <span>(需要注意Vue绝对路径的设置:生成Vue页面必须指定此路径，路径为当前Vue项目的views文件夹，如E:/VOL.Vue/src/views)</span>
@@ -60,7 +60,7 @@
         点击确认，自动从后台加载表结构信息(如果只是生成空菜单,里面就随便填)
         <br />项目命名空间：代码生成时所放在类库(现框架采用一个模块为一个类库，可自行决定是否需要增加类库)
         <br />项目文件夹：生成的文件放在文件夹,此文件夹由代码生成器创建,不需要手动创建
-        <br />表名:可以是视图或表,名字必须和数据库一样
+        <br />WorkTable:可以是视图或表,名字必须和数据库一样
       </p>
       <img src="https://imgs-1256993465.cos.ap-chengdu.myqcloud.com/doc/step2.png" />
     </div>
@@ -76,7 +76,7 @@
     </div>
     <h2>4、查看生成完的代码</h2>
     <div>
-      <p class="desc">生成完成后在vs中搜索当前表就能看到生成的代码了，vue代码也同时生成了,可在vscode中搜索当前文件(文件名都是以当前表名开头)</p>
+      <p class="desc">生成完成后在vs中搜索当前表就能看到生成的代码了，vue代码也同时生成了,可在vscode中搜索当前文件(文件名都是以当前WorkTable开头)</p>
       <img class="img3" src="https://imgs-1256993465.cos.ap-chengdu.myqcloud.com/doc/sep4.png" />
       <img class="img3" src="https://imgs-1256993465.cos.ap-chengdu.myqcloud.com/doc/sep4x.png" />
     </div>
@@ -85,7 +85,7 @@
       <p class="desc">
         参数设置:
         <br />Url:通过VsCode打开vue项目,找到router文件夹下viewGird.js找当前生成表的path属性/SellOrder就是配置菜单需要配置的url,直接复制过来即可
-        <br />表名:在生成代码时填写的表名或视图名，必须一致，否则权限验证通不过
+        <br />WorkTable:在生成代码时填写的WorkTable或视图名，必须一致，否则权限验证通不过
       </p>
       <img src="https://imgs-1256993465.cos.ap-chengdu.myqcloud.com/doc/sep5.png" />
       <img src="https://imgs-1256993465.cos.ap-chengdu.myqcloud.com/doc/sep5x.png" />
@@ -106,7 +106,7 @@
             <span>字段</span>
           </td>
           <td>
-            <span>描述</span>
+            <span>Describe</span>
           </td>
         </tr>
         <tr>
@@ -133,7 +133,7 @@
         </tr>
         <tr>
           <td>
-            <span>表中文名</span>
+            <span>WorkTableName</span>
           </td>
           <td>
             <span>需要生成代码的表具体名</span>
@@ -141,7 +141,7 @@
         </tr>
         <tr>
           <td>
-            <span>表名</span>
+            <span>WorkTable</span>
           </td>
           <td>
             <span>需要生成代码的表或视图</span>
@@ -149,10 +149,10 @@
         </tr>
         <tr>
           <td>
-            <span>实际表名</span>
+            <span>实际WorkTable</span>
           </td>
           <td>
-            <span>用实际表名替换表名</span>,
+            <span>用实际WorkTable替换WorkTable</span>,
             <span>具体功能未开发</span>
           </td>
         </tr>
@@ -167,7 +167,7 @@
         </tr>
         <tr>
           <td>
-            <span>明细表中文名</span>
+            <span>明细WorkTableName</span>
           </td>
           <td>
             <span>明细从表的中文名</span>
@@ -175,7 +175,7 @@
         </tr>
         <tr>
           <td>
-            <span>明细表名</span>
+            <span>明细WorkTable</span>
           </td>
           <td>
             <span>明细从表</span>,
@@ -227,7 +227,7 @@
             <span>字段</span>
           </td>
           <td>
-            <span>描述</span>
+            <span>Describe</span>
           </td>
         </tr>
         <tr>

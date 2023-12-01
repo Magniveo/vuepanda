@@ -54,7 +54,7 @@
         width="55"
       ></el-table-column>
 
-      <!-- 2020.10.10移除table第一行强制排序 -->
+      <!-- 2020.10.10移除table第一行强制OrderNo -->
       <el-table-column
         v-for="(column, cindex) in filterColumns"
         :prop="column.field"
@@ -76,7 +76,7 @@
         </template>
 
         <template #default="scope">
-          <!-- 2022.01.08增加多表头，现在只支持常用功能渲染，不支持编辑功能(涉及到组件重写) -->
+          <!-- 2022.01.08增加多表头，现在只支持常用功能渲染，不支持Edit功能(涉及到组件重写) -->
           <el-table-column
             style="border: none"
             v-for="columnChildren in filterChildrenColumn(column.children)"
@@ -133,9 +133,9 @@
             :column="column"
             :render="column.render"
           ></table-render>
-          <!-- 启用双击编辑功能，带编辑功能的不会渲染下拉框文本背景颜色 -->
+          <!-- 启用双击Edit功能，带Edit功能的不会渲染下拉框文本背景颜色 -->
           <!-- @click="rowBeginEdit(scope.$index,cindex)" -->
-          <!-- 2021.09.21增加编辑时对readonly属性判断 -->
+          <!-- 2021.09.21增加Edit时对readonly属性判断 -->
            <template v-else-if="column.edit&&!column.readonly&&['file', 'img','excel'].indexOf(column.edit.type) != -1" >
                 <div style="display:flex;align-items: center;" @click.stop>
                   <i v-if="!column.showUpload||column.showUpload(scope.row, column)" style="padding: 3px;margin-right: 10px;color:#8f9293;cursor: pointer;" @click="showUpload(scope.row, column)" class="el-icon-upload"></i>     <template v-if="column.edit.type == 'img'">
@@ -175,7 +175,7 @@
           >
             <div @click.stop class="e-item">
               <div>
-                <!-- 2020.07.24增加日期onChange事件 -->
+                <!-- 2020.07.24增加DateonChange事件 -->
                 <el-date-picker
                   clearable
                   size="default"
@@ -335,7 +335,7 @@
               </div>
             </div>
           </div>
-          <!--没有编辑功能的直接渲染标签-->
+          <!--没有Edit功能的直接渲染标签-->
           <template v-else>
             <a
               href="javascript:void(0)"
@@ -441,7 +441,7 @@
     :padding="15"
     lazy
   >
-    <!-- 上传图片、excel或其他文件、文件数量、大小限制都可以，参照volupload组件api -->
+    <!-- 上传图片、excel或其他文件、文件Quantity、大小限制都可以，参照volupload组件api -->
     <div style="height: 200px;display: flex;align-items: center;">
       <VolUpload
       style="text-align: center; "
@@ -476,7 +476,7 @@ import { defineComponent,defineAsyncComponent } from 'vue';
 export default defineComponent({
   //https://github.com/element-plus/element-plus/issues/1483
   //没有原先的selection属性了，看issue上使用select/selectall获取
-  //监听数组长度，如果删除了数据，现在只能被迫清除所有选中的行
+  //监听数组长度，如果Del了数据，现在只能被迫清除所有选中的行
   watch: {
     'tableData.length': {
       handler(newLen, oldLen) {
@@ -512,7 +512,7 @@ export default defineComponent({
       default: true
     },
     tableData: {
-      // 表数据源,配置了url就不用传这个参数了
+      // 表数据源,配置了url就Dept_Id传这个参数了
       type: Array,
       default: () => {
         return [];
@@ -555,7 +555,7 @@ export default defineComponent({
       default: true
     },
     index: {
-      // 是否创建索引号,如果需要表格编辑功能，这里需要设置为true
+      // 是否创建索引号,如果需要表格Edit功能，这里需要设置为true
       type: Boolean,
       default: false
     },
@@ -579,25 +579,25 @@ export default defineComponent({
       default: false
     },
     doubleEdit: {
-      type: Boolean, // 是否双击启用编辑功能
+      type: Boolean, // 是否双击启用Edit功能
       default: true
     },
     beginEdit: {
-      // 编辑开始
+      // Edit开始
       type: Function,
       default: function(row, column, index) {
         return true;
       }
     },
     endEditBefore: {
-      // 结束编辑前
+      // 结束Edit前
       type: Function,
       default: function(row, column, index) {
         return true;
       }
     },
     endEditAfter: {
-      // 结束编辑前
+      // 结束Edit前
       type: Function,
       default: function(row, column, index) {
         return true;
@@ -619,7 +619,7 @@ export default defineComponent({
       default: true
     },
     select2Count: {
-      //超出数量显示select2组件
+      //超出Quantity显示select2组件
       type: Number,
       default: 2000
     },
@@ -638,13 +638,13 @@ export default defineComponent({
   data() {
     return {
       fixed: false, //是固定行号与checkbox
-      clickEdit: true, //2021.07.17设置为点击行结束编辑
+      clickEdit: true, //2021.07.17设置为点击行结束Edit
       randomTableKey: 1,
       visiblyColumns: [],
       key: '',
       realHeight: 0,
       realMaxHeight: 0,
-      enableEdit: false, // 是否启表格用编辑功能
+      enableEdit: false, // 是否启表格用Edit功能
       empty: this.allowEmpty ? '' : '--',
       defaultImg: 'this.src="' + require('@/assets/imgs/error.png') + '"',
       loading: false,
@@ -674,7 +674,7 @@ export default defineComponent({
         rows: 30
       },
       errorFiled: '',
-      edit: { columnIndex: -1, rowIndex: -1 }, // 当前双击编辑的行与列坐标
+      edit: { columnIndex: -1, rowIndex: -1 }, // 当前双击Edit的行与列坐标
       editStatus: {},
       summary: false, // 是否显示合计
       // 目前只支持从后台返回的summaryData数据
@@ -685,7 +685,7 @@ export default defineComponent({
       fxRight: false, //是否有右边固定表头
       selectRows: [], //当前选中的行
       isChrome: false,
-      //vol-table带数据源的单元格是否启用tag标签(下拉框等单元格以tag标签显示)
+      //vol-table带数据源的单元格Enabletag标签(下拉框等单元格以tag标签显示)
       //2023.04.02更新voltable与main.js
       useTag: true,
       currentRow:{},
@@ -731,7 +731,7 @@ export default defineComponent({
     //   this.fixed = false;
     // }
 
-    // 从后台加下拉框的[是否启用的]数据源
+    // 从后台加下拉框的[Enable的]数据源
     let keys = [];
     let columnBind = [];
     this.summaryData.push('合计');
@@ -761,7 +761,7 @@ export default defineComponent({
                }
           })
       }else if (x.bind && x.bind.key && (!x.bind.data || x.bind.data.length == 0)) {
-        // 写入远程
+        // 写入Enable
         if (!x.bind.data) x.bind.data = [];
         if (x.bind.remote) {
           this.remoteColumns.push(x);
@@ -881,7 +881,7 @@ export default defineComponent({
       if (!column) {
         return;
       }
-      //正在编辑时，禁止出发rowClick事件
+      //正在Edit时，禁止出发rowClick事件
       if (this.edit.rowIndex == -1) {
         this.$emit('rowClick', { row, column, event });
       }
@@ -890,11 +890,11 @@ export default defineComponent({
       if (!this.doubleEdit) {
         return;
       }
-      // 点击其他行时，如果点击的行与正在编辑的行相同，保持编辑状态
+      // 点击其他行时，如果点击的行与正在Edit的行相同，保持Edit状态
       if (this.clickEdit && this.edit.rowIndex != -1) {
         if (row.elementIndex == this.edit.rowIndex) {
-          // 点击的单元格如果不可以编辑，直接结束编辑
-          // 2020.10.12修复结束编辑时，element table高版本属性获取不到的问题
+          // 点击的单元格如果不可以Edit，直接结束Edit
+          // 2020.10.12修复结束Edit时，element table高版本属性获取不到的问题
           let _col = this.columns.find((x) => {
             return x.field == ((event && event.property) || column.property);
           });
@@ -908,8 +908,8 @@ export default defineComponent({
         if (this.rowEndEdit(row, event && event.property ? event : column)) {
           this.edit.rowIndex = -1;
         }
-        //当正在编辑，且点击到其他行时，在原编辑的行结束编辑后，触发新行的rowClick事件
-        //正在编辑时，禁止出发rowClick事件
+        //当正在Edit，且点击到其他行时，在原Edit的行结束Edit后，触发新行的rowClick事件
+        //正在Edit时，禁止出发rowClick事件
         if (this.edit.rowIndex == -1) {
           this.$emit('rowClick', { row, column, event });
         }
@@ -1045,7 +1045,7 @@ export default defineComponent({
       //   }
       // });
     },
-    // 通过button按钮启用编辑
+    // 通过button按钮启用Edit
     beginWithButtonEdit(scope) {
       // url?rowData:tableData
       this.rowBeginEdit(scope.row, this.columns[scope.$index]);
@@ -1060,7 +1060,7 @@ export default defineComponent({
           return;
         }
         if (
-          //不能编辑的字段、switch，点击不开启启编辑功能
+          //不能Edit的字段、switch，点击不开启启Edit功能
           !_row.edit ||
           (_row.edit.keep && _row.edit.type == 'switch')
         ) {
@@ -1069,7 +1069,7 @@ export default defineComponent({
       }
       if (!this.enableEdit) return;
       _errMsg = '';
-      // 编辑前
+      // Edit前
       this.columns
         .filter((x) => {
           return x.bind && x.bind.data && x.bind.data.length;
@@ -1119,10 +1119,10 @@ export default defineComponent({
       let _row = this.url
         ? this.rowData[this.edit.rowIndex]
         : this.tableData[this.edit.rowIndex];
-      // 结束编辑前
+      // 结束Edit前
       if (!this.endEditBefore(_row, column, this.edit.rowIndex)) return false;
       if (this.edit.rowIndex != -1) {
-        //2022.06.26修复表格内容切换后行数不一致时不能编辑的问题
+        //2022.06.26修复表格内容切换后行数不一致时不能Edit的问题
         if (this.edit.rowIndex - 1 > (this.rowData || this.tableData).length) {
           this.edit.rowIndex = -1;
           return;
@@ -1222,13 +1222,13 @@ export default defineComponent({
     },
     delRow() {
       let rows = this.getSelected();
-      if (rows.length == 0) return this.$Message.error('请选择要删除的行!');
+      if (rows.length == 0) return this.$Message.error('请选择要Del的行!');
 
       let data = this.url ? this.rowData : this.tableData;
       let indexArr = this.getSelectedIndex();
       if (indexArr.length == 0) {
         return this.$Message.error(
-          "删除操作必须设置VolTable的属性index='true'"
+          "Del操作必须设置VolTable的属性index='true'"
         );
       }
       // if (indexArr.length == 0 || !this.key) {
@@ -1259,7 +1259,7 @@ export default defineComponent({
         row = {};
       }
       this.columns.forEach((x) => {
-        // 2022.05.06 添加行时，如果列有编辑属性，设置开启编辑(避免关闭编辑后，无法再次启用编辑)??
+        // 2022.05.06 添加行时，如果列有Edit属性，设置开启Edit(避免关闭Edit后，无法再次启用Edit)??
         //x.readonly = false;
         if (!row.hasOwnProperty(x.field)) {
           if (x.edit && x.edit.type == 'switch') {
@@ -1348,7 +1348,7 @@ export default defineComponent({
         wheres: [] // 查询条件，格式为[{ name: "字段", value: "xx" }]
       };
       let status = true;
-      // 合并查询信息(包查询分页、排序、查询条件等)
+      // 合并查询信息(包查询分页、OrderNo、查询条件等)
       if (query) {
         param = Object.assign(param, query);
       }
@@ -1532,7 +1532,7 @@ export default defineComponent({
         }
         return this.getSelectFormatter(column, val);
       }
-      // 编辑多选table显示
+      // Edit多选table显示
       if (column.bind.type == 'selectList' || column.bind.type == 'checkbox'||column.bind.type=='treeSelect'
       ||(typeof val === 'string' && val.indexOf(',') != -1)
       ) {
@@ -1549,7 +1549,7 @@ export default defineComponent({
       return val;
     },
     getSelectFormatter(column, val) {
-      // 编辑多选table显示
+      // Edit多选table显示
       let valArr = val.split(",");
       for (let index = 0; index < valArr.length; index++) {
         ( column.bind.orginData&&column.bind.orginData.length

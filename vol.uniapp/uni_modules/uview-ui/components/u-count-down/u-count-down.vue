@@ -61,7 +61,7 @@
 				if (this.runing) return
 				// 标识为进行中
 				this.runing = true
-				// 结束时间戳 = 此刻时间戳 + 剩余的时间
+				// EndDate戳 = 此刻时间戳 + 剩余的时间
 				this.endTime = Date.now() + this.remainTime
 				this.toTick()
 			},

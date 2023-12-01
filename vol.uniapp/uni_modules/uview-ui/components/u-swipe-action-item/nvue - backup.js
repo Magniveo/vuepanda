@@ -247,7 +247,7 @@ export default {
                 previewButtonsMoveX += translateX
             }
         },
-        // 查询按钮节点信息
+        // 查询按钮NodeConfig
         queryRect() {
             // 历遍所有按钮数组，通过getRectByDom返回一个promise
             const promiseAll = this.rightOptions.map((item, index) => this.getRectByDom(this.$refs[`u-swipe-action-item__right__button-${index}`][0]))
@@ -258,7 +258,7 @@ export default {
                 this.buttonsWidth = sizes.reduce((sum, cur) => sum + cur.width, 0)
             })
         },
-        // 通过nvue的dom模块，查询节点信息
+        // 通过nvue的dom模块，查询NodeConfig
         getRectByDom(ref) {
             return new Promise((resolve) => {
                 dom.getComponentRect(ref, (res) => {

@@ -27,7 +27,7 @@
 import table1 from "../order/App_Appointment";
 import table2 from "../appmanager/App_Transaction";
 import table3 from "../formsMulti/multi3";
-//注意必看，App_Appointment与App_Transaction是自动生成的页面，在页签引用时需要指定表名权限，否则普通帐号打开页面会出现401
+//注意必看，App_Appointment与App_Transaction是自动生成的页面，在页签引用时需要指定WorkTable权限，否则普通帐号打开页面会出现401
 //具体指定权限方式见：App_Appointment.js与App_Transaction.js中的tableAction属性
 export default {
   components: {
@@ -50,7 +50,7 @@ export default {
         name: "页签1",
         icon: "el-icon-document",
         component: "table1", //上面引用的组件名
-        table: "/App_Appointment", //这里填写实际表名用于权限判断(与菜单设置上的表path一样)，没有权限的不会显示
+        table: "/App_Appointment", //这里填写实际WorkTable用于权限判断(与菜单设置上的表path一样)，没有权限的不会显示
       },
       {
         name: "页签2",

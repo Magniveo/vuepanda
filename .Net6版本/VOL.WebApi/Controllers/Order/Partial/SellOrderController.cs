@@ -59,7 +59,7 @@ namespace VOL.Order.Controllers
         /// <returns></returns>
         /// ApiActionPermission注释后，只会验证用户是否登陆，不会验证用户查询权限
         //[ApiActionPermission(ActionPermissionOptions.Search)]
-        //第一个参数可以输入表名，指定某张表的权限
+        //第一个参数可以输入WorkTable，指定某张表的权限
         [ApiActionPermission()]
         [HttpPost, Route("GetPageData"), AllowAnonymous]
         public override ActionResult GetPageData([FromBody] PageDataOptions loadData)

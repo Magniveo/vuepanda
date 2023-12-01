@@ -13,15 +13,15 @@ let extension = {
     gridHeader: '',
     gridBody: '',
     gridFooter: '',
-    //新建、编辑弹出框扩展组件
+    //Add、Edit弹出框扩展组件
     modelHeader: '',
     modelBody: '',
     modelFooter: ''
   },
-  tableAction: '', //指定某张表的权限(这里填写表名,默认不用填写)
+  tableAction: '', //指定某张表的权限(这里填写WorkTable,默认Dept_Id填写)
   buttons: { view: [], box: [], detail: [] }, //扩展的按钮
   methods: {
-    //下面这些方法可以保留也可以删除
+    //下面这些方法可以保留也可以Del
     onInit() {  //框架初始化配置前，
       this.rowKey = "DepartmentId";
     },
@@ -89,7 +89,7 @@ let extension = {
               <el-tooltip
                 class="box-item"
                 effect="dark"
-                content="删除"
+                content="Del"
                 placement="top"
               >
                 <el-button
@@ -121,7 +121,7 @@ let extension = {
       this.initDicKeys();
       return true;
     },
-    delAfter(result) {//查询界面的表删除后
+    delAfter(result) {//查询界面的表Del后
       this.initDicKeys();
       return true;
     },
@@ -129,7 +129,7 @@ let extension = {
       //点击行上的添加按钮事件
       if (this.addCurrnetRow) {
 
-        //获取当前组织构架的所有父级id,用于设置新建时父级id的默认值
+        //获取当前组织构架的所有ParentId,用于设置Add时ParentId的默认值
 
         //获取数据数据源
         let data = [];
@@ -141,7 +141,7 @@ let extension = {
           })
         })
         let parentIds = this.base.getTreeAllParent(this.addCurrnetRow.DepartmentId, data).map(x => { return x.id });
-        //设置编辑表单上级组织的默认值
+        //设置Edit表单上级组织的默认值
         this.editFormFields.ParentId = parentIds;
         this.addCurrnetRow = null;
 

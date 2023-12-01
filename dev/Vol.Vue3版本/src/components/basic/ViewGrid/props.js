@@ -10,17 +10,17 @@ let props = {
     default: () => {
       return {
         columns: [],//从表列
-        sortName: ""//从表排序字段
+        sortName: ""//从表OrderNo字段
       };
     }
   },
-  editFormFields: {//新建、编辑字段(key/value)
+  editFormFields: {//Add、Edit字段(key/value)
     type: Object,
     default: () => {
       return {};
     }
   },
-  editFormOptions: {//新建、编辑配置信息
+  editFormOptions: {//Add、Edit配置信息
     type: Array,
     default: () => {
       return [];
@@ -38,7 +38,7 @@ let props = {
       return [];
     }
   },
-  table: {//表的配置信息：主键、排序等
+  table: {//表的配置信息：主键、OrderNo等
     type: Object,
     default: () => {
       return {};

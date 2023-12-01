@@ -105,7 +105,7 @@ namespace VOL.Core.BaseProvider
         }
 
         /// <summary>
-        ///  2020.08.15添加获取多租户数据过滤sql（删除、编辑）
+        ///  2020.08.15添加获取多租户数据过滤sql（Del、Edit）
         /// </summary>
         /// <returns></returns>
         private string GetMultiTenancySql(string ids, string tableKey)
@@ -114,44 +114,44 @@ namespace VOL.Core.BaseProvider
         }
 
         /// <summary>
-        ///  2020.08.15添加多租户数据过滤（编辑）
+        ///  2020.08.15添加多租户数据过滤（Edit）
         /// </summary>
         private void CheckUpdateMultiTenancy(string ids, string tableKey)
         {
             string sql = GetMultiTenancySql(ids, tableKey);
 
             //请接着过滤条件
-            //例如sql，只能(编辑)自己创建的数据:判断数据是不是当前用户创建的
+            //例如sql，只能(Edit)自己创建的数据:判断数据是不是当前用户创建的
             //sql = $" {sql} and createid!={UserContext.Current.UserId}";
             object obj = repository.DapperContext.ExecuteScalar(sql, null);
             if (obj == null || obj.GetInt() == 0)
             {
-                Response.Error("不能编辑此数据");
+                Response.Error("不能Edit此数据");
             }
         }
 
 
         /// <summary>
-        ///  2020.08.15添加多租户数据过滤（删除）
+        ///  2020.08.15添加多租户数据过滤（Del）
         /// </summary>
         private void CheckDelMultiTenancy(string ids, string tableKey)
         {
             string sql = GetMultiTenancySql(ids, tableKey);
 
             //请接着过滤条件
-            //例如sql，只能(删除)自己创建的数据:找出不是自己创建的数据
+            //例如sql，只能(Del)自己创建的数据:找出不是自己创建的数据
             //sql = $" {sql} and createid!={UserContext.Current.UserId}";
             object obj = repository.DapperContext.ExecuteScalar(sql, null);
             int idsCount = ids.Split(",").Distinct().Count();
             if (obj == null || obj.GetInt() != idsCount)
             {
-                Response.Error("不能删除此数据");
+                Response.Error("不能Del此数据");
             }
         }
 
         private const string _asc = "asc";
         /// <summary>
-        /// 生成排序字段
+        /// 生成OrderNo字段
         /// </summary>
         /// <param name="pageData"></param>
         /// <param name="propertyInfo"></param>
@@ -181,10 +181,10 @@ namespace VOL.Core.BaseProvider
                      } };
                 }
             }
-            //如果没有排序字段，则使用主键作为排序字段
+            //如果没有OrderNo字段，则使用主键作为OrderNo字段
 
             PropertyInfo property = propertyInfo.GetKeyProperty();
-            //如果主键不是自增类型则使用appsettings.json中CreateMember->DateField配置的创建时间作为排序
+            //如果主键不是自增类型则使用appsettings.json中CreateMember->DateField配置的CreateDate作为OrderNo
             if (property.PropertyType == typeof(int) || property.PropertyType == typeof(long))
             {
                 if (!propertyInfo.Any(x => x.Name.ToLower() == pageData.Sort))
@@ -222,7 +222,7 @@ namespace VOL.Core.BaseProvider
         }
 
         /// <summary>
-        /// 验证排序与查询字段合法性
+        /// 验证OrderNo与查询字段合法性
         /// </summary>
         /// <param name="options"></param>
         /// <param name="queryable"></param>
@@ -259,7 +259,7 @@ namespace VOL.Core.BaseProvider
             //2020.08.15添加自定义原生查询sql或多租户
 
 
-            //判断列的数据类型数字，日期的需要判断值的格式是否正确
+            //判断列的数据类型数字，Date的需要判断值的格式是否正确
             for (int i = 0; i < searchParametersList.Count; i++)
             {
                 SearchParameters x = searchParametersList[i];
@@ -297,7 +297,7 @@ namespace VOL.Core.BaseProvider
         public virtual PageGridData<T> GetPageData(PageDataOptions options)
         {
             options = ValidatePageOptions(options, out IQueryable<T> queryable);
-            //获取排序字段
+            //获取OrderNo字段
             Dictionary<string, QueryOrderBy> orderbyDic = GetPageDataSort(options, TProperties);
 
             PageGridData<T> pageGridData = new PageGridData<T>();
@@ -354,7 +354,7 @@ namespace VOL.Core.BaseProvider
 
         private PageGridData<Detail> GetDetailPage<Detail>(PageDataOptions options) where Detail : class
         {
-            //校验查询值，排序字段，分页大小规则待完
+            //校验查询值，OrderNo字段，分页大小规则待完
             PageGridData<Detail> gridData = new PageGridData<Detail>();
             if (options.Value == null) return gridData;
             //主表主键字段
@@ -427,7 +427,7 @@ namespace VOL.Core.BaseProvider
 
         private List<string> GetIgnoreTemplate()
         {
-            //忽略创建人、修改人、审核等字段
+            //忽略Creator、Modifier、审核等字段
             List<string> ignoreTemplate = UserIgnoreFields.ToList();
             ignoreTemplate.AddRange(auditFields.ToList());
             return ignoreTemplate;
@@ -529,7 +529,7 @@ namespace VOL.Core.BaseProvider
         }
 
         /// <summary>
-        /// 新建
+        /// Add
         /// </summary>
         /// <param name="saveDataModel"></param>
         /// <returns></returns>
@@ -739,10 +739,10 @@ namespace VOL.Core.BaseProvider
             return Response.Set(ResponseType.SaveSuccess);
         }
 
-        #region 编辑
+        #region Edit
 
         /// <summary>
-        /// 获取编辑明细主键
+        /// 获取Edit明细主键
         /// </summary>
         /// <typeparam name="DetailT"></typeparam>
         /// <typeparam name="Tkey"></typeparam>
@@ -772,8 +772,8 @@ namespace VOL.Core.BaseProvider
         {
             T mainEnity = saveModel.MainData.DicToEntity<T>();
             List<DetailT> detailList = saveModel.DetailData.DicToList<DetailT>();
-            //2021.08.21优化明细表删除
-            //删除的主键
+            //2021.08.21优化明细表Del
+            //Del的主键
             //查出所有明细表数据的ID
             //System.Collections.IList detailKeys = this.GetType().GetMethod("GetUpdateDetailSelectKeys")
             //        .MakeGenericMethod(new Type[] { typeof(DetailT), detailKeyInfo.PropertyType })
@@ -785,9 +785,9 @@ namespace VOL.Core.BaseProvider
             //新增对象
             List<DetailT> addList = new List<DetailT>();
             //   List<object> containsKeys = new List<object>();
-            //编辑对象
+            //Edit对象
             List<DetailT> editList = new List<DetailT>();
-            //删除的主键
+            //Del的主键
             List<object> delKeys = new List<object>();
             mainKeyProperty = typeof(DetailT).GetProperties().Where(x => x.Name == mainKeyProperty.Name).FirstOrDefault();
             //获取新增与修改的对象
@@ -814,10 +814,10 @@ namespace VOL.Core.BaseProvider
                 }
             }
 
-            //获取需要删除的对象的主键
+            //获取需要Del的对象的主键
             if (saveModel.DelKeys != null && saveModel.DelKeys.Count > 0)
             {
-                //2021.08.21优化明细表删除
+                //2021.08.21优化明细表Del
                 delKeys = saveModel.DelKeys.Select(q => q.ChangeType(detailKeyInfo.PropertyType)).Where(x => x != null).ToList();
                 //.Where(x => detailKeys.Contains(x.ChangeType(detailKeyInfo.PropertyType)))
                 //.Select(q => q.ChangeType(detailKeyInfo.PropertyType)).ToList();
@@ -831,7 +831,7 @@ namespace VOL.Core.BaseProvider
             }
             mainEnity.SetModifyDefaultVal();
             //主表修改
-            //不修改!CreateFields.Contains创建人信息
+            //不修改!CreateFields.ContainsCreator信息
             repository.Update(mainEnity, typeof(T).GetEditField()
                 .Where(c => saveModel.MainData.Keys.Contains(c) && !CreateFields.Contains(c))
                 .ToArray());
@@ -842,7 +842,7 @@ namespace VOL.Core.BaseProvider
             //明细修改
             editList.ForEach(x =>
             {
-                //获取编辑的字段
+                //获取Edit的字段
                 var updateField = saveModel.DetailData
                     .Where(c => c[detailKeyInfo.Name].ChangeType(detailKeyInfo.PropertyType)
                     .Equal(detailKeyInfo.GetValue(x)))
@@ -863,7 +863,7 @@ namespace VOL.Core.BaseProvider
                 x.SetCreateDefaultVal();
                 repository.DbContext.Entry<DetailT>(x).State = EntityState.Added;
             });
-            //明细删除
+            //明细Del
             delKeys.ForEach(x =>
             {
                 DetailT delT = Activator.CreateInstance<DetailT>();
@@ -896,7 +896,7 @@ namespace VOL.Core.BaseProvider
         }
 
         /// <summary>
-        /// 获取配置的创建人ID创建时间创建人,修改人ID修改时间、修改人与数据相同的字段
+        /// 获取配置的CreatorIDCreateDateCreator,ModifierIDModifyDate、Modifier与数据相同的字段
         /// </summary>
         private static string[] _userIgnoreFields { get; set; }
 
@@ -939,9 +939,9 @@ namespace VOL.Core.BaseProvider
         }
 
         /// <summary>
-        /// 编辑
-        /// 1、明细表必须把主表的主键字段也设置为可编辑
-        /// 2、修改、增加只会操作设置为编辑列的数据
+        /// Edit
+        /// 1、明细表必须把主表的主键字段也设置为可Edit
+        /// 2、修改、增加只会操作设置为Edit列的数据
         /// </summary>
         /// <param name="saveModel"></param>
         /// <returns></returns>
@@ -967,7 +967,7 @@ namespace VOL.Core.BaseProvider
             //}
             Type type = typeof(T);
 
-            //设置修改时间,修改人的默认值
+            //设置ModifyDate,Modifier的默认值
             UserInfo userInfo = UserContext.Current.UserInfo;
             saveModel.SetDefaultVal(AppSetting.ModifyMember, userInfo);
 
@@ -1033,9 +1033,9 @@ namespace VOL.Core.BaseProvider
                 ))
                 return Response.Error(ResponseType.KeyError);
 
-            if (saveModel.MainData.Count <= 1) return Response.Error("系统没有配置好编辑的数据，请检查model!");
+            if (saveModel.MainData.Count <= 1) return Response.Error("System没有配置好Edit的数据，请检查model!");
 
-            // 2020.08.15添加多租户数据过滤（编辑）
+            // 2020.08.15添加多租户数据过滤（Edit）
             if (IsMultiTenancy && !UserContext.Current.IsSuperAdmin)
             {
                 CheckUpdateMultiTenancy(mainKeyProperty.PropertyType == typeof(Guid) ? "'" + mainKeyVal.ToString() + "'" : mainKeyVal.ToString(), mainKeyProperty.Name);
@@ -1058,7 +1058,7 @@ namespace VOL.Core.BaseProvider
                     Response = UpdateOnExecuting(mainEntity, null, null, null);
                     if (CheckResponseResult()) return Response;
                 }
-                //不修改!CreateFields.Contains创建人信息
+                //不修改!CreateFields.ContainsCreator信息
                 repository.Update(mainEntity, type.GetEditField().Where(c => saveModel.MainData.Keys.Contains(c) && !CreateFields.Contains(c)).ToArray());
                 if (base.UpdateOnExecuted == null)
                 {
@@ -1122,7 +1122,7 @@ namespace VOL.Core.BaseProvider
             }
 
             if (saveModel.DetailData.Exists(c => c.Count <= 2))
-                return Response.Error("系统没有配置好明细编辑的数据，请检查model!");
+                return Response.Error("System没有配置好明细Edit的数据，请检查model!");
             return this.GetType().GetMethod("UpdateToEntity")
                 .MakeGenericMethod(new Type[] { detailType })
                 .Invoke(this, new object[] { saveModel, mainKeyProperty, detailKeyInfo, keyDefaultVal })
@@ -1135,7 +1135,7 @@ namespace VOL.Core.BaseProvider
         /// 
         /// </summary>
         /// <param name="keys"></param>
-        /// <param name="delList">是否删除明细数据(默认会删除明细)</param>
+        /// <param name="delList">是否Del明细数据(默认会Del明细)</param>
         /// <returns></returns>
         public virtual WebResponseContent Del(object[] keys, bool delList = true)
         {
@@ -1150,7 +1150,7 @@ namespace VOL.Core.BaseProvider
             }
             string tKey = keyProperty.Name;
             if (string.IsNullOrEmpty(tKey))
-                return Response.Error("没有主键不能删除");
+                return Response.Error("没有主键不能Del");
 
             if (DelOnExecuting != null)
             {
@@ -1177,7 +1177,7 @@ namespace VOL.Core.BaseProvider
                  ? string.Join(",", keys)
                  : $"'{string.Join("','", keys)}'";
 
-            // 2020.08.15添加判断多租户数据（删除）
+            // 2020.08.15添加判断多租户数据（Del）
             //if (IsMultiTenancy && !UserContext.Current.IsSuperAdmin)
             //{
             //    CheckDelMultiTenancy(joinKeys, tKey);
@@ -1188,7 +1188,7 @@ namespace VOL.Core.BaseProvider
             //}
 
             string sql = $"DELETE FROM {entityType.GetEntityTableName()} where {tKey} in ({joinKeys});";
-            // 2020.08.06增加pgsql删除功能
+            // 2020.08.06增加pgsqlDel功能
             if (DBType.Name == DbCurrentType.PgSql.ToString())
             {
                 sql = $"DELETE FROM \"public\".\"{entityType.GetEntityTableName()}\" where \"{tKey}\" in ({joinKeys});";
@@ -1212,7 +1212,7 @@ namespace VOL.Core.BaseProvider
 
             //repository.DapperContext.ExcuteNonQuery(sql, CommandType.Text, null, true);
 
-            //可能在删除后还要做一些其它数据库新增或删除操作，这样就可能需要与删除保持在同一个事务中处理
+            //可能在Del后还要做一些其它数据库新增或Del操作，这样就可能需要与Del保持在同一个事务中处理
             //采用此方法 repository.DbContextBeginTransaction(()=>{//do delete......and other});
             //做的其他操作，在DelOnExecuted中加入委托实现
             Response = repository.DbContextBeginTransaction(() =>
@@ -1231,7 +1231,7 @@ namespace VOL.Core.BaseProvider
         private static string[] auditFields = new string[] { "auditid", "auditstatus", "auditor", "auditdate", "auditreason" };
 
         /// <summary>
-        /// 审核默认对应数据库字段为AuditId审核人ID ,AuditStatus审核状态,Auditor审核人,Auditdate审核时间,Auditreason审核原因
+        /// 审核默认对应数据库字段为AuditIdAuditId ,AuditStatusAuditStatus,AuditorAuditor,AuditdateAuditDate,Auditreason审核原因
         /// </summary>
         /// <param name="keys"></param>
         /// <param name="auditStatus"></param>
@@ -1246,7 +1246,7 @@ namespace VOL.Core.BaseProvider
             T entity = repository.FindAsIQueryable(whereExpression).FirstOrDefault();
             if (entity == null)
             {
-                return Response.Error($"未查到数据,或者数据已被删除,id:{keys[0]}");
+                return Response.Error($"未查到数据,或者数据已被Del,id:{keys[0]}");
             }
             //进入流程审批
             if (WorkFlowManager.Exists<T>(entity))
@@ -1254,7 +1254,7 @@ namespace VOL.Core.BaseProvider
                 var auditProperty = TProperties.Where(x => x.Name.ToLower() == "auditstatus").FirstOrDefault();
                 if (auditProperty == null)
                 {
-                    return Response.Error("表缺少审核状态字段：AuditStatus");
+                    return Response.Error("表缺少AuditStatus字段：AuditStatus");
                 }
 
                 AuditStatus status = (AuditStatus)Enum.Parse(typeof(AuditStatus), auditStatus.ToString());

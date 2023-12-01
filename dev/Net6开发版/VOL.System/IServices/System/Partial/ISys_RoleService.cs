@@ -18,21 +18,21 @@ namespace VOL.System.IServices
 
         Task<WebResponseContent> SavePermission(List<UserPermissions> userPermissions, int roleId);
         /// <summary>
-        /// 获取角色下所有的角色
+        /// 获取Role_Id下所有的Role_Id
         /// </summary>
         /// <param name="roleId"></param>
         /// <returns></returns>
         Task<List<RoleNodes>> GetAllChildrenAsync(int roleId);
 
         /// <summary>
-        /// 获取角色下所有的角色
+        /// 获取Role_Id下所有的Role_Id
         /// </summary>
         /// <param name="roleId"></param>
         /// <returns></returns>
         List<RoleNodes> GetAllChildren(int roleId);
 
         /// <summary>
-        /// 获取角色下所有的角色Id
+        /// 获取Role_Id下所有的Role_Id
         /// </summary>
         /// <param name="roleId"></param>
         /// <returns></returns>
@@ -40,7 +40,7 @@ namespace VOL.System.IServices
 
         List<int> GetAllChildrenRoleId(int roleId);
         /// <summary>
-        /// 获取当前角色下的所有角色包括自己的角色Id
+        /// 获取当前Role_Id下的所有Role_Id包括自己的Role_Id
         /// </summary>
         /// <returns></returns>
         List<int> GetAllChildrenRoleIdAndSelf();

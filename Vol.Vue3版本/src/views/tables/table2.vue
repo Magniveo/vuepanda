@@ -7,7 +7,7 @@
       :closable="false"
     >
       <p>
-        1、只需要配置好列信息即可从后台加载(自动求和见代码中的备注说明或table组件api)。
+        1、只需要配置好列信息即可从后台加载(自动求和见代码中的Remark说明或table组件api)。
       </p>
       <p>
         2、如果需要筛选条件，在loadTableBefore方法中按demo格式提交查询参数即可
@@ -83,7 +83,7 @@ export default {
             type: "select",
           },
           {
-            title: "创建时间",
+            title: "CreateDate",
             range: true,
             colSize: 6,
             field: "CreateDate",
@@ -123,7 +123,7 @@ export default {
         },
         {
           field: "AuditStatus",
-          title: "审核状态",
+          title: "AuditStatus",
           type: "int",
           bind: { key: "audit", data: [] },
           width: 90,
@@ -139,7 +139,7 @@ export default {
         },
         {
           field: "Remark",
-          title: "备注",
+          title: "Remark",
           type: "string",
           width: 100,
           sort: true,
@@ -153,7 +153,7 @@ export default {
         },
         {
           field: "CreateDate",
-          title: "创建时间",
+          title: "CreateDate",
           type: "datetime",
           width: 90,
           sort: true,

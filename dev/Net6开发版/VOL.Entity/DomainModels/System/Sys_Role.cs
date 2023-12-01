@@ -14,7 +14,7 @@ using VOL.Entity.SystemModels;
 namespace VOL.Entity.DomainModels
 {
     [Table("Sys_Role")]
-    [EntityAttribute(TableCnName = "角色管理")]
+    [EntityAttribute(TableCnName = "Role_Id管理")]
     public class Sys_Role : BaseEntity
     {
         /// <summary>
@@ -27,78 +27,78 @@ namespace VOL.Entity.DomainModels
         public int Role_Id { get; set; }
 
         /// <summary>
-        ///父级ID
+        ///ParentId
         /// </summary>
-        [Display(Name = "父级ID")]
+        [Display(Name = "ParentId")]
         [Column(TypeName = "int")]
         [Editable(true)]
         [Required(AllowEmptyStrings = false)]
         public int ParentId { get; set; }
 
         /// <summary>
-        ///角色名称
+        ///RoleName
         /// </summary>
-        [Display(Name = "角色名称")]
+        [Display(Name = "RoleName")]
         [MaxLength(50)]
         [Column(TypeName = "nvarchar(50)")]
         [Editable(true)]
         public string RoleName { get; set; }
 
         /// <summary>
-        ///部门ID
+        ///Dept_Id
         /// </summary>
-        [Display(Name = "部门ID")]
+        [Display(Name = "Dept_Id")]
         [Column(TypeName = "int")]
         [Editable(true)]
         public int? Dept_Id { get; set; }
 
         /// <summary>
-        ///部门名称
+        ///DeptName
         /// </summary>
-        [Display(Name = "部门名称")]
+        [Display(Name = "DeptName")]
         [MaxLength(50)]
         [Column(TypeName = "nvarchar(50)")]
         [Editable(true)]
         public string DeptName { get; set; }
 
         /// <summary>
-        ///排序
+        ///OrderNo
         /// </summary>
-        [Display(Name = "排序")]
+        [Display(Name = "OrderNo")]
         [Column(TypeName = "int")]
         [Editable(true)]
         public int? OrderNo { get; set; }
 
         /// <summary>
-        ///创建人
+        ///Creator
         /// </summary>
-        [Display(Name = "创建人")]
+        [Display(Name = "Creator")]
         [MaxLength(50)]
         [Column(TypeName = "nvarchar(50)")]
         [Editable(true)]
         public string Creator { get; set; }
 
         /// <summary>
-        ///创建时间
+        ///CreateDate
         /// </summary>
-        [Display(Name = "创建时间")]
+        [Display(Name = "CreateDate")]
         [Column(TypeName = "datetime")]
         [Editable(true)]
         public DateTime? CreateDate { get; set; }
 
         /// <summary>
-        ///修改人
+        ///Modifier
         /// </summary>
-        [Display(Name = "修改人")]
+        [Display(Name = "Modifier")]
         [MaxLength(50)]
         [Column(TypeName = "nvarchar(50)")]
         [Editable(true)]
         public string Modifier { get; set; }
 
         /// <summary>
-        ///修改时间
+        ///ModifyDate
         /// </summary>
-        [Display(Name = "修改时间")]
+        [Display(Name = "ModifyDate")]
         [Column(TypeName = "datetime")]
         [Editable(true)]
         public DateTime? ModifyDate { get; set; }
@@ -113,9 +113,9 @@ namespace VOL.Entity.DomainModels
         public string DeleteBy { get; set; }
 
         /// <summary>
-        ///是否启用
+        ///Enable
         /// </summary>
-        [Display(Name = "是否启用")]
+        [Display(Name = "Enable")]
         [Column(TypeName = "tinyint")]
         [Editable(true)]
         public byte? Enable { get; set; }

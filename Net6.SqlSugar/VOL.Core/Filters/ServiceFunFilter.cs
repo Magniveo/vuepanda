@@ -88,7 +88,7 @@ namespace VOL.Core.Filters
         protected Expression<Func<T, Dictionary<object, QueryOrderBy>>> OrderByExpression;
 
         /// <summary>
-        /// 设置查询的表名(已弃用)
+        /// 设置查询的WorkTable(已弃用)
         /// </summary>
         protected string TableName { get; set; }
 
@@ -180,7 +180,7 @@ namespace VOL.Core.Filters
         /// <summary>
         /// 审批流程审核前
         /// T:当前审核的数据
-        /// AuditStatus:审核状态
+        /// AuditStatus:AuditStatus
         /// bool:当前数据是否为最后一个人审核
         /// </summary>
         protected Func<T, AuditStatus, bool, WebResponseContent> AuditWorkFlowExecuting;
@@ -188,7 +188,7 @@ namespace VOL.Core.Filters
         /// <summary>
         /// 审批流程审核后
         /// T:当前审核的数据
-        /// AuditStatus:审核状态
+        /// AuditStatus:AuditStatus
         /// list:下一个节点的审批人id
         /// bool:当前数据是否为最后一个人审核
         /// </summary>

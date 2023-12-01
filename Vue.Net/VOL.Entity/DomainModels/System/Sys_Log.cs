@@ -30,9 +30,9 @@ namespace VOL.Entity.DomainModels
        public int Id { get; set; }
 
        /// <summary>
-       ///开始时间
+       ///StratDate
        /// </summary>
-       [Display(Name ="开始时间")]
+       [Display(Name ="StratDate")]
        [Column(TypeName="datetime")]
        public DateTime? BeginDate { get; set; }
 
@@ -137,9 +137,9 @@ namespace VOL.Entity.DomainModels
        public int? Role_Id { get; set; }
 
        /// <summary>
-       ///结束时间
+       ///EndDate
        /// </summary>
-       [Display(Name ="结束时间")]
+       [Display(Name ="EndDate")]
        [Column(TypeName="datetime")]
        public DateTime? EndDate { get; set; }
 

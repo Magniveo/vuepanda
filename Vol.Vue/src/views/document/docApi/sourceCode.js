@@ -1180,7 +1180,7 @@ form3:`<div style="color:#D4D4D4;background-color:#1E1E1E;font-family:Consolas, 
               &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {
             </div>
             <div>
-              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color:#9cdcfe;">title</span><span style="color:#9cdcfe;">:</span> <span style="color:#ce9178;">'备注'</span>,
+              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color:#9cdcfe;">title</span><span style="color:#9cdcfe;">:</span> <span style="color:#ce9178;">'Remark'</span>,
             </div>
             <div>
               &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color:#9cdcfe;">required</span><span style="color:#9cdcfe;">:</span> <span style="color:#569cd6;">true</span>,
@@ -1781,7 +1781,7 @@ form3:`<div style="color:#D4D4D4;background-color:#1E1E1E;font-family:Consolas, 
 	  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#9cdcfe;">dataKey</span><span style="color:#9cdcfe;">:</span>&nbsp;<span style="color:#ce9178;">"age"</span>,
   </div>
   <div>
-	  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#9cdcfe;">placeholder</span><span style="color:#9cdcfe;">:</span>&nbsp;<span style="color:#ce9178;">"在这里可设置提示描述"</span>,
+	  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#9cdcfe;">placeholder</span><span style="color:#9cdcfe;">:</span>&nbsp;<span style="color:#ce9178;">"在这里可设置提示Describe"</span>,
   </div>
   <div>
 	  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#6a9955;">//如果这里绑定了data数据，后台不会加载此数据源</span>
@@ -2482,7 +2482,7 @@ form3:`<div style="color:#D4D4D4;background-color:#1E1E1E;font-family:Consolas, 
 	  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
   </div>
   <div>
-	  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#9cdcfe;">title</span><span style="color:#9cdcfe;">:</span>&nbsp;<span style="color:#ce9178;">"备注"</span>,
+	  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#9cdcfe;">title</span><span style="color:#9cdcfe;">:</span>&nbsp;<span style="color:#ce9178;">"Remark"</span>,
   </div>
   <div>
 	  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#9cdcfe;">required</span><span style="color:#9cdcfe;">:</span>&nbsp;<span style="color:#569cd6;">true</span>,
@@ -4874,7 +4874,7 @@ form3:`<div style="color:#D4D4D4;background-color:#1E1E1E;font-family:Consolas, 
 	  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#9cdcfe;">field:</span>&nbsp;<span style="color:#ce9178;">"Describe"</span>,
   </div>
   <div>
-	  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#9cdcfe;">title:</span>&nbsp;<span style="color:#ce9178;">"描述"</span>,
+	  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#9cdcfe;">title:</span>&nbsp;<span style="color:#ce9178;">"Describe"</span>,
   </div>
   <div>
 	  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#9cdcfe;">type:</span>&nbsp;<span style="color:#ce9178;">"string"</span>,
@@ -5712,7 +5712,7 @@ form3:`<div style="color:#D4D4D4;background-color:#1E1E1E;font-family:Consolas, 
 						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {
 					</div>
 					<div>
-						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color:#9cdcfe;">title</span><span style="color:#9cdcfe;">:</span> <span style="color:#ce9178;">"创建时间"</span>,
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color:#9cdcfe;">title</span><span style="color:#9cdcfe;">:</span> <span style="color:#ce9178;">"CreateDate"</span>,
 					</div>
 					<div>
 						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color:#9cdcfe;">range</span><span style="color:#9cdcfe;">:</span> <span style="color:#569cd6;">true</span>,
@@ -5835,7 +5835,7 @@ form3:`<div style="color:#D4D4D4;background-color:#1E1E1E;font-family:Consolas, 
 						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color:#9cdcfe;">field</span><span style="color:#9cdcfe;">:</span> <span style="color:#ce9178;">"Remark"</span>,
 					</div>
 					<div>
-						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color:#9cdcfe;">title</span><span style="color:#9cdcfe;">:</span> <span style="color:#ce9178;">"备注"</span>,
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color:#9cdcfe;">title</span><span style="color:#9cdcfe;">:</span> <span style="color:#ce9178;">"Remark"</span>,
 					</div>
 					<div>
 						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color:#9cdcfe;">type</span><span style="color:#9cdcfe;">:</span> <span style="color:#ce9178;">"string"</span>,
@@ -5880,7 +5880,7 @@ form3:`<div style="color:#D4D4D4;background-color:#1E1E1E;font-family:Consolas, 
 						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color:#9cdcfe;">field</span><span style="color:#9cdcfe;">:</span> <span style="color:#ce9178;">"CreateDate"</span>,
 					</div>
 					<div>
-						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color:#9cdcfe;">title</span><span style="color:#9cdcfe;">:</span> <span style="color:#ce9178;">"创建时间"</span>,
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color:#9cdcfe;">title</span><span style="color:#9cdcfe;">:</span> <span style="color:#ce9178;">"CreateDate"</span>,
 					</div>
 					<div>
 						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color:#9cdcfe;">type</span><span style="color:#9cdcfe;">:</span> <span style="color:#ce9178;">"datetime"</span>,
@@ -6689,7 +6689,7 @@ form3:`<div style="color:#D4D4D4;background-color:#1E1E1E;font-family:Consolas, 
 	  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#9cdcfe;">field:</span>&nbsp;<span style="color:#ce9178;">"Describe"</span>,
   </div>
   <div>
-	  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#9cdcfe;">title:</span>&nbsp;<span style="color:#ce9178;">"描述"</span>,
+	  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#9cdcfe;">title:</span>&nbsp;<span style="color:#ce9178;">"Describe"</span>,
   </div>
   <div>
 	  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#9cdcfe;">type:</span>&nbsp;<span style="color:#ce9178;">"string"</span>,

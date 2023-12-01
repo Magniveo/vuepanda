@@ -44,8 +44,8 @@ namespace VOL.Core.Quartz
             }
             if (string.IsNullOrEmpty(taskOptions.ApiUrl) || taskOptions.ApiUrl == "/")
             {
-                Console.WriteLine($"未配置作业:{taskOptions.TaskName}的url地址");
-                QuartzFileHelper.Error($"未配置作业:{taskOptions.TaskName}的url地址");
+                Console.WriteLine($"未配置作业:{taskOptions.TaskName}的ApiUrl");
+                QuartzFileHelper.Error($"未配置作业:{taskOptions.TaskName}的ApiUrl");
                 return;
             }
             string exceptionMsg = null;

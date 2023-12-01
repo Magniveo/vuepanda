@@ -26,9 +26,9 @@ namespace VOL.Entity.DomainModels
        public Guid WorkFlow_Id { get; set; }
 
        /// <summary>
-       ///流程名称
+       ///WorkName
        /// </summary>
-       [Display(Name ="流程名称")]
+       [Display(Name ="WorkName")]
        [MaxLength(200)]
        [Column(TypeName="nvarchar(200)")]
        [Editable(true)]
@@ -36,9 +36,9 @@ namespace VOL.Entity.DomainModels
        public string WorkName { get; set; }
 
        /// <summary>
-       ///表名
+       ///WorkTable
        /// </summary>
-       [Display(Name ="表名")]
+       [Display(Name ="WorkTable")]
        [MaxLength(200)]
        [Column(TypeName="nvarchar(200)")]
        [Editable(true)]
@@ -46,18 +46,18 @@ namespace VOL.Entity.DomainModels
        public string WorkTable { get; set; }
 
        /// <summary>
-       ///功能菜单
+       ///WorkTableName
        /// </summary>
-       [Display(Name ="功能菜单")]
+       [Display(Name ="WorkTableName")]
        [MaxLength(200)]
        [Column(TypeName="nvarchar(200)")]
        [Editable(true)]
        public string WorkTableName { get; set; }
 
        /// <summary>
-       ///权重(相同条件权重大的优先匹配)
+       ///Weight(相同条件Weight大的优先匹配)
        /// </summary>
-       [Display(Name ="权重(相同条件权重大的优先匹配)")]
+       [Display(Name ="Weight(相同条件Weight大的优先匹配)")]
        [Column(TypeName="int")]
        [Editable(true)]
        public int? Weight { get; set; }
@@ -71,25 +71,25 @@ namespace VOL.Entity.DomainModels
        public byte? Enable { get; set; }
 
        /// <summary>
-       ///节点信息
+       ///NodeConfig
        /// </summary>
-       [Display(Name ="节点信息")]
+       [Display(Name ="NodeConfig")]
        [Column(TypeName="nvarchar(max)")]
        [Editable(true)]
        public string NodeConfig { get; set; }
 
        /// <summary>
-       ///连接配置
+       ///LineConfig
        /// </summary>
-       [Display(Name ="连接配置")]
+       [Display(Name ="LineConfig")]
        [Column(TypeName="nvarchar(max)")]
        [Editable(true)]
        public string LineConfig { get; set; }
 
        /// <summary>
-       ///备注
+       ///Remark
        /// </summary>
-       [Display(Name ="备注")]
+       [Display(Name ="Remark")]
        [MaxLength(500)]
        [Column(TypeName="nvarchar(500)")]
        [Editable(true)]
@@ -111,9 +111,9 @@ namespace VOL.Entity.DomainModels
        public string Creator { get; set; }
 
        /// <summary>
-       ///创建时间
+       ///CreateDate
        /// </summary>
-       [Display(Name ="创建时间")]
+       [Display(Name ="CreateDate")]
        [Column(TypeName="datetime")]
        public DateTime? CreateDate { get; set; }
 
@@ -133,9 +133,9 @@ namespace VOL.Entity.DomainModels
        public string Modifier { get; set; }
 
        /// <summary>
-       ///修改时间
+       ///ModifyDate
        /// </summary>
-       [Display(Name ="修改时间")]
+       [Display(Name ="ModifyDate")]
        [Column(TypeName="datetime")]
        public DateTime? ModifyDate { get; set; }
 

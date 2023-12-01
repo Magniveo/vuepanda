@@ -13,10 +13,10 @@ namespace VOL.Core.Filters
 {
     /// <summary>
     /// 1、控制器或controller设置了AllowAnonymousAttribute直接返回
-    /// 2、TableName、TableAction 同时为null，SysController为false的，只判断是否登陆
-    /// 3、TableName、TableAction 都不null根据表名与action判断是否有权限
-    /// 4、SysController为true，通过httpcontext获取表名与action判断是否有权限
-    /// 5、Roles对指定角色验证
+    /// 2、TableName、TableAction 同时为null，SysController为false的，只判断是否Login
+    /// 3、TableName、TableAction 都不null根据WorkTable与action判断是否有权限
+    /// 4、SysController为true，通过httpcontext获取WorkTable与action判断是否有权限
+    /// 5、Roles对指定Role_Id验证
     /// </summary>
     public class ActionPermissionFilter : IAsyncActionFilter
     {
@@ -50,14 +50,14 @@ namespace VOL.Core.Filters
                 || UserContext.Current.IsSuperAdmin)
                 return ResponseContent.OK();
 
-            //演示环境除了admin帐号，其他帐号都不能增删改等操作
+            //演示环境除了adminUserName，其他UserName都不能增删改等操作
             if (!_userContext.IsSuperAdmin && AppSetting.GlobalFilter.Enable
                 && AppSetting.GlobalFilter.Actions.Contains(((Microsoft.AspNetCore.Mvc.Controllers.ControllerActionDescriptor)context.ActionDescriptor).ActionName))
             { 
                 return ResponseContent.Error(AppSetting.GlobalFilter.Message);
             }
 
-            //如果没有指定表的权限，则默认为代码生成的控制器，优先获取PermissionTableAttribute指定的表，如果没有数据则使用当前控制器的名作为表名权限
+            //如果没有指定表的权限，则默认为代码生成的控制器，优先获取PermissionTableAttribute指定的表，如果没有数据则使用当前控制器的名作为WorkTable权限
             if (ActionPermission.SysController)
             {
                 object[] permissionArray = ((Microsoft.AspNetCore.Mvc.Controllers.ControllerActionDescriptor)context.ActionDescriptor)?.ControllerTypeInfo.GetCustomAttributes(typeof(PermissionTableAttribute), false);
@@ -84,12 +84,12 @@ namespace VOL.Core.Filters
                 return ResponseContent.OK();
             }
 
-            //是否限制的角色ID称才能访问
-            //权限判断角色ID,
+            //是否限制的Role_Id称才能访问
+            //权限判断Role_Id,
             if (ActionPermission.RoleIds != null && ActionPermission.RoleIds.Length > 0)
             {
                 if (ActionPermission.RoleIds.Contains(_userContext.UserInfo.Role_Id)) return ResponseContent.OK();
-                //如果角色ID没有权限。并且也没控制器权限
+                //如果Role_Id没有权限。并且也没控制器权限
                 if (string.IsNullOrEmpty(ActionPermission.TableAction))
                 {
                     return ResponseContent.Error(ResponseType.NoRolePermissions);
@@ -110,8 +110,8 @@ namespace VOL.Core.Filters
                 if (!actionAuth)
                 {
                     Logger.Info(LoggerType.Authorzie, $"没有权限操作," +
-                   $"用户ID{_userContext.UserId}:{_userContext.UserTrueName}," +
-                   $"角色ID:{_userContext.RoleId}:{_userContext.UserInfo.RoleName}," +
+                   $"User_Id{_userContext.UserId}:{_userContext.UserTrueName}," +
+                   $"Role_Id:{_userContext.RoleId}:{_userContext.UserInfo.RoleName}," +
                    $"操作权限{ActionPermission.TableName}:{ActionPermission.TableAction}");
                     return ResponseContent.Error(ResponseType.NoPermissions);
                 }

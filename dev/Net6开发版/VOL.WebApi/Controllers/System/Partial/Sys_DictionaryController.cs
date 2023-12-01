@@ -28,7 +28,7 @@ namespace VOL.System.Controllers
             return Json(Service.GetTableDictionary(keyData));
         }
         /// <summary>
-        /// 远程搜索
+        /// Enable搜索
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
@@ -39,7 +39,7 @@ namespace VOL.System.Controllers
         }
 
         /// <summary>
-        /// 表单设置为远程查询，重置或第一次添加表单时，获取字典的key、value
+        /// 表单设置为Enable查询，重置或第一次添加表单时，获取字典的key、value
         /// </summary>
         /// <param name="dicNo"></param>
         /// <param name="key"></param>

@@ -30,27 +30,27 @@ let extension = {
       }
     },
     gridFooter: '',
-    //新建、编辑弹出框扩展组件
+    //Add、Edit弹出框扩展组件
     modelHeader: '',
     modelBody: '',
     modelFooter: ''
   },
-  tableAction: '', //指定某张表的权限(这里填写表名,默认不用填写)
+  tableAction: '', //指定某张表的权限(这里填写WorkTable,默认Dept_Id填写)
   buttons: { view: [], box: [], detail: [] }, //扩展的按钮
   methods: {
-    //下面这些方法可以保留也可以删除
+    //下面这些方法可以保留也可以Del
     onInit() {
       //框架初始化配置前，
       //示例：在按钮的最前面添加一个按钮
       //   this.buttons.unshift({  //也可以用push或者splice方法来修改buttons数组
-      //     name: '按钮', //按钮名称
+      //     name: '按钮', //按钮ExpertName
       //     icon: 'el-icon-document', //按钮图标vue2版本见iview文档icon，vue3版本见element ui文档icon(注意不是element puls文档)
       //     type: 'primary', //按钮样式vue2版本见iview文档button，vue3版本见element ui文档button
       //     onClick: function () {
       //       this.$Message.success('点击了按钮');
       //     }
       //   });
-      //示例：设置修改新建、编辑弹出框字段标签的长度
+      //示例：设置修改Add、Edit弹出框字段标签的长度
       // this.boxOptions.labelWidth = 150;
     },
     onInited() {
@@ -69,11 +69,11 @@ let extension = {
       return true;
     },
     addBefore(formData) {
-      //新建保存前formData为对象，包括明细表，可以给给表单设置值，自己输出看formData的值
+      //Add保存前formData为对象，包括明细表，可以给给表单设置值，自己输出看formData的值
       return true;
     },
     updateBefore(formData) {
-      //编辑保存前formData为对象，包括明细表、删除行的Id
+      //Edit保存前formData为对象，包括明细表、Del行的Id
       return true;
     },
     rowClick({ row, column, event }) {
@@ -81,7 +81,7 @@ let extension = {
       // this.$refs.table.$refs.table.toggleRowSelection(row); //单击行时选中当前行;
     },
     async modelOpenBeforeAsync(row) {
-      //点击编辑/新建按钮弹出框前，可以在此处写逻辑，如，从后台获取数据
+      //点击Edit/Add按钮弹出框前，可以在此处写逻辑，如，从后台获取数据
       this.$refs.gridHeader.open(row);
       return false;
     }

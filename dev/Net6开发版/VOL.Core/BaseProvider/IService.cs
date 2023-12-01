@@ -70,7 +70,7 @@ namespace VOL.Core.BaseProvider
         /// <returns></returns>
         WebResponseContent Add<TDetail>(T entity, List<TDetail> list = null, bool validationEntity = true) where TDetail : class;
         /// <summary>
-        /// 编辑
+        /// Edit
         /// </summary>
         /// <param name="saveDataModel">主表与子表的数据</param>
         /// <returns></returns>
@@ -78,10 +78,10 @@ namespace VOL.Core.BaseProvider
 
 
         /// <summary>
-        /// 删除数据
+        /// Del数据
         /// </summary>
-        /// <param name="keys">删除的主键</param>
-        /// <param name="delList">是否删除对应明细(默认会删除明细)</param>
+        /// <param name="keys">Del的主键</param>
+        /// <param name="delList">是否Del对应明细(默认会Del明细)</param>
         /// <returns></returns>
         WebResponseContent Del(object[] keys, bool delList = true);
 

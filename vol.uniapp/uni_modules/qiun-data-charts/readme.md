@@ -140,7 +140,7 @@ localdata:[
 
 - 标准数据格式2：（饼图、圆环图、漏斗图等不需要categories的图表类型）
 
-其中value代表数据的数值，text代表value数值对应的描述。
+其中value代表数据的数值，text代表value数值对应的Describe。
 
 ```
 localdata:[
@@ -234,8 +234,8 @@ localdata:[
 |tooltipCustom|Object|undefined|否|（仅uCharts）如果以上系统自带的Tooltip格式化方案仍然不满足您，您可以用此属性实现更多需求，详见下面【tooltipCustom自定义】|
 |startDate|String|undefined|否|需为标准时间格式，例如"2021-02-14"。用于配合uniClinetDB自动生成categories使用|
 |endDate|String|undefined|否|需为标准时间格式，例如"2021-03-31"。用于配合uniClinetDB自动生成categories使用|
-|groupEnum|Array|[]|否|当使用到uniCloud数据库时，group字段属性如果遇到统计枚举属性的字段，需要通过将DB Schema中的enum的描述定义指派给该属性，具体格式为[{value: 1,text: "男"},{value: 2,text: "女"}]|
-|textEnum|Array|[]|否|当使用到uniCloud数据库时，text字段属性如果遇到统计枚举属性的字段，需要通过将DB Schema中的enum的描述定义指派给该属性，具体格式为[{value: 1,text: "男"},{value: 2,text: "女"}]|
+|groupEnum|Array|[]|否|当使用到uniCloud数据库时，group字段属性如果遇到统计枚举属性的字段，需要通过将DB Schema中的enum的Describe定义指派给该属性，具体格式为[{value: 1,text: "男"},{value: 2,text: "女"}]|
+|textEnum|Array|[]|否|当使用到uniCloud数据库时，text字段属性如果遇到统计枚举属性的字段，需要通过将DB Schema中的enum的Describe定义指派给该属性，具体格式为[{value: 1,text: "男"},{value: 2,text: "女"}]|
 |ontap|Boolean|true|否|是否监听@tap@cilck事件，禁用后不会触发组件点击事件|
 |ontouch|Boolean|false|否|（仅uCharts）是否监听@touchstart@touchmove@touchend事件（赋值为true时，非PC端在图表区域内无法拖动页面滚动）|
 |onmouse|Boolean|true|否|是否监听@mousedown@mousemove@mouseup事件，禁用后鼠标经过图表上方不会显示tooltip|
@@ -317,7 +317,7 @@ tooltipCustom属性如下：
 
 |属性名|类型|默认值|说明|
 | -- | -- | -- | -- |
-|collection|String| |表名。支持输入多个表名，用 , 分割|
+|collection|String| |WorkTable。支持输入多个WorkTable，用 , 分割|
 |field|String| |查询字段，多个字段用 , 分割|
 |where|String| |查询条件，内容较多，另见jql文档：[详情](https://uniapp.dcloud.net.cn/uniCloud/uni-clientDB?id=jsquery)|
 |orderby|String| |排序字段及正序倒叙设置|

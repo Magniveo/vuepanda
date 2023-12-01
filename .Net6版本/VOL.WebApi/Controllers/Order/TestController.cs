@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace VOL.WebApi.Controllers.Order
 {
     /// <summary>
-    /// 测试swagger对控制器的注释描述
+    /// 测试swagger对控制器的注释Describe
     /// </summary>
     [ApiExplorerSettings(GroupName = "v2")]//Select a definition 下拉选项
     public class TestController : Controller

@@ -15,7 +15,7 @@
 //        /// DataTable 导出到 Excel 的 MemoryStream
 //        /// </summary>
 //        /// <param name="dtSource">源 DataTable</param>
-//        /// <param name="strHeaderText">表头文本 空值未不要表头标题</param>
+//        /// <param name="strHeaderText">表头文本 空值未不要表头Title</param>
 //        /// <returns></returns>
 //        public static MemoryStream ExportExcel(DataTable dtSource, string strHeaderText)
 //        {
@@ -58,7 +58,7 @@
 //            int intTop = 0;
 //            foreach (DataRow row in dtSource.Rows)
 //            {
-//                #region 新建表、填充表头、填充列头，样式
+//                #region Add表、填充表头、填充列头，样式
 //                if (rowIndex == 65535 || rowIndex == 0)
 //                {
 //                    if (rowIndex != 0)
@@ -120,7 +120,7 @@
 //                        case "System.String"://字符串类型
 //                            newCell.SetCellValue(drValue);
 //                            break;
-//                        case "System.DateTime"://日期类型
+//                        case "System.DateTime"://Date类型
 //                            DateTime dateV;
 //                            DateTime.TryParse(drValue, out dateV);
 //                            newCell.SetCellValue(dateV);
@@ -233,7 +233,7 @@
 //        /// DataSet 导出到 Excel 的 MemoryStream
 //        /// </summary>
 //        /// <param name="dsSource">源 DataSet</param>
-//        /// <param name="strHeaderText">表头文本 空值未不要表头标题(多个表对应多个表头以英文逗号(,)分开，个数应与表相同)</param>
+//        /// <param name="strHeaderText">表头文本 空值未不要表头Title(多个表对应多个表头以英文逗号(,)分开，个数应与表相同)</param>
 //        /// <returns></returns>
 //        public static MemoryStream ExportExcel(DataSet dsSource, string strHeaderText)
 //        {
@@ -283,7 +283,7 @@
 //            //int intTop = 0;
 //            //foreach (DataRow row in dtSource.Rows)
 //            //{
-//            //    #region 新建表、填充表头、填充列头，样式
+//            //    #region Add表、填充表头、填充列头，样式
 //            //    if (rowIndex == 65535 || rowIndex == 0)
 //            //    {
 //            //        if (rowIndex != 0)
@@ -345,7 +345,7 @@
 //            //            case "System.String"://字符串类型
 //            //                newCell.SetCellValue(drValue);
 //            //                break;
-//            //            case "System.DateTime"://日期类型
+//            //            case "System.DateTime"://Date类型
 //            //                DateTime dateV;
 //            //                DateTime.TryParse(drValue, out dateV);
 //            //                newCell.SetCellValue(dateV);
@@ -405,7 +405,7 @@
 //        /// </summary>
 //        /// <param name="workbook">源 workbook</param>
 //        /// <param name="dtSource">源 DataTable</param>
-//        /// <param name="strHeaderText">表头文本 空值未不要表头标题(多个表对应多个表头以英文逗号(,)分开，个数应与表相同)</param>
+//        /// <param name="strHeaderText">表头文本 空值未不要表头Title(多个表对应多个表头以英文逗号(,)分开，个数应与表相同)</param>
 //        /// <returns></returns>
 //        public static void ExportFromDSExcel(HSSFWorkbook workbook, DataTable dtSource, string strHeaderText)
 //        {
@@ -434,7 +434,7 @@
 //            int intTop = 0;
 //            foreach (DataRow row in dtSource.Rows)
 //            {
-//                #region 新建表、填充表头、填充列头，样式
+//                #region Add表、填充表头、填充列头，样式
 //                if (rowIndex == 65535 || rowIndex == 0)
 //                {
 //                    if (rowIndex != 0)
@@ -505,7 +505,7 @@
 //                        case "System.String"://字符串类型
 //                            newCell.SetCellValue(drValue);
 //                            break;
-//                        case "System.DateTime"://日期类型
+//                        case "System.DateTime"://Date类型
 //                            if (drValue.Length > 0)
 //                            {
 //                                DateTime dateV;

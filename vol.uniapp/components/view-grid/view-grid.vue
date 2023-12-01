@@ -205,8 +205,8 @@
 				sortName: '',
 				orderType: 'desc',
 				sortSelectModel: false, //排序弹出框
-				tableUrl: "", //table加载的url地址
-				tableAction: "", //指定表名的权限
+				tableUrl: "", //table加载的ApiUrl
+				tableAction: "", //指定WorkTable的权限
 				showDel: false,
 				isCreated: false,
 				labelWidth: 80, //编辑弹出框表单标签的宽度

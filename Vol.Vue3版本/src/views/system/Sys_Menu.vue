@@ -55,10 +55,10 @@
                   :closable="false"
                   show-icon>
           <div>
-            1、如果是用代码生器生成的Vue页面,Url为Vue项目中src->router->viewGrid.js对应表名的path属性
+            1、如果是用代码生器生成的Vue页面,Url为Vue项目中src->router->viewGrid.js对应WorkTable的path属性
           </div>
           <div style="padding-top: 5px">
-            2、 如果只是建一级菜单或空菜单url不用填写,【视图/表名】填写.或者/
+            2、 如果只是建一级菜单或空菜单url不用填写,【视图/WorkTable】填写.或者/
           </div>
         </el-alert>
         <div style="padding: 0px 30px 0 20px">
@@ -381,7 +381,7 @@ export default defineComponent({
       ],
       [
         {
-          title: "视图/表名",
+          title: "视图/WorkTable",
           field: "tableName",
           placeholder: "与代码生成器使用的名称相同",
           required: true,

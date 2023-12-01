@@ -95,7 +95,7 @@ export default {
       //  {
       //     required: true,
       //     field: "BeginDate",
-      //     title: "开始时间",
+      //     title: "StratDate",
       //     type: "datetime",
       //     width: 150,
       //     align: "left",
@@ -103,7 +103,7 @@ export default {
       //   },
       //   {
       //     field: "EndDate",
-      //     title: "结束时间",
+      //     title: "EndDate",
       //     type: "datetime",
       //     width: 150,
       //     align: "left",

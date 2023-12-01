@@ -12,8 +12,8 @@ namespace VOL.Entity.DomainModels
         [Required(ErrorMessage = "用户名不能为空")]
         public string UserName { get; set; }
         [MaxLength(50)]
-        [Display(Name = "密码")]
-        [Required(ErrorMessage = "密码不能为空")]
+        [Display(Name = "UserPwd")]
+        [Required(ErrorMessage = "UserPwd不能为空")]
         public string Password { get; set; }
         [MaxLength(6)]
         [Display(Name = "验证码")]

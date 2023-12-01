@@ -5,7 +5,7 @@ export default {
             type: [String, Number],
             default: uni.$u.props.cell.title
         },
-        // 标题下方的描述信息
+        // 标题下方的Describe信息
         label: {
             type: [String, Number],
             default: uni.$u.props.cell.label
@@ -35,7 +35,7 @@ export default {
             type: Boolean,
             default: uni.$u.props.cell.center
         },
-        // 点击后跳转的URL地址
+        // 点击后跳转的ApiUrl
         url: {
             type: String,
             default: uni.$u.props.cell.url

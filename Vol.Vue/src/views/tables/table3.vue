@@ -129,7 +129,7 @@ export default {
         },
         {
           field: "Describe",
-          title: "描述",
+          title: "Describe",
           type: "string",
           width: 120,
           require: true,

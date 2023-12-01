@@ -17,7 +17,7 @@ let extension = {
   },
 
     gridFooter: '',
-    //弹出框(修改、编辑、查看)header、content、footer对应位置扩充的组件
+    //弹出框(修改、Edit、查看)header、content、footer对应位置扩充的组件
     modelHeader: '',
     modelBody: '',
     modelFooter: ''
@@ -30,7 +30,7 @@ let extension = {
        this.editFormOptions.forEach(x => {
         x.forEach(item => {
           if (item.field == 'ParentId') {
-            item.title = "上级角色";
+            item.title = "上级Role_Id";
             //设置任意节点都能选中(默认只能选中最后一个节点)
             item.changeOnSelect = true;
           }

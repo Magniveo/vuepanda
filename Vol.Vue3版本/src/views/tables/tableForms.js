@@ -66,7 +66,7 @@ let options = {
         ],
         [
             {
-                title: "备注",
+                title: "Remark",
                 required: true,
                 field: "IsTop",
                 colSize: 12, //设置12，此列占100%宽度
@@ -85,7 +85,7 @@ let options = {
         },
         {
             field: "AuditStatus",
-            title: "审核状态",
+            title: "AuditStatus",
             bind: {
                 key: "audit",
                 data: [

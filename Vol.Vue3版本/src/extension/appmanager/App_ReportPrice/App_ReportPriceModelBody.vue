@@ -185,14 +185,14 @@ export default {
 
         {
           field: "createDate",
-          title: "创建时间",
+          title: "CreateDate",
           type: "text",
           edit: { type: "datetime" },
           width: 150,
         },
         {
           field: "describe",
-          title: "描述",
+          title: "Describe",
           type: "text",
           edit: { type: "text" },
           width: 500,

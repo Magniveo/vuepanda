@@ -55,7 +55,7 @@
 	 * @tutorial https://www.uviewui.com/components/collapse.html
 	 * @property {String}			title 		标题
 	 * @property {String}			value 		标题右侧内容
-	 * @property {String}			label 		标题下方的描述信息
+	 * @property {String}			label 		标题下方的Describe信息
 	 * @property {Boolean}			disbled 	是否禁用折叠面板 ( 默认 false )
 	 * @property {Boolean}			isLink 		是否展示右侧箭头并开启点击反馈 ( 默认 true )
 	 * @property {Boolean}			clickable	是否开启点击反馈 ( 默认 true )

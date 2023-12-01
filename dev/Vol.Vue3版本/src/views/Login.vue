@@ -17,7 +17,7 @@
         </div>
         <div class="item">
           <div class="input-icon el-icon-lock"></div>
-          <input type="password" v-focus v-model="userInfo.password" placeholder="请输入密码" />
+          <input type="password" v-focus v-model="userInfo.password" placeholder="请输入UserPwd" />
         </div>
         <div class="item">
           <div class="input-icon el-icon-mobile"></div>
@@ -37,8 +37,8 @@
 
       <!-- 账号信息 -->
       <div class="account-info">
-        <p>演示账号：admin666 &nbsp; &nbsp;密码:123456</p>
-        <p>本地账号：admin &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;密码:123456</p>
+        <p>演示账号：admin666 &nbsp; &nbsp;UserPwd:123456</p>
+        <p>本地账号：admin &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;UserPwd:123456</p>
         <p><a href="https://jq.qq.com/?_wv=1027&k=Sqstuy0M" style="text-decoration: none"
             target="_blank">QQ3群:743852316</a>
           &nbsp; &nbsp;&nbsp; &nbsp;
@@ -70,7 +70,7 @@
       <a href="https://dotnet9.com/" style="text-decoration: none" target="blank">Dotnet9</a>
       <a href="https://space.bilibili.com/525836469" style="text-decoration: none" target="blank">NET视频教程(微软MVP-ACE录制)</a>
       <a href="https://www.cctalk.com/m/group/90268531" style="text-decoration: none" target="blank">VOL框架视频</a>
-      <a href="http://120.48.115.252:9990" style="text-decoration: none" target="blank">视频演示地址</a>
+      <a href="http://120.48.115.252:9990" style="text-decoration: none" target="blank">视频演示Address</a>
     </div>
 
     <img class="login-bg" src="/static/login_bg.png" />
@@ -86,10 +86,12 @@ import {
   toRefs,
   getCurrentInstance
 } from 'vue';
+import {mapActions} from 'vuex';
 import { useRouter, useRoute } from 'vue-router';
 import store from '../store/index';
 import http from '@/../src/api/http.js';
 export default defineComponent({
+  //...mapActions(['getLocalization']),
   setup(props, context) {
     store.commit('clearUserInfo', '');
     const loading = ref(false);
@@ -115,7 +117,7 @@ export default defineComponent({
 
     const login = () => {
       if (!userInfo.userName) return $message.error('请输入用户名');
-      if (!userInfo.password) return $message.error('请输入密码');
+      if (!userInfo.password) return $message.error('请输入UserPwd');
       if (!userInfo.verificationCode) {
         return $message.error('请输入验证码');
       }

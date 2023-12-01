@@ -132,7 +132,7 @@ namespace VOL.Core.Utilities
                         {
                             if (options.KeyValues == null)
                             {
-                                return responseContent.Error($"[{options.ColumnCNName}]字段数字典编号[{options.DropNo}]缺失,请检查字典配置");
+                                return responseContent.Error($"[{options.ColumnCNName}]字段数DicNo[{options.DropNo}]缺失,请检查字典配置");
                             }
                             string key = null;
                             //2022.11.21增加导入多选的支持
@@ -164,7 +164,7 @@ namespace VOL.Core.Utilities
                         }
                         else if (property.PropertyType == typeof(DateTime) || property.PropertyType == typeof(DateTime?))
                         {
-                            //2021.06.04增加日期格式处理
+                            //2021.06.04增加Date格式处理
                             if (value.Length == 5 && int.TryParse(value, out int days))
                             {
                                 property.SetValue(entity, new DateTime(1900, 1, 1).AddDays(days - 2));
@@ -299,7 +299,7 @@ namespace VOL.Core.Utilities
         }
 
         /// <summary>
-        /// 导出excel文件(导入功能里的导出模板也使用的此功能，list传的null，导出的文件只有模板的标题)
+        /// 导出excel文件(导入功能里的导出模板也使用的此功能，list传的null，导出的文件只有模板的Title)
         /// (202.05.07)
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -316,7 +316,7 @@ namespace VOL.Core.Utilities
         }
 
         /// <summary>
-        /// 导出excel文件(导入功能里的导出模板也使用的此功能，list传的null，导出的文件只有模板的标题)
+        /// 导出excel文件(导入功能里的导出模板也使用的此功能，list传的null，导出的文件只有模板的Title)
         /// (202.05.07)
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -350,7 +350,7 @@ namespace VOL.Core.Utilities
 
             //2020.06.02优化读取导出列配置信息
             //导出指定的列
-            //如果指定了导出的标题列，忽略的标题列不再起作用
+            //如果指定了导出的Title列，忽略的Title列不再起作用
             if (exportColumns != null && exportColumns.Count() > 0)
             {
                 propertyInfo = new List<PropertyInfo>();
@@ -510,7 +510,7 @@ namespace VOL.Core.Utilities
         {
             //&& x.IsDisplay == 1&&x.IsReadDataset==0只导出代码生器中设置为显示并且不是只读的列，可根据具体业务设置导出列
             // && x.IsReadDataset == 0
-            //2020.06.02增加不区分大表名大小写: 原因mysql可能是表名是小写，但生成model的时候强制大写
+            //2020.06.02增加不区分大WorkTable大小写: 原因mysql可能是WorkTable是小写，但生成model的时候强制大写
             //x => x.TableName.ToLower() == tableName.ToLower()
             var query = DBServerProvider.DbContext.Set<Sys_TableColumn>().Where(x => x.TableName.ToLower() == tableName.ToLower());
             if (columns != null && columns.Length > 0)
@@ -651,7 +651,7 @@ namespace VOL.Core.Utilities
     {
         public string ColumnName { get; set; }//导出表的列
         public string ColumnCNName { get; set; }//导出列的中文名
-        public string DropNo { get; set; }//字典编号
+        public string DropNo { get; set; }//DicNo
         public int ColumnWidth { get; set; }//导出列的宽度,代码生成维护的宽度
         public bool Requierd { get; set; } //是否必填
         public int Index { get; set; }//列所在模板的序号(导入用)
@@ -661,6 +661,6 @@ namespace VOL.Core.Utilities
         //对应字典项维护的Key,Value
         public Dictionary<string, string> KeyValues { get; set; }
         //public string Value { get; set; } //对应字典项维护的Value
-        //public string Name { get; set; } //对应字典项显示的名称
+        //public string Name { get; set; } //对应字典项显示的ExpertName
     }
 }

@@ -54,9 +54,9 @@ namespace VOL.Entity.DomainModels
        public string StepId { get; set; }
 
        /// <summary>
-       ///节点名称
+       ///StepName
        /// </summary>
-       [Display(Name ="节点名称")]
+       [Display(Name ="StepName")]
        [MaxLength(200)]
        [Column(TypeName="nvarchar(200)")]
        [Editable(true)]

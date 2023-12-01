@@ -43,7 +43,7 @@ namespace VOL.WebApi.Controllers.Hubs
             //添加到一个组下
             //await Groups.AddToGroupAsync(Context.ConnectionId, "SignalR Users");
             //发送上线消息
-            //await Clients.All.SendAsync("ReceiveHomePageMessage", 1, new { title = "系统消息", content = $"{Context.ConnectionId} 上线" });
+            //await Clients.All.SendAsync("ReceiveHomePageMessage", 1, new { title = "System消息", content = $"{Context.ConnectionId} 上线" });
             await base.OnConnectedAsync();
         }
 
@@ -55,12 +55,12 @@ namespace VOL.WebApi.Controllers.Hubs
         public override async Task OnDisconnectedAsync(Exception ex)
         {
             //Console.WriteLine($"断开连接{Context.ConnectionId}");
-            //从组中删除
+            //从组中Del
             // await Groups.RemoveFromGroupAsync(Context.ConnectionId, "SignalR Users");
             //可自行调用下线业务处理方法...
             await UserOffline();
             //发送下线消息
-            //   await Clients.All.SendAsync("ReceiveHomePageMessage", 4, new { title = "系统消息", content = $"{Context.ConnectionId} 离线" });
+            //   await Clients.All.SendAsync("ReceiveHomePageMessage", 4, new { title = "System消息", content = $"{Context.ConnectionId} 离线" });
             await base.OnDisconnectedAsync(ex);
         }
 
@@ -83,7 +83,7 @@ namespace VOL.WebApi.Controllers.Hubs
         /// <summary>
         /// 发送给指定的人
         /// </summary>
-        /// <param name="username">sys_user表的登陆帐号</param>
+        /// <param name="username">sys_user表的LoginUserName</param>
         /// <param name="message">发送的消息</param>
         /// <returns></returns>
         public async Task<bool> SendHomeMessage(string username, string title, string message)
@@ -109,7 +109,7 @@ namespace VOL.WebApi.Controllers.Hubs
         public async Task<bool> UserOffline()
         {
             var cid = Context.ConnectionId;//也可以从缓存中获取ConnectionId
-            //  await Clients.Client(cid).SendAsync("ReceiveHomePageMessage", 3, new { title = "系统消息", content = "离线成功" });
+            //  await Clients.Client(cid).SendAsync("ReceiveHomePageMessage", 3, new { title = "System消息", content = "离线成功" });
             //移除缓存
             if (_connectionIds.TryRemove(cid, out string value))
             {

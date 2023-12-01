@@ -13,15 +13,15 @@ let extension = {
     gridHeader: '',
     gridBody: gridBody,
     gridFooter: '',
-    //新建、编辑弹出框扩展组件
+    //Add、Edit弹出框扩展组件
     modelHeader: '',
     modelBody: '',
     modelFooter: ''
   },
-  tableAction: '', //指定某张表的权限(这里填写表名,默认不用填写)
+  tableAction: '', //指定某张表的权限(这里填写WorkTable,默认Dept_Id填写)
   buttons: { view: [], box: [], detail: [] }, //扩展的按钮
   methods: {
-    //下面这些方法可以保留也可以删除
+    //下面这些方法可以保留也可以Del
     onInit() {
       this.textInline = false;
       this.columns.push({
@@ -77,7 +77,7 @@ let extension = {
           ]);
         }
       });
-      //示例：设置修改新建、编辑弹出框字段标签的长度
+      //示例：设置修改Add、Edit弹出框字段标签的长度
       // this.boxOptions.labelWidth = 150;
     },
     request(action, row) {
@@ -128,11 +128,11 @@ let extension = {
       return true;
     },
     addBefore(formData) {
-      //新建保存前formData为对象，包括明细表，可以给给表单设置值，自己输出看formData的值
+      //Add保存前formData为对象，包括明细表，可以给给表单设置值，自己输出看formData的值
       return true;
     },
     updateBefore(formData) {
-      //编辑保存前formData为对象，包括明细表、删除行的Id
+      //Edit保存前formData为对象，包括明细表、Del行的Id
       return true;
     },
     rowClick({ row, column, event }) {

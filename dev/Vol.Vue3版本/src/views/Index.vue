@@ -341,7 +341,7 @@ export default defineComponent({
         navigation.push({
           //  orderNo: String(navigation.length),// 序号
           id: item.id + "",
-          name: item.name || item.text || "无标题",
+          name: item.name || item.text || "无Title",
           path: item.path,
           query: item.query, //2021.03.20修复自定义二次打开$tabs时参数丢失的问题
         });
@@ -497,17 +497,17 @@ export default defineComponent({
       let currnetIndex = selectId.value * 1; // navigation.findIndex(c => { return c.id == selectId.value });
       switch (value) {
         case "left": {
-          // 删除左侧tab标签
-          navigation.splice(1, currnetIndex - 1); // 删除左侧tab标签
+          // Del左侧tab标签
+          navigation.splice(1, currnetIndex - 1); // Del左侧tab标签
           break;
         }
         case "right": {
-          // 删除右侧tab标签
+          // Del右侧tab标签
           if (selectMenuIndex.value == 0) {
-            navigation.splice(currnetIndex); // 删除右侧tab标签
+            navigation.splice(currnetIndex); // Del右侧tab标签
             toHome();
           } else {
-            navigation.splice(currnetIndex + 1); // 删除右侧tab标签
+            navigation.splice(currnetIndex + 1); // Del右侧tab标签
             if (selectMenuIndex.value < currnetIndex) {
               navigation.splice(
                 selectMenuIndex.value,
@@ -518,9 +518,9 @@ export default defineComponent({
           break;
         }
         case "other": {
-          // 删除其他所有tab标签
-          navigation.splice(currnetIndex + 1); // 删除右侧tab标签(这里必须按照右→左顺序删除)
-          navigation.splice(1, currnetIndex - 1); // 删除左侧tab标签
+          // Del其他所有tab标签
+          navigation.splice(currnetIndex + 1); // Del右侧tab标签(这里必须按照右→左顺序Del)
+          navigation.splice(1, currnetIndex - 1); // Del左侧tab标签
           break;
         }
         default: {
@@ -550,7 +550,7 @@ export default defineComponent({
     );
 
     /**
-     * 系统创建开始
+     * System创建开始
      */
     const created = () => {
       let _theme = localStorage.getItem("vol3_theme");
@@ -590,7 +590,7 @@ export default defineComponent({
 
         //当前刷新是不是首页
         if (router.currentRoute.value.path != navigation[0].path) {
-          //查找系统菜单
+          //查找System菜单
           let item = menuOptions.value.find((x) => {
             return x.path == router.currentRoute.value.path; //this.$route.path;
           });
@@ -662,7 +662,7 @@ export default defineComponent({
   methods: {
     /**
      * 绑定右键事件
-     * @param {*} enable 是否启用右键事件[true:启用;false:禁用;]
+     * @param {*} enable Enable右键事件[true:启用;false:禁用;]
      * @param {*} $event 事件
      */
     bindRightClickMenu(enable) {
@@ -712,7 +712,7 @@ function showTime() {
     "." +
     (month < 10 ? "0" + month : month) +
     "." +
-    (day < 10 ? "0" + day : day) + //202.08.08修复日期天数小于10时添加0
+    (day < 10 ? "0" + day : day) + //202.08.08修复Date天数小于10时添加0
     "" +
     " " +
     (hour < 10 ? "0" + hour : hour) +
@@ -720,7 +720,7 @@ function showTime() {
     (minutes < 10 ? "0" + minutes : minutes) +
     ":" +
     (second < 10 ? "0" + second : second) +
-    " " + //2020.08.30修复首页日期星期天不显示的问题
+    " " + //2020.08.30修复首页Date星期天不显示的问题
     (week[date.getDay() - 1] || week[6])
   );
 }

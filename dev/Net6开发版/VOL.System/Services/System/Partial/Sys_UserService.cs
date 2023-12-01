@@ -31,7 +31,7 @@ namespace VOL.System.Services
         }
         WebResponseContent webResponse = new WebResponseContent();
         /// <summary>
-        /// WebApi登陆
+        /// WebApiLogin
         /// </summary>
         /// <param name="loginInfo"></param>
         /// <param name="verificationCode"></param>
@@ -134,14 +134,14 @@ namespace VOL.System.Services
             }
             finally
             {
-                Logger.Info(LoggerType.ReplaceToeken, ($"用户Id:{userInfo?.User_Id},用户{userInfo?.UserTrueName}")
+                Logger.Info(LoggerType.ReplaceToeken, ($"User_Id:{userInfo?.User_Id},用户{userInfo?.UserTrueName}")
                     + (webResponse.Status ? "token替换成功" : "token替换失败"), null, error);
             }
             return webResponse;
         }
 
         /// <summary>
-        /// 修改密码
+        /// 修改UserPwd
         /// </summary>
         /// <param name="parameters"></param>
         /// <returns></returns>
@@ -152,18 +152,18 @@ namespace VOL.System.Services
             string message = "";
             try
             {
-                if (string.IsNullOrEmpty(oldPwd)) return webResponse.Error("旧密码不能为空");
-                if (string.IsNullOrEmpty(newPwd)) return webResponse.Error("新密码不能为空");
-                if (newPwd.Length < 6) return webResponse.Error("密码不能少于6位");
+                if (string.IsNullOrEmpty(oldPwd)) return webResponse.Error("旧UserPwd不能为空");
+                if (string.IsNullOrEmpty(newPwd)) return webResponse.Error("新UserPwd不能为空");
+                if (newPwd.Length < 6) return webResponse.Error("UserPwd不能少于6位");
 
                 int userId = UserContext.Current.UserId;
                 string userCurrentPwd = await base.repository.FindFirstAsync(x => x.User_Id == userId, s => s.UserPwd);
 
                 string _oldPwd = oldPwd.EncryptDES(AppSetting.Secret.User);
-                if (_oldPwd != userCurrentPwd) return webResponse.Error("旧密码不正确");
+                if (_oldPwd != userCurrentPwd) return webResponse.Error("旧UserPwd不正确");
 
                 string _newPwd = newPwd.EncryptDES(AppSetting.Secret.User);
-                if (userCurrentPwd == _newPwd) return webResponse.Error("新密码不能与旧密码相同");
+                if (userCurrentPwd == _newPwd) return webResponse.Error("新UserPwd不能与旧UserPwd相同");
 
 
                 repository.Update(new Sys_User
@@ -173,7 +173,7 @@ namespace VOL.System.Services
                     LastModifyPwdDate = DateTime.Now
                 }, x => new { x.UserPwd, x.LastModifyPwdDate }, true);
 
-                webResponse.OK("密码修改成功");
+                webResponse.OK("UserPwd修改成功");
             }
             catch (Exception ex)
             {
@@ -184,7 +184,7 @@ namespace VOL.System.Services
             {
                 if (message == "")
                 {
-                    Logger.OK(LoggerType.ApiModifyPwd, "密码修改成功");
+                    Logger.OK(LoggerType.ApiModifyPwd, "UserPwd修改成功");
                 }
                 else
                 {
@@ -219,14 +219,14 @@ namespace VOL.System.Services
         }
 
         /// <summary>
-        /// 设置固定排序方式及显示用户过滤
+        /// 设置固定OrderNo方式及显示用户过滤
         /// </summary>
         /// <param name="pageData"></param>
         /// <returns></returns>
         public override PageGridData<Sys_User> GetPageData(PageDataOptions pageData)
         {
             int roleId = -1;
-            //树形菜单传查询角色下所有用户
+            //树形菜单传查询Role_Id下所有用户
             if (pageData.Value != null)
             {
                 roleId = pageData.Value.ToString().GetInt();
@@ -239,12 +239,12 @@ namespace VOL.System.Services
                     roleId = UserContext.Current.RoleId;
                 }
 
-                //查看用户时，只能看下自己角色下的所有用户
+                //查看用户时，只能看下自己Role_Id下的所有用户
                 List<int> roleIds = Sys_RoleService
                    .Instance
                    .GetAllChildrenRoleId(roleId);
                 roleIds.Add(roleId);
-                //判断查询的角色是否越权
+                //判断查询的Role_Id是否越权
                 if (roleId != UserContext.Current.RoleId && !roleIds.Contains(roleId))
                 {
                     roleId = -999;
@@ -255,7 +255,7 @@ namespace VOL.System.Services
         }
 
         /// <summary>
-        /// 新建用户，根据实际情况自行处理
+        /// Add用户，根据实际情况自行处理
         /// </summary>
         /// <param name="saveModel"></param>
         /// <returns></returns>
@@ -269,13 +269,13 @@ namespace VOL.System.Services
                 {
                     string roleName = GetChildrenName(roleId);
                     if ((roleId == 1) || string.IsNullOrEmpty(roleName))
-                        return webResponse.Error("不能选择此角色");
+                        return webResponse.Error("不能选择此Role_Id");
                 }
                 return webResponse.OK();
             };
 
 
-            ///生成6位数随机密码
+            ///生成6位数随机UserPwd
             string pwd = 6.GenerateRandomNumber();
             //在AddOnExecuting之前已经对提交的数据做过验证是否为空
             base.AddOnExecuting = (Sys_User user, object obj) =>
@@ -284,7 +284,7 @@ namespace VOL.System.Services
                 if (repository.Exists(x => x.UserName == user.UserName))
                     return webResponse.Error("用户名已经被注册");
                 user.UserPwd = pwd.EncryptDES(AppSetting.Secret.User);
-                //设置默认头像
+                //设置默认HeadImageUrl
                 return webResponse.OK();
             };
 
@@ -292,14 +292,14 @@ namespace VOL.System.Services
             {
                 var deptIds = user.DeptIds?.Split(",").Select(s => s.GetGuid()).Where(x => x != null).Select(s => (Guid)s).ToArray();
                 SaveDepartment(deptIds, user.User_Id);
-                return webResponse.OK($"用户新建成功.帐号{user.UserName}密码{pwd}");
+                return webResponse.OK($"用户Add成功.UserName{user.UserName}UserPwd{pwd}");
             };
             return base.Add(saveModel); ;
         }
 
         /// <summary>
-        /// 删除用户拦截过滤
-        /// 用户被删除后同时清空对应缓存
+        /// Del用户拦截过滤
+        /// 用户被Del后同时清空对应缓存
         /// </summary>
         /// <param name="keys"></param>
         /// <param name="delList"></param>
@@ -311,7 +311,7 @@ namespace VOL.System.Services
                 if (!UserContext.Current.IsSuperAdmin)
                 {
                     int[] userIds = ids.Select(x => Convert.ToInt32(x)).ToArray();
-                    //校验只能删除当前角色下能看到的用户
+                    //校验只能Del当前Role_Id下能看到的用户
                     var xxx = repository.Find(x => userIds.Contains(x.User_Id));
                     var delUserIds = repository.Find(x => userIds.Contains(x.User_Id), s => new { s.User_Id, s.Role_Id, s.UserTrueName });
                     List<int> roleIds = Sys_RoleService
@@ -323,7 +323,7 @@ namespace VOL.System.Services
                      .ToArray();
                     if (userNames.Count() > 0)
                     {
-                        return webResponse.Error($"没有权限删除用户：{string.Join(',', userNames)}");
+                        return webResponse.Error($"没有权限Del用户：{string.Join(',', userNames)}");
                     }
                 }
 
@@ -340,7 +340,7 @@ namespace VOL.System.Services
 
         private string GetChildrenName(int roleId)
         {
-            //只能修改当前角色能看到的用户
+            //只能修改当前Role_Id能看到的用户
             string roleName = Sys_RoleService
                 .Instance
                 .GetAllChildren(UserContext.Current.UserInfo.Role_Id).Where(x => x.Id == roleId)
@@ -370,7 +370,7 @@ namespace VOL.System.Services
                     {
                         return webResponse.OK();
                     }
-                    if (string.IsNullOrEmpty(roleName)) return webResponse.Error("不能选择此角色");
+                    if (string.IsNullOrEmpty(roleName)) return webResponse.Error("不能选择此Role_Id");
                 }
 
                 return webResponse.OK();
@@ -378,13 +378,13 @@ namespace VOL.System.Services
             base.UpdateOnExecuting = (Sys_User user, object obj1, object obj2, List<object> list) =>
             {
                 if (user.User_Id == userInfo.User_Id && user.Role_Id != userInfo.Role_Id)
-                    return webResponse.Error("不能修改自己的角色");
+                    return webResponse.Error("不能修改自己的Role_Id");
 
                 var _user = repository.Find(x => x.User_Id == user.User_Id,
                     s => new { s.UserName, s.UserPwd })
                     .FirstOrDefault();
                 user.UserName = _user.UserName;
-                //Sys_User实体的UserPwd用户密码字段的属性不是编辑，此处不会修改密码。但防止代码生成器将密码字段的修改成了可编辑造成密码被修改
+                //Sys_User实体的UserPwd用户UserPwd字段的属性不是Edit，此处不会修改UserPwd。但防止代码生成器将UserPwd字段的修改成了可Edit造成UserPwd被修改
                 user.UserPwd = _user.UserPwd;
                 return webResponse.OK();
             };
@@ -417,7 +417,7 @@ namespace VOL.System.Services
                 deptIds = new Guid[] { };
             }
 
-            //如果需要判断当前角色是否越权，再调用一下获取当前部门下的所有子角色判断即可
+            //如果需要判断当前Role_Id是否越权，再调用一下获取当前部门下的所有子Role_Id判断即可
 
             var roles = repository.DbContext.Set<Sys_UserDepartment>().Where(x => x.UserId == userId)
               .Select(s => new { s.DepartmentId, s.Enable, s.Id })
@@ -440,7 +440,7 @@ namespace VOL.System.Services
                 CreateID = user.User_Id
             }).ToList();
 
-            //删除的部门
+            //Del的部门
             var update = roles.Where(x => !deptIds.Contains(x.DepartmentId) && x.Enable == 1).Select(s => new Sys_UserDepartment()
             {
                 Id = s.Id,
@@ -472,7 +472,7 @@ namespace VOL.System.Services
         /// <returns></returns>
         public override WebResponseContent Export(PageDataOptions pageData)
         {
-            //限定只能导出当前角色能看到的所有用户
+            //限定只能导出当前Role_Id能看到的所有用户
             QueryRelativeExpression = (IQueryable<Sys_User> queryable) =>
             {
                 if (UserContext.Current.IsSuperAdmin) return queryable;

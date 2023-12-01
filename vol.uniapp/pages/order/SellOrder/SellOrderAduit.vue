@@ -53,7 +53,7 @@
 					{
 						"key": "audit",
 						"data": [],
-						"title": "审核状态",
+						"title": "AuditStatus",
 						"field": "AuditStatus",
 						readonly: true
 					},
@@ -77,7 +77,7 @@
 				rows: 30,
 				wheres: JSON.stringify(wheres)
 			};
-			//7、调用后台接口返回数据，将SellOrder改为当前表名
+			//7、调用后台接口返回数据，将SellOrder改为当前WorkTable
 			this.http.post('api/SellOrder/getPageData', params, true).then(result => {
 				if (!result.rows.length) {
 					this.$toast('未查到数据')
@@ -87,7 +87,7 @@
 				//获取审批信息
 				this.$nextTick(() => {
 					//第一个参数为当前表的主键字段的值(SellOrderOptions.js执行跳转的时候已经传进来了)
-					//第二个参数当前操作的表名
+					//第二个参数当前操作的WorkTable
 					this.$refs.audit.load(options.orderId, 'SellOrder');
 				})
 			})

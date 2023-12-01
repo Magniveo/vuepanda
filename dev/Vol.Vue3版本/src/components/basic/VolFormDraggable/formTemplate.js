@@ -14,7 +14,7 @@ let options1 = [
     },
     {
         "id": 3,
-        "name": "日期",
+        "name": "Date",
         "type": "date",
         "icon": "el-icon-date",
         "value": null,
@@ -77,7 +77,7 @@ let options1 = [
                     },
                     {
                         "value": "color",
-                        "label": "可参照字典编号[tree_roles]"
+                        "label": "可参照DicNo[tree_roles]"
                     }
                 ]
             }
@@ -241,7 +241,7 @@ let options2=[
     },
     {
         "id": 3,
-        "name": "日期",
+        "name": "Date",
         "type": "date",
         "icon": "el-icon-date",
         "value": null,
@@ -341,7 +341,7 @@ let options2=[
                 "editType": "select"
             },
             {
-                "title": "销售数量",
+                "title": "销售Quantity",
                 "field": "Qty",
                 "show": true,
                 "required": false,
@@ -397,7 +397,7 @@ let options2=[
                 "value": "add"
             },
             {
-                "name": "删除行",
+                "name": "Del行",
                 "ck": false,
                 "icon": "el-icon-delete",
                 "value": "del"
@@ -500,7 +500,7 @@ let options2=[
                 "value": "add"
             },
             {
-                "name": "删除行",
+                "name": "Del行",
                 "ck": false,
                 "icon": "el-icon-delete",
                 "value": "del"
@@ -534,7 +534,7 @@ let options3=[
     },
     {
         "id": 3,
-        "name": "日期",
+        "name": "Date",
         "type": "date",
         "icon": "el-icon-date",
         "value": null,
@@ -649,7 +649,7 @@ let options3=[
     },
     {
         "id": 13,
-        "name": "编辑器",
+        "name": "Edit器",
         "type": "editor",
         "value": "",
         "url": "",

@@ -15,7 +15,7 @@ namespace VOL.Core.EFDbContext
     public class VOLContext : DbContext, IDependency
     {
         /// <summary>
-        /// 数据库连接名称 
+        /// 数据库连接ExpertName 
         /// </summary>
         public string DataBaseName = null;
         public VOLContext()

@@ -118,7 +118,7 @@
 	 * 
 	 * @property {Boolean}			show				操作菜单是否展示 （默认 false ）
 	 * @property {String}			title				操作菜单标题
-	 * @property {String}			description			选项上方的描述信息
+	 * @property {String}			description			选项上方的Describe信息
 	 * @property {Array<Object>}	actions				按钮的文字数组，见官方文档示例
 	 * @property {String}			cancelText			取消按钮的提示文字,不为空时显示按钮
 	 * @property {Boolean}			closeOnClickAction	点击某个菜单项时是否关闭弹窗 （默认 true ）

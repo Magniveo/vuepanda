@@ -2,7 +2,7 @@
 //2、此文件中的方法会与serviceFilter.js进行合并，终终执行的就是此文件中的方法
 //3、components为扩展组件，可自定义页面的头部、body及尾部的额外显示的内容，分别对应的组件为:
 //gridHeader、gridBody、gridFooter、modelHeader、modelBody、modelFooter共6个组件位置，如果不需要扩展组件，请忽略此处
-//4、text为界面显示额外描述信息
+//4、text为界面显示额外Describe信息
 //5、buttons->view/box/detail分别为查询界面、弹出框、弹出框明细表额外扩展的按钮
 //6、methods为整个页面所有方法的业务代码扩展，如果需要在界面上的操作前、后编写业务，请覆盖此方法
 //7、methods方法中可获取任意vue对象、方法、属性,可查看ViewGridConfig路径下的js文件及ViewGrid.vue的data属性

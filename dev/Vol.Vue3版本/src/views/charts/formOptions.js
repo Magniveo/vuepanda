@@ -13,15 +13,15 @@ let formRules1 = [
         {
             link:true,
             dataKey: "city",
-            title: "城市",
+            title: "City",
             required: true,
             field: "City",
             data: [],
             type: "select"
         },
         {
-            title: "多选日期",
-            range: true, //设置为true可以选择开始与结束日期
+            title: "多选Date",
+            range: true, //设置为true可以选择开始与结束Date
             required: false,
             field: "DateRange",
             //   colSize: 4,//设置宽度为1/3
@@ -30,7 +30,7 @@ let formRules1 = [
     ],
     [
         {
-            dataKey: "age", //后台下拉框对应的数据字典编号
+            dataKey: "age", //后台下拉框对应的数据DicNo
             data: [], //loadKey设置为true,会根据dataKey从后台的下拉框数据源中自动加载数据
             title: "下拉",
             required: true, //设置为必选项
@@ -38,7 +38,7 @@ let formRules1 = [
             type: "select"
         },
         {
-            title: "日期",
+            title: "Date",
             required: true,
             field: "Date",
             placeholder: "你可以设置colSize属性决定标签的长度，可选值12/8/6/4",
@@ -48,18 +48,18 @@ let formRules1 = [
     ],
     [
         {
-            title: "测试",
+            title: "Modifier",
             dataKey: "age",
             placeholder: "此处数据源为手动绑定",
             //如果这里绑定了data数据，后台不会加载此数据源
-            data: [{ key: "1", value: "测试1" }, { key: "2", value: "测试2" }],
+            data: [{ key: "1", value: "Modifier1" }, { key: "2", value: "Modifier2" }],
             required: false,
             field: "Variety",
             type: "select"
         },
         {
             type: "decimal",
-            title: "价格",
+            title: "AvgPrice",
             required: true,
             placeholder: "你可以自己定义placeholder显示的文字",
             field: "AvgPrice"
@@ -67,7 +67,7 @@ let formRules1 = [
     ],
     [
         {
-            title: "备注",
+            title: "Remark",
             required: true,
             field: "IsTop",
             colSize: 12, //设置12，此列占100%宽度
@@ -101,7 +101,7 @@ let formRules2 = [
         },
         {
             dataKey: "city",
-            title: "所在城市",
+            title: "所在City",
             field: "City",
             disabled: true,
             type: "select",
@@ -109,29 +109,29 @@ let formRules2 = [
         }],
     [
         {
-            title: "销售日期",
+            title: "销售Date",
             field: "DateRange",
             disabled: true,
         },
         {
-            title: "销售价格",
+            title: "销售AvgPrice",
             field: "AvgPrice",
             disabled: true
         }],
     [
         {
-            title: "生产日期",
+            title: "生产Date",
             field: "DateRange1",
             disabled: true,
         },
         {
-            title: "中间价格",
+            title: "中间AvgPrice",
             field: "AvgPrice1",
             disabled: true
         }],
     [
         {
-            title: "销售地址",
+            title: "销售Address",
             field: "Address",
             disabled: true,
         },

@@ -719,7 +719,7 @@
             </td>
             <td class="g-cell">
               <span style="color: #666666; font-size: 16px">
-                <strong>描述</strong>
+                <strong>Describe</strong>
               </span>
               <span style="display: none"></span>
               <span style="display: none"></span>

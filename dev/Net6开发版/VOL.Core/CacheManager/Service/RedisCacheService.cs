@@ -76,7 +76,7 @@ namespace VOL.Core.CacheManager
         }
 
         /// <summary>
-        /// 删除缓存
+        /// Del缓存
         /// </summary>
         /// <param name="key">缓存Key</param>
         /// <returns></returns>
@@ -86,7 +86,7 @@ namespace VOL.Core.CacheManager
             return true;
         }
         /// <summary>
-        /// 批量删除缓存
+        /// 批量Del缓存
         /// </summary>
         /// <param name="key">缓存Key集合</param>
         /// <returns></returns>

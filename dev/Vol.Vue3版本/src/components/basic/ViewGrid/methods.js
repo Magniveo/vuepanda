@@ -14,7 +14,7 @@ let methods = {
     if (this.currentReadonly) {
       return '';
     }
-    return '--' + (this.currentAction == this.const.ADD ? '新增' : '编辑');
+    return '--' + (this.currentAction == this.const.ADD ? '新增' : 'Edit');
   },
   quickSearchKeyPress($event) {
     //查询字段为input时，按回车查询
@@ -125,7 +125,7 @@ let methods = {
       type: 'info',
       icon: 'el-icon-refresh',
       onClick() {
-        //如果明细表当前的状态为新建时，禁止刷新
+        //如果明细表当前的状态为Add时，禁止刷新
         if (this.currentAction == this.const.ADD) {
           return;
         }
@@ -147,15 +147,15 @@ let methods = {
     }
 
     // disabled
-    //如果当前角色没有编辑或新建功能，查看明细时字段设置全部只读
-    //只有明细表，将明细表也设置为不可能编辑，并且不显示添加行、删除行
+    //如果当前Role_Id没有Edit或Add功能，查看明细时字段设置全部只读
+    //只有明细表，将明细表也设置为不可能Edit，并且不显示添加行、Del行
     if (!saveBtn) {
       this.editFormOptions.forEach((row) => {
         row.forEach((x) => {
           x.disabled = true;
         });
       });
-      //没有新增编辑权限的，弹出框都设置为只读
+      //没有新增Edit权限的，弹出框都设置为只读
       this.detail.columns.forEach((column) => {
         if (column.hasOwnProperty('edit')) {
           column.readonly = true;
@@ -164,7 +164,7 @@ let methods = {
       });
       //弹出框扩展按钮
       this.extendBtn(boxButtons, this.extend.buttons.box);
-      //弹出弹框按钮(2020.04.21),没有编辑或新建权限时，也可以通过buttons属性添加自定义弹出框按钮
+      //弹出弹框按钮(2020.04.21),没有Edit或Add权限时，也可以通过buttons属性添加自定义弹出框按钮
       this.boxButtons.push(...boxButtons);
       this.detailOptions.buttons.push(detailGridButtons);
       this.detailOptions.buttons.forEach((button) => {
@@ -218,7 +218,7 @@ let methods = {
         {
           type: 'danger',
           plain: true,
-          name: '删除行',
+          name: 'Del行',
           hidden: false,
           icon: 'el-icon-delete',
           onClick() {
@@ -382,7 +382,7 @@ let methods = {
   },
   loadDetailTableBefore(param, callBack,data) {
     //明细查询前
-    //新建时禁止加载明细
+    //Add时禁止加载明细
     if (this.currentAction == this.const.ADD) {
       callBack(false);
       return false;
@@ -415,14 +415,14 @@ let methods = {
     this.resetSearchFormAfter && this.resetSearchFormAfter();
   },
   resetEdit() {
-    //重置编辑的数据
+    //重置Edit的数据
     let isEdit = this.currentAction != this.const.ADD;
     //重置之前
     if (!this[isEdit ? 'resetUpdateFormBefore' : 'resetAddFormBefore']()) {
       return;
     }
     let objKey = {};
-    //编辑状态下,不需要重置主键,创建时间创建人
+    //Edit状态下,不需要重置主键,CreateDateCreator
     if (isEdit) {
       objKey[this.table.key] = this.editFormFields[this.table.key];
     }
@@ -619,7 +619,7 @@ let methods = {
     return true;
   },
   save() {
-    //新增或编辑时保存
+    //新增或Edit时保存
     // if (!this.$refs.form.validate()) return;
     this.$refs.form.validate((result) => {
       if (result) {
@@ -714,7 +714,7 @@ let methods = {
     //保存前拦截
     let _currentIsAdd = this.currentAction == this.const.ADD;
     if (_currentIsAdd) {
-      //2020.12.06增加新建前异步处理方法
+      //2020.12.06增加Add前异步处理方法
       //2021.08.16修复异步语法写错的问题
       if (!this.addBefore(formData) || !(await this.addBeforeAsync(formData)))
         return;
@@ -734,7 +734,7 @@ let methods = {
         //连续添加
         if (this.continueAdd && x.status) {
           this.$success(x.message);
-          //新建
+          //Add
           this.currentAction = this.const.ADD;
           //2023.07.23增加连续添加后方法
           let _formFields;
@@ -753,10 +753,10 @@ let methods = {
       }
       if (!x.status) return this.$error(x.message);
       this.$success(x.message || '操作成功');
-      //如果保存成功后需要关闭编辑框，直接返回不处理后面
+      //如果保存成功后需要关闭Edit框，直接返回不处理后面
       if (this.boxOptions.saveClose) {
         this.boxModel = false;
-        //2020.12.27如果是编辑保存后不重置分页页数，刷新页面时还是显示当前页的数据
+        //2020.12.27如果是Edit保存后不重置分页页数，刷新页面时还是显示当前页的数据
         this.$refs.table.load(null, _currentIsAdd);
         //this.refresh();
         return;
@@ -794,20 +794,20 @@ let methods = {
     } else {
       rows = this.$refs.table.getSelected();
     }
-    //删除数据
+    //Del数据
 
-    if (!rows || rows.length == 0) return this.$error('请选择要删除的行!');
+    if (!rows || rows.length == 0) return this.$error('请选择要Del的行!');
     let delKeys = rows.map((x) => {
       return x[this.table.key];
     });
     if (!delKeys || delKeys.length == 0)
-      return this.$error('没有获取要删除的行数据!');
-    //删除前
+      return this.$error('没有获取要Del的行数据!');
+    //Del前
     if (!this.delBefore(delKeys, rows)) {
       return;
     }
     let tigger = false;
-    this.$confirm('确认要删除选择的数据吗?', '警告', {
+    this.$confirm('确认要Del选择的数据吗?', '警告', {
       confirmButtonText: '确定',
       cancelButtonText: '取消',
       type: 'warning',
@@ -816,10 +816,10 @@ let methods = {
       if (tigger) return;
       tigger = true;
       let url = this.getUrl(this.const.DEL);
-      this.http.post(url, delKeys, '正在删除数据....').then((x) => {
+      this.http.post(url, delKeys, '正在Del数据....').then((x) => {
         if (!x.status) return this.$error(x.message);
         this.$success(x.message);
-        //删除后
+        //Del后
         if (!this.delAfter(x)) {
           return;
         }
@@ -831,13 +831,13 @@ let methods = {
     return true;
   },
   async initBox() {
-    //2022.01.08增加新建时隐藏明细表导出功能
+    //2022.01.08增加Add时隐藏明细表导出功能
     this.detailOptions.buttons.forEach((x) => {
       if (x.value == 'export') {
         x.hidden = this.currentAction == 'Add';
       }
     });
-    //初始化新建、编辑的弹出框
+    //初始化Add、Edit的弹出框
     if (!(await this.modelOpenBeforeAsync(this.currentRow))) return false;
     this.modelOpenBefore(this.currentRow);
     if (!this.boxInit) {
@@ -860,7 +860,7 @@ let methods = {
       });
     });
     this.editFormFields;
-    //重置编辑表单数据
+    //重置Edit表单数据
     this.editFormFields[this.table.key] = row[this.table.key];
 
     this.resetEditForm(row);
@@ -868,17 +868,17 @@ let methods = {
     this.boxModel = true;
   },
   async linkData(row, column) {
-    this.boxOptions.title = this.table.cnName + '(编辑)';
-    //点击table单元格快捷链接显示编辑数据
+    this.boxOptions.title = this.table.cnName + '(Edit)';
+    //点击table单元格快捷链接显示Edit数据
     this.currentAction = this.const.EDIT;
     this.currentRow = row;
     if (!(await this.initBox())) return;
     this.resetDetailTable(row);
     this.setEditForm(row);
     this.setContinueAdd(false);
-    //设置远程查询表单的默认key/value
+    //设置Enable查询表单的默认key/value
     this.getRemoteFormDefaultKeyValue();
-    //点击编辑按钮弹出框后，可以在此处写逻辑，如，从后台获取数据
+    //点击Edit按钮弹出框后，可以在此处写逻辑，如，从后台获取数据
     this.modelOpenProcess(row);
   },
   setContinueAdd(isAdd) {
@@ -908,8 +908,8 @@ let methods = {
     this.resetEditForm(obj);
   },
   async add() {
-    this.boxOptions.title = this.table.cnName + '(新建)';
-    //新建
+    this.boxOptions.title = this.table.cnName + '(Add)';
+    //Add
     this.currentAction = this.const.ADD;
     this.currentRow = {};
     if (!(await this.initBox())) return;
@@ -918,13 +918,13 @@ let methods = {
     this.setContinueAdd(true);
     //  this.resetEditForm();
     this.boxModel = true;
-    //点击新建按钮弹出框后，可以在此处写逻辑，如，从后台获取数据
+    //点击Add按钮弹出框后，可以在此处写逻辑，如，从后台获取数据
     this.modelOpenProcess();
     // this.modelOpenAfter();
   },
   async edit(rows) {
-    this.boxOptions.title = '编辑';
-    //编辑
+    this.boxOptions.title = 'Edit';
+    //Edit
     this.currentAction = this.const.EDIT;
     if (rows) {
       if (!(rows instanceof Array)) {
@@ -934,12 +934,12 @@ let methods = {
       rows = this.$refs.table.getSelected();
     }
     if (rows.length == 0) {
-      return this.$error('请选择要编辑的行!');
+      return this.$error('请选择要Edit的行!');
     }
     if (rows.length != 1) {
-      return this.$error('只能选择一行数据进行编辑!');
+      return this.$error('只能选择一行数据进行Edit!');
     }
-    //记录当前编辑的行
+    //记录当前Edit的行
     this.currentRow = rows[0];
     //初始化弹出框
     if (!(await this.initBox())) return;
@@ -949,14 +949,14 @@ let methods = {
 
     //设置当前的数据到表单上
     this.setEditForm(rows[0]);
-    //设置远程查询表单的默认key/value
+    //设置Enable查询表单的默认key/value
     this.getRemoteFormDefaultKeyValue();
-    //点击编辑按钮弹出框后，可以在此处写逻辑，如，从后台获取数据
+    //点击Edit按钮弹出框后，可以在此处写逻辑，如，从后台获取数据
     this.modelOpenProcess(rows[0]);
     // this.modelOpenAfter(rows[0]);
   },
   getRemoteFormDefaultKeyValue() {
-    //设置表单远程数据源的默认key.value
+    //设置表单Enable数据源的默认key.value
     if (this.currentAction != this.const.EDIT || this.remoteKeys.length == 0)
       return;
     this.editFormOptions.forEach((x, xIndex) => {
@@ -1036,7 +1036,7 @@ let methods = {
     //导出
     let url, query, param;
     if (isDetail) {
-      //明细表导出时如果是新建状态，禁止导出
+      //明细表导出时如果是Add状态，禁止导出
       if (this.currentAction == 'Add') {
         return;
       }
@@ -1145,11 +1145,11 @@ let methods = {
     this.viewModel = false;
   },
   initFormOptions(formOptions, keys, formFields, isEdit) {
-    //初始化查询、编辑对象的下拉框数据源、图片上传链接地址
+    //初始化查询、Edit对象的下拉框数据源、图片上传链接Address
     //let defaultOption = { key: "", value: "请选择" };
     //有上传的字段
     //2020.05.03新增
-    //编辑数据源的类型
+    //Edit数据源的类型
     formOptions.forEach((item) => {
       item.forEach((d) => {
         if (d.type == 'number') {
@@ -1174,21 +1174,21 @@ let methods = {
           //强制开启联级可以选择某个节点
           d.changeOnSelect = true;
         }
-        //开启远程搜索
+        //开启Enable搜索
         if (d.remote) {
           this.remoteKeys.push(d.dataKey);
           d.data = []; //{ dicNo: d.dataKey, data: [] };
           return true;
         }
-        //2020.05.03增加编辑表单对checkbox的支持
+        //2020.05.03增加Edit表单对checkbox的支持
         if (d.type == 'checkbox' && !(formFields[d.field] instanceof Array)) {
           formFields[d.field] = [];
         }
         if (keys.indexOf(d.dataKey) == -1) {
-          //2020.05.03增加记录编辑字段的数据源类型
+          //2020.05.03增加记录Edit字段的数据源类型
 
           keys.push(d.dataKey);
-          //2020.05.03修复查询表单与编辑表单type类型变成强一致性的问题
+          //2020.05.03修复查询表单与Edit表单type类型变成强一致性的问题
           //this.dicKeys.push({ dicNo: d.dataKey, data: [], type: d.type });
           //  2020.11.01增加iview组件Cascader数据源存储
           let _dic = {
@@ -1253,7 +1253,7 @@ let methods = {
       } else {
         item.bind = dic[0];
       }
-      //2020.05.03优化table数据源checkbox与select类型从编辑列中选取
+      //2020.05.03优化table数据源checkbox与select类型从Edit列中选取
       item.bind.type = item.bind.e_type || 'string';
     });
   },
@@ -1367,7 +1367,7 @@ let methods = {
       item.orginData && item.orginData.splice(0);
     });
     //this.dicKeys.splice(0);
-    //初始化编辑数据源,默认为一个空数组，如果要求必填设置type=number/decimal的最小值
+    //初始化Edit数据源,默认为一个空数组，如果要求必填设置type=number/decimal的最小值
     this.initFormOptions(this.editFormOptions, keys, this.editFormFields, true);
     //初始化查询数据源,默认为一个空数组
     this.initFormOptions(
@@ -1376,16 +1376,16 @@ let methods = {
       this.searchFormFields,
       false
     );
-    //查询日期设置为可选开始与结果日期
+    //查询Date设置为可选开始与结果Date
     this.searchFormOptions.forEach((item) => {
       item.forEach((x) => {
         if (x.type == 'date' || x.type == 'datetime') x.range = true;
       });
     });
-    //初始化datatable表数据源,默认为一个空数组,dicKeys为界面所有的数据字典编号
+    //初始化datatable表数据源,默认为一个空数组,dicKeys为界面所有的数据DicNo
     this.initColumns(this.columns, this.dicKeys, keys);
-    //2021.05.23默认开启查询页面所有字段排序,如果不需要排序，在onInited遍历columns设置sort=false
-    //2021.09.25移除强制排序功能
+    //2021.05.23默认开启查询页面所有字段OrderNo,如果不需要OrderNo，在onInited遍历columns设置sort=false
+    //2021.09.25移除强制OrderNo功能
     // this.columns.forEach(x => {
     //   x.sort = x.render ? false : true;
     // })
@@ -1413,7 +1413,7 @@ let methods = {
     });
   },
   setFiexdColumn(columns, containerWidth) {
-    //计算整个table的宽度，根据宽度决定是否启用第一行显示的列为固定列
+    //计算整个table的宽度，根据宽度决定Enable第一行显示的列为固定列
     //2021.09.21移除强制固定第一列
     // let columnsWidth = 0;
     // columns.forEach(x => {
@@ -1459,7 +1459,7 @@ let methods = {
         }
       }
     }
-    //计算整个table的宽度，根据宽度决定是否启用第一行显示的列为固定列
+    //计算整个table的宽度，根据宽度决定Enable第一行显示的列为固定列
     let maxTableWidth = clientWidth - 270;
     this.setFiexdColumn(this.columns, maxTableWidth);
 
@@ -1483,7 +1483,7 @@ let methods = {
       this.detailOptions.cnName = this.detail.cnName;
       this.detailOptions.key = this.detail.key;
       this.detailOptions.url = this.getUrl('getDetailPage');
-      //计算弹出框整个table的宽度，根据宽度决定是否启用第一行显示的列为固定列
+      //计算弹出框整个table的宽度，根据宽度决定Enable第一行显示的列为固定列
       this.setFiexdColumn(this.detail.columns, clientWidth);
     } else {
       let maxColumns = 1; //最大列数，根据列计算弹框的宽度
@@ -1561,18 +1561,18 @@ let methods = {
     }
   },
   tableBeginEdit(row, column, index) {
-    //2021.03.19是否开启查询界面表格双击编辑结束方法,返回false不会结束编辑
+    //2021.03.19是否开启查询界面表格双击Edit结束方法,返回false不会结束Edit
     return this.beginEdit(row, column, index);
   },
   beginEdit(row, column, index) {
-    //2021.03.19是否开启查询界面表格双击编辑结束方法,返回false不会结束编辑
+    //2021.03.19是否开启查询界面表格双击Edit结束方法,返回false不会结束Edit
     return true;
   },
   tableEndEditBefore(row, column, index) {
     return this.endEditBefore(row, column, index);
   },
   endEditBefore(row, column, index) {
-    //2021.03.19是否开启查询界面表格双击编辑结束方法,返回false不会结束编辑
+    //2021.03.19是否开启查询界面表格双击Edit结束方法,返回false不会结束Edit
     return true;
   },
   filterPermission(tableName, permission) {

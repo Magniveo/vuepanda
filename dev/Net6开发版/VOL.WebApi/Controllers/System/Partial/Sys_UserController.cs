@@ -136,8 +136,8 @@ namespace VOL.System.Controllers
             return Json(await Service.GetCurrentUserInfo());
         }
 
-        //只能超级管理员才能修改密码
-        //2020.08.01增加修改密码功能
+        //只能超级管理员才能修改UserPwd
+        //2020.08.01增加修改UserPwd功能
         [HttpPost, Route("modifyUserPwd"), ApiActionPermission(ActionRolePermission.SuperAdmin)]
         public IActionResult ModifyUserPwd(string password, string userName)
         {
@@ -146,7 +146,7 @@ namespace VOL.System.Controllers
             {
                 return Json(webResponse.Error("参数不完整"));
             }
-            if (password.Length < 6) return Json(webResponse.Error("密码长度不能少于6位"));
+            if (password.Length < 6) return Json(webResponse.Error("UserPwd长度不能少于6位"));
 
             ISys_UserRepository repository = Sys_UserRepository.Instance;
             Sys_User user = repository.FindFirst(x => x.UserName == userName);
@@ -158,11 +158,11 @@ namespace VOL.System.Controllers
             repository.Update(user, x => new { x.UserPwd }, true);
             //如果用户在线，强制下线
             UserContext.Current.LogOut(user.User_Id);
-            return Json(webResponse.OK("密码修改成功"));
+            return Json(webResponse.OK("UserPwd修改成功"));
         }
 
         /// <summary>
-        /// 2020.06.15增加登陆验证码
+        /// 2020.06.15增加Login验证码
         /// </summary>
         /// <returns></returns>
         [HttpGet, Route("getVierificationCode"), AllowAnonymous]

@@ -67,7 +67,7 @@ let formRules1 = [
     ],
     [
         {
-            title: "备注",
+            title: "Remark",
             required: true,
             field: "IsTop",
             colSize: 12, //设置12，此列占100%宽度

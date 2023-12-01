@@ -7,7 +7,7 @@ namespace VOL.Core.Quartz
     public enum JobAction
     {
         新增 = 1,
-        删除 = 2,
+        Del = 2,
         修改 = 3,
         暂停 = 4,
         停止,

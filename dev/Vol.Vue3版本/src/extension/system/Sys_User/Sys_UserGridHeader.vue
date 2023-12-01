@@ -3,19 +3,19 @@
     <vol-box
       v-model="model"
       :padding="30"
-      title="修改密码"
+      title="修改UserPwd"
       :width="500"
       :height="250"
     >
       <el-alert type="success">
         <h3>
-          <span>帐号：{{ row.UserName }}</span>
+          <span>UserName：{{ row.UserName }}</span>
           <span>用户：{{ row.UserTrueName }}</span>
         </h3>
       </el-alert>
       <div>
         <el-input
-          placeholder="请输入密码"
+          placeholder="请输入UserPwd"
           v-model="password"
           size="large"
           style="width: 100%; margin-top: 15px"
@@ -25,7 +25,7 @@
         <el-button
           type="primary"
           @click="savePwd()"
-          >修改密码</el-button
+          >修改UserPwd</el-button
         >
         <el-button
           @click="model = false"
@@ -55,9 +55,9 @@ export default defineComponent({
       this.model = true;
     },
     savePwd() {
-      if (!this.password) return this.$Message.error("请输密码");
+      if (!this.password) return this.$Message.error("请输UserPwd");
       if (this.password.length < 6)
-        return this.$Message.error("密码长度至少6位");
+        return this.$Message.error("UserPwd长度至少6位");
       let url =
         "/api/user/modifyUserPwd?password=" +
         this.password +

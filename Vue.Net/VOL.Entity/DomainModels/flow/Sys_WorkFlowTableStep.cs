@@ -64,9 +64,9 @@ namespace VOL.Entity.DomainModels
        public int? StepType { get; set; }
 
        /// <summary>
-       ///节点类型(1=按用户审批,2=按角色审批)
+       ///StepType
        /// </summary>
-       [Display(Name ="节点类型(1=按用户审批,2=按角色审批)")]
+       [Display(Name ="StepType")]
        [MaxLength(500)]
        [Column(TypeName="varchar(500)")]
        public string StepValue { get; set; }
@@ -138,24 +138,24 @@ namespace VOL.Entity.DomainModels
        public int? ModifyID { get; set; }
 
        /// <summary>
-       ///审核人id
+       ///AuditId
        /// </summary>
-       [Display(Name ="审核人id")]
+       [Display(Name ="AuditId")]
        [Column(TypeName="int")]
        public int? AuditId { get; set; }
 
        /// <summary>
-       ///审核人
+       ///Auditor
        /// </summary>
-       [Display(Name ="审核人")]
+       [Display(Name ="Auditor")]
        [MaxLength(50)]
        [Column(TypeName="nvarchar(50)")]
        public string Auditor { get; set; }
 
        /// <summary>
-       ///审核状态
+       ///AuditStatus
        /// </summary>
-       [Display(Name ="审核状态")]
+       [Display(Name ="AuditStatus")]
        [Column(TypeName="int")]
        public int? AuditStatus { get; set; }
 

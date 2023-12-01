@@ -41,7 +41,7 @@ namespace VOL.Core.Dapper
         private IDbConnection _transactionConnection = null;
 
         /// <summary>
-        /// 超时时间(秒)
+        /// TimeOut
         /// </summary>
         /// <param name="timeout"></param>
         /// <returns></returns>
@@ -662,7 +662,7 @@ namespace VOL.Core.Dapper
 
 
         /// <summary>
-        /// 使用key批量删除
+        /// 使用key批量Del
         /// 调用方式：
         ///    List<int> keys = new List<int>();
         ///    DBServerProvider.SqlDapper.DelWithKey<Sys_Log, int>(keys);
@@ -828,7 +828,7 @@ namespace VOL.Core.Dapper
                     }
                     else if (colum.DataType == typeDate)
                     {
-                        //centos系统里把datatable里的日期转换成了10/18/18 3:26:15 PM格式
+                        //centosSystem里把datatable里的Date转换成了10/18/18 3:26:15 PM格式
                         bool b = DateTime.TryParse(row[colum].ToString(), out DateTime dt);
                         sb.Append(b ? dt.ToString("yyyy-MM-dd HH:mm:ss") : "");
                     }

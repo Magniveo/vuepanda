@@ -104,7 +104,7 @@ export default {
       let mainData = JSON.parse(JSON.stringify(this.$refs.flow.formFields));
 
       if (!mainData.WorkName) {
-        this.$message.error('请填写左侧表单【流程名称】')
+        this.$message.error('请填写左侧表单【WorkName】')
         return;
       }
 
@@ -222,7 +222,7 @@ export default {
       for (let index = 0; index < rootNode.length; index++) {
         const step = rootNode[index];
         if (!step.StepName) {
-          return this.$message.error(`请输入节点名称`);
+          return this.$message.error(`请输入StepName`);
         }
         if (step.StepAttrType == 'node' && !step.StepValue) {
           return this.$message.error(

@@ -34,7 +34,7 @@
                               [{"dataKey":"enable","data":[],"title":"是否可用","required":true,"field":"TransactionType","type":"select"}],
                               [{"dataKey":"nav","data":[],"title":"购买类型","field":"CowType","type":"select"}],
                               [{"title":"电话","required":true,"field":"PhoneNo","type":"phone"}],
-                              [{"title":"描述","required":true,"field":"Describe","type":"textarea"}]]);
+                              [{"title":"Describe","required":true,"field":"Describe","type":"textarea"}]]);
             const searchFormFields = ref({"Name":"","PhoneNo":"","TransactionType":"","CowType":[],"Creator":"","CreateDate":""});
             const searchFormOptions = ref([[{"title":"姓名","field":"Name","type":"text"},{"title":"电话","field":"PhoneNo","type":"text"},{"dataKey":"enable","data":[],"title":"是否可用","field":"TransactionType","type":"select"}],[{"dataKey":"nav","data":[],"title":"购买类型","field":"CowType","type":"selectList"},{"title":"提交人","field":"Creator"},{"title":"提交时间","field":"CreateDate","type":"datetime"}]]);
             const columns = ref([{field:'Id',title:'主键ID',type:'int',width:90,hidden:true,readonly:true,require:true,align:'left'},
@@ -43,14 +43,14 @@
                        {field:'Quantity',title:'数量',type:'int',width:90,require:true,align:'left'},
                        {field:'TransactionType',title:'是否可用',type:'int',bind:{ key:'enable',data:[]},width:120,require:true,align:'left'},
                        {field:'CowType',title:'购买类型',type:'string',bind:{ key:'nav',data:[]},width:90,align:'left'},
-                       {field:'Describe',title:'描述',type:'string',width:190,require:true,align:'left'},
+                       {field:'Describe',title:'Describe',type:'string',width:190,require:true,align:'left'},
                        {field:'Enable',title:'是否启用',type:'byte',width:90,hidden:true,align:'left'},
                        {field:'CreateID',title:'创建人Id',type:'int',width:90,hidden:true,align:'left'},
                        {field:'Creator',title:'提交人',type:'string',width:130,align:'left'},
                        {field:'CreateDate',title:'提交时间',type:'datetime',width:150,align:'left',sort:true},
                        {field:'ModifyID',title:'修改人ID',type:'int',width:90,hidden:true,align:'left'},
                        {field:'Modifier',title:'修改人',type:'string',width:130,hidden:true,align:'left'},
-                       {field:'ModifyDate',title:'修改时间',type:'datetime',width:150,hidden:true,align:'left',sort:true}]);
+                       {field:'ModifyDate',title:'ModifyDate',type:'datetime',width:150,hidden:true,align:'left',sort:true}]);
             const detail = ref({
                 cnName: "#detailCnName",
                 table: "#detailTable",

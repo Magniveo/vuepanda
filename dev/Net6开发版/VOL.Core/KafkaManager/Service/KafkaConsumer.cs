@@ -19,7 +19,7 @@
 //    public class KafkaConsumer<TKey, TValue> : KafkaConfig, IKafkaConsumer<TKey, TValue>
 //    {
 //        /// <summary>
-//        ///  Kafka地址(包含端口号)
+//        ///  KafkaAddress(包含端口号)
 //        /// </summary>
 //        public string Servers
 //        {

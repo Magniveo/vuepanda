@@ -62,7 +62,7 @@ export default {
         },
         {
           field: "remark",
-          title: "备注",
+          title: "Remark",
           type: "text",
           width: 150,
         },

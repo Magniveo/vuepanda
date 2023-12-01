@@ -52,7 +52,7 @@
 	 * @property {String}			icon		uView内置图标或者绝对路径的图片
 	 * @property {String | Number}	badge		右上角的角标提示信息
 	 * @property {Boolean}			dot			是否显示圆点，将会覆盖badge参数（默认 false ）
-	 * @property {String}			text		描述文本
+	 * @property {String}			text		Describe文本
 	 * @property {Object | String}	badgeStyle	控制徽标的位置，对象或者字符串形式，可以设置top和right属性（默认 'top: 6px;right:2px;' ）
 	 * @property {Object}			customStyle	定义需要用到的外部样式
 	 * 

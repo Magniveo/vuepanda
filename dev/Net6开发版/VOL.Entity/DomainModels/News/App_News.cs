@@ -18,18 +18,18 @@ namespace VOL.Entity.DomainModels
     public class App_News:BaseEntity
     {
         /// <summary>
-       ///主键ID
+       ///Id
        /// </summary>
        [Key]
-       [Display(Name ="主键ID")]
+       [Display(Name ="Id")]
        [Column(TypeName="int")]
        [Required(AllowEmptyStrings=false)]
        public int Id { get; set; }
 
        /// <summary>
-       ///标题
+       ///Title
        /// </summary>
-       [Display(Name ="标题")]
+       [Display(Name ="Title")]
        [MaxLength(50)]
        [Column(TypeName="nvarchar(50)")]
        [Editable(true)]
@@ -37,66 +37,66 @@ namespace VOL.Entity.DomainModels
        public string Title { get; set; }
 
        /// <summary>
-       ///新闻内容
+       ///Content
        /// </summary>
-       [Display(Name ="新闻内容")]
+       [Display(Name ="Content")]
        [Column(TypeName="nvarchar(max)")]
        [Editable(true)]
        public string Content { get; set; }
 
        /// <summary>
-       ///发布人
+       ///Author
        /// </summary>
-       [Display(Name ="发布人")]
+       [Display(Name ="Author")]
        [MaxLength(50)]
        [Column(TypeName="nvarchar(50)")]
        public string Author { get; set; }
 
        /// <summary>
-       ///发布时间
+       ///ReleaseDate
        /// </summary>
-       [Display(Name ="发布时间")]
+       [Display(Name ="ReleaseDate")]
        [Column(TypeName="datetime")]
        public DateTime? ReleaseDate { get; set; }
 
        /// <summary>
-       ///封面图片
+       ///ImageUrl
        /// </summary>
-       [Display(Name ="封面图片")]
+       [Display(Name ="ImageUrl")]
        [MaxLength(500)]
        [Column(TypeName="nvarchar(500)")]
        [Editable(true)]
        public string ImageUrl { get; set; }
 
        /// <summary>
-       ///图片(大图)
+       ///BigImageUrls
        /// </summary>
-       [Display(Name ="图片(大图)")]
+       [Display(Name ="BigImageUrls")]
        [MaxLength(500)]
        [Column(TypeName="nvarchar(500)")]
        public string BigImageUrls { get; set; }
 
        /// <summary>
-       ///新闻地址
+       ///DetailUrl
        /// </summary>
-       [Display(Name ="新闻地址")]
+       [Display(Name ="DetailUrl")]
        [MaxLength(200)]
        [Column(TypeName="nvarchar(200)")]
        [Editable(true)]
        public string DetailUrl { get; set; }
 
        /// <summary>
-       ///浏览次数
+       ///ViewCount
        /// </summary>
-       [Display(Name ="浏览次数")]
+       [Display(Name ="ViewCount")]
        [Column(TypeName="int")]
        [Editable(true)]
        public int? ViewCount { get; set; }
 
        /// <summary>
-       ///新闻类型
+       ///NewsType
        /// </summary>
-       [Display(Name ="新闻类型")]
+       [Display(Name ="NewsType")]
        [Column(TypeName="int")]
        [Editable(true)]
        [Required(AllowEmptyStrings=false)]
@@ -112,64 +112,64 @@ namespace VOL.Entity.DomainModels
        public sbyte DailyRecommend { get; set; }
 
        /// <summary>
-       ///推荐排序
+       ///推荐OrderNo
        /// </summary>
-       [Display(Name ="推荐排序")]
+       [Display(Name ="推荐OrderNo")]
        [Column(TypeName="int")]
        [Editable(true)]
        public int? OrderNo { get; set; }
 
        /// <summary>
-       ///是否启用
+       ///Enable
        /// </summary>
-       [Display(Name ="是否启用")]
+       [Display(Name ="Enable")]
        [Column(TypeName="sbyte")]
        [Editable(true)]
        public sbyte? Enable { get; set; }
 
        /// <summary>
-       ///创建人Id
+       ///CreatorId
        /// </summary>
-       [Display(Name ="创建人Id")]
+       [Display(Name ="CreatorId")]
        [Column(TypeName="int")]
        public int? CreateID { get; set; }
 
        /// <summary>
-       ///发布人
+       ///Author
        /// </summary>
-       [Display(Name ="发布人")]
+       [Display(Name ="Author")]
        [MaxLength(30)]
        [Column(TypeName="nvarchar(30)")]
        [Editable(true)]
        public string Creator { get; set; }
 
        /// <summary>
-       ///发布时间
+       ///ReleaseDate
        /// </summary>
-       [Display(Name ="发布时间")]
+       [Display(Name ="ReleaseDate")]
        [Column(TypeName="datetime")]
        [Editable(true)]
        public DateTime? CreateDate { get; set; }
 
        /// <summary>
-       ///修改人ID
+       ///ModifierID
        /// </summary>
-       [Display(Name ="修改人ID")]
+       [Display(Name ="ModifierID")]
        [Column(TypeName="int")]
        public int? ModifyID { get; set; }
 
        /// <summary>
-       ///修改人
+       ///Modifier
        /// </summary>
-       [Display(Name ="修改人")]
+       [Display(Name ="Modifier")]
        [MaxLength(30)]
        [Column(TypeName="nvarchar(30)")]
        public string Modifier { get; set; }
 
        /// <summary>
-       ///修改时间
+       ///ModifyDate
        /// </summary>
-       [Display(Name ="修改时间")]
+       [Display(Name ="ModifyDate")]
        [Column(TypeName="datetime")]
        [Editable(true)]
        public DateTime? ModifyDate { get; set; }

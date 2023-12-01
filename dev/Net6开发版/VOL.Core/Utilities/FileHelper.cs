@@ -184,7 +184,7 @@ namespace VOL.Core.Utilities
 
 
         /// <summary>
-        /// 删除文件
+        /// Del文件
         /// </summary>
         /// <param name="Path">路径</param>
         public static void FileDel(string Path)
@@ -219,7 +219,7 @@ namespace VOL.Core.Utilities
         /// <param name="Path"></param>
         public static void FolderCreate(string Path)
         {
-            // 判断目标目录是否存在如果不存在则新建之
+            // 判断目标目录是否存在如果不存在则Add之
             if (!Directory.Exists(Path.ReplacePath()))
                 Directory.CreateDirectory(Path.ReplacePath());
         }
@@ -235,23 +235,23 @@ namespace VOL.Core.Utilities
             }
         }
         /// <summary>
-        /// 递归删除文件夹目录及文件
+        /// 递归Del文件夹目录及文件
         /// </summary>
         /// <param name="dir"></param>  
         /// <returns></returns>
         public static void DeleteFolder(string dir)
         {
             dir = dir.ReplacePath();
-            if (Directory.Exists(dir)) //如果存在这个文件夹删除之 
+            if (Directory.Exists(dir)) //如果存在这个文件夹Del之 
             {
                 foreach (string d in Directory.GetFileSystemEntries(dir))
                 {
                     if (File.Exists(d))
-                        File.Delete(d); //直接删除其中的文件                        
+                        File.Delete(d); //直接Del其中的文件                        
                     else
-                        DeleteFolder(d); //递归删除子文件夹 
+                        DeleteFolder(d); //递归Del子文件夹 
                 }
-                Directory.Delete(dir, true); //删除已空文件夹                 
+                Directory.Delete(dir, true); //Del已空文件夹                 
             }
         }
 
@@ -269,7 +269,7 @@ namespace VOL.Core.Utilities
                 // 检查目标目录是否以目录分割字符结束如果不是则添加之
                 if (aimPath[aimPath.Length - 1] != Path.DirectorySeparatorChar)
                     aimPath += Path.DirectorySeparatorChar;
-                // 判断目标目录是否存在如果不存在则新建之
+                // 判断目标目录是否存在如果不存在则Add之
                 if (!Directory.Exists(aimPath))
                     Directory.CreateDirectory(aimPath);
                 // 得到源目录的文件列表，该里面是包含文件以及目录路径的一个数组
@@ -331,7 +331,7 @@ namespace VOL.Core.Utilities
             string str = "";
             filePath = filePath.ReplacePath();
             System.IO.FileInfo objFI = new System.IO.FileInfo(filePath);
-            str += "详细路径:" + objFI.FullName + "<br>文件名称:" + objFI.Name + "<br>文件长度:" + objFI.Length.ToString() + "字节<br>创建时间" + objFI.CreationTime.ToString() + "<br>最后访问时间:" + objFI.LastAccessTime.ToString() + "<br>修改时间:" + objFI.LastWriteTime.ToString() + "<br>所在目录:" + objFI.DirectoryName + "<br>扩展名:" + objFI.Extension;
+            str += "详细路径:" + objFI.FullName + "<br>文件ExpertName:" + objFI.Name + "<br>文件长度:" + objFI.Length.ToString() + "字节<br>CreateDate" + objFI.CreationTime.ToString() + "<br>最后访问时间:" + objFI.LastAccessTime.ToString() + "<br>ModifyDate:" + objFI.LastWriteTime.ToString() + "<br>所在目录:" + objFI.DirectoryName + "<br>扩展名:" + objFI.Extension;
             return str;
         }
 

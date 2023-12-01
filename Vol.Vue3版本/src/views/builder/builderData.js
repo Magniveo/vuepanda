@@ -85,8 +85,8 @@ let data = {
         "required": true,
         data: []
       }],
-      [{ "title": "表中文名", "field": "columnCNName", "required": true, placeholder: "表对应的中文名字,界面上显示会用到" }],
-      [{ "title": "实际表名", "field": "tableName", "required": true, placeholder: "数据库实际表名或者视图名(多表关联请创建视图再生成代码)" }],
+      [{ "title": "WorkTableName", "field": "columnCNName", "required": true, placeholder: "表对应的中文名字,界面上显示会用到" }],
+      [{ "title": "实际WorkTable", "field": "tableName", "required": true, placeholder: "数据库实际WorkTable或者视图名(多表关联请创建视图再生成代码)" }],
       [{ "title": "文件夹名", placeholder: "生成文件所在类库中的文件夹名(文件夹可以不存在);注意只需要填写文件夹名，不是路径", "field": "folderName", "required": true }]
     ],
     options: [
@@ -103,15 +103,15 @@ let data = {
         }
       ],
       [
-        { "title": "表中文名", "field": "columnCNName", "dataSource": [], "required": true },
-        { "title": "表 别 名", placeholder: "默认与实际表名相同", "field": "tableName", "required": true },
-        { "title": "实际表名", "field": "tableTrueName" },
+        { "title": "WorkTableName", "field": "columnCNName", "dataSource": [], "required": true },
+        { "title": "表 别 名", placeholder: "默认与实际WorkTable相同", "field": "tableName", "required": true },
+        { "title": "实际WorkTable", "field": "tableTrueName" },
 
       ],
       [
         { "title": "文件夹名", placeholder: "生成文件所在类库中的文件夹名(文件夹可以不存在)", "field": "folderName", "required": true },
-        { "title": "明细表名", "field": "detailCnName", placeholder: "明细表中文名字" },
-        { "title": "明 细 表", "field": "detailName", placeholder: "数据库的表名" },
+        { "title": "明细WorkTable", "field": "detailCnName", placeholder: "明细WorkTableName字" },
+        { "title": "明 细 表", "field": "detailName", placeholder: "数据库的WorkTable" },
 
       ],
       [
@@ -185,9 +185,9 @@ let data = {
     // { field: 'columnformat', title: '显示格式', width: 120, align: 'left', editor: 'text', editor: 'textarea' },
     // { field: 'script', title: '脚本', width: 120, align: 'left', editor: 'textarea' },
     // { field: 'creator', title: '创建人', width: 120, align: 'left' },
-    { field: 'createDate', title: '创建时间', width: 120, align: 'left' },
+    { field: 'createDate', title: 'CreateDate', width: 120, align: 'left' },
     // { field: 'modifier', title: '修改人', width: 120, align: 'left' },
-    // { field: 'modifyDate', title: '修改时间', width: 120, align: 'left' }
+    // { field: 'modifyDate', title: 'ModifyDate', width: 120, align: 'left' }
   ]
 }
 

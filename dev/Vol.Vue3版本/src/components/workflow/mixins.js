@@ -11,9 +11,9 @@ export const easyFlowMixin = {
                 // Connector: ['Straight', {stub: 20, gap: 1}],
                 // Connector: ['Flowchart', {stub: 30, gap: 1, alwaysRespectStubs: false, midpoint: 0.5, cornerRadius: 10}],
                 // Connector: ['StateMachine', {margin: 5, curviness: 10, proximityLimit: 80}],
-                // 鼠标不能拖动删除线
+                // 鼠标不能拖动Del线
                 ConnectionsDetachable: false,
-                // 删除线的时候节点不删除
+                // Del线的时候节点不Del
                 DeleteEndpointsOnDetach: false,
                 /**
                  * 连线的两端端点类型：圆形
@@ -51,7 +51,7 @@ export const easyFlowMixin = {
                     stroke: '#E0E3E7',
                     // 线的粗细，值越大线越粗
                     strokeWidth: 1,
-                    // 设置外边线的颜色，默认设置透明，这样别人就看不见了，点击线的时候可以不用精确点击，参考 https://blog.csdn.net/roymno2/article/details/72717101
+                    // 设置外边线的颜色，默认设置透明，这样别人就看不见了，点击线的时候可以Dept_Id精确点击，参考 https://blog.csdn.net/roymno2/article/details/72717101
                     outlineStroke: 'transparent',
                     // 线外边的宽，值越大，线的点击范围越大
                     outlineWidth: 10
@@ -136,7 +136,7 @@ export const easyFlowMixin = {
                     stroke: 'red',
                     // 线的粗细，值越大线越粗
                     strokeWidth: 1,
-                    // 设置外边线的颜色，默认设置透明，这样别人就看不见了，点击线的时候可以不用精确点击，参考 https://blog.csdn.net/roymno2/article/details/72717101
+                    // 设置外边线的颜色，默认设置透明，这样别人就看不见了，点击线的时候可以Dept_Id精确点击，参考 https://blog.csdn.net/roymno2/article/details/72717101
                     outlineStroke: 'transparent',
                     // 线外边的宽，值越大，线的点击范围越大
                     outlineWidth: 10

@@ -422,7 +422,7 @@ let methods = {
       return;
     }
     let objKey = {};
-    //编辑状态下,不需要重置主键,创建时间创建人
+    //编辑状态下,不需要重置主键,CreateDate创建人
     if (isEdit) {
       objKey[this.table.key] = this.editFormFields[this.table.key];
     }

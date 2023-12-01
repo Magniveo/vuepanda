@@ -10,7 +10,7 @@ export default {
             type: String,
             default: uni.$u.props.actionSheet.title
         },
-        // 选项上方的描述信息
+        // 选项上方的Describe信息
         description: {
             type: String,
             default: uni.$u.props.actionSheet.description

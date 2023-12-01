@@ -34,9 +34,9 @@ namespace VOL.Entity.DomainModels
        public Guid? FormId { get; set; }
 
        /// <summary>
-       ///标题
+       ///Title
        /// </summary>
-       [Display(Name ="标题")]
+       [Display(Name ="Title")]
        [Column(TypeName="nvarchar(max)")]
        [Editable(true)]
        public string Title { get; set; }
@@ -50,17 +50,17 @@ namespace VOL.Entity.DomainModels
        public string FormData { get; set; }
 
        /// <summary>
-       ///提交人
+       ///Creator
        /// </summary>
-       [Display(Name ="提交人")]
+       [Display(Name ="Creator")]
        [MaxLength(60)]
        [Column(TypeName="nvarchar(60)")]
        public string Creator { get; set; }
 
        /// <summary>
-       ///提交时间
+       ///CreateDate
        /// </summary>
-       [Display(Name ="提交时间")]
+       [Display(Name ="CreateDate")]
        [Column(TypeName="datetime")]
        public DateTime? CreateDate { get; set; }
 

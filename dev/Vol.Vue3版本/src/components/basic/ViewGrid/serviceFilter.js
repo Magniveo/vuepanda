@@ -27,31 +27,31 @@ let serviceFilter = {
     // console.log(this.detailOptions.cnName + '触发loadDetailTableAfter');
     return true;
   },
-  delBefore (ids, rows) { //查询界面的表删除前 ids为删除的id数组,,rows删除的行
+  delBefore (ids, rows) { //查询界面的表Del前 ids为Del的id数组,,rowsDel的行
     return true;
   },
-  delAfter (result) {//查询界面的表删除后
+  delAfter (result) {//查询界面的表Del后
     return true;
   },
-  delDetailRow (rows) { //弹出框删除明细表的行数据(只是对table操作，并没有操作后台)
+  delDetailRow (rows) { //弹出框Del明细表的行数据(只是对table操作，并没有操作后台)
     return true;
   },
-  addBefore (formData) { //新建保存前formData为对象，包括明细表
+  addBefore (formData) { //Add保存前formData为对象，包括明细表
     return true;
   },
   async addBeforeAsync (formData) { //异步处理,功能同上(2020.12.06)
     return true;
   },
-  addAfter (result) {//新建保存后result返回的状态及表单对象
+  addAfter (result) {//Add保存后result返回的状态及表单对象
     return true;
   },
-  updateBefore (formData) { //编辑保存前formData为对象，包括明细表、删除行的Id
+  updateBefore (formData) { //Edit保存前formData为对象，包括明细表、Del行的Id
     return true;
   },
   async updateBeforeAsync (formData) { //异步处理,功能同上(2020.12.06)
     return true;
   },
-  updateAfter (result) {//编辑保存后result返回的状态及表单对象
+  updateAfter (result) {//Edit保存后result返回的状态及表单对象
     return true;
   },
   auditBefore (ids, rows) {//审核前
@@ -60,22 +60,22 @@ let serviceFilter = {
   auditAfter (result, rows) {// 审核后
     return true;
   },
-  resetAddFormBefore () { //重置新建表单前的内容
+  resetAddFormBefore () { //重置Add表单前的内容
     return true;
   },
-  resetAddFormAfter () { //重置新建表单后的内容
+  resetAddFormAfter () { //重置Add表单后的内容
     return true;
   },
-  resetUpdateFormBefore () { //重置编辑表单前的内容
+  resetUpdateFormBefore () { //重置Edit表单前的内容
     return true;
   },
-  resetUpdateFormAfter () { //重置编辑表单后的内容
+  resetUpdateFormAfter () { //重置Edit表单后的内容
     return true;
   },
-  modelOpenBefore (row) { //点击编辑/新建按钮弹出框前，可以在此处写逻辑，如，从后台获取数据
+  modelOpenBefore (row) { //点击Edit/Add按钮弹出框前，可以在此处写逻辑，如，从后台获取数据
 
   },
-  modelOpenAfter (row) {  //点击编辑/新建按钮弹出框后，可以在此处写逻辑，如，从后台获取数据
+  modelOpenAfter (row) {  //点击Edit/Add按钮弹出框后，可以在此处写逻辑，如，从后台获取数据
 
   },
   importAfter (data) { //导入excel后刷新table表格数据

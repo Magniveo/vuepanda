@@ -26,9 +26,9 @@ namespace VOL.Entity.DomainModels
        public Guid FormId { get; set; }
 
        /// <summary>
-       ///表单名称
+       ///表单ExpertName
        /// </summary>
-       [Display(Name ="表单名称")]
+       [Display(Name ="表单ExpertName")]
        [MaxLength(1000)]
        [Column(TypeName="nvarchar(1000)")]
        [Editable(true)]
@@ -76,17 +76,17 @@ namespace VOL.Entity.DomainModels
        public string TableConfig { get; set; }
 
        /// <summary>
-       ///创建人
+       ///Creator
        /// </summary>
-       [Display(Name ="创建人")]
+       [Display(Name ="Creator")]
        [MaxLength(60)]
        [Column(TypeName="nvarchar(60)")]
        public string Creator { get; set; }
 
        /// <summary>
-       ///创建时间
+       ///CreateDate
        /// </summary>
-       [Display(Name ="创建时间")]
+       [Display(Name ="CreateDate")]
        [Column(TypeName="datetime")]
        public DateTime? CreateDate { get; set; }
 
@@ -98,17 +98,17 @@ namespace VOL.Entity.DomainModels
        public int? CreateID { get; set; }
 
        /// <summary>
-       ///修改人
+       ///Modifier
        /// </summary>
-       [Display(Name ="修改人")]
+       [Display(Name ="Modifier")]
        [MaxLength(60)]
        [Column(TypeName="nvarchar(60)")]
        public string Modifier { get; set; }
 
        /// <summary>
-       ///修改时间
+       ///ModifyDate
        /// </summary>
-       [Display(Name ="修改时间")]
+       [Display(Name ="ModifyDate")]
        [Column(TypeName="datetime")]
        public DateTime? ModifyDate { get; set; }
 

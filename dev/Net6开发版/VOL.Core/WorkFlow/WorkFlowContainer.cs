@@ -42,7 +42,7 @@ namespace VOL.Core.WorkFlow
         /// 
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="name">流程实例名称</param>
+        /// <param name="name">流程实例ExpertName</param>
         /// <param name="filterFields">流程配置可筛选条件字段</param>
         ///<param name="formFields">审批界面要显示字段</param>
         /// <returns></returns>
@@ -88,7 +88,7 @@ namespace VOL.Core.WorkFlow
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"初始化流程调用数据库异常,异常信息{ex.Message}");
+                    Console.WriteLine($"初始化流程调用数据库异常,ExceptionInfo{ex.Message}");
                 }
             });
         }
@@ -138,7 +138,7 @@ namespace VOL.Core.WorkFlow
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine($"初始化流程配置信息异常,表:【{tableName}】,异常信息{e.Message}");
+                    Console.WriteLine($"初始化流程配置信息异常,表:【{tableName}】,ExceptionInfo{e.Message}");
                 }
             }
 

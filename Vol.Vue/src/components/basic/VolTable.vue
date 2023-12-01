@@ -434,7 +434,7 @@ export default {
       default: true
     },
     loadKey: {
-      // 是否自动从后台加载数据源,如【审核状态】字段是的值是数字，但要显示对应的文字，1=审核中，2=审核通过
+      // 是否自动从后台加载数据源,如【AuditStatus】字段是的值是数字，但要显示对应的文字，1=审核中，2=审核通过
       type: Boolean,
       default: false
     },

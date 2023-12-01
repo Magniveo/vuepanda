@@ -9,11 +9,11 @@ namespace VOL.Entity
     public class EntityAttribute : Attribute
     {
         /// <summary>
-        /// 真实表名(数据库表名，若没有填写默认实体为表名)
+        /// 真实WorkTable(数据库WorkTable，若没有填写默认实体为WorkTable)
         /// </summary>
         public string TableName { get; set; }
         /// <summary>
-        /// 表中文名
+        /// WorkTableName
         /// </summary>
         public string TableCnName { get; set; }
         /// <summary>
@@ -21,7 +21,7 @@ namespace VOL.Entity
         /// </summary>
         public Type[] DetailTable { get; set; }
         /// <summary>
-        /// 子表中文名
+        /// 子WorkTableName
         /// </summary>
         public string DetailTableCnName { get; set; }
         /// <summary>

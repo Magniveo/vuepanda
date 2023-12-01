@@ -35,11 +35,11 @@
                               [{"title":"部门名称","field":"DeptName"},
                                {"dataKey":"enable","data":[],"title":"是否启用","field":"Enable","type":"switch"}],
                               [{"title":"创建人","field":"Creator","disabled":true},
-                               {"title":"创建时间","field":"CreateDate","disabled":true,"type":"datetime"}],
+                               {"title":"CreateDate","field":"CreateDate","disabled":true,"type":"datetime"}],
                               [{"title":"修改人","field":"Modifier","disabled":true},
-                               {"title":"修改时间","field":"ModifyDate","disabled":true}]]);
+                               {"title":"ModifyDate","field":"ModifyDate","disabled":true}]]);
             const searchFormFields = ref({"RoleName":"","DeptName":"","Enable":"","CreateDate":"","ModifyDate":""});
-            const searchFormOptions = ref([[{"title":"角色名称","field":"RoleName","type":"text"},{"title":"部门名称","field":"DeptName","type":"text"},{"dataKey":"enable","data":[],"title":"是否启用","field":"Enable","type":"select"}],[{"title":"创建时间","field":"CreateDate","type":"datetime"},{"title":"修改时间","field":"ModifyDate","type":"datetime"}]]);
+            const searchFormOptions = ref([[{"title":"角色名称","field":"RoleName","type":"text"},{"title":"部门名称","field":"DeptName","type":"text"},{"dataKey":"enable","data":[],"title":"是否启用","field":"Enable","type":"select"}],[{"title":"CreateDate","field":"CreateDate","type":"datetime"},{"title":"ModifyDate","field":"ModifyDate","type":"datetime"}]]);
             const columns = ref([{field:'Role_Id',title:'角色ID',type:'int',width:70,readonly:true,require:true,align:'left',sortable:true},
                        {field:'ParentId',title:'父级ID',type:'int',bind:{ key:'tree_roles',data:[]},width:70,require:true,align:'left'},
                        {field:'RoleName',title:'角色名称',type:'string',link:true,width:90,require:true,align:'left'},
@@ -48,9 +48,9 @@
                        {field:'Enable',title:'是否启用',type:'byte',bind:{ key:'enable',data:[]},width:90,align:'left'},
                        {field:'OrderNo',title:'排序',type:'int',width:90,hidden:true,align:'left'},
                        {field:'Creator',title:'创建人',type:'string',width:130,readonly:true,align:'left'},
-                       {field:'CreateDate',title:'创建时间',type:'datetime',width:90,readonly:true,align:'left',sortable:true},
+                       {field:'CreateDate',title:'CreateDate',type:'datetime',width:90,readonly:true,align:'left',sortable:true},
                        {field:'Modifier',title:'修改人',type:'string',width:130,readonly:true,align:'left'},
-                       {field:'ModifyDate',title:'修改时间',type:'datetime',width:90,readonly:true,align:'left',sortable:true}]);
+                       {field:'ModifyDate',title:'ModifyDate',type:'datetime',width:90,readonly:true,align:'left',sortable:true}]);
             const detail = ref({
                 cnName: "#detailCnName",
                 columns: [],

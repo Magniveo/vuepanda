@@ -19,7 +19,7 @@ namespace VOL.System.Services
         private WebResponseContent _responseContent = new WebResponseContent();
         public override PageGridData<Sys_Role> GetPageData(PageDataOptions pageData)
         {
-            //角色Id=1默认为超级管理员角色，界面上不显示此角色
+            //Role_Id=1默认为超级管理员Role_Id，界面上不显示此Role_Id
             QueryRelativeExpression = (IQueryable<Sys_Role> queryable) =>
             {
                 if (UserContext.Current.IsSuperAdmin)
@@ -32,7 +32,7 @@ namespace VOL.System.Services
             return base.GetPageData(pageData);
         }
         /// <summary>
-        /// 编辑权限时，获取当前用户的所有菜单权限
+        /// Edit权限时，获取当前用户的所有菜单权限
         /// </summary>
         /// <returns></returns>
         public async Task<WebResponseContent> GetCurrentUserTreePermission()
@@ -41,7 +41,7 @@ namespace VOL.System.Services
         }
 
         /// <summary>
-        /// 编辑权限时，获取指定角色的所有菜单权限
+        /// Edit权限时，获取指定Role_Id的所有菜单权限
         /// </summary>
         /// <param name="roleId"></param>
         /// <returns></returns>
@@ -51,7 +51,7 @@ namespace VOL.System.Services
             {
                 if (!(await GetAllChildrenAsync(UserContext.Current.RoleId)).Exists(x => x.Id == roleId))
                 {
-                    return _responseContent.Error("没有权限获取此角色的权限信息");
+                    return _responseContent.Error("没有权限获取此Role_Id的权限信息");
                 }
             }
             //获取用户权限
@@ -86,7 +86,7 @@ namespace VOL.System.Services
         private List<RoleNodes> rolesChildren = new List<RoleNodes>();
 
         /// <summary>
-        /// 编辑权限时获取当前用户下的所有角色与当前用户的菜单权限
+        /// Edit权限时获取当前用户下的所有Role_Id与当前用户的菜单权限
         /// </summary>
         /// <returns></returns>
         public async Task<WebResponseContent> GetCurrentTreePermission()
@@ -103,7 +103,7 @@ namespace VOL.System.Services
         private List<RoleNodes> roles = null;
 
         /// <summary>
-        /// 获取当前角色下的所有角色包括自己的角色Id
+        /// 获取当前Role_Id下的所有Role_Id包括自己的Role_Id
         /// </summary>
         /// <returns></returns>
         public List<int> GetAllChildrenRoleIdAndSelf()
@@ -116,7 +116,7 @@ namespace VOL.System.Services
 
 
         /// <summary>
-        /// 获取当前角色下的所有角色
+        /// 获取当前Role_Id下的所有Role_Id
         /// </summary>
         /// <param name="roleId"></param>
         /// <returns></returns>
@@ -167,7 +167,7 @@ namespace VOL.System.Services
 
 
         /// <summary>
-        /// 保存角色权限
+        /// 保存Role_Id权限
         /// </summary>
         /// <param name="userPermissions"></param>
         /// <param name="roleId"></param>
@@ -180,12 +180,12 @@ namespace VOL.System.Services
             {
                 UserInfo user = UserContext.Current.UserInfo;
                 if (!(await GetAllChildrenAsync(user.Role_Id)).Exists(x => x.Id == roleId))
-                    return _responseContent.Error("没有权限修改此角色的权限信息");
+                    return _responseContent.Error("没有权限修改此Role_Id的权限信息");
                 //当前用户的权限
                 List<Permissions> permissions = UserContext.Current.Permissions;
 
                 List<int> originalMeunIds = new List<int>();
-                //被分配角色的权限
+                //被分配Role_Id的权限
                 List<Sys_RoleAuth> roleAuths = await repository.FindAsync<Sys_RoleAuth>(x => x.Role_Id == roleId);
                 List<Sys_RoleAuth> updateAuths = new List<Sys_RoleAuth>();
                 foreach (UserPermissions x in userPermissions)
@@ -261,11 +261,11 @@ namespace VOL.System.Services
                 //标识缓存已更新
                 base.CacheContext.Add(roleId.GetRoleIdKey(), _version);
 
-                _responseContent.OK($"保存成功：新增加配菜单权限{addCount}条,更新菜单{updateCount}条,删除权限{delAuths.Count()}条");
+                _responseContent.OK($"保存成功：新增加配菜单权限{addCount}条,更新菜单{updateCount}条,Del权限{delAuths.Count()}条");
             }
             catch (Exception ex)
             {
-                message = "异常信息：" + ex.Message + ex.StackTrace + ",";
+                message = "ExceptionInfo：" + ex.Message + ex.StackTrace + ",";
             }
             finally
             {
@@ -282,7 +282,7 @@ namespace VOL.System.Services
             {
                 if (!UserContext.Current.IsSuperAdmin && role.ParentId > 0 && !RoleContext.GetAllChildrenIds(UserContext.Current.RoleId).Contains(role.ParentId))
                 {
-                    return _responseContent.Error("不能添加此角色");
+                    return _responseContent.Error("不能添加此Role_Id");
                 }
                 return ValidateRoleName(role, x => x.RoleName == role.RoleName);
             };
@@ -297,7 +297,7 @@ namespace VOL.System.Services
                 var _keys = keys.Select(s => s.GetInt());
                 if (_keys.Any(x => !roleIds.Contains(x)))
                 {
-                    return _responseContent.Error("没有权限删除此角色");
+                    return _responseContent.Error("没有权限Del此Role_Id");
                 }
             }
         
@@ -308,7 +308,7 @@ namespace VOL.System.Services
         {
             if (repository.Exists(predicate))
             {
-                return _responseContent.Error($"角色名【{role.RoleName}】已存在,请设置其他角色名");
+                return _responseContent.Error($"Role_Id名【{role.RoleName}】已存在,请设置其他Role_Id名");
             }
             return _responseContent.OK();
         }
@@ -317,18 +317,18 @@ namespace VOL.System.Services
         {
             UpdateOnExecuting = (Sys_Role role, object obj1, object obj2, List<object> obj3) =>
             {
-                //2020.05.07新增禁止选择上级角色为自己
+                //2020.05.07新增禁止选择上级Role_Id为自己
                 if (role.Role_Id == role.ParentId)
                 {
-                    return _responseContent.Error($"上级角色不能选择自己");
+                    return _responseContent.Error($"上级Role_Id不能选择自己");
                 }
                 if (role.Role_Id == UserContext.Current.RoleId)
                 {
-                    return _responseContent.Error($"不能修改自己的角色");
+                    return _responseContent.Error($"不能修改自己的Role_Id");
                 }
                 if (repository.Exists(x => x.Role_Id == role.ParentId && x.ParentId == role.Role_Id))
                 {
-                    return _responseContent.Error($"不能选择此上级角色，选择的上级角色与当前角色形成依赖关系");
+                    return _responseContent.Error($"不能选择此上级Role_Id，选择的上级Role_Id与当前Role_Id形成依赖关系");
                 }
                 if (!UserContext.Current.IsSuperAdmin)
                 {
@@ -337,12 +337,12 @@ namespace VOL.System.Services
                     {
                         if (!roleIds.Contains(role.ParentId))
                         {
-                            return _responseContent.Error($"不能选择此角色");
+                            return _responseContent.Error($"不能选择此Role_Id");
                         }
                     }
                     if (!roleIds.Contains(role.Role_Id))
                     {
-                        return _responseContent.Error($"不能选择此角色");
+                        return _responseContent.Error($"不能选择此Role_Id");
                     }
                     return _responseContent.OK("");
                 }

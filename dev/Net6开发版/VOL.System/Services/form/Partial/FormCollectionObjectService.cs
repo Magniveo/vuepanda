@@ -3,7 +3,7 @@
 *可使用repository.调用常用方法，获取EF/Dapper等信息
 *如果需要事务请使用repository.DbContextBeginTransaction
 *也可使用DBServerProvider.手动获取数据库相关信息
-*用户信息、权限、角色等使用UserContext.Current操作
+*用户信息、权限、Role_Id等使用UserContext.Current操作
 *FormCollectionObjectService对增、删、改查、导入、导出、审核业务代码扩展参照ServiceFunFilter
 */
 using VOL.Core.BaseProvider;
@@ -64,10 +64,10 @@ namespace VOL.System.Services
                     {
                             Dictionary<string, object> dic = new Dictionary<string, object>();
                             var formData = item.FormData.DeserializeObject<Dictionary<string, string>>();
-                            dic.Add("标题", data.Title);
+                            dic.Add("Title", data.Title);
   
-                            dic.Add("提交人", item.Creator);
-                            dic.Add("提交时间", item.CreateDate.ToString("yyyy-MM-dd HH:mm:sss"));
+                            dic.Add("Creator", item.Creator);
+                            dic.Add("CreateDate", item.CreateDate.ToString("yyyy-MM-dd HH:mm:sss"));
                             foreach (var obj in formObj)
                             {
                                 dic.Add(obj.Title, formData.Where(x => x.Key == obj.Field).Select(s => s.Value).FirstOrDefault());

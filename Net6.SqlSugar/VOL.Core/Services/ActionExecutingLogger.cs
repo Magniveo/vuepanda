@@ -13,7 +13,7 @@ namespace VOL.Core.Services
         //    this.HttpContext = httpContextAccessor.HttpContext;
         //}
         /// <summary>
-        /// 记录action执行的开始时间
+        /// 记录action执行的StratDate
         /// </summary>
         public DateTime RequestDate { get; set; }
 

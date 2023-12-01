@@ -25,7 +25,7 @@ export default {
     },
     text: {
       type: String,
-      default: '未定义名称'
+      default: '未定义ExpertName'
     }
   }
 };

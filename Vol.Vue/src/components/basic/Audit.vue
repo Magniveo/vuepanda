@@ -14,7 +14,7 @@
           v-model="auditParam.reason"
           type="textarea"
           :autosize="{minRows: 4,maxRows: 10}"
-          placeholder="审核备注..."
+          placeholder="审核Remark..."
         ></Input>
       </FormItem>
     </Form>

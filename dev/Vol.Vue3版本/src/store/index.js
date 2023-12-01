@@ -1,5 +1,6 @@
 import { createStore } from 'vuex'
 const keys = { USER: 'user' }
+const locales = require.context('../locale',true,'ru_RU.json');
 function getUserInfo(state) {
   if (state.userInfo) return state.userInfo;
   let userInfo = localStorage.getItem(keys.USER);
@@ -13,7 +14,7 @@ export default createStore({
     data: {},
     permission: [],
     isLoading: false,//2020.06.03增加路由切换时加载提示
-    userInfo: null
+    userInfo: null,
   },
   mutations: {
     setPermission(state, data) {  //调用方式 this.$store.commit('setPermission', data)
@@ -51,7 +52,7 @@ export default createStore({
       if (state.userInfo) {
         return state.userInfo.userName;
       }
-      return '未获取到登陆信息';
+      return '未获取到Login信息';
     },
     getToken: (state) => () => {
       getUserInfo(state);
@@ -84,6 +85,13 @@ export default createStore({
     },
     onLoading(context, flag) {
       context.commit("updateLoadingState", flag);
+    },
+    getLocalization(str){
+      //require.context('./locale', true, /[a-z0-9]+\.json$/i)
+      //locales.keys().forEach(key => {
+      //  const locale = key.match(/([a-z0-9]+)\./i)[1]
+      //  ClientAddonApi.addLocalization(locale, locales(key))
+      //})
     }
   }
 })

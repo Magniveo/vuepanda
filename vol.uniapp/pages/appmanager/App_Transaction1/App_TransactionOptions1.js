@@ -19,7 +19,7 @@ export default function() {
                        {field:'Quantity',title:'数量',type:'int'},
                        {field:'TransactionType',title:'状态',type:'int',bind:{ key:'cq',data:[]}},
                        {field:'CowType',title:'类型',type:'string',bind:{ key:'nav',data:[]}},
-                       {field:'Describe',title:'描述',type:'string'},
+                       {field:'Describe',title:'Describe',type:'string'},
                        {field:'Creator',title:'提交人',type:'string'},
                        {field:'CreateDate',title:'提交时间',type:'datetime'}],
 		table: {

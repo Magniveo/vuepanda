@@ -1,6 +1,6 @@
 let base = {
   addDays(date, days) {
-    //给指定日期增加天数
+    //给指定Date增加天数
     if (!days) {
       return date;
     }
@@ -70,7 +70,7 @@ let base = {
     return this.checkUrl(url);
   },
   checkUrl(url) {
-    // url= 协议://(ftp的登录信息)[IP|域名](:端口号)(/或?请求参数)
+    // url= 协议://(ftp的登录信息)[IP|域名](:端口号)(/或?RequestParameter)
     var strRegex =
       '^((https|http|ftp)://)?' + // (https或http或ftp):// 可有可无
       "(([\\w_!~*'()\\.&=+$%-]+: )?[\\w_!~*'()\\.&=+$%-]+@)?" + // ftp的user@  可有可无
@@ -82,9 +82,9 @@ let base = {
       '[a-zA-Z]{1,6})' + // 顶级域名- 1-6位英文
       '(:[0-9]{1,5})?' + // 端口- :80 ,1-5位数字
       '((/?)|' + // url无参数结尾 - 斜杆或这没有
-      "(/[\\w_!~*'()\\.;?:@&=+$,%#-]+)+/?)$"; // 请求参数结尾- 英文或数字和[]内的各种字符
+      "(/[\\w_!~*'()\\.;?:@&=+$,%#-]+)+/?)$"; // RequestParameter结尾- 英文或数字和[]内的各种字符
     var re = new RegExp(strRegex, 'i'); // i不区分大小写
-    // 将url做uri转码后再匹配，解除请求参数中的中文和空字符影响
+    // 将url做uri转码后再匹配，解除RequestParameter中的中文和空字符影响
     if (re.test(encodeURI(url))) {
       return true;
     }
@@ -246,7 +246,7 @@ let base = {
     return root_data;
   },
   getTreeAllParent(id, data) {
-    // 获取某个节点的所有父节点信息2020.11.01
+    // 获取某个节点的所有父NodeConfig2020.11.01
     var nodes = [];
     if (!(data instanceof Array)) {
       return nodes;
@@ -287,7 +287,7 @@ let base = {
   //     { name: 'tree1', id: 1, parentId: 0 },
   //     { name: 'tree2', id: 2, parentId: 0 }]
   getTreeAllChildren(id, data) {
-    //递归获取某个节点的所有子节点信息
+    //递归获取某个节点的所有子NodeConfig
     var nodes = [];
     if (!(data instanceof Array)) {
       return nodes;

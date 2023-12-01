@@ -2,7 +2,7 @@
 //2、此文件中的方法会与serviceFilter.js进行合并，终终执行的就是此文件中的方法
 //3、components为扩展组件，可自定义页面的头部、body及尾部的额外显示的内容，分别对应的组件为:
 //gridHeader、gridBody、gridFooter、modelHeader、modelBody、modelFooter共6个组件位置，如果不需要扩展组件，请忽略此处
-//4、text为界面显示额外描述信息
+//4、text为界面显示额外Describe信息
 //5、buttons->view/box/detail分别为查询界面、弹出框、弹出框明细表额外扩展的按钮
 //6、methods为整个页面所有方法的业务代码扩展，如果需要在界面上的操作前、后编写业务，请覆盖此方法
 //7、methods方法中可获取任意vue对象、方法、属性,可查看ViewGridConfig路径下的js文件及ViewGrid.vue的data属性
@@ -46,7 +46,7 @@ let extension = {
     modelFooter: modelFooter,
   },
   text: "示例覆盖全部可扩展方法,前台扩展文件SellOrder.js，后台Partial->SellOrdeService.cs",
-  //this.filterPermission('表名','权限值，如:Add')来判断页面上是否有某个按钮的权限
+  //this.filterPermission('WorkTable','权限值，如:Add')来判断页面上是否有某个按钮的权限
   buttons: { //根据需要自行实现扩展按钮
     //注：没有编辑或新建权限的情况下，是不会显示此处添加的扩展按钮，如果仍需要显示此处的按钮，可以把按钮在methods的onInited方法中添加,如：this.boxButtons.push(...)
     view: [//ViewGrid查询界面按钮

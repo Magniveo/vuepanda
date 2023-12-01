@@ -66,7 +66,7 @@ namespace VOL.System.Controllers
             return Json(WorkFlowContainer.GetDic());
         }
         /// <summary>
-        /// 获取流程节点数据源(用户与角色)
+        /// 获取流程节点数据源(用户与Role_Id)
         /// </summary>
         /// <returns></returns>
         [HttpGet, Route("getNodeDic")]
@@ -132,7 +132,7 @@ namespace VOL.System.Controllers
 
             string GetAuditUsers(Sys_WorkFlowTableStep step)
             {
-                if (step.StepType == (int)AuditType.角色审批)
+                if (step.StepType == (int)AuditType.Role_Id审批)
                 {
                     int roleId = step.StepValue.GetInt();
                     return RoleContext.GetAllRoleId().Where(c => c.Id == roleId).Select(c => c.RoleName).FirstOrDefault();
@@ -169,7 +169,7 @@ namespace VOL.System.Controllers
                         c.StepAttrType,
                         c.CreateDate,
                         c.Creator,
-                        //判断是按角色审批 还是用户帐号审批
+                        //判断是按Role_Id审批 还是用户UserName审批
                         isCurrentUser = (c.AuditStatus == null || c.AuditStatus == (int)AuditStatus.审核中 || c.AuditStatus == (int)AuditStatus.待审核)
                                         && c.StepId == flow.CurrentStepId && GetAuditStepValue(c),
                         isCurrent = c.StepId == flow.CurrentStepId && c.AuditStatus != (int)AuditStatus.审核通过
@@ -229,7 +229,7 @@ namespace VOL.System.Controllers
 
         private bool GetAuditStepValue(Sys_WorkFlowTableStep flow)
         {
-            if (flow.StepType == (int)AuditType.角色审批)
+            if (flow.StepType == (int)AuditType.Role_Id审批)
             {
                 return UserContext.Current.RoleId.ToString() == flow.StepValue;
             }

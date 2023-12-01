@@ -240,14 +240,14 @@ DISTINCT
                     && x.BaseType == typeof(BaseEntity)))
                     {
                         if (entity.Name == tableTrueName && !string.IsNullOrEmpty(tableName) && tableName != tableTrueName)
-                            return webResponse.Error($"实际表名【{tableTrueName }】已创建实体，不能创建别名【{tableName}】实体");
+                            return webResponse.Error($"实际WorkTable【{tableTrueName }】已创建实体，不能创建别名【{tableName}】实体");
 
                         if (entity.Name != tableName)
                         {
                             var tableAttr = entity.GetCustomAttribute<TableAttribute>();
                             if (tableAttr != null && tableAttr.Name == tableTrueName)
                             {
-                                return webResponse.Error($"实际表名【{tableTrueName }】已被【{entity.Name}】创建建实体,不能创建别名【{tableName}】实体,请将别名更换为【{entity.Name}】");
+                                return webResponse.Error($"实际WorkTable【{tableTrueName }】已被【{entity.Name}】创建建实体,不能创建别名【{tableName}】实体,请将别名更换为【{entity.Name}】");
                             }
                         }
                     }
@@ -379,7 +379,7 @@ DISTINCT
         public async Task<WebResponseContent> SyncTable(string tableName)
         {
             WebResponseContent webResponse = new WebResponseContent();
-            if (string.IsNullOrEmpty(tableName)) return webResponse.OK("表名不能为空");
+            if (string.IsNullOrEmpty(tableName)) return webResponse.OK("WorkTable不能为空");
 
             Sys_TableInfo tableInfo = repository.FindAsIQueryable(x => x.TableName == tableName)
           .Includes(o => o.TableColumns).FirstOrDefault();
@@ -1070,7 +1070,7 @@ DISTINCT
                             LEFT JOIN sys.extended_properties epTwo ON obj.id = epTwo.major_id
                                                               AND epTwo.minor_id = 0
                                                               AND epTwo.name = 'MS_Description'
-                  WHERE obj.name = @tableName--表名
+                  WHERE obj.name = @tableName--WorkTable
                 ) AS t
             ORDER BY t.colorder";
         }
@@ -1758,7 +1758,7 @@ DISTINCT
             if (!string.IsNullOrEmpty(tableInfo.TableTrueName) && tableInfo.TableName != tableInfo.TableTrueName)
             {
                 string tableTrueName = tableInfo.TableTrueName;
-                //2020.06.14 pgsql数据库，设置表名为小写(数据库创建表的时候也要使用小写)
+                //2020.06.14 pgsql数据库，设置WorkTable为小写(数据库创建表的时候也要使用小写)
                 if (DBType.Name == DbCurrentType.PgSql.ToString())
                 {
                     tableTrueName = tableTrueName.ToLower();

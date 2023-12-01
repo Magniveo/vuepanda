@@ -50,7 +50,7 @@ axios.interceptors.response.use((res) => {
                 if (!localStorage.getItem('user')) {
                     Message.error({
                         showClose: true,
-                        message: '登陆已过期',
+                        message: 'Login已过期',
                         type: 'error'
                     });
                 }
@@ -60,7 +60,7 @@ axios.interceptors.response.use((res) => {
 
         }
         if (error.response.status == '404') {
-            httpMessage = "未找到请求地址";
+            httpMessage = "未找到Url";
         }
         else if (error.response.data && error.response.data.message) {
             httpMessage = error.response.data.message;
@@ -154,8 +154,8 @@ function get (url, param, loading, config) {
     })
 }
 
-//url:url地址
-//params:请求参数
+//url:ApiUrl
+//params:RequestParameter
 //fileName:下载的文件名
 //loading:是否显示加载状态
 function download (url, params, fileName, loading,callback) {

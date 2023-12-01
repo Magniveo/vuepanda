@@ -115,7 +115,7 @@ export default {
         { desc: '框架使用的Element Plus组件，移除了Iview组件的依赖' },
         { desc: '框架内部组件全部重新优化,相比2.x版本首屏大小减少60%' },
         { desc: '框架Vue2版本会继续维护,并与Vue3版本同步更新,请放心使用' },
-        { desc: '框架Vue2、Vue3版本开发文档一致(差异部分文档会备注说明)' },
+        { desc: '框架Vue2、Vue3版本开发文档一致(差异部分文档会Remark说明)' },
         //{ desc: "若正在使用Vue2框架版本继续使用即可;其他建议使用Vue3版本" },
         {
           desc: 'vue2、vue3文档相同,开文档大部分文档仍然使用的vue2语法'
@@ -128,7 +128,7 @@ export default {
       grid: [
         {
           name: '用户管理',
-          desc: '系统用户管理,注册用户3000000人。',
+          desc: 'System用户管理,注册用户3000000人。',
           icon: 'el-icon-user'
         },
         {
@@ -137,7 +137,7 @@ export default {
           icon: 'el-icon-chat-dot-round'
         },
         {
-          name: '系统管理',
+          name: 'System管理',
           desc: '这里放点什么,还没想好。',
           icon: 'el-icon-setting'
         },
@@ -153,7 +153,7 @@ export default {
         },
         {
           name: '垃圾回收',
-          desc: '删除过的数据在此处找回。。。。',
+          desc: 'Del过的数据在此处找回。。。。',
           icon: 'el-icon-delete'
         }
       ]

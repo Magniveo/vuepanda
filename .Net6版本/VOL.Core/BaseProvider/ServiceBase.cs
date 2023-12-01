@@ -185,7 +185,7 @@ namespace VOL.Core.BaseProvider
             //如果没有排序字段，则使用主键作为排序字段
 
             PropertyInfo property = propertyInfo.GetKeyProperty();
-            //如果主键不是自增类型则使用appsettings.json中CreateMember->DateField配置的创建时间作为排序
+            //如果主键不是自增类型则使用appsettings.json中CreateMember->DateField配置的CreateDate作为排序
             if (property.PropertyType == typeof(int) || property.PropertyType == typeof(long))
             {
                 if (!propertyInfo.Any(x => x.Name.ToLower() == pageData.Sort))
@@ -915,7 +915,7 @@ namespace VOL.Core.BaseProvider
         }
 
         /// <summary>
-        /// 获取配置的创建人ID创建时间创建人,修改人ID修改时间、修改人与数据相同的字段
+        /// 获取配置的创建人IDCreateDate创建人,修改人IDModifyDate、修改人与数据相同的字段
         /// </summary>
         private static string[] _userIgnoreFields { get; set; }
 
@@ -986,7 +986,7 @@ namespace VOL.Core.BaseProvider
             //}
             Type type = typeof(T);
 
-            //设置修改时间,修改人的默认值
+            //设置ModifyDate,修改人的默认值
             UserInfo userInfo = UserContext.Current.UserInfo;
             saveModel.SetDefaultVal(AppSetting.ModifyMember, userInfo);
 
@@ -1250,7 +1250,7 @@ namespace VOL.Core.BaseProvider
         private static string[] auditFields = new string[] { "auditid", "auditstatus", "auditor", "auditdate", "auditreason" };
 
         /// <summary>
-        /// 审核默认对应数据库字段为AuditId审核人ID ,AuditStatus审核状态,Auditor审核人,Auditdate审核时间,Auditreason审核原因
+        /// 审核默认对应数据库字段为AuditIdAuditId ,AuditStatusAuditStatus,AuditorAuditor,Auditdate审核时间,Auditreason审核原因
         /// </summary>
         /// <param name="keys"></param>
         /// <param name="auditStatus"></param>
@@ -1273,7 +1273,7 @@ namespace VOL.Core.BaseProvider
                 var auditProperty = TProperties.Where(x => x.Name.ToLower() == "auditstatus").FirstOrDefault();
                 if (auditProperty == null)
                 {
-                    return Response.Error("表缺少审核状态字段：AuditStatus");
+                    return Response.Error("表缺少AuditStatus字段：AuditStatus");
                 }
 
                 AuditStatus status = (AuditStatus)Enum.Parse(typeof(AuditStatus), auditStatus.ToString());

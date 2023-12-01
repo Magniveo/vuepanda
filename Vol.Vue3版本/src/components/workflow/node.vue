@@ -7,7 +7,7 @@
         <div class="ef-node-left-ico flow-node-drag">
             <i :class="nodeIcoClass"></i>
         </div>
-        <!-- 节点名称 -->
+        <!-- StepName -->
         <div class="ef-node-text" :show-overflow-tooltip="true">
             {{ node.name }}
         </div>

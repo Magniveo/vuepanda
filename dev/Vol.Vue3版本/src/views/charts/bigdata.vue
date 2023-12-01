@@ -7,7 +7,7 @@
     <div class="data-container">
       <div class="data-left">
         <div class="data-left-item">
-          <div class="title">商品销量分类</div>
+          <div class="title">商品销量Variety</div>
           <div id="chart-vleft-1" style="height: calc(100% - 30px)"></div>
           <div class="data-foot-line"></div>
         </div>
@@ -69,7 +69,7 @@
           <div id="chart-vright-3" class="right-item">
             <div class="item">
               <div class="top">排名</div>
-              <div class="pro-name">商品名称</div>
+              <div class="pro-name">商品ExpertName</div>
               <div class="num">销量</div>
               <div class="num">销售金额</div>
             </div>

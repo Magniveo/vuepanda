@@ -44,7 +44,7 @@ namespace VOL.Builder.Utility
             return fileNames ?? "''";
         }
         /// <summary>
-        /// 获取指定结尾的项目名称 
+        /// 获取指定结尾的项目ExpertName 
         /// </summary>
         /// <param name="lastIndexOfName"></param>
         /// <returns></returns>

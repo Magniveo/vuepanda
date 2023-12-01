@@ -42,7 +42,7 @@ export default {
       HeadImageUrl: ''
     });
     const options = reactive([
-      [{ title: '名称', field: 'ExpertName' }],
+      [{ title: 'ExpertName', field: 'ExpertName' }],
       [
         {
           dataKey: 'enable',
@@ -57,13 +57,13 @@ export default {
         {
           dataKey: 'city',
           data: [],
-          title: '地区',
+          title: 'City',
           field: 'City',
           type: 'select'
         }
       ],
-      [{ title: '日期', field: 'CreateDate', type:"date" }],
-      [{ title: '备注', field: 'Resume', colSize: 12, type: 'textarea' }]
+      [{ title: 'Date', field: 'CreateDate', type:"date" }],
+      [{ title: 'Remark', field: 'Resume', colSize: 12, type: 'textarea' }]
     ]);
     let appContext = getCurrentInstance().appContext;
     let $message = appContext.config.globalProperties.$message;

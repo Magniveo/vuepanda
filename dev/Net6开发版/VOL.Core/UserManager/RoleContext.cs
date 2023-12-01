@@ -55,7 +55,7 @@ namespace VOL.Core.UserManager
         }
         /// <summary>
         /// 
-        /// 获取当前角色下的所有角色(包括自己的角色)
+        /// 获取当前Role_Id下的所有Role_Id(包括自己的Role_Id)
         /// </summary>
         /// <param name="roleId"></param>
         /// <returns></returns>
@@ -95,7 +95,7 @@ namespace VOL.Core.UserManager
             return rolesChildren;
         }
         /// <summary>
-        /// 获取当前角色下的所有用户
+        /// 获取当前Role_Id下的所有用户
         /// </summary>
         /// <returns></returns>
         public static IQueryable<int> GetCurrentAllChildUser()
@@ -103,7 +103,7 @@ namespace VOL.Core.UserManager
             var roles = GetAllChildrenIds(UserContext.Current.RoleId);
             if (roles == null)
             {
-                throw new Exception("未获取到当前角色");
+                throw new Exception("未获取到当前Role_Id");
             }
             return DBServerProvider.DbContext
                   .Set<Sys_User>()

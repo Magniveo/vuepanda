@@ -486,7 +486,7 @@ namespace VOL.Core.Extensions
         /// 将DateTime?转换为string类型信息。
         /// </summary>
         /// <param name="o">DateTime?。</param>
-        /// <param name="format">标准或自定义日期和时间格式的字符串。</param>
+        /// <param name="format">标准或自定义Date和时间格式的字符串。</param>
         /// <param name="t">默认值。</param>
         /// <returns>string。</returns>
         public static string ToString(this DateTime? o, string format, string t)
@@ -1038,7 +1038,7 @@ namespace VOL.Core.Extensions
         }
 
         /// <summary>
-        /// 删除html标签。
+        /// Delhtml标签。
         /// </summary>
         /// <param name="html">输入的字符串。</param>
         /// <returns>没有html标签的字符串。</returns>
@@ -1120,7 +1120,7 @@ namespace VOL.Core.Extensions
         }
 
         /// <summary>
-        /// 将日期转换为UNIX时间戳字符串
+        /// 将Date转换为UNIX时间戳字符串
         /// </summary>
         /// <param name="date"></param>
         /// <returns></returns>
@@ -1135,7 +1135,7 @@ namespace VOL.Core.Extensions
         private static readonly Regex EmailRegex = new Regex("^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\\.[a-zA-Z0-9_-]{2,3}){1,2})$");
 
         /// <summary>
-        /// 判断当前字符串是否是移动电话号码
+        /// 判断当前字符串是否是移动Mobile号码
         /// </summary>
         /// <param name="mobile"></param>
         /// <returns></returns>

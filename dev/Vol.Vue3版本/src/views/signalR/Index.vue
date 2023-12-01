@@ -45,8 +45,8 @@ export default {
         maxRows: 30
       },
       formOptions: [
-        [{ title: '登陆账号', required: true, field: 'userName' }],
-        [{ title: '消息标题', required: true, field: 'title' }],
+        [{ title: 'Login账号', required: true, field: 'userName' }],
+        [{ title: '消息Title', required: true, field: 'title' }],
         [
           {
             title: '消息内容',
@@ -59,7 +59,7 @@ export default {
       ],
       formFields: {
         userName: 'admin666',
-        title: '发送标题',
+        title: '发送Title',
         message: ''
       }
     };
@@ -77,7 +77,7 @@ export default {
   },
   created() {},
   mounted() {
-    //获取当前登陆的用户信息
+    //获取当前Login的用户信息
     this.http.post('api/user/GetCurrentUserInfo').then((result) => {
       connection = new signalR.HubConnectionBuilder()
         .withAutomaticReconnect()

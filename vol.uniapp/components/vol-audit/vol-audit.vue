@@ -175,7 +175,7 @@
 						width: 145
 					},
 					{
-						title: '备注',
+						title: 'Remark',
 						field: 'remark',
 						width: 120
 					}

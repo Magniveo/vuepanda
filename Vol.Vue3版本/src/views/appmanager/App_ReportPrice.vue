@@ -36,26 +36,26 @@
                               [{"title":"价格","required":true,"field":"Price","type":"decimal"},
                                {"title":"创建人","field":"Creator","disabled":true},
                                {"dataKey":"enable","data":[],"title":"是否启用","field":"Enable","disabled":true,"type":"switch"}],
-                              [{"title":"创建时间","field":"CreateDate","disabled":true,"type":"datetime"},
+                              [{"title":"CreateDate","field":"CreateDate","disabled":true,"type":"datetime"},
                                {"title":"审核时间","field":"AuditDate","disabled":true},
-                               {"title":"修改时间","field":"ModifyDate","disabled":true}]]);
+                               {"title":"ModifyDate","field":"ModifyDate","disabled":true}]]);
             const searchFormFields = ref({"Variety":"","Age":"","City":"","CreateDate":"","AuditStatus":""});
-            const searchFormOptions = ref([[{"dataKey":"pz","data":[],"title":"分类","field":"Variety","type":"select"},{"dataKey":"age","data":[],"title":"年龄","field":"Age","type":"select"},{"dataKey":"city","data":[],"title":"城市","field":"City","type":"select"}],[{"title":"创建时间","field":"CreateDate","type":"datetime"},{"dataKey":"audit","data":[],"title":"审核状态","field":"AuditStatus","type":"select"}]]);
+            const searchFormOptions = ref([[{"dataKey":"pz","data":[],"title":"分类","field":"Variety","type":"select"},{"dataKey":"age","data":[],"title":"年龄","field":"Age","type":"select"},{"dataKey":"city","data":[],"title":"城市","field":"City","type":"select"}],[{"title":"CreateDate","field":"CreateDate","type":"datetime"},{"dataKey":"audit","data":[],"title":"AuditStatus","field":"AuditStatus","type":"select"}]]);
             const columns = ref([{field:'Id',title:'主键ID',type:'int',width:90,hidden:true,readonly:true,require:true,align:'left'},
                        {field:'Variety',title:'分类',type:'string',bind:{ key:'pz',data:[]},width:80,require:true,align:'left',sort:true},
                        {field:'Age',title:'年龄',type:'string',bind:{ key:'age',data:[]},width:80,require:true,align:'left'},
                        {field:'City',title:'城市',type:'string',bind:{ key:'city',data:[]},width:90,require:true,align:'left'},
                        {field:'Price',title:'价格',type:'decimal',link:true,width:90,require:true,align:'left'},
                        {field:'Creator',title:'创建人',type:'string',width:100,hidden:true,readonly:true,align:'left'},
-                       {field:'CreateDate',title:'创建时间',type:'datetime',width:150,hidden:true,readonly:true,align:'left',sort:true},
-                       {field:'AuditStatus',title:'审核状态',type:'int',bind:{ key:'audit',data:[]},width:90,align:'left'},
-                       {field:'AuditId',title:'审核人Id',type:'int',width:90,hidden:true,align:'left'},
-                       {field:'Auditor',title:'审核人',type:'string',width:90,align:'left'},
+                       {field:'CreateDate',title:'CreateDate',type:'datetime',width:150,hidden:true,readonly:true,align:'left',sort:true},
+                       {field:'AuditStatus',title:'AuditStatus',type:'int',bind:{ key:'audit',data:[]},width:90,align:'left'},
+                       {field:'AuditId',title:'AuditId',type:'int',width:90,hidden:true,align:'left'},
+                       {field:'Auditor',title:'Auditor',type:'string',width:90,align:'left'},
                        {field:'Enable',title:'是否启用',type:'byte',bind:{ key:'enable',data:[]},width:90,readonly:true,align:'left'},
                        {field:'CreateID',title:'创建人Id',type:'int',width:90,hidden:true,align:'left'},
                        {field:'ModifyID',title:'修改人ID',type:'int',width:90,hidden:true,align:'left'},
                        {field:'Modifier',title:'测试',type:'string',width:100,align:'left'},
-                       {field:'ModifyDate',title:'修改时间',type:'datetime',width:90,readonly:true,align:'left',sort:true}]);
+                       {field:'ModifyDate',title:'ModifyDate',type:'datetime',width:90,readonly:true,align:'left',sort:true}]);
             const detail = ref({
                 cnName: "#detailCnName",
                 table: "#detailTable",

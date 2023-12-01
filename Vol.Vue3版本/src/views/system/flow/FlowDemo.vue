@@ -43,69 +43,69 @@ export default {
     const list = reactive([
       {
         name: '订单审批',
-        desc: '这里是一些不可描述的信息...',
+        desc: '这里是一些不可Describe的信息...',
         type: "审批"
       },
       {
         name: '请假管理',
-        desc: '这里是一些不可描述的信息...',
+        desc: '这里是一些不可Describe的信息...',
         type: "审批"
       },
-      { name: '物资申请',  desc: '这里是一些不可描述的信息...', type: "审批" },
-      { name: '采购申请',  desc: '这里是一些不可描述的信息...',type: "审批" },
+      { name: '物资申请',  desc: '这里是一些不可Describe的信息...', type: "审批" },
+      { name: '采购申请',  desc: '这里是一些不可Describe的信息...',type: "审批" },
       {
         name: '合同申请',
-        desc: '这里是一些不可描述的信息...',
+        desc: '这里是一些不可Describe的信息...',
         type: "审批"
       },
       {
         name: '订单审批',
-        desc: '这里是一些不可描述的信息...',
+        desc: '这里是一些不可Describe的信息...',
         type: "审批"
       },
       {
         name: '请假管理',
-        desc: '这里是一些不可描述的信息...',
+        desc: '这里是一些不可Describe的信息...',
         type: "审批"
       },
-      { name: '物资申请',  desc: '这里是一些不可描述的信息...', type: "审批" },
-      { name: '采购申请',  desc: '这里是一些不可描述的信息...',type: "审批" },
+      { name: '物资申请',  desc: '这里是一些不可Describe的信息...', type: "审批" },
+      { name: '采购申请',  desc: '这里是一些不可Describe的信息...',type: "审批" },
       {
         name: '合同申请',
-        desc: '这里是一些不可描述的信息...',
+        desc: '这里是一些不可Describe的信息...',
         type: "审批"
       },
       {
         name: '订单审批',
-        desc: '这里是一些不可描述的信息...',
+        desc: '这里是一些不可Describe的信息...',
         type: "审批"
       },
       {
         name: '请假管理',
-        desc: '这里是一些不可描述的信息...',
+        desc: '这里是一些不可Describe的信息...',
         type: "审批"
       },
-      { name: '物资申请',  desc: '这里是一些不可描述的信息...', type: "审批" },
-      { name: '采购申请',  desc: '这里是一些不可描述的信息...',type: "审批" },
+      { name: '物资申请',  desc: '这里是一些不可Describe的信息...', type: "审批" },
+      { name: '采购申请',  desc: '这里是一些不可Describe的信息...',type: "审批" },
       {
         name: '合同申请',
-        desc: '这里是一些不可描述的信息...',
+        desc: '这里是一些不可Describe的信息...',
         type: "审批"
       },    {
         name: '订单审批',
-        desc: '这里是一些不可描述的信息...',
+        desc: '这里是一些不可Describe的信息...',
         type: "审批"
       },
       {
         name: '请假管理',
-        desc: '这里是一些不可描述的信息...',
+        desc: '这里是一些不可Describe的信息...',
         type: "审批"
       },
-      { name: '物资申请',  desc: '这里是一些不可描述的信息...', type: "审批" },
-      { name: '采购申请',  desc: '这里是一些不可描述的信息...',type: "审批" },
+      { name: '物资申请',  desc: '这里是一些不可Describe的信息...', type: "审批" },
+      { name: '采购申请',  desc: '这里是一些不可Describe的信息...',type: "审批" },
       {
         name: '合同申请',
-        desc: '这里是一些不可描述的信息...',
+        desc: '这里是一些不可Describe的信息...',
         type: "审批"
       }
     ]);

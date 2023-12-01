@@ -331,7 +331,7 @@
              v-show="currentItem.type == 'table'">
           <div class="text">后台返回数据接口地址</div>
           <el-input size="medium"
-                    placeholder="例:api/表名/getPageData"
+                    placeholder="例:api/WorkTable/getPageData"
                     v-model="currentItem.url" />
         </div>
         <div class="attr-item"
@@ -340,7 +340,7 @@
           ">
           <div class="text">上传接口地址(后台接口)</div>
           <el-input size="medium"
-                    placeholder="可用框架地址:api/表名/upload"
+                    placeholder="可用框架地址:api/WorkTable/upload"
                     v-model="currentItem.url" />
           <div class="text"
                style="margin-top: 10px">文件大小限制(M)</div>

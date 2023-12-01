@@ -247,7 +247,7 @@ export default {
         [
           {
             columnType: "string",
-            title: "备注",
+            title: "Remark",
             field: "remark",
             colSize: 12,
             type: "textarea",

@@ -42,7 +42,7 @@ let extension = {
       this.height = this.height - 310;
 
       //明细表选择数据源操作
-      //获取明细表备注列，给备注列添加选择数据操作
+      //获取明细表Remark列，给Remark列添加选择数据操作
 
       this.detailOptions.buttons.unshift({
         'name': '选择数据', 
@@ -52,10 +52,10 @@ let extension = {
         }
       })
       // let _column = this.detailOptions.columns.find(x => { return x.field == "Remark" });
-      // _column.title="(备注)点击选择数据"
+      // _column.title="(Remark)点击选择数据"
       // //移除编辑操作
       // _column.edit = null;
-      // //给备注列添加选择数据操作
+      // //给Remark列添加选择数据操作
       // _column.render = (h, { row, column, index }) => {
       //   return h("div", { style: {} },
       //     [

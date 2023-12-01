@@ -31,7 +31,7 @@ namespace VOL.System.Services
         private const string _menuCacheKey = "inernalMenu";
 
         /// <summary>
-        /// 编辑修改菜单时,获取所有菜单
+        /// Edit修改菜单时,获取所有菜单
         /// </summary>
         /// <returns></returns>
         public async Task<object> GetMenu()
@@ -126,7 +126,7 @@ namespace VOL.System.Services
         }
 
         /// <summary>
-        /// 根据角色ID获取菜单与权限
+        /// 根据Role_Id获取菜单与权限
         /// </summary>
         /// <param name="roleId"></param>
         /// <returns></returns>
@@ -170,7 +170,7 @@ namespace VOL.System.Services
         }
 
         /// <summary>
-        /// 新建或编辑菜单
+        /// Add或Edit菜单
         /// </summary>
         /// <param name="menu"></param>
         /// <returns></returns>
@@ -178,7 +178,7 @@ namespace VOL.System.Services
         {
             WebResponseContent webResponse = new WebResponseContent();
             if (menu == null) return webResponse.Error("没有获取到提交的参数");
-            if (menu.Menu_Id > 0 && menu.Menu_Id == menu.ParentId) return webResponse.Error("父级ID不能是当前菜单的ID");
+            if (menu.Menu_Id > 0 && menu.Menu_Id == menu.ParentId) return webResponse.Error("ParentId不能是当前菜单的ID");
             try
             {
                 webResponse = menu.ValidationEntity(x => new { x.MenuName, x.TableName });
@@ -195,7 +195,7 @@ namespace VOL.System.Services
                             if ((menu.Menu_Id > 0 && sysMenu.Menu_Id != menu.Menu_Id)
                             || menu.Menu_Id <= 0)
                             {
-                                return webResponse.Error($"视图/表名【{menu.TableName}】已被其他菜单使用");
+                                return webResponse.Error($"视图/WorkTable【{menu.TableName}】已被其他菜单使用");
                             }
                         }
                     }
@@ -207,14 +207,14 @@ namespace VOL.System.Services
                 }
                 else
                 {
-                    //2020.05.07新增禁止选择上级角色为自己
+                    //2020.05.07新增禁止选择上级Role_Id为自己
                     if (menu.Menu_Id == menu.ParentId)
                     {
-                        return webResponse.Error($"父级id不能为自己");
+                        return webResponse.Error($"ParentId不能为自己");
                     }
                     if (repository.Exists(x => x.ParentId == menu.Menu_Id && menu.ParentId == x.Menu_Id))
                     {
-                        return webResponse.Error($"不能选择此父级id，选择的父级id与当前菜单形成依赖关系");
+                        return webResponse.Error($"不能选择此ParentId，选择的ParentId与当前菜单形成依赖关系");
                     }
 
                     _changed = repository.FindAsIQueryable(c => c.Menu_Id == menu.Menu_Id).Select(s => s.Auth).FirstOrDefault() != menu.Auth;
@@ -262,17 +262,17 @@ namespace VOL.System.Services
       
             if (await repository.ExistsAsync(x => x.ParentId == menuId))
             {
-                return webResponse.Error("当前菜单存在子菜单,请先删除子菜单!");
+                return webResponse.Error("当前菜单存在子菜单,请先Del子菜单!");
             }
             repository.Delete(new Sys_Menu()
             {
                 Menu_Id = menuId
             }, true);
             CacheContext.Add(_menuCacheKey, DateTime.Now.ToString("yyyyMMddHHMMssfff"));
-            return webResponse.OK("删除成功");
+            return webResponse.OK("Del成功");
         }
         /// <summary>
-        /// 编辑菜单时，获取菜单信息
+        /// Edit菜单时，获取菜单信息
         /// </summary>
         /// <param name="menuId"></param>
         /// <returns></returns>

@@ -17,7 +17,7 @@ using VOL.Entity.SystemModels;
 namespace VOL.Entity.DomainModels
 {
     [Table("Sys_Log")]
-    [EntityAttribute(TableCnName = "系统日志")]
+    [EntityAttribute(TableCnName = "System日志")]
     public class Sys_Log:BaseEntity
     {
         /// <summary>
@@ -30,116 +30,116 @@ namespace VOL.Entity.DomainModels
        public int Id { get; set; }
 
        /// <summary>
-       ///开始时间
+       ///StratDate
        /// </summary>
-       [Display(Name ="开始时间")]
+       [Display(Name ="StratDate")]
        [Column(TypeName="datetime")]
        public DateTime? BeginDate { get; set; }
 
        /// <summary>
-       ///请求地址
+       ///Url
        /// </summary>
-       [Display(Name ="请求地址")]
+       [Display(Name ="Url")]
        [MaxLength(30000)]
        [Column(TypeName="varchar(30000)")]
        public string Url { get; set; }
 
        /// <summary>
-       ///日志类型
+       ///LogType
        /// </summary>
-       [Display(Name ="日志类型")]
+       [Display(Name ="LogType")]
        [MaxLength(50)]
        [Column(TypeName="varchar(50)")]
        public string LogType { get; set; }
 
        /// <summary>
-       ///响应状态
+       ///Success
        /// </summary>
-       [Display(Name ="响应状态")]
+       [Display(Name ="Success")]
        [Column(TypeName="int")]
        public int? Success { get; set; }
 
        /// <summary>
-       ///时长(毫秒)
+       ///ElapsedTime(毫秒)
        /// </summary>
-       [Display(Name ="时长(毫秒)")]
+       [Display(Name ="ElapsedTime(毫秒)")]
        [Column(TypeName="int")]
        public int? ElapsedTime { get; set; }
 
        /// <summary>
-       ///请求参数
+       ///RequestParameter
        /// </summary>
-       [Display(Name ="请求参数")]
+       [Display(Name ="RequestParameter")]
        [MaxLength(10000)]
        [Column(TypeName="nvarchar(10000)")]
        public string RequestParameter { get; set; }
 
        /// <summary>
-       ///响应参数
+       ///ResponseParameter
        /// </summary>
-       [Display(Name ="响应参数")]
+       [Display(Name ="ResponseParameter")]
        [MaxLength(10000)]
        [Column(TypeName="nvarchar(10000)")]
        public string ResponseParameter { get; set; }
 
        /// <summary>
-       ///异常信息
+       ///ExceptionInfo
        /// </summary>
-       [Display(Name ="异常信息")]
+       [Display(Name ="ExceptionInfo")]
        [MaxLength(10000)]
        [Column(TypeName="nvarchar(10000)")]
        public string ExceptionInfo { get; set; }
 
        /// <summary>
-       ///用户IP
+       ///UserIP
        /// </summary>
-       [Display(Name ="用户IP")]
+       [Display(Name ="UserIP")]
        [MaxLength(100)]
        [Column(TypeName="varchar(100)")]
        public string UserIP { get; set; }
 
        /// <summary>
-       ///服务器IP
+       ///ServiceIP
        /// </summary>
-       [Display(Name ="服务器IP")]
+       [Display(Name ="ServiceIP")]
        [MaxLength(100)]
        [Column(TypeName="varchar(100)")]
        public string ServiceIP { get; set; }
 
        /// <summary>
-       ///浏览器类型
+       ///BrowserType
        /// </summary>
-       [Display(Name ="浏览器类型")]
+       [Display(Name ="BrowserType")]
        [MaxLength(200)]
        [Column(TypeName="nvarchar(200)")]
        public string BrowserType { get; set; }
 
        /// <summary>
-       ///用户ID
+       ///User_Id
        /// </summary>
-       [Display(Name ="用户ID")]
+       [Display(Name ="User_Id")]
        [Column(TypeName="int")]
        public int? User_Id { get; set; }
 
        /// <summary>
-       ///用户名称
+       ///UserName
        /// </summary>
-       [Display(Name ="用户名称")]
+       [Display(Name ="UserName")]
        [MaxLength(30000)]
        [Column(TypeName="varchar(30000)")]
        public string UserName { get; set; }
 
        /// <summary>
-       ///角色ID
+       ///Role_Id
        /// </summary>
-       [Display(Name ="角色ID")]
+       [Display(Name ="Role_Id")]
        [Column(TypeName="int")]
        public int? Role_Id { get; set; }
 
        /// <summary>
-       ///结束时间
+       ///EndDate
        /// </summary>
-       [Display(Name ="结束时间")]
+       [Display(Name ="EndDate")]
        [Column(TypeName="datetime")]
        public DateTime? EndDate { get; set; }
 

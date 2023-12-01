@@ -39,7 +39,7 @@ namespace VOL.Core.Extensions
             }
             catch (Exception ex)
             {
-                throw new Exception("密码加密异常" + ex.Message);
+                throw new Exception("UserPwd加密异常" + ex.Message);
             }
 
         }

@@ -28,7 +28,7 @@ export default function() {
 					}
 					if (column.field == 'Describe') {
 						column.width = 140;
-						//设置描述字段超链接与点击事件
+						//设置Describe字段超链接与点击事件
 						column.formatter = true;
 						column.click = true;
 					}

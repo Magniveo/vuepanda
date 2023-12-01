@@ -69,8 +69,8 @@ export default {
             formRules: [
                 [
                     {
-                        dataKey: '流程名称',
-                        title: '流程名称',
+                        dataKey: 'WorkName',
+                        title: 'WorkName',
                         field: 'WorkName',
                         required: true
                     }],
@@ -95,21 +95,21 @@ export default {
                     }
                 }],
                 [{
-                    title: '权重(相同条件权重大优先)',
+                    title: 'Weight(相同条件Weight大优先)',
                     field: 'Weight',
                     type: "number",
                 }
                 ],
                 
                 [{
-                    title: '审核中数据是否可以编辑',
+                    title: '审核中数据是否可以Edit',
                     field: 'AuditingEdit',
                     type: "switch",
                     data: [{ key: 0, value: "否" }, { key: 1, value: "是" }]
                 }
                 ],
                 [{
-                    title: '备注',
+                    title: 'Remark',
                     field: 'Remark'
                 }
                 ]
@@ -230,7 +230,7 @@ export default {
                     }
                 })
 
-                // 删除连线回调
+                // Del连线回调
                 this.jsPlumb.bind("connectionDetached", (evt) => {
                     this.deleteLine(evt.sourceId, evt.targetId)
                 })
@@ -342,14 +342,14 @@ export default {
             })
 
         },
-        // 删除激活的元素
+        // Del激活的元素
         deleteElement() {
             if (this.disabled)
                 return
             if (this.activeElement.type === 'node') {
                 this.deleteNode(this.activeElement.nodeId)
             } else if (this.activeElement.type === 'line') {
-                this.$confirm('确定删除所点击的线吗?', '提示', {
+                this.$confirm('确定Del所点击的线吗?', '提示', {
                     confirmButtonText: '确定',
                     cancelButtonText: '取消',
                     type: 'warning'
@@ -363,7 +363,7 @@ export default {
                 })
             }
         },
-        // 删除线
+        // Del线
         deleteLine(from, to) {
             this.data.lineList = this.data.lineList.filter(function (line) {
                 if (line.from == from && line.to == to) {
@@ -461,22 +461,22 @@ export default {
             })
         },
         /**
-         * 删除节点
-         * @param nodeId 被删除节点的ID
+         * Del节点
+         * @param nodeId 被Del节点的ID
          */
         deleteNode(nodeId) {
-            this.$confirm('确定要删除节点' + nodeId + '?', '提示', {
+            this.$confirm('确定要Del节点' + nodeId + '?', '提示', {
                 confirmButtonText: '确定',
                 cancelButtonText: '取消',
                 type: 'warning',
                 closeOnClickModal: false
             }).then(() => {
                 /**
-                 * 这里需要进行业务判断，是否可以删除
+                 * 这里需要进行业务判断，是否可以Del
                  */
                 this.data.nodeList = this.data.nodeList.filter(function (node) {
                     if (node.id === nodeId) {
-                        // 伪删除，将节点隐藏，否则会导致位置错位
+                        // 伪Del，将节点隐藏，否则会导致位置错位
                         // node.show = false
                         return false
                     }

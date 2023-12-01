@@ -22,18 +22,18 @@ namespace VOL.Entity.DomainModels
        public string UserName { get; set; }
 
        /// <summary>
-       ///密码
+       ///UserPwd
        /// </summary>
-       [Display(Name ="密码")]
+       [Display(Name ="UserPwd")]
        [MaxLength(400)]
        [Column(TypeName="nvarchar(400)")]
        [Required(AllowEmptyStrings=false)]
        public string UserPwd { get; set; }
 
        /// <summary>
-       ///手机号
+       ///PhoneNo
        /// </summary>
-       [Display(Name ="手机号")]
+       [Display(Name ="PhoneNo")]
        [MaxLength(22)]
        [Column(TypeName="nvarchar(22)")]
        [Required(AllowEmptyStrings=false)]

@@ -126,13 +126,13 @@ namespace VOL.WebApi
             services.AddSwaggerGen(c =>
             {
                 //分为2份接口文档
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "VOL.Core后台Api", Version = "v1", Description = "这是对文档的描述。。" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "VOL.Core后台Api", Version = "v1", Description = "这是对文档的Describe。。" });
                 c.SwaggerDoc("v2", new OpenApiInfo { Title = "VOL.Core对外三方Api", Version = "v2", Description = "xxx接口文档" });  //控制器里使用[ApiExplorerSettings(GroupName = "v2")]              
                                                                                                                              //启用中文注释功能
                                                                                                                              // var basePath = PlatformServices.Default.Application.ApplicationBasePath;
                                                                                                                              //  var xmlPath = Path.Combine(basePath, "VOL.WebApi.xml");
                                                                                                                              //   c.IncludeXmlComments(xmlPath, true);//显示控制器xml注释内容
-                                                                                                                             //添加过滤器 可自定义添加对控制器的注释描述
+                                                                                                                             //添加过滤器 可自定义添加对控制器的注释Describe
                                                                                                                              //c.DocumentFilter<SwaggerDocTag>();
 
                 var security = new Dictionary<string, IEnumerable<string>> { { AppSetting.Secret.Issuer, new string[] { } } };
@@ -295,11 +295,11 @@ namespace VOL.WebApi
         /// <param name="context"></param>
         public void Apply(OpenApiDocument swaggerDoc, DocumentFilterContext context)
         {
-            //添加对应的控制器描述
+            //添加对应的控制器Describe
             swaggerDoc.Tags = new List<OpenApiTag>
             {
-                new OpenApiTag { Name = "Test", Description = "这是描述" },
-                //new OpenApiTag { Name = "你的控制器名字，不带Controller", Description = "控制器描述" },
+                new OpenApiTag { Name = "Test", Description = "这是Describe" },
+                //new OpenApiTag { Name = "你的控制器名字，不带Controller", Description = "控制器Describe" },
             };
         }
     }

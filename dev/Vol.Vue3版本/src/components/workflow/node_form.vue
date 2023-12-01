@@ -96,7 +96,7 @@ export default {
             formRules: [
                 [
                     {
-                        title: '节点名称',
+                        title: 'StepName',
                         field: 'name',
                         required: true,
                         colSize: 12
@@ -110,7 +110,7 @@ export default {
                         field: 'auditType',
                         data: [
                             { key: 1, value: '按用户审批' },
-                            { key: 2, value: '按角色审批' },
+                            { key: 2, value: '按Role_Id审批' },
                             { key: 3, value: '按部门审批' }
                         ],
                         type: 'select',
@@ -133,7 +133,7 @@ export default {
                     {
                         dataKey: 'roles',
                         hidden: true,
-                        title: '角色信息',
+                        title: 'Role_Id信息',
                         required: true,
                         field: 'roleId',
 
@@ -262,7 +262,7 @@ export default {
         },
         nodeTypeChange(value) {
             // { key: 1, value: '按用户审批' },
-            //   { key: 2, value: '按角色审批' },
+            //   { key: 2, value: '按Role_Id审批' },
             //   { key: 3, value: '按部门审批' }
             this.formRules.forEach((options) => {
                 options.forEach((option) => {

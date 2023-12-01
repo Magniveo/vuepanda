@@ -15,7 +15,7 @@ const components = [
     },
     {
         id: 3,
-        name: "日期",
+        name: "Date",
         type: "date",
         icon: "el-icon-date",
         value: null,
@@ -73,7 +73,7 @@ const components = [
                     },
                     {
                         value: "color",
-                        label: "可参照字典编号[tree_roles]",
+                        label: "可参照DicNo[tree_roles]",
                     }
                 ],
             },
@@ -123,7 +123,7 @@ const components = [
     },
     {
         id: 13,
-        name: "编辑器",
+        name: "Edit器",
         type: "editor",
         value: "",
         url: "",
@@ -181,7 +181,7 @@ const components = [
         ck: true,
         buttons: [
             { name: '添加行', ck: false, icon: 'el-icon-plus',value:'add' },
-        { name: '删除行', ck: false, icon: 'el-icon-delete',value:'del' }, 
+        { name: 'Del行', ck: false, icon: 'el-icon-delete',value:'del' }, 
         { name: '刷新', ck: false ,icon:'el-icon-refresh-right',value:'ref'}],
     },
 ]
@@ -202,20 +202,20 @@ const tableOption = [
     },
 
     { field: 'required', title: '是否必填', edit: { type: "switch", keep: true }, width: 90 },
-    { field: 'edit', title: '是否可编辑', edit: { type: "switch", keep: true }, width: 90 },
+    { field: 'edit', title: '是否可Edit', edit: { type: "switch", keep: true }, width: 90 },
     {
-        field: 'editType', title: '编辑类型', edit: { type: "select", keep: true, }, width: 120, bind: {
+        field: 'editType', title: 'Edit类型', edit: { type: "select", keep: true, }, width: 120, bind: {
             key: '', data: [{ "key": "text", "value": "输入框" },
             { "key": "switch", "value": "单选" },
             { "key": "select", "value": "下拉框" },
             { "key": "selectList", "value": "下拉框多选" },
-            { "key": "date", "value": "日期" },
-            { "key": "datetime", "value": "日期时分秒" },
+            { "key": "date", "value": "Date" },
+            { "key": "datetime", "value": "Date时分秒" },
             { "key": "checkbox", "value": "复选框多选" },
-            { "key": "mail", "value": "邮箱地址" },
+            { "key": "mail", "value": "邮箱Address" },
             { "key": "number", "value": "数字" },
             { "key": "decimal", "value": "小数" },
-            { "key": "phone", "value": "手机号" },
+            { "key": "phone", "value": "PhoneNo" },
             ]
         }
     },

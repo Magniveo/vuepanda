@@ -243,7 +243,7 @@ let base = {
     return root_data;
   },
   getTreeAllParent(id, data) {
-    // 获取某个节点的所有父节点信息2020.11.01
+    // 获取某个节点的所有父NodeConfig2020.11.01
     var nodes = [];
     if (!(data instanceof Array)) {
       return nodes;
@@ -274,7 +274,7 @@ let base = {
   //     { name: 'tree1', id: 1, parentId: 0 },
   //     { name: 'tree2', id: 2, parentId: 0 }]
   getTreeAllChildren(id, data) {
-    //递归获取某个节点的所有子节点信息
+    //递归获取某个节点的所有子NodeConfig
     var nodes = [];
     if (!(data instanceof Array)) {
       return nodes;

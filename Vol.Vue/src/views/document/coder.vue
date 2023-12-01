@@ -40,7 +40,7 @@
         <ul class="coder-group">
           <li class="coder-list">明细表的外键必须是主表的主键字段,可参照SellOrder的明细表SellOrderList的外建</li>
           <li class="coder-list">主从表代码生成步骤都是一样，在生成主表前需要先将从表按现有步骤生成</li>
-          <li class="coder-list">在主表生成配置页面填上【明细表名】与【明细表中文名】,点击生成vue页面、model、业务类即可完成主从页面代码的生成</li>
+          <li class="coder-list">在主表生成配置页面填上【明细WorkTable】与【明细WorkTableName】,点击生成vue页面、model、业务类即可完成主从页面代码的生成</li>
           <li class="coder-list">代码生成器中可以不用生成从表vue页面</li>
         </ul>
       </div>
@@ -86,8 +86,8 @@
           <li class="coder-list">点击确认，自动从后台加载表结构信息(如果只是生成空菜单,里面就随便填)</li>
           <li class="coder-list">项目命名空间：代码生成时所放在类库(现框架采用一个模块为一个类库，可自行决定是否需要增加类库)</li>
           <li class="coder-list">项目文件夹：生成的文件放在文件夹,此文件夹由代码生成器创建,不需要手动创建</li>
-          <li class="coder-list">表名:可以是视图或表,名字必须和数据库一样</li>
-          <li class="coder-list">如果只想创建一个空菜单，上面表名随便填写</li>
+          <li class="coder-list">WorkTable:可以是视图或表,名字必须和数据库一样</li>
+          <li class="coder-list">如果只想创建一个空菜单，上面WorkTable随便填写</li>
           <li class="coder-img"
               @click="preview('https://imgs-1256993465.cos.ap-chengdu.myqcloud.com/doc/step2.png')">
             <img src="https://imgs-1256993465.cos.ap-chengdu.myqcloud.com/doc/step2.png" />
@@ -102,7 +102,7 @@
         <ul class="coder-group">
           <li class="coder-list"
               style="color:red;">根据需要配置下面表格中的查询与新建、编辑信息 (不设置编辑、新建行，编辑或查询时，弹出框是空白的)</li>
-          <li class="coder-list">表别名：别名将替代原表名生成的Model与业务类。一个表只能有一个别名，默认表名与别名相同。若用别名,必须将已经生成文件删除</li>
+          <li class="coder-list">表别名：别名将替代原WorkTable生成的Model与业务类。一个表只能有一个别名，默认WorkTable与别名相同。若用别名,必须将已经生成文件删除</li>
           <li class="coder-list">点击保存、生成Vue页面、生成Model、生成业务类即可(每次修改信息后都需要点击保存)。</li>
           <li class="coder-list"
               style="color:#0b906d;">Vue视图绝对路径：生成Vue页面必须指定此路径，路径为当前Vue项目的views文件夹，如E:/VOL.Vue/src/views</li>
@@ -119,7 +119,7 @@
         </div>
         <ul class="coder-group">
           <li class="coder-list">生成完成后在vs中搜索当前表就能看到生成的代码了</li>
-          <li class="coder-list">vue代码也同时生成了,可在vscode中搜索当前文件(文件名都是以当前表名开头)</li>
+          <li class="coder-list">vue代码也同时生成了,可在vscode中搜索当前文件(文件名都是以当前WorkTable开头)</li>
           <li class="coder-img">
             <img style=" width: 300px;"
                  src="https://imgs-1256993465.cos.ap-chengdu.myqcloud.com/doc/sep4.png" />
@@ -136,7 +136,7 @@
         </div>
         <ul class="coder-group">
           <li class="coder-list">Url:通过VsCode打开vue项目,找到router文件夹下viewGird.js找当前生成表的path属性/SellOrder就是配置菜单需要配置的url,直接复制过来即可</li>
-          <li class="coder-list">表名:在生成代码时填写的表名或视图名，必须一致，否则权限验证通不过</li>
+          <li class="coder-list">WorkTable:在生成代码时填写的WorkTable或视图名，必须一致，否则权限验证通不过</li>
           <li class="coder-img"
               @click="preview('https://imgs-1256993465.cos.ap-chengdu.myqcloud.com/doc/sep5.png')">
             <img src="https://imgs-1256993465.cos.ap-chengdu.myqcloud.com/doc/sep5.png" />
@@ -167,7 +167,7 @@
         <tbody>
           <tr>
             <td>字段</td>
-            <td>描述</td>
+            <td>Describe</td>
           </tr>
           <tr>
             <td>Id</td>
@@ -182,27 +182,27 @@
             <td>将当前表生成的文件放在所选命名空间的类库中</td>
           </tr>
           <tr>
-            <td>表中文名</td>
+            <td>WorkTableName</td>
             <td>需要生成代码的表具体名</td>
           </tr>
           <tr>
             <td>表别名</td>
-            <td>表别名：如果不想暴露真实表名，可以自行设置任何表别名，表别名将替代原表名生成的Model与业务类。一个表只能有一个别名，默认表名与别名相同，如果想使用别名，必须将已经生成过的文件删除</td>
+            <td>表别名：如果不想暴露真实WorkTable，可以自行设置任何表别名，表别名将替代原WorkTable生成的Model与业务类。一个表只能有一个别名，默认WorkTable与别名相同，如果想使用别名，必须将已经生成过的文件删除</td>
           </tr>
           <tr>
-            <td>实际表名</td>
-            <td>用实际表名替换表名,&nbsp;具体功能未开发</td>
+            <td>实际WorkTable</td>
+            <td>用实际WorkTable替换WorkTable,&nbsp;具体功能未开发</td>
           </tr>
           <tr>
             <td>项目文件夹</td>
             <td>将当前表生成的文件放在所选命名空间类库下的文件夹(&nbsp;不需要人为创建)</td>
           </tr>
           <tr>
-            <td>明细表中文名</td>
+            <td>明细WorkTableName</td>
             <td>明细从表的中文名</td>
           </tr>
           <tr>
-            <td>明细表名</td>
+            <td>明细WorkTable</td>
             <td>明细从表,&nbsp;用于生成主从表关系及UI,&nbsp;生成代码前,&nbsp;必须先生成明细表代码</td>
           </tr>
           <tr>
@@ -232,7 +232,7 @@
         <tbody>
           <tr>
             <td>字段</td>
-            <td>描述</td>
+            <td>Describe</td>
           </tr>
           <tr>
             <td>列中文名</td>

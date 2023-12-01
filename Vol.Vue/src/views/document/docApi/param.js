@@ -309,7 +309,7 @@ const param = {
   },
   viewGrid: {
     attr: [
-      { name: "重要说明", desc: "<span style='color:red;'>此处列出来的这些属性，在生成页面对应表名的.js文件onInit中可以直接this.xx使用,见下面示例", type: "json", default: "" },
+      { name: "重要说明", desc: "<span style='color:red;'>此处列出来的这些属性，在生成页面对应WorkTable的.js文件onInit中可以直接this.xx使用,见下面示例", type: "json", default: "" },
       { name: "自定义扩展页面获取父组件(获取生成页面对象)", desc: "<span styl`e='color:red;'>1、通过 this.$emit('parentCall', $parent => { //如：调用页面查询 $parent.search()  })可以访问父组件ViewGird中的任何属性、对象、方法<p>2、见上面示例【扩展弹出框按钮】</p></span>", type: "", default: "" },
       { name: "获取自定义扩展页面", desc: "this.$refs.gridHeader/gridBody/gridFooter/modelHeader/modelBody/modelFooter", type: "", default: "" },
       { name: "rowKey", desc: "<span style='color:red;'>树形table的主键字段,字段的值必须是唯一的(2021.05.02)</span>", type: "String", default: "" },
@@ -328,8 +328,8 @@ const param = {
       desc: "表其他配置,如：     table: {\
             key: 'Order_Id', //排序字段\
             footer: 'Foots',\
-            cnName: '主从表ViewGird组件使用',//表中文名\
-            name: 'SellOrder',//表名(代码生码的别名)\
+            cnName: '主从表ViewGird组件使用',//WorkTableName\
+            name: 'SellOrder',//WorkTable(代码生码的别名)\
             url: '/SellOrder/',//后台控制器名\
             sortName: 'CreateDate' //后台排序字段}",
       type: "array",
@@ -378,7 +378,7 @@ const param = {
                     </span><span style="color: #008000;">//</span><span style="color: #008000;">弹出框从表(明细)对象</span>
                     <span style="color: #008000;">//</span><span style="color: #008000;">从表配置</span>
                     buttons: [], <span style="color: #008000;">//</span><span style="color: #008000;">弹出框从表表格操作按钮,目前有删除行，添加行，刷新操作，如需要其他操作按钮，可在表对应的.js中添加</span>
-                    cnName: "", <span style="color: #008000;">//</span><span style="color: #008000;">从表名称</span>
+                    cnName: "", <span style="color: #008000;">//</span><span style="color: #008000;">从WorkTable称</span>
                     key: "", <span style="color: #008000;">//</span><span style="color: #008000;">从表主键名</span>
                     data: [], <span style="color: #008000;">//</span><span style="color: #008000;">数据源</span>
                     columns: [], <span style="color: #008000;">//</span><span style="color: #008000;">从表列信息</span>

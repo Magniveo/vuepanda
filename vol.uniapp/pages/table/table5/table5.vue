@@ -28,7 +28,7 @@
 								<view>{{row.creator}}</view>
 							</view>
 							<view class="grid-bottom-item">
-								<view>修改时间</view>
+								<view>ModifyDate</view>
 								<view>{{row.createDate}}</view>
 							</view>
 							<!-- 小程序不支持标签里面调用方法。manifest.json并且要配置	"scopedSlotsCompiler":"legacy",属性 -->
@@ -89,7 +89,7 @@
 					},
 					{
 						field: 'modifyDate',
-						title: '修改时间',
+						title: 'ModifyDate',
 						type: 'datetime'
 					}
 				],

@@ -18,18 +18,18 @@ namespace VOL.Entity.DomainModels
     public class Sys_Dictionary:BaseEntity
     {
         /// <summary>
-       ///字典ID
+       ///Dic_ID
        /// </summary>
        [Key]
-       [Display(Name ="字典ID")]
+       [Display(Name ="Dic_ID")]
        [Column(TypeName="int")]
        [Required(AllowEmptyStrings=false)]
        public int Dic_ID { get; set; }
 
        /// <summary>
-       ///字典编号
+       ///DicNo
        /// </summary>
-       [Display(Name ="字典编号")]
+       [Display(Name ="DicNo")]
        [MaxLength(100)]
        [Column(TypeName="nvarchar(100)")]
        [Editable(true)]
@@ -37,9 +37,9 @@ namespace VOL.Entity.DomainModels
        public string DicNo { get; set; }
 
        /// <summary>
-       ///字典名称
+       ///DicName
        /// </summary>
-       [Display(Name ="字典名称")]
+       [Display(Name ="DicName")]
        [MaxLength(100)]
        [Column(TypeName="nvarchar(100)")]
        [Editable(true)]
@@ -47,27 +47,27 @@ namespace VOL.Entity.DomainModels
        public string DicName { get; set; }
 
        /// <summary>
-       ///父级ID
+       ///ParentId
        /// </summary>
-       [Display(Name ="父级ID")]
+       [Display(Name ="ParentId")]
        [Column(TypeName="int")]
        [Editable(true)]
        [Required(AllowEmptyStrings=false)]
        public int ParentId { get; set; }
 
        /// <summary>
-       ///配置项
+       ///Config
        /// </summary>
-       [Display(Name ="配置项")]
+       [Display(Name ="Config")]
        [MaxLength(10000)]
        [Column(TypeName="nvarchar(10000)")]
        [Editable(true)]
        public string Config { get; set; }
 
        /// <summary>
-       ///sql语句
+       ///DbSql
        /// </summary>
-       [Display(Name ="sql语句")]
+       [Display(Name ="DbSql")]
        [MaxLength(10000)]
        [Column(TypeName="nvarchar(10000)")]
        [Editable(true)]
@@ -82,26 +82,26 @@ namespace VOL.Entity.DomainModels
        public string DBServer { get; set; }
 
        /// <summary>
-       ///排序号
+       ///OrderNo
        /// </summary>
-       [Display(Name ="排序号")]
+       [Display(Name ="OrderNo")]
        [Column(TypeName="int")]
        [Editable(true)]
        public int? OrderNo { get; set; }
 
        /// <summary>
-       ///备注
+       ///Remark
        /// </summary>
-       [Display(Name ="备注")]
+       [Display(Name ="Remark")]
        [MaxLength(2000)]
        [Column(TypeName="nvarchar(2000)")]
        [Editable(true)]
        public string Remark { get; set; }
 
        /// <summary>
-       ///是否启用
+       ///Enable
        /// </summary>
-       [Display(Name ="是否启用")]
+       [Display(Name ="Enable")]
        [Column(TypeName="tinyint")]
        [Editable(true)]
        [Required(AllowEmptyStrings=false)]
@@ -115,17 +115,17 @@ namespace VOL.Entity.DomainModels
        public int? CreateID { get; set; }
 
        /// <summary>
-       ///创建人
+       ///Creator
        /// </summary>
-       [Display(Name ="创建人")]
+       [Display(Name ="Creator")]
        [MaxLength(30)]
        [Column(TypeName="nvarchar(30)")]
        public string Creator { get; set; }
 
        /// <summary>
-       ///创建时间
+       ///CreateDate
        /// </summary>
-       [Display(Name ="创建时间")]
+       [Display(Name ="CreateDate")]
        [Column(TypeName="datetime")]
        [Editable(true)]
        public DateTime? CreateDate { get; set; }
@@ -138,17 +138,17 @@ namespace VOL.Entity.DomainModels
        public int? ModifyID { get; set; }
 
        /// <summary>
-       ///修改人
+       ///Modifier
        /// </summary>
-       [Display(Name ="修改人")]
+       [Display(Name ="Modifier")]
        [MaxLength(30)]
        [Column(TypeName="nvarchar(30)")]
        public string Modifier { get; set; }
 
        /// <summary>
-       ///修改时间
+       ///ModifyDate
        /// </summary>
-       [Display(Name ="修改时间")]
+       [Display(Name ="ModifyDate")]
        [Column(TypeName="datetime")]
        public DateTime? ModifyDate { get; set; }
 

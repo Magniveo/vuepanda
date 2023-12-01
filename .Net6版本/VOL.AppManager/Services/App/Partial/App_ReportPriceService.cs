@@ -289,7 +289,7 @@ namespace VOL.AppManager.Services
         public string Name { get; set; }
 
 
-        [Display(Name = "描述")]
+        [Display(Name = "Describe")]
         [MaxLength(250)]
         [Column(TypeName = "nvarchar(250)")]
         public string Describe { get; set; }
@@ -299,7 +299,7 @@ namespace VOL.AppManager.Services
         [Column(TypeName = "nvarchar(15)")]
         public string PhoneNo { get; set; }
 
-        [Display(Name = "创建时间")]
+        [Display(Name = "CreateDate")]
         [Column(TypeName = "datetime")]
         [Editable(true)]
         public DateTime? CreateDate { get; set; }

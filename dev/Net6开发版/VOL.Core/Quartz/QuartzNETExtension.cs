@@ -180,7 +180,7 @@ namespace VOL.Core.Quartz
         /// <returns></returns>
         public static Task<object> Remove(this ISchedulerFactory schedulerFactory, Sys_QuartzOptions taskOptions)
         {
-            return schedulerFactory.TriggerAction(JobAction.删除, taskOptions);
+            return schedulerFactory.TriggerAction(JobAction.Del, taskOptions);
         }
 
         /// <summary>
@@ -229,7 +229,7 @@ namespace VOL.Core.Quartz
         }
 
         /// <summary>
-        /// 触发新增、删除、修改、暂停、启用、立即执行事件
+        /// 触发新增、Del、修改、暂停、启用、立即执行事件
         /// </summary>
         /// <param name="schedulerFactory"></param>
         /// <param name="taskName"></param>
@@ -273,7 +273,7 @@ namespace VOL.Core.Quartz
                 object result = null;
                 switch (action)
                 {
-                    case JobAction.删除:
+                    case JobAction.Del:
                     case JobAction.修改:
                     case JobAction.暂停:
                         await scheduler.PauseTrigger(trigger.Key);

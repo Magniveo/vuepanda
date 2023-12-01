@@ -39,7 +39,7 @@
         提示
         <template slot="desc">
           <div style="line-height: 2;">
-            <p>每个表由代码生成器生后的文件名都包括表名,直接在vs中搜索表名就可以看到所有生成相关表的文件</p>
+            <p>每个表由代码生成器生后的文件名都包括WorkTable,直接在vs中搜索WorkTable就可以看到所有生成相关表的文件</p>
             <p>所有自定义接口与业务实现都统一在Partial文件夹下实现</p>
             <p>表xxRepository.Instance用于调用仓储方法，如SellOrderRepository.Instance</p>
             <p>表xxService.Instance用于调用或编写业务，如SellOrderService.Instance，建议接口注入IxxService</p>
@@ -1939,7 +1939,7 @@ VolElementMenuChild.vue(新增) 、VolElementMenu.vue(新增) 、Index.vue 、co
         {
           title: "获取表依赖注入service实例",
           content: [
-            `表名xxxService.Instance；如:Sys_UserService.Instance(仅限在同一个类库中使用)`,
+            `WorkTablexxxService.Instance；如:Sys_UserService.Instance(仅限在同一个类库中使用)`,
           ],
           tips: ` 还没想好`,
           img: "",
@@ -1947,7 +1947,7 @@ VolElementMenuChild.vue(新增) 、VolElementMenu.vue(新增) 、Index.vue 、co
         {
           title: "获取表依赖注入Repository实例",
           content: [
-            `表名xxxRepository.Instance；如:Sys_UserRepository.Instance(仅限在同一个类库中使用)`,
+            `WorkTablexxxRepository.Instance；如:Sys_UserRepository.Instance(仅限在同一个类库中使用)`,
           ],
           tips: ` 还没想好`,
           img: "",
@@ -2512,7 +2512,7 @@ VolElementMenuChild.vue(新增) 、VolElementMenu.vue(新增) 、Index.vue 、co
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#6a9955;">//[ApiActionPermission()]</span>
 	</div>
 	<div>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#6a9955;">//第一个参数可以输入表名，指定某张表的权限</span>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#6a9955;">//第一个参数可以输入WorkTable，指定某张表的权限</span>
 	</div>
 	<div>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#6a9955;">//[ApiActionPermission("SellOrder",ActionPermissionOptions.Search)]</span>
@@ -2816,7 +2816,7 @@ VolElementMenuChild.vue(新增) 、VolElementMenu.vue(新增) 、Index.vue 、co
           title: "获取当前用户权限",
           content: [
             `<p>UserContext.Current.Permissions</p>
-             <p>UserContext.Current.GetPermissions("菜单上配置的表名")</p>
+             <p>UserContext.Current.GetPermissions("菜单上配置的WorkTable")</p>
              <p>UserContext.Current.GetPermissions(x => x.TableName.ToLower()=="xxx")</p>
              <p>获取更多用户信息：UserContext.Current.xxx</p>
              `,
@@ -2836,7 +2836,7 @@ VolElementMenuChild.vue(新增) 、VolElementMenu.vue(新增) 、Index.vue 、co
 		<span style="color:#9cdcfe;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[</span><span style="color:#dcdcaa;">ApiActionPermission</span><span style="color:#9cdcfe;">(</span><span style="color:#ce9178;">"Sys_Role"</span><span style="color:#9cdcfe;">,&nbsp;ActionPermissionOptions.Update)]</span>
 	</div>
 	<div>
-		<span style="color:#9cdcfe;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#6a9955;">//ApiActionPermission权限过滤,第一个参数为菜单上配置的表名，如果是代码生成的partial控制器中的方法，表名不用填写</span>
+		<span style="color:#9cdcfe;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#6a9955;">//ApiActionPermission权限过滤,第一个参数为菜单上配置的WorkTable，如果是代码生成的partial控制器中的方法，WorkTable不用填写</span>
 	</div>
 	<div>
 		<span style="color:#9cdcfe;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#6a9955;">//更多参数见方法重载</span>

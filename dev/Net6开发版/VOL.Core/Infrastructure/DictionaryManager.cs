@@ -50,7 +50,7 @@ namespace VOL.Core.Infrastructure
                 }
                 catch (Exception ex)
                 {
-                    Logger.Error($"字典执行sql异常,sql:{sql},异常信息：{ex.Message + ex.StackTrace}");
+                    Logger.Error($"字典执行sql异常,sql:{sql},ExceptionInfo：{ex.Message + ex.StackTrace}");
                     throw ex;
                     //  Console.WriteLine(ex.Message);
                     // return null;

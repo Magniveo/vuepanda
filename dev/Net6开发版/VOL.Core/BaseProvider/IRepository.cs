@@ -42,7 +42,7 @@ namespace VOL.Core.BaseProvider
         /// 
         /// </summary>
         /// <param name="predicate"></param>
-        /// <param name="orderBySelector">排序字段,数据格式如:
+        /// <param name="orderBySelector">OrderNo字段,数据格式如:
         ///  orderBy = x => new Dictionary<object, bool>() {
         ///          { x.BalconyName,QueryOrderBy.Asc},
         ///          { x.TranCorpCode1,QueryOrderBy.Desc}
@@ -58,7 +58,7 @@ namespace VOL.Core.BaseProvider
         /// 
         /// </summary>
         /// <param name="predicate">where条件</param>
-        /// <param name="orderBy">排序字段,数据格式如:
+        /// <param name="orderBy">OrderNo字段,数据格式如:
         ///  orderBy = x => new Dictionary<object, bool>() {
         ///          { x.BalconyName,QueryOrderBy.Asc},
         ///          { x.TranCorpCode1,QueryOrderBy.Desc}
@@ -150,7 +150,7 @@ namespace VOL.Core.BaseProvider
         /// <param name="rowcount"></param>
         /// <param name="predicate"></param>
         /// <param name="orderBy">
-        /// 通过多个字段排序Expression<Func<TEntity, Dictionary<object, bool>>>
+        /// 通过多个字段OrderNoExpression<Func<TEntity, Dictionary<object, bool>>>
         ///  orderBy = x => new Dictionary<object, bool>() {
         ///          { x.BalconyName,QueryOrderBy.Asc},
         ///          { x.TranCorpCode1,QueryOrderBy.Desc}
@@ -168,7 +168,7 @@ namespace VOL.Core.BaseProvider
         /// <param name="rowcount"></param>
         /// <param name="predicate"></param>
         /// <param name="orderBy"></param>
-        ///         /// 通过多个字段排序Expression<Func<TEntity, Dictionary<object, bool>>>
+        ///         /// 通过多个字段OrderNoExpression<Func<TEntity, Dictionary<object, bool>>>
         ///  orderBy = x => new Dictionary<object, bool>() {
         ///          { x.BalconyName,QueryOrderBy.Asc},
         ///          { x.TranCorpCode1,QueryOrderBy.Desc}
@@ -218,11 +218,11 @@ namespace VOL.Core.BaseProvider
 
 
         /// <summary>
-        ///修改时同时对明细的添加、删除、修改
+        ///修改时同时对明细的添加、Del、修改
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="updateDetail">是否修改明细</param>
-        /// <param name="delNotExist">是否删除明细不存在的数据</param>
+        /// <param name="delNotExist">是否Del明细不存在的数据</param>
         /// <param name="updateMainFields">主表指定修改字段</param>
         /// <param name="updateDetailFields">明细指定修改字段</param>
         /// <param name="saveChange">是否保存</param>
@@ -240,7 +240,7 @@ namespace VOL.Core.BaseProvider
         /// 
         /// </summary>
         /// <param name="keys"></param>
-        /// <param name="delList">是否将子表的数据也删除</param>
+        /// <param name="delList">是否将子表的数据也Del</param>
         /// <returns></returns>
         int DeleteWithKeys(object[] keys, bool delList = false);
 

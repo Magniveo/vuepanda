@@ -26,7 +26,7 @@ app.config.globalProperties.$tabs = {};
 app.config.globalProperties.permission = permission;
 app.config.globalProperties.$global = {
     signalR: false, //是否开启signalR
-    menuSearch:true,//菜单是否启用搜索功能
+    menuSearch:true,//菜单Enable搜索功能
     table: {
       smallCell:false,//表格单元格大小
       useTag: true //table组件下拉框数据源的字段是否显示背景颜色

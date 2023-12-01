@@ -19,7 +19,7 @@ export default {
       default: null,
     },
     uploadCount: {
-      //最多可以上传(图片)的数量
+      //最多可以上传(图片)的Quantity
       type: Number,
       default: 3,
     },
@@ -87,7 +87,7 @@ export default {
     //   Accept: "application/json",
     //   Authorization: this.$store.getters.getToken(),
     // };
-    //上传地址
+    //上传Address
     editor.config.uploadImgServer = this.http.ipAddress + this.url;
     // console.log(editor.config.uploadImgServer);
     editor.config.customUploadImg = async function (resultFiles, insertImgFn) {
@@ -96,7 +96,7 @@ export default {
         console.log("调用自定义的上传方法");
         console.log(resultFiles);
         // resultFiles 是 input 中选中的文件列表
-        // insertImgFn 是获取图片 url 后，插入到编辑器的方法
+        // insertImgFn 是获取图片 url 后，插入到Edit器的方法
         //有可能会上传多张图片,上传多张图片就需要进行遍历
         resultFiles.map((item) => {
           // _this.getUploadImg(item, insertImgFn);
@@ -150,7 +150,7 @@ export default {
           accessKeySecret: x.data.accessKeySecret,
           // 从STS服务获取的安全令牌（SecurityToken）。
           stsToken: x.data.securityToken,
-          // 填写Bucket名称。
+          // 填写BucketExpertName。
           bucket: x.data.bucket
         });
         debugger;

@@ -37,7 +37,7 @@
                               [{"dataKey":"gender","data":[],"title":"性别","field":"Gender","type":"select"},
                                {"dataKey":"enable","data":[],"title":"是否可用","required":true,"field":"Enable","type":"select"}],
 
-                              [{"title":"备注","field":"Remark","colSize":12,"type":"textarea"}],
+                              [{"title":"Remark","field":"Remark","colSize":12,"type":"textarea"}],
                               [{"title":"头像","required":true,"field":"HeadImageUrl","type":"img"}]]);
             const searchFormFields = ref({"UserName":"","Gender":"","DeptName":"","Role_Id":"","Token":"","AppType":[],"UserTrueName":"","CreateDate":"","IsRegregisterPhone":"","PhoneNo":"","Enable":"","LastLoginDate":"","Address":"","Email":""});
             const searchFormOptions = ref([[{"title":"帐号","field":"UserName"},{"dataKey":"gender","data":[],"title":"性别","field":"Gender","type":"select"},{"title":"真实姓名","field":"UserTrueName"}],[{"title":"部门","field":"DeptName"},{"dataKey":"roles","data":[],"title":"角色","field":"Role_Id","type":"select"},{"title":"Token","field":"Token"}],[{"dataKey":"ut","data":[],"title":"登陆设备类型","field":"AppType","type":"selectList"},{"dataKey":"isphone","data":[],"title":"手机用户","field":"IsRegregisterPhone","type":"select"},{"title":"手机号","field":"PhoneNo"}],[{"dataKey":"enable","data":[],"title":"是否可用","field":"Enable","type":"select"},{"title":"地址","field":"Address"},{"title":"Email","field":"Email"}],[{"title":"注册时间","field":"CreateDate","type":"datetime"},{"title":"最后登陆时间","field":"LastLoginDate","type":"datetime"}]]);
@@ -54,7 +54,7 @@
                        {field:'Enable',title:'是否可用',type:'byte',bind:{ key:'enable',data:[]},width:90,require:true,align:'left'},
                        {field:'ModifyID',title:'ModifyID',type:'int',width:90,hidden:true,align:'left'},
                        {field:'Modifier',title:'修改人',type:'string',width:130,hidden:true,readonly:true,align:'left'},
-                       {field:'ModifyDate',title:'修改时间',type:'datetime',width:90,readonly:true,align:'left',sortable:true}]);
+                       {field:'ModifyDate',title:'ModifyDate',type:'datetime',width:90,readonly:true,align:'left',sortable:true}]);
             const detail = ref({
                 cnName: "#detailCnName",
                 columns: [],

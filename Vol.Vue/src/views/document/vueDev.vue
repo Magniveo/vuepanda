@@ -193,7 +193,7 @@ export default {
 &nbsp; &nbsp; &nbsp; keepAlive: false<br />
 &nbsp; &nbsp;}&nbsp;<br />
 <br />
-解决方法2：如果需要每次进入页面查询数据，在[表名.js]文件中添加:<br />
+解决方法2：如果需要每次进入页面查询数据，在[WorkTable.js]文件中添加:<br />
 &nbsp; &nbsp;onActivated(){<br />
 &nbsp; &nbsp;}<br />
 &nbsp;<br />`
@@ -259,13 +259,13 @@ export default {
 			&nbsp; &nbsp; &nbsp;<span style="color:#6a9955;">//第三个参数：是否显示发起请求时的提示信息(默认否)</span>
 		</div>
 		<div>
-			&nbsp; &nbsp; &nbsp;<span style="color:#569cd6;">let</span> <span style="color:#9cdcfe;">url</span><span style="color:#d4d4d4;">=</span><span style="color:#ce9178;">'api/表名/方法名'</span>
+			&nbsp; &nbsp; &nbsp;<span style="color:#569cd6;">let</span> <span style="color:#9cdcfe;">url</span><span style="color:#d4d4d4;">=</span><span style="color:#ce9178;">'api/WorkTable/方法名'</span>
 		</div>
 		<div>
 			&nbsp; &nbsp; &nbsp;<span style="color:#6a9955;">//如果参数很少后台又不想创建model,将参数放url上</span>
 		</div>
 		<div>
-			&nbsp; &nbsp; &nbsp;<span style="color:#6a9955;">//let url=''api/表名/方法名?a=1&amp;b=2'</span>
+			&nbsp; &nbsp; &nbsp;<span style="color:#6a9955;">//let url=''api/WorkTable/方法名?a=1&amp;b=2'</span>
 		</div>
 <br />
 		<div>
@@ -2730,7 +2730,7 @@ export default {
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
 	</div>
 	<div>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#ce9178;">"这是一些不可描述的内容"</span>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#ce9178;">"这是一些不可Describe的内容"</span>
 	</div>
 	<div>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),
@@ -3833,7 +3833,7 @@ export default {
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
 	</div>
 </div></p>
-        <div style="color:red;font-size:18px;">2、前端代码(在表名xxx.js中methods里)</div>
+        <div style="color:red;font-size:18px;">2、前端代码(在WorkTablexxx.js中methods里)</div>
         <div style="color:#D4D4D4;background-color:#1E1E1E;font-family:Consolas, &quot;font-size:14px;line-height:19px;white-space:pre;">
 	<div>
 		&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#dcdcaa;">searchAfter</span>&nbsp;(<span style="color:#9cdcfe;">rows</span>,&nbsp;<span style="color:#9cdcfe;">result</span>)&nbsp;{&nbsp;<span style="color:#6a9955;">//查询ViewGird表数据后param查询参数,result回返查询的结果</span>
@@ -5063,7 +5063,7 @@ export default {
 	</div>
 </div>`
           ],
-          tips: ` 可给编辑表单添加描述或触发事件，更多属性配置参照volform组件api`,
+          tips: ` 可给编辑表单添加Describe或触发事件，更多属性配置参照volform组件api`,
           img:
             "https://doc-vue-1256993465.cos.ap-chengdu.myqcloud.com/12.png?imageMogr2/thumbnail/!35p"
         },

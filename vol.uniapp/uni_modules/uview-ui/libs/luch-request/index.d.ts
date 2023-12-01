@@ -34,7 +34,7 @@ export interface HttpRequestConfig<T = Tasks> {
 
   /** 请求头信息 */
   header?: AnyObject;
-  /** 请求方式 */
+  /** Method */
   method?: "GET" | "POST" | "PUT" | "DELETE" | "CONNECT" | "HEAD" | "OPTIONS" | "TRACE" | "UPLOAD" | "DOWNLOAD";
   /** 如果设为 json，会尝试对返回的数据做一次 JSON.parse */
   dataType?: string;

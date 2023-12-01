@@ -246,7 +246,7 @@
                 v-model="formFields[item.field][0]"
                 :type="item.type"
                 :disabledDate="(val) => getDateOptions(val, item)"
-                placeholder="开始时间"
+                placeholder="StratDate"
                 @change="
                   (val) => {
                     dateRangeChange(val, item);
@@ -263,7 +263,7 @@
                 :disabled="item.readonly || item.disabled"
                 style="flex: 1; width: auto"
                 v-model="formFields[item.field][1]"
-                placeholder="结束时间"
+                placeholder="EndDate"
                 :type="item.type"
                 :disabledDate="(val) => getDateOptions(val, item)"
                 @change="

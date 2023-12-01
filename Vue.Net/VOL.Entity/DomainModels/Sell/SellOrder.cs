@@ -66,9 +66,9 @@ namespace VOL.Entity.DomainModels
        public int Qty { get; set; }
 
        /// <summary>
-       ///审核状态
+       ///AuditStatus
        /// </summary>
-       [Display(Name ="审核状态")]
+       [Display(Name ="AuditStatus")]
        [Column(TypeName="int")]
        [Required(AllowEmptyStrings=false)]
        public int AuditStatus { get; set; }
@@ -81,24 +81,24 @@ namespace VOL.Entity.DomainModels
        public DateTime? AuditDate { get; set; }
 
        /// <summary>
-       ///审核人
+       ///Auditor
        /// </summary>
-       [Display(Name ="审核人")]
+       [Display(Name ="Auditor")]
        [MaxLength(100)]
        [Column(TypeName="nvarchar(100)")]
        public string Auditor { get; set; }
 
        /// <summary>
-       ///审核人Id
+       ///AuditId
        /// </summary>
-       [Display(Name ="审核人Id")]
+       [Display(Name ="AuditId")]
        [Column(TypeName="int")]
        public int? AuditId { get; set; }
 
        /// <summary>
-       ///备注
+       ///Remark
        /// </summary>
-       [Display(Name ="备注")]
+       [Display(Name ="Remark")]
        [MaxLength(1000)]
        [Column(TypeName="nvarchar(1000)")]
        [Editable(true)]
@@ -121,9 +121,9 @@ namespace VOL.Entity.DomainModels
        public string Creator { get; set; }
 
        /// <summary>
-       ///创建时间
+       ///CreateDate
        /// </summary>
-       [Display(Name ="创建时间")]
+       [Display(Name ="CreateDate")]
        [Column(TypeName="datetime")]
        [Editable(true)]
        public DateTime? CreateDate { get; set; }
@@ -144,9 +144,9 @@ namespace VOL.Entity.DomainModels
        public string Modifier { get; set; }
 
        /// <summary>
-       ///修改时间
+       ///ModifyDate
        /// </summary>
-       [Display(Name ="修改时间")]
+       [Display(Name ="ModifyDate")]
        [Column(TypeName="datetime")]
        [Editable(true)]
        public DateTime? ModifyDate { get; set; }

@@ -36,7 +36,7 @@
                               [{"dataKey":"组织机构","data":[],"title":"组织构架","field":"DeptIds","colSize":12,"type":"treeSelect"}],
                               [{"dataKey":"enable","data":[],"title":"是否可用","required":true,"field":"Enable","type":"select"}],
                               [{"dataKey":"gender","data":[],"title":"性别","field":"Gender","type":"select"}],
-                              [{"title":"备注","field":"Remark","colSize":12,"type":"textarea"}],
+                              [{"title":"Remark","field":"Remark","colSize":12,"type":"textarea"}],
                               [{"title":"头像","field":"HeadImageUrl","type":"img"}]]);
             const searchFormFields = ref({"UserName":"","UserTrueName":"","Gender":"","DeptName":"","Role_Id":[],"Token":"","AppType":[],"CreateDate":"","IsRegregisterPhone":"","PhoneNo":"","Enable":"","LastLoginDate":"","Address":"","Email":""});
             const searchFormOptions = ref([[{"title":"帐号","field":"UserName"},{"title":"姓名","field":"UserTrueName"},{"dataKey":"gender","data":[],"title":"性别","field":"Gender","type":"select"}],[{"title":"不用","field":"DeptName"},{"dataKey":"tree_roles","data":[],"title":"角色","field":"Role_Id","type":"select"},{"title":"Token","field":"Token"}],[{"dataKey":"ut","data":[],"title":"类型","field":"AppType","type":"selectList"},{"dataKey":"isphone","data":[],"title":"手机用户","field":"IsRegregisterPhone","type":"select"},{"title":"手机号","field":"PhoneNo"}],[{"dataKey":"enable","data":[],"title":"是否可用","field":"Enable","type":"select"},{"title":"地址","field":"Address"},{"title":"Email","field":"Email"}],[{"title":"注册时间","field":"CreateDate","type":"datetime"},{"title":"最后登陆时间","field":"LastLoginDate","type":"datetime"}]]);
@@ -61,16 +61,16 @@
                        {field:'Enable',title:'是否可用',type:'byte',bind:{ key:'enable',data:[]},width:90,require:true,align:'left'},
                        {field:'ModifyID',title:'ModifyID',type:'int',width:90,hidden:true,align:'left'},
                        {field:'Modifier',title:'修改人',type:'string',width:130,hidden:true,readonly:true,align:'left'},
-                       {field:'ModifyDate',title:'修改时间',type:'datetime',width:90,hidden:true,readonly:true,align:'left',sort:true},
-                       {field:'AuditStatus',title:'审核状态',type:'int',bind:{ key:'audit',data:[]},width:90,hidden:true,align:'left'},
-                       {field:'Auditor',title:'审核人',type:'string',width:90,hidden:true,align:'left'},
+                       {field:'ModifyDate',title:'ModifyDate',type:'datetime',width:90,hidden:true,readonly:true,align:'left',sort:true},
+                       {field:'AuditStatus',title:'AuditStatus',type:'int',bind:{ key:'audit',data:[]},width:90,hidden:true,align:'left'},
+                       {field:'Auditor',title:'Auditor',type:'string',width:90,hidden:true,align:'left'},
                        {field:'AuditDate',title:'审核时间',type:'datetime',width:150,hidden:true,align:'left',sort:true},
                        {field:'LastLoginDate',title:'最后登陆时间',type:'datetime',width:150,hidden:true,align:'left',sort:true},
-                       {field:'LastModifyPwdDate',title:'最后密码修改时间',type:'datetime',width:150,hidden:true,align:'left',sort:true},
+                       {field:'LastModifyPwdDate',title:'最后密码ModifyDate',type:'datetime',width:150,hidden:true,align:'left',sort:true},
                        {field:'Address',title:'地址',type:'string',width:190,hidden:true,align:'left'},
                        {field:'Mobile',title:'电话',type:'string',width:140,hidden:true,align:'left'},
                        {field:'Email',title:'Email',type:'string',width:140,hidden:true,align:'left'},
-                       {field:'Remark',title:'备注',type:'string',width:180,hidden:true,align:'left'},
+                       {field:'Remark',title:'Remark',type:'string',width:180,hidden:true,align:'left'},
                        {field:'OrderNo',title:'排序号',type:'int',width:90,hidden:true,align:'left'}]);
             const detail = ref({
                 cnName: "#detailCnName",

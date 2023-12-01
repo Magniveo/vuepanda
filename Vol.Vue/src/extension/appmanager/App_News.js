@@ -29,7 +29,7 @@ let extension = {
         initButton() {
             //当前用户是否有编辑或新建权限
             //或者读取当前用户的按钮权限:
-            //1、 this.permission.getButtons('App_News')//App_News为菜单配置的url表名
+            //1、 this.permission.getButtons('App_News')//App_News为菜单配置的urlWorkTable
             //或者2、 this.$store.state.system.permission获取用户的所有权限信息
             if (this.currentReadonly) { return; }
             this.buttons.splice(2, 0, {

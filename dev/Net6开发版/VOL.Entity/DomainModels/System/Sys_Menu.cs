@@ -31,9 +31,9 @@ namespace VOL.Entity.DomainModels
        public int Menu_Id { get; set; }
 
        /// <summary>
-       ///父级ID
+       ///ParentId
        /// </summary>
-       [Display(Name ="父级ID")]
+       [Display(Name ="ParentId")]
        [DisplayFormat(DataFormatString="10,0")]
        [Column(TypeName="int")]
        [Editable(true)]
@@ -42,9 +42,9 @@ namespace VOL.Entity.DomainModels
 
 
        /// <summary>
-       ///菜单名称
+       ///菜单ExpertName
        /// </summary>
-       [Display(Name ="菜单名称")]
+       [Display(Name ="菜单ExpertName")]
        [MaxLength(50)]
        [Column(TypeName="nvarchar(50)")]
        [Editable(true)]
@@ -99,27 +99,27 @@ namespace VOL.Entity.DomainModels
        public string Icon { get; set; }
 
        /// <summary>
-       ///排序号
+       ///OrderNo
        /// </summary>
-       [Display(Name ="排序号")]
+       [Display(Name ="OrderNo")]
        [DisplayFormat(DataFormatString="10,0")]
        [Column(TypeName="int")]
        [Editable(true)]
        public int? OrderNo { get; set; }
 
        /// <summary>
-       ///创建人
+       ///Creator
        /// </summary>
-       [Display(Name ="创建人")]
+       [Display(Name ="Creator")]
        [MaxLength(50)]
        [Column(TypeName="nvarchar(50)")]
        [Editable(true)]
        public string Creator { get; set; }
 
        /// <summary>
-       ///创建时间
+       ///CreateDate
        /// </summary>
-       [Display(Name ="创建时间")]
+       [Display(Name ="CreateDate")]
        [Column(TypeName="datetime")]
        [Editable(true)]
        public DateTime? CreateDate { get; set; }
@@ -142,9 +142,9 @@ namespace VOL.Entity.DomainModels
        public DateTime? ModifyDate { get; set; }
 
        /// <summary>
-       ///是否启用
+       ///Enable
        /// </summary>
-       [Display(Name ="是否启用")]
+       [Display(Name ="Enable")]
        [Column(TypeName="tinyint")]
        [Editable(true)]
        public byte? Enable { get; set; }
@@ -155,7 +155,7 @@ namespace VOL.Entity.DomainModels
         /// 菜单类型1:移动端，0:PC端
         /// </summary>
         /// </summary>
-        [Display(Name = "是否启用")]
+        [Display(Name = "Enable")]
         [Column(TypeName = "int")]
         [Editable(true)]
         public int? MenuType { get; set; }

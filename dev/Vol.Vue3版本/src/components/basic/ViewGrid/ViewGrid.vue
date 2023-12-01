@@ -485,17 +485,17 @@ var vueParam = {
       rowKey: undefined,
       fiexdSearchForm: false, //2020.09.011是否固定查询表单，true查询表单将固定显示在表单的最上面
       _inited: false,
-      doubleEdit: false, //2021.03.19是否开启查询界面表格双击编辑
+      doubleEdit: false, //2021.03.19是否开启查询界面表格双击Edit
       single: false, //表是否单选
       const: _const, //增删改查导入导出等对应的action
-      boxInit: false, //新建或编辑的弹出框初化状态，默认不做初始化，点击新建或编辑才初始化弹出框
+      boxInit: false, //Add或Edit的弹出框初化状态，默认不做初始化，点击Add或Edit才初始化弹出框
       searchBoxShow: false, //高级查询(界面查询后的下拉框点击触发)
       singleSearch: {}, //快速查询字段
       exportHref: '',
-      currentAction: _const.ADD, //当新建或编辑时，记录当前的状态:如当前操作是新建
-      currentRow: {}, //当前编辑或查看数据的行
+      currentAction: _const.ADD, //当Add或Edit时，记录当前的状态:如当前操作是Add
+      currentRow: {}, //当前Edit或查看数据的行
       closable: false,
-      boxModel: false, //弹出新建、编辑框
+      boxModel: false, //弹出Add、Edit框
       width: 700, //弹出框查看表数据结构
       labelWidth: 100, //高级查询的标签宽度
       viewModel: false, //查看表结构的弹出框
@@ -503,12 +503,12 @@ var vueParam = {
       viewColumnsClone: [],
       showCustom: true, //是否显示自定义配置列按钮2022.05.27
       // viewData: [], //查看表结构信息
-      maxBtnLength: 8, //界面按钮最多显示的个数，超过的数量都显示在更多中
+      maxBtnLength: 8, //界面按钮最多显示的个数，超过的Quantity都显示在更多中
       buttons: [], //查询界面按钮  如需要其他操作按钮，可在表对应的.js中添加(如:Sys_User.js中buttons添加其他按钮)
       splitButtons: [],
       uploadfiled: [], //上传文件图片的字段
       boxButtons: [], //弹出框按钮 如需要其他操作按钮，可在表对应的.js中添加
-      dicKeys: [], //当前界面所有的下拉框字典编号及数据源
+      dicKeys: [], //当前界面所有的下拉框DicNo及数据源
       hasKeyField: [], //有字典数据源的字段
       keyValueType: { _dinit: false },
       url: '', //界面表查询的数据源的url
@@ -517,43 +517,43 @@ var vueParam = {
       load: true, //是否默认加载表数据
       activatedLoad: false, //页面触发actived时是否刷新页面数据
       summary: false, //查询界面table是否显示合计
-      //需要从远程绑定数据源的字典编号,如果字典数据源的查询结果较多，请在onInit中将字典编号添加进来
+      //需要从Enable绑定数据源的DicNo,如果字典数据源的查询结果较多，请在onInit中将DicNo添加进来
       //只对自定sql有效
       remoteKeys: [],
       columnIndex: false, //2020.11.01是否显示行号
       ck: true, //2020.11.01是否显示checkbox
-      continueAdd: false, //2021.04.11新建时是否可以连续新建操作
-      continueAddName: '保存后继续添加', //2021.04.11按钮名称
+      continueAdd: false, //2021.04.11Add时是否可以连续Add操作
+      continueAddName: '保存后继续添加', //2021.04.11按钮ExpertName
       // detailUrl: "",
       detailOptions: {
         paginationHide:false,//是否隐藏明细表分页2023.10.23
         //弹出框从表(明细)对象
         //从表配置
-        buttons: [], //弹出框从表表格操作按钮,目前有删除行，添加行，刷新操作，如需要其他操作按钮，可在表对应的.js中添加
-        cnName: '', //从表名称
+        buttons: [], //弹出框从表表格操作按钮,目前有Del行，添加行，刷新操作，如需要其他操作按钮，可在表对应的.js中添加
+        cnName: '', //从WorkTable称
         key: '', //从表主键名
         data: [], //数据源
         columns: [], //从表列信息
-        edit: true, //明细是否可以编辑
+        edit: true, //明细是否可以Edit
         single: false, //明细表是否单选
         load: false, //
-        delKeys: [], //当编辑时删除当前明细的行主键值
+        delKeys: [], //当Edit时Del当前明细的行主键值
         url: '', //从表加载数据的url
         pagination: { total: 0, size: 100, sortName: '' }, //从表分页配置数据
         height: 0, //默认从表高度
         textInline: true, //明细表行内容显示在一行上，如果需要换行显示，请设置为false
-        doubleEdit: true, //使用双击编辑
-        clickEdit: false, //是否开启点击单元格编辑，点击其他行时结束编辑
-        currentReadonly: false, //当前用户没有编辑或新建权限时，表单只读(可用于判断用户是否有编辑或新建权限)
-        //开启编辑时
+        doubleEdit: true, //使用双击Edit
+        clickEdit: false, //是否开启点击单元格Edit，点击其他行时结束Edit
+        currentReadonly: false, //当前用户没有Edit或Add权限时，表单只读(可用于判断用户是否有Edit或Add权限)
+        //开启Edit时
         beginEdit: (row, column, index) => {
           return true;
         },
-        //结束编辑前
+        //结束Edit前
         endEditBefore: (row, column, index) => {
           return true;
         },
-        //结束编辑后
+        //结束Edit后
         endEditAfter: (row, column, index) => {
           return true;
         },
@@ -595,7 +595,7 @@ var vueParam = {
       textInline: true, //table内容超出后是否不换行2020.01.16
       pagination: { total: 0, size: 30, sortName: '' }, //从分页配置数据
       boxOptions: {
-        title: '', //弹出框显示的标题2022.08.01
+        title: '', //弹出框显示的Title2022.08.01
         saveClose: true,
         labelWidth: 100,
         height: 0,
@@ -603,7 +603,7 @@ var vueParam = {
         summary: false, //弹出框明细table是否显示合计
         draggable: false, //2022.09.12弹出框拖动功能
         modal: true //2022.09.12弹出框背景遮罩层
-      }, //saveClose新建或编辑成功后是否关闭弹出框//弹出框的标签宽度labelWidth
+      }, //saveCloseAdd或Edit成功后是否关闭弹出框//弹出框的标签宽度labelWidth
       editor: {
         uploadImgUrl: '', //上传路径
         upload: null //上传方法
@@ -611,7 +611,7 @@ var vueParam = {
       numberFields: [],
       //2022.09.26增加自定义导出文件名
       downloadFileName: null,
-      select2Count: 2000, //超出500数量显示select2组件
+      select2Count: 2000, //超出500Quantity显示select2组件
       paginationHide:false//是隐藏分页(2023.10.11)
     };
   },
@@ -638,7 +638,7 @@ var vueParam = {
   created: function() {
     //合并自定义业务扩展方法
     Object.assign(this, this.extend.methods);
-    //如果没有指定排序字段，则用主键作为默认排序字段
+    //如果没有指定OrderNo字段，则用主键作为默认OrderNo字段
     this.pagination.sortName = this.table.sortName || this.table.key;
     this.initBoxButtons(); //初始化弹出框与明细表格按钮
     this.initAuditColumn();
@@ -646,7 +646,7 @@ var vueParam = {
     this.getButtons();
     //初始化自定义表格列
     this.initViewColumns();
-    //初始编辑框等数据
+    //初始Edit框等数据
     this.initBoxHeightWidth();
     this.initDicKeys(); //初始下框数据源
     this.onInited(); //初始化后，如果需要做其他处理在扩展方法中覆盖此方法

@@ -44,11 +44,11 @@ export default {
         { field: "MO", title: "批次", width: 100, sort: true },
         { field: "Qty", title: "数量", width: 90, sort: true },
         { field: "Weight", title: "重量", twidth: 90, sort: true },
-        { field: "Remark", title: "备注", width: 120, sort: true },
+        { field: "Remark", title: "Remark", width: 120, sort: true },
         { field: "Creator", title: "创建人", width: 130, sort: true },
         {
           field: "CreateDate",
-          title: "创建时间",
+          title: "CreateDate",
           type: "datetime",
           width: 145,
           sort: true,

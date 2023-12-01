@@ -30,21 +30,21 @@
                 sortName: "CreateDate"
             });
             const editFormFields = ref({"Title":""});
-            const editFormOptions = ref([[{"title":"表单名称","required":true,"field":"Title","type":"textarea"}]]);
+            const editFormOptions = ref([[{"title":"表单ExpertName","required":true,"field":"Title","type":"textarea"}]]);
             const searchFormFields = ref({"Title":"","CreateDate":"","ModifyDate":""});
-            const searchFormOptions = ref([[{"title":"表单名称","field":"Title","type":"like"},{"title":"创建时间","field":"CreateDate","type":"datetime"},{"title":"修改时间","field":"ModifyDate","type":"datetime"}]]);
+            const searchFormOptions = ref([[{"title":"表单ExpertName","field":"Title","type":"like"},{"title":"CreateDate","field":"CreateDate","type":"datetime"},{"title":"ModifyDate","field":"ModifyDate","type":"datetime"}]]);
             const columns = ref([{field:'FormId',title:'FormId',type:'guid',width:110,hidden:true,readonly:true,require:true,align:'left'},
-                       {field:'Title',title:'表单名称',type:'string',link:true,width:140,require:true,align:'left',sort:true},
+                       {field:'Title',title:'表单ExpertName',type:'string',link:true,width:140,require:true,align:'left',sort:true},
                        {field:'DaraggeOptions',title:'设计器配置',type:'string',width:140,align:'left'},
                        {field:'FormOptions',title:'表单参数',type:'string',width:140,align:'left'},
                        {field:'FormConfig',title:'表单配置',type:'string',width:110,align:'left'},
                        {field:'FormFields',title:'表单字段',type:'string',width:110,align:'left'},
                        {field:'TableConfig',title:'表格配置',type:'string',width:110,align:'left'},
-                       {field:'Creator',title:'创建人',type:'string',width:130,align:'left'},
-                       {field:'CreateDate',title:'创建时间',type:'datetime',width:110,align:'left',sort:true},
+                       {field:'Creator',title:'Creator',type:'string',width:130,align:'left'},
+                       {field:'CreateDate',title:'CreateDate',type:'datetime',width:110,align:'left',sort:true},
                        {field:'CreateID',title:'CreateID',type:'int',width:80,hidden:true,align:'left'},
-                       {field:'Modifier',title:'修改人',type:'string',width:130,hidden:true,align:'left'},
-                       {field:'ModifyDate',title:'修改时间',type:'datetime',width:110,hidden:true,align:'left',sort:true},
+                       {field:'Modifier',title:'Modifier',type:'string',width:130,hidden:true,align:'left'},
+                       {field:'ModifyDate',title:'ModifyDate',type:'datetime',width:110,hidden:true,align:'left',sort:true},
                        {field:'ModifyID',title:'ModifyID',type:'int',width:80,hidden:true,align:'left'}]);
             const detail = ref({
                 cnName: "#detailCnName",

@@ -55,10 +55,10 @@
                   :closable="false"
                   show-icon>
           <div>
-            1、如果是用代码生器生成的Vue页面,Url为Vue项目中src->router->viewGrid.js对应表名的path属性
+            1、如果是用代码生器生成的Vue页面,Url为Vue项目中src->router->viewGrid.js对应WorkTable的path属性
           </div>
           <div style="padding-top: 5px">
-            2、 如果只是建一级菜单或空菜单url不用填写,【视图/表名】填写.或者/
+            2、 如果只是建一级菜单或空菜单urlDept_Id填写,【视图/WorkTable】填写.或者/
           </div>
         </el-alert>
         <div style="padding: 0px 30px 0 20px">
@@ -93,7 +93,7 @@
             <el-button type="primary"
                        @click="save"><i class="el-icon-check"></i>保存</el-button>
             <el-button type="success"
-                       @click="add"><i class="el-icon-plus"></i>新建</el-button>
+                       @click="add"><i class="el-icon-plus"></i>Add</el-button>
             <el-button type="warning"
                        @click="addChild"><i class="el-icon-plus"></i>添加子级</el-button>
             <el-button type="primary"
@@ -101,7 +101,7 @@
                        @click="addBrother"><i class="el-icon-circle-plus"></i> 添加同级</el-button>
             <el-button type="warning"
                        plain
-                       @click="delMenu"><i class="el-icon-delete"></i> 删除菜单</el-button>
+                       @click="delMenu"><i class="el-icon-delete"></i> Del菜单</el-button>
           </div>
         </div>
       </el-scrollbar>
@@ -141,7 +141,7 @@ export default defineComponent({
           );
         });
         if (exist) {
-          return this.$message.error("权限名称或权限值已存在");
+          return this.$message.error("权限ExpertName或权限值已存在");
         }
         this.actionModel = false;
         this.action.push({
@@ -179,7 +179,7 @@ export default defineComponent({
       );
       this.icon = "";
       // this.actions = [];
-      //2020.08.07新建菜单时，默认选中查询按钮权限
+      //2020.08.07Add菜单时，默认选中查询按钮权限
       this.actions = ["Search"];
     },
     addChild () {
@@ -191,14 +191,14 @@ export default defineComponent({
       this.add({ parentId: this.fields.parentId });
     },
     delMenu () {
-      //2020.08.07增加菜单删除功能
+      //2020.08.07增加菜单Del功能
       if (this.fields.menu_Id == 0) {
         return this.$Message.error("请选择菜单");
       }
 
       let tigger = false;
       this.$confirm(
-        "确认要删除【" + this.fields.menuName + "】菜单吗？",
+        "确认要Del【" + this.fields.menuName + "】菜单吗？",
         "警告",
         {
           confirmButtonText: "确定",
@@ -211,7 +211,7 @@ export default defineComponent({
         tigger = true;
         let menuId = this.fields.menu_Id;
         this.http
-          .post("/api/menu/delMenu?menuId=" + menuId, {}, "正在删除数据....")
+          .post("/api/menu/delMenu?menuId=" + menuId, {}, "正在Del数据....")
           .then((x) => {
             if (!x.status) return this.$Message.error(x.message);
             this.$refs.form.reset();
@@ -287,9 +287,9 @@ export default defineComponent({
     const actionValues = ref([]);
     const action = ref([
       { text: "查询", value: "Search" },
-      { text: "新建", value: "Add" },
-      { text: "删除", value: "Delete" },
-      { text: "编辑", value: "Update" },
+      { text: "Add", value: "Add" },
+      { text: "Del", value: "Delete" },
+      { text: "Edit", value: "Update" },
       { text: "导入", value: "Import" },
       { text: "导出", value: "Export" },
       { text: "上传", value: "Upload" },
@@ -340,9 +340,9 @@ export default defineComponent({
     const actionOptions = ref([
       [
         {
-          title: "权限名称",
+          title: "权限ExpertName",
           field: "name",
-          placeholder: "权限名称,如：新增",
+          placeholder: "权限ExpertName,如：新增",
           required: true,
         },
       ],
@@ -374,16 +374,16 @@ export default defineComponent({
           // min: 0, max: 50
         },
         {
-          title: "菜单名称",
+          title: "菜单ExpertName",
           field: "menuName",
           required: true,
         },
       ],
       [
         {
-          title: "视图/表名",
+          title: "视图/WorkTable",
           field: "tableName",
-          placeholder: "与代码生成器使用的名称相同",
+          placeholder: "与代码生成器使用的ExpertName相同",
           required: true,
         },
         {
@@ -392,7 +392,7 @@ export default defineComponent({
           placeholder: "见:上面菜单配置说明",
         },
         {
-          title: "排序号",
+          title: "OrderNo",
           field: "orderNo",
           type: "number",
           min: 0,
@@ -402,7 +402,7 @@ export default defineComponent({
       ],
       [
         {
-          title: "是否启用",
+          title: "Enable",
           field: "enable",
           required: true,
           type: "select",

@@ -26,52 +26,52 @@ namespace VOL.Entity.DomainModels
        public int DicList_ID { get; set; }
 
        /// <summary>
-       ///数据源ID
+       ///Dic_ID
        /// </summary>
-       [Display(Name ="数据源ID")]
+       [Display(Name ="Dic_ID")]
        [Column(TypeName="int")]
        [Editable(true)]
        public int? Dic_ID { get; set; }
 
        /// <summary>
-       ///数据源Value
+       ///DicValue
        /// </summary>
-       [Display(Name ="数据源Value")]
+       [Display(Name ="DicValue")]
        [MaxLength(100)]
        [Column(TypeName="nvarchar(100)")]
        [Editable(true)]
        public string DicValue { get; set; }
 
        /// <summary>
-       ///数据源Text
+       ///DicName
        /// </summary>
-       [Display(Name ="数据源Text")]
+       [Display(Name ="DicName")]
        [MaxLength(100)]
        [Column(TypeName="nvarchar(100)")]
        [Editable(true)]
        public string DicName { get; set; }
 
        /// <summary>
-       ///排序号
+       ///OrderNo
        /// </summary>
-       [Display(Name ="排序号")]
+       [Display(Name ="OrderNo")]
        [Column(TypeName="int")]
        [Editable(true)]
        public int? OrderNo { get; set; }
 
        /// <summary>
-       ///备注
+       ///Remark
        /// </summary>
-       [Display(Name ="备注")]
+       [Display(Name ="Remark")]
        [MaxLength(2000)]
        [Column(TypeName="nvarchar(2000)")]
        [Editable(true)]
        public string Remark { get; set; }
 
        /// <summary>
-       ///是否可用
+       ///Enable
        /// </summary>
-       [Display(Name ="是否可用")]
+       [Display(Name ="Enable")]
        [Column(TypeName="tinyint")]
        [Editable(true)]
        public byte? Enable { get; set; }
@@ -84,17 +84,17 @@ namespace VOL.Entity.DomainModels
        public int? CreateID { get; set; }
 
        /// <summary>
-       ///创建人
+       ///Creator
        /// </summary>
-       [Display(Name ="创建人")]
+       [Display(Name ="Creator")]
        [MaxLength(30)]
        [Column(TypeName="nvarchar(30)")]
        public string Creator { get; set; }
 
        /// <summary>
-       ///创建时间
+       ///CreateDate
        /// </summary>
-       [Display(Name ="创建时间")]
+       [Display(Name ="CreateDate")]
        [Column(TypeName="datetime")]
        public DateTime? CreateDate { get; set; }
 
@@ -106,17 +106,17 @@ namespace VOL.Entity.DomainModels
        public int? ModifyID { get; set; }
 
        /// <summary>
-       ///修改人
+       ///Modifier
        /// </summary>
-       [Display(Name ="修改人")]
+       [Display(Name ="Modifier")]
        [MaxLength(30)]
        [Column(TypeName="nvarchar(30)")]
        public string Modifier { get; set; }
 
        /// <summary>
-       ///修改时间
+       ///ModifyDate
        /// </summary>
-       [Display(Name ="修改时间")]
+       [Display(Name ="ModifyDate")]
        [Column(TypeName="datetime")]
        public DateTime? ModifyDate { get; set; }
 

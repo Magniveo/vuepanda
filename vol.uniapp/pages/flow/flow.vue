@@ -89,14 +89,14 @@
 					//  {field:'WorkFlow_Id',title:'流程id',type:'guid',width:110,hidden:true,align:'left'},
 					{
 						field: 'WorkName',
-						title: '流程名称',
+						title: 'WorkName',
 						type: 'string',
 						width: 130,
 						align: 'left',
 						sort: true
 					},
-					//  {field:'WorkTableKey',title:'表主键id',type:'string',width:180,hidden:true,align:'left'},
-					// {field:'WorkTable',title:'表名',type:'string',width:100,align:'left'},
+					//  {field:'WorkTableKey',title:'WorkTableKey',type:'string',width:180,hidden:true,align:'left'},
+					// {field:'WorkTable',title:'WorkTable',type:'string',width:100,align:'left'},
 					{
 						field: 'WorkTableName',
 						title: '业务名称',

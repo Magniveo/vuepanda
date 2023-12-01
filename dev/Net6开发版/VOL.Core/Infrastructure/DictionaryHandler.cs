@@ -24,9 +24,9 @@ namespace VOL.Core.Infrastructure
             switch (dicNo)
             {
                 case "roles":
-                //2020.05.24增加绑定table表时，获取所有的角色列表
+                //2020.05.24增加绑定table表时，获取所有的Role_Id列表
                 //注意，如果是2020.05.24之前获取的数据库脚本
-                //请在菜单【下拉框绑定设置】添加一个字典编号【t_roles】,除了字典编号，其他内容随便填写
+                //请在菜单【下拉框绑定设置】添加一个DicNo【t_roles】,除了DicNo，其他内容随便填写
                 case "t_roles":
                 case "tree_roles":
                     originalSql = GetRolesSql(originalSql);
@@ -38,7 +38,7 @@ namespace VOL.Core.Infrastructure
         }
 
         /// <summary>
-        /// 获取解决的数据源，只能看到自己与下级所有角色
+        /// 获取解决的数据源，只能看到自己与下级所有Role_Id
         /// </summary>
         /// <param name="context"></param>
         /// <param name="originalSql"></param>

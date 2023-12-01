@@ -202,7 +202,7 @@ namespace VOL.Core.BaseProvider
         /// </summary>
         /// <param name="predicate"></param>
         /// <param name=""></param>
-        /// <param name="orderBy">排序字段</param>
+        /// <param name="orderBy">OrderNo字段</param>
         /// <returns></returns>
         public virtual TEntity FindFirst(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, Dictionary<object, QueryOrderBy>>> orderBy = null)
         {
@@ -233,7 +233,7 @@ namespace VOL.Core.BaseProvider
         /// <param name="pagesize"></param>
         /// <param name="rowcount"></param>
         /// <param name="predicate">查询条件</param>
-        /// <param name="orderBySelector">多个排序字段key为字段，value为升序/降序</param>
+        /// <param name="orderBySelector">多个OrderNo字段key为字段，value为升序/降序</param>
         /// <returns></returns>
         public virtual IQueryable<TFind> IQueryablePage<TFind>(int pageIndex, int pagesize, out int rowcount, Expression<Func<TFind, bool>> predicate, Expression<Func<TEntity, Dictionary<object, QueryOrderBy>>> orderBy, bool returnRowCount = true) where TFind : class
         {
@@ -252,7 +252,7 @@ namespace VOL.Core.BaseProvider
         }
 
         /// <summary>
-        /// 分页排序
+        /// 分页OrderNo
         /// </summary>
         /// <param name="queryable"></param>
         /// <param name="pageIndex"></param>
@@ -369,7 +369,7 @@ namespace VOL.Core.BaseProvider
                     var proposedValues = entry.CurrentValues;
 
                     var databaseValues = entry.GetDatabaseValues();
-                    //databaseValues == null说明数据已被删除
+                    //databaseValues == null说明数据已被Del
                     if (databaseValues != null)
                     {
                         foreach (var property in properties == null
@@ -397,7 +397,7 @@ namespace VOL.Core.BaseProvider
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="updateDetail">是否修改明细</param>
-        /// <param name="delNotExist">是否删除明细不存在的数据</param>
+        /// <param name="delNotExist">是否Del明细不存在的数据</param>
         /// <param name="updateMainFields">主表指定修改字段</param>
         /// <param name="updateDetailFields">明细指定修改字段</param>
         /// <param name="saveChange">是否保存</param>
@@ -469,7 +469,7 @@ namespace VOL.Core.BaseProvider
                 }
                 else//修改的数据
                 {
-                    //获取所有修改的key,如果从数据库查来的key,不在修改中的key，则为删除的数据
+                    //获取所有修改的key,如果从数据库查来的key,不在修改中的key，则为Del的数据
                     keys.Add(val);
                     x.SetModifyDefaultVal();
                     Update<TDetail>(x, updateDetailFields);
@@ -477,7 +477,7 @@ namespace VOL.Core.BaseProvider
                     editCount++;
                 }
             });
-            //删除
+            //Del
             if (delNotExist)
             {
                 detailKeys.Where(x => !keys.Contains(x)).ToList().ForEach(d =>
@@ -495,7 +495,7 @@ namespace VOL.Core.BaseProvider
                     }
                 });
             }
-            return $"修改[{editCount}]条,新增[{addCount}]条,删除[{delCount}]条";
+            return $"修改[{editCount}]条,新增[{addCount}]条,Del[{delCount}]条";
         }
 
         public virtual void Delete(TEntity model, bool saveChanges)
@@ -507,10 +507,10 @@ namespace VOL.Core.BaseProvider
             }
         }
         /// <summary>
-        /// 通过主键批量删除
+        /// 通过主键批量Del
         /// </summary>
         /// <param name="keys">主键key</param>
-        /// <param name="delList">是否连明细一起删除</param>
+        /// <param name="delList">是否连明细一起Del</param>
         /// <returns></returns>
         public virtual int DeleteWithKeys(object[] keys, bool delList = false)
         {

@@ -65,7 +65,7 @@
             1、表单设计器基于draggable开发,为本框架自定义页面功能的补充,框架仍以可视化代码生成器为核心
           </div>
           <div>
-            2、支持可视化设计1对1、1对多及表单下拉框自动绑定、table自动加载数据(分页、编辑)、自动上传文件、富文本编辑
+            2、支持可视化设计1对1、1对多及表单下拉框自动绑定、table自动加载数据(分页、Edit)、自动上传文件、富文本Edit
           </div>
         </el-alert>
       </div>
@@ -126,7 +126,7 @@
                       type="date"
                       :disabled="item.readonly"
                       size="medium"
-                      placeholder="选择日期"
+                      placeholder="选择Date"
                     >
                     </el-date-picker>
                     <el-radio-group
@@ -274,7 +274,7 @@
       <div class="left-title">组件属性</div>
       <div class="attr" v-show="currentIndex != -1">
         <div class="attr-item">
-          <div class="text">字段名称</div>
+          <div class="text">字段ExpertName</div>
           <el-input size="medium" v-model="currentItem.name" />
         </div>
         <div class="attr-item">
@@ -282,10 +282,10 @@
           <el-input size="medium" v-model="currentItem.field" />
         </div>
         <div class="attr-item" v-show="currentItem.type == 'table'">
-          <div class="text">后台返回数据接口地址</div>
+          <div class="text">后台返回数据接口Address</div>
           <el-input
             size="medium"
-            placeholder="例:api/表名/getPageData"
+            placeholder="例:api/WorkTable/getPageData"
             v-model="currentItem.url"
           />
         </div>
@@ -295,10 +295,10 @@
             currentItem.type != 'table' && currentItem.hasOwnProperty('url')
           "
         >
-          <div class="text">上传接口地址(后台接口)</div>
+          <div class="text">上传接口Address(后台接口)</div>
           <el-input
             size="medium"
-            placeholder="可用框架地址:api/表名/upload"
+            placeholder="可用框架Address:api/WorkTable/upload"
             v-model="currentItem.url"
           />
           <div class="text" style="margin-top: 10px">文件大小限制(M)</div>
@@ -481,7 +481,7 @@
             ><i class="el-icon-plus"></i>添加字段</el-button
           >
           <el-button type="primary" size="mini" @click="delRow"
-            ><i class="el-icon-delete"></i>删除字段</el-button
+            ><i class="el-icon-delete"></i>Del字段</el-button
           >
           <el-button type="primary" size="mini" @click="sortRow"
             ><i class="el-icon-sort"></i>重新排列</el-button
@@ -829,7 +829,7 @@ export default {
       this.currnetTableData.push({ field: this.getField() });
     },
     delRow() {
-      this.$confirm("确认要删除选择的数据吗?", "警告", {
+      this.$confirm("确认要Del选择的数据吗?", "警告", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
         type: "warning",

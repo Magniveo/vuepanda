@@ -101,7 +101,7 @@ namespace VOL.Core.Controllers.Basic
         }
 
         /// <summary>
-        /// 导出文件，返回日期+文件名
+        /// 导出文件，返回Date+文件名
         /// </summary>
         /// <param name="loadData"></param>
         /// <returns></returns>
@@ -121,11 +121,11 @@ namespace VOL.Core.Controllers.Basic
 
 
         /// <summary>
-        /// 通过key删除文件
+        /// 通过keyDel文件
         /// </summary>
         /// <param name="keys"></param>
         /// <returns></returns>
-       // [ActionLog("删除")]
+       // [ActionLog("Del")]
         [ApiActionPermission(Enums.ActionPermissionOptions.Delete)]
         [HttpPost, Route("Del")]
         [ApiExplorerSettings(IgnoreApi = true)]
@@ -155,7 +155,7 @@ namespace VOL.Core.Controllers.Basic
         /// </summary>
         /// <param name="saveDataModel"></param>
         /// <returns></returns>
-        [ActionLog("新建")]
+        [ActionLog("Add")]
         [ApiActionPermission(Enums.ActionPermissionOptions.Add)]
         [HttpPost, Route("Add")]
         [ApiExplorerSettings(IgnoreApi = true)]
@@ -169,12 +169,12 @@ namespace VOL.Core.Controllers.Basic
             return Json(_baseWebResponseContent);
         }
         /// <summary>
-        /// 编辑支持主子表
+        /// Edit支持主子表
         /// [ModelBinder(BinderType =(typeof(ModelBinder.BaseModelBinder)))]可指定绑定modelbinder
         /// </summary>
         /// <param name="saveDataModel"></param>
         /// <returns></returns>
-        [ActionLog("编辑")]
+        [ActionLog("Edit")]
         [ApiActionPermission(Enums.ActionPermissionOptions.Update)]
         [HttpPost, Route("Update")]
         [ApiExplorerSettings(IgnoreApi = true)]

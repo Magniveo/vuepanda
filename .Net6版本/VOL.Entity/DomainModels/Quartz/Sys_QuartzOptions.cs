@@ -26,9 +26,9 @@ namespace VOL.Entity.DomainModels
        public Guid Id { get; set; }
 
        /// <summary>
-       ///任务名称
+       ///TaskName
        /// </summary>
-       [Display(Name ="任务名称")]
+       [Display(Name ="TaskName")]
        [MaxLength(500)]
        [Column(TypeName="nvarchar(500)")]
        [Editable(true)]
@@ -36,9 +36,9 @@ namespace VOL.Entity.DomainModels
        public string TaskName { get; set; }
 
        /// <summary>
-       ///任务分组
+       ///GroupName
        /// </summary>
-       [Display(Name ="任务分组")]
+       [Display(Name ="GroupName")]
        [MaxLength(500)]
        [Column(TypeName="nvarchar(500)")]
        [Editable(true)]
@@ -46,26 +46,26 @@ namespace VOL.Entity.DomainModels
        public string GroupName { get; set; }
 
        /// <summary>
-       ///请求方式
+       ///Method
        /// </summary>
-       [Display(Name ="请求方式")]
+       [Display(Name ="Method")]
        [MaxLength(50)]
        [Column(TypeName="varchar(50)")]
        [Editable(true)]
        public string Method { get; set; }
 
        /// <summary>
-       ///超时时间(秒)
+       ///TimeOut
        /// </summary>
-       [Display(Name ="超时时间(秒)")]
+       [Display(Name ="TimeOut")]
        [Column(TypeName="int")]
        [Editable(true)]
        public int? TimeOut { get; set; }
 
        /// <summary>
-       ///Corn表达式
+       ///CronExpression
        /// </summary>
-       [Display(Name ="Corn表达式")]
+       [Display(Name ="CronExpression")]
        [MaxLength(100)]
        [Column(TypeName="varchar(100)")]
        [Editable(true)]
@@ -73,18 +73,18 @@ namespace VOL.Entity.DomainModels
        public string CronExpression { get; set; }
 
        /// <summary>
-       ///Url地址
+       ///ApiUrl
        /// </summary>
-       [Display(Name ="Url地址")]
+       [Display(Name ="ApiUrl")]
        [MaxLength(2000)]
        [Column(TypeName="nvarchar(2000)")]
        [Editable(true)]
        public string ApiUrl { get; set; }
 
        /// <summary>
-       ///post参数
+       ///PostData
        /// </summary>
-       [Display(Name ="post参数")]
+       [Display(Name ="PostData")]
        [Column(TypeName="nvarchar(max)")]
        [Editable(true)]
        public string PostData { get; set; }
@@ -108,26 +108,26 @@ namespace VOL.Entity.DomainModels
        public string AuthValue { get; set; }
 
        /// <summary>
-       ///描述
+       ///Describe
        /// </summary>
-       [Display(Name ="描述")]
+       [Display(Name ="Describe")]
        [MaxLength(2000)]
        [Column(TypeName="nvarchar(2000)")]
        [Editable(true)]
        public string Describe { get; set; }
 
        /// <summary>
-       ///最后执行执行
+       ///LastRunTime
        /// </summary>
-       [Display(Name ="最后执行执行")]
+       [Display(Name ="LastRunTime")]
        [Column(TypeName="datetime")]
        [Editable(true)]
        public DateTime? LastRunTime { get; set; }
 
        /// <summary>
-       ///运行状态
+       ///Status
        /// </summary>
-       [Display(Name ="运行状态")]
+       [Display(Name ="Status")]
        [Column(TypeName="int")]
        [Editable(true)]
        public int? Status { get; set; }
@@ -149,9 +149,9 @@ namespace VOL.Entity.DomainModels
        public string Creator { get; set; }
 
        /// <summary>
-       ///创建时间
+       ///CreateDate
        /// </summary>
-       [Display(Name ="创建时间")]
+       [Display(Name ="CreateDate")]
        [Column(TypeName="datetime")]
        [Editable(true)]
        public DateTime? CreateDate { get; set; }
@@ -172,9 +172,9 @@ namespace VOL.Entity.DomainModels
        public string Modifier { get; set; }
 
        /// <summary>
-       ///修改时间
+       ///ModifyDate
        /// </summary>
-       [Display(Name ="修改时间")]
+       [Display(Name ="ModifyDate")]
        [Column(TypeName="datetime")]
        public DateTime? ModifyDate { get; set; }
 

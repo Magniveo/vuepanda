@@ -301,11 +301,11 @@ namespace VOL.Core.ObjectActionValidator
                         actionContext.ActionErrorResult($"[{options.CNName}]最多[{options.Max}]个字符");
                     }
                     break;
-                //待完日期大小
+                //待完Date大小
                 case ParamType.DateTime:
                     if (!DateTime.TryParse(model.ToString(),out _))
                     {
-                        actionContext.ActionErrorResult($"[{options.CNName}]应该是日期格式");
+                        actionContext.ActionErrorResult($"[{options.CNName}]应该是Date格式");
                     }
                     break;
                 //min,max应该是decimal类型，待完

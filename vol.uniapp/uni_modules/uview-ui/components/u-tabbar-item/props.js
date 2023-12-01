@@ -20,7 +20,7 @@ export default {
             type: Boolean,
             default: uni.$u.props.tabbarItem.dot
         },
-        // 描述文本
+        // Describe文本
         text: {
             type: String,
             default: uni.$u.props.tabbarItem.text

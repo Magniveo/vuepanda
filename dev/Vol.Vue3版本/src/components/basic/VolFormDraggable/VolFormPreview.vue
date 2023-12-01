@@ -98,8 +98,7 @@
 
     <div class="form-btns">
       <el-button type="primary" @click="submit" icon="el-icon-check" size="small"
-        >提交</el-button
-      >
+        >提交</el-button>
       <el-button
         type="primary"
         @click="reset"

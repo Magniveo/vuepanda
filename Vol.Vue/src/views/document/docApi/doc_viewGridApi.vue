@@ -150,8 +150,8 @@ export default {
                 table: {
                     key: </span>'Order_Id', <span style="color: #008000;">//</span><span style="color: #008000;">排序字段</span>
                     footer: "Foots"<span style="color: #000000;">,
-                    cnName: </span>'主从表ViewGird组件使用',<span style="color: #008000;">//</span><span style="color: #008000;">表中文名</span>
-                    name: 'SellOrder',<span style="color: #008000;">//</span><span style="color: #008000;">表名(代码生码的别名)</span>
+                    cnName: </span>'主从表ViewGird组件使用',<span style="color: #008000;">//</span><span style="color: #008000;">WorkTableName</span>
+                    name: 'SellOrder',<span style="color: #008000;">//</span><span style="color: #008000;">WorkTable(代码生码的别名)</span>
                     url: "/SellOrder/",<span style="color: #008000;">//</span><span style="color: #008000;">后台控制名</span>
                     sortName: "CreateDate" <span style="color: #008000;">//</span><span style="color: #008000;">后台排序字段</span>
 <span style="color: #000000;">                },
@@ -164,9 +164,9 @@ export default {
                                {</span>"type":"text","title":"运单号","required":<span style="color: #0000ff;">true</span>,"field":"TranNo"<span style="color: #000000;">},
                                {</span>"type":"number","title":"销售数量","required":<span style="color: #0000ff;">true</span>,"field":"Qty"<span style="color: #000000;">}],
                               [ {</span>"type":"text","title":"销售订单号","required":<span style="color: #0000ff;">true</span>,"field":"SellNo"},{"type":"text","title":"创建人","field":"Creator","disabled":<span style="color: #0000ff;">true</span><span style="color: #000000;">},
-                               {</span>"type":"datetime","title":"创建时间","field":"CreateDate","disabled":<span style="color: #0000ff;">true</span><span style="color: #000000;">}
+                               {</span>"type":"datetime","title":"CreateDate","field":"CreateDate","disabled":<span style="color: #0000ff;">true</span><span style="color: #000000;">}
                              ],
-                              [{</span>"title":"备注","field":"Remark","colSize":12,"type":"textarea"<span style="color: #000000;">}
+                              [{</span>"title":"Remark","field":"Remark","colSize":12,"type":"textarea"<span style="color: #000000;">}
                               ]],
                 </span><span style="color: #008000;">//</span><span style="color: #008000;">查询字段,第一个字段为快捷查询字段</span>
                 searchFormFileds: {"OrderType":"","TranNo":"","SellNo":"","AuditStatus":"","AuditDate":"","Auditor":"","Creator":"","CreateDate":"","ModifyDate":""<span style="color: #000000;">},
@@ -178,14 +178,14 @@ export default {
                         {</span>"dataKey":"ordertype","title":"订单类型","field":"OrderType","type":"select"<span style="color: #000000;">}
                     ],
                     [
-                        {</span>"columnType":"int","dataKey":"audit","title":"审核状态","field":"AuditStatus","type":"select"<span style="color: #000000;">},
+                        {</span>"columnType":"int","dataKey":"audit","title":"AuditStatus","field":"AuditStatus","type":"select"<span style="color: #000000;">},
                         {</span>"title":"审核时间","field":"AuditDate","type":"datetime"<span style="color: #000000;">},
-                        {</span>"type":"text","title":"审核人","field":"Auditor"<span style="color: #000000;">}
+                        {</span>"type":"text","title":"Auditor","field":"Auditor"<span style="color: #000000;">}
                     ],
                     [
                         {</span>"type":"text","title":"创建人","field":"Creator"<span style="color: #000000;">},
-                        {</span>"title":"创建时间","field":"CreateDate","type":"datetime"<span style="color: #000000;">},
-                        {</span>"title":"修改时间","field":"ModifyDate","type":"datetime"<span style="color: #000000;">}
+                        {</span>"title":"CreateDate","field":"CreateDate","type":"datetime"<span style="color: #000000;">},
+                        {</span>"title":"ModifyDate","field":"ModifyDate","type":"datetime"<span style="color: #000000;">}
                     ]
                 ],
                 </span><span style="color: #008000;">//</span><span style="color: #008000;">主表table配置</span>
@@ -195,14 +195,14 @@ export default {
                        {field:</span>'TranNo',title:'运单号(点击可弹出框)',type:'string',link:<span style="color: #0000ff;">true</span>,width:140,require:<span style="color: #0000ff;">true</span><span style="color: #000000;">},
                        {field:</span>'SellNo',title:'销售订单号',type:'string',width:140,require:<span style="color: #0000ff;">true</span><span style="color: #000000;">},
                        {field:</span>'Qty',title:'销售数量',type:'int',width:90,require:<span style="color: #0000ff;">true</span><span style="color: #000000;">},
-                       {field:</span>'Remark',title:'备注',type:'string',width:170<span style="color: #000000;">},
+                       {field:</span>'Remark',title:'Remark',type:'string',width:170<span style="color: #000000;">},
                        {field:</span>'Creator',title:'创建人',type:'string',width:100,readonly:<span style="color: #0000ff;">true</span><span style="color: #000000;">},
-                       {field:</span>'CreateDate',title:'创建时间',type:'datetime',width:90,readonly:<span style="color: #0000ff;">true</span>,sortable:<span style="color: #0000ff;">true</span><span style="color: #000000;">},
+                       {field:</span>'CreateDate',title:'CreateDate',type:'datetime',width:90,readonly:<span style="color: #0000ff;">true</span>,sortable:<span style="color: #0000ff;">true</span><span style="color: #000000;">},
                        {field:</span>'ModifyID',title:'ModifyID',type:'int',width:80,hidden:<span style="color: #0000ff;">true</span><span style="color: #000000;">}
                     ],
                 </span><span style="color: #008000;">//</span><span style="color: #008000;">从表明细表配置</span>
 <span style="color: #000000;">                detail: {
-                    cnName:</span>"订单明细",<span style="color: #008000;">//</span><span style="color: #008000;">明细表中文名</span>
+                    cnName:</span>"订单明细",<span style="color: #008000;">//</span><span style="color: #008000;">明细WorkTableName</span>
                     <span style="color: #008000;">//</span><span style="color: #008000;">明细表table配置</span>
 <span style="color: #000000;">                    columns: [
                         {field:</span>'OrderList_Id',title:'OrderList_Id',type:'string',width:90,hidden:<span style="color: #0000ff;">true</span>,require:<span style="color: #0000ff;">true</span><span style="color: #000000;">},
@@ -211,13 +211,13 @@ export default {
                        {field:</span>'MO',title:'批次',type:'string',width:100,edit:{type:''},require:<span style="color: #0000ff;">true</span><span style="color: #000000;">},
                        {field:</span>'Qty',title:'数量',type:'int',width:90,edit:{type:'drop'},require:<span style="color: #0000ff;">true</span><span style="color: #000000;">},
                        {field:</span>'Weight',title:'重量',type:'decimal',width:90,edit:{type:''<span style="color: #000000;">}},
-                       {field:</span>'Remark',title:'备注',type:'string',width:120,edit:{type:''<span style="color: #000000;">}},
+                       {field:</span>'Remark',title:'Remark',type:'string',width:120,edit:{type:''<span style="color: #000000;">}},
                        {field:</span>'CreateID',title:'CreateID',type:'int',width:80,hidden:<span style="color: #0000ff;">true</span><span style="color: #000000;">},
                        {field:</span>'Creator',title:'创建人',type:'string',width:130<span style="color: #000000;">},
-                       {field:</span>'CreateDate',title:'创建时间',type:'datetime',width:90,sortable:<span style="color: #0000ff;">true</span><span style="color: #000000;">},
+                       {field:</span>'CreateDate',title:'CreateDate',type:'datetime',width:90,sortable:<span style="color: #0000ff;">true</span><span style="color: #000000;">},
                        {field:</span>'ModifyID',title:'ModifyID',type:'int',width:80,hidden:<span style="color: #0000ff;">true</span><span style="color: #000000;">},
                        {field:</span>'Modifier',title:'修改人',type:'string',width:100<span style="color: #000000;">},
-                       {field:</span>'ModifyDate',title:'修改时间',type:'datetime',width:90,sortable:<span style="color: #0000ff;">true</span><span style="color: #000000;">}
+                       {field:</span>'ModifyDate',title:'ModifyDate',type:'datetime',width:90,sortable:<span style="color: #0000ff;">true</span><span style="color: #000000;">}
                     ],
                     </span><span style="color: #008000;">//</span><span style="color: #008000;">明细表排序字段</span>
                     sortName: "CreateDate"<span style="color: #000000;">,
@@ -244,7 +244,7 @@ let extension </span>=<span style="color: #000000;"> {
         modelFooter: ''<span style="color: #008000;">//</span><span style="color: #008000;">扩展同上</span>
 <span style="color: #000000;">    },
     tableAction:</span>'SellOrder',<span style="color: #008000;">//</span><span style="color: #008000;">设置获取指定表的权限按钮</span>
-    text: "此处为主从表扩展示例,doc_viewGird.vue与doc_viewGirdExtension.js可由代码生成,其他两个文件自己写的扩展", <span style="color: #008000;">//</span><span style="color: #008000;">查询界面文字描述</span>
+    text: "此处为主从表扩展示例,doc_viewGird.vue与doc_viewGirdExtension.js可由代码生成,其他两个文件自己写的扩展", <span style="color: #008000;">//</span><span style="color: #008000;">查询界面文字Describe</span>
     buttons: { <span style="color: #008000;">//</span><span style="color: #008000;">扩展的按钮</span>
         <span style="color: #008000;">//</span><span style="color: #008000;">查询界面的按钮</span>
 <span style="color: #000000;">        view: [{

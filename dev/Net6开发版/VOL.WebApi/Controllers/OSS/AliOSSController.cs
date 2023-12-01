@@ -41,7 +41,7 @@ namespace VOL.WebApi.Controllers.OSS
             // string accessKeyID = "LTAI5tR4bQnBZqF8ruGiw123";
             // string accessKeySecret = "gZUwXdy1mVsPvROfNCsvmVWOeqi123";
 
-            //// https://ram.console.aliyun.com/roles/AliyunServiceRoleForSLSAudit 角色点进去找ARN
+            //// https://ram.console.aliyun.com/roles/AliyunServiceRoleForSLSAudit Role_Id点进去找ARN
             // string ARN = "acs:ram::1807122303681234:role/vol-role";
             // WebResponseContent webResponse = new WebResponseContent();
 
@@ -66,7 +66,7 @@ namespace VOL.WebApi.Controllers.OSS
             //         response.Credentials.AccessKeyId,
             //         response.Credentials.AccessKeySecret,
             //         response.Credentials.SecurityToken,
-            //         Bucket= "vol-2023",//阿里云控制台创建的bucket名称
+            //         Bucket= "vol-2023",//阿里云控制台创建的bucketExpertName
             //         //Bucket所在具体文件夹
             //         BucketFolder = "/" + DateTime.Now.ToString("yyyyMMdd"),
             //         //生成一个唯一标识防止文件重复

@@ -1175,7 +1175,7 @@ namespace VOL.Core.Extensions
             return string.Empty;
         }
         /// <summary>
-        /// 获取表带有EntityAttribute属性的真实表名
+        /// 获取表带有EntityAttribute属性的真实WorkTable
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
@@ -1189,7 +1189,7 @@ namespace VOL.Core.Extensions
             return type.Name;
         }
         /// <summary>
-        /// 获取表带有EntityAttribute属性的表中文名
+        /// 获取表带有EntityAttribute属性的WorkTableName
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>

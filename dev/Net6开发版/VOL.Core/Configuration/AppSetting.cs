@@ -74,7 +74,7 @@ namespace VOL.Core.Configuration
 
             Secret = provider.GetRequiredService<IOptions<Secret>>().Value;
 
-            //设置修改或删除时需要设置为默认用户信息的字段
+            //设置修改或Del时需要设置为默认用户信息的字段
             CreateMember = provider.GetRequiredService<IOptions<CreateMember>>().Value ?? new CreateMember();
             ModifyMember = provider.GetRequiredService<IOptions<ModifyMember>>().Value ?? new ModifyMember();
 

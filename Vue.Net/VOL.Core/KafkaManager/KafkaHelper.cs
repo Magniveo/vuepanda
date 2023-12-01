@@ -144,12 +144,12 @@
 //        public DateTime TimeStamp { get; set; }
 
 //        /// <summary>
-//        /// 开始时间
+//        /// StratDate
 //        /// </summary>
 //        public DateTime BeginDate { get; set; }
 
 //        /// <summary>
-//        /// 结束时间
+//        /// EndDate
 //        /// </summary>
 //        public DateTime EndDate { get; set; }
 

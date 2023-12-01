@@ -7,7 +7,7 @@ echo npm run serve > tmp.bat
 REM 使用 cmd.exe 执行临时批处理文件
 cmd /k tmp.bat
 
-REM 检查命令执行结果
+REM 检查命令Result
 IF %ERRORLEVEL% NEQ 0 (
     echo "出现异常，请查看错误日志：%LOG_FILE%"
     echo "出现异常，请查看错误日志：%LOG_FILE%" >> %LOG_FILE%

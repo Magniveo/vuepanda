@@ -8,7 +8,7 @@ using VOL.Core.Enums;
 namespace VOL.Core.DBManager
 {
     /// <summary>
-    /// 2022.11.21增加其他数据库(sqlserver、mysql、pgsql、oracle)连接配置说明
+    /// 2022.11.21增加其他数据库(sqlserver、mysql、pgsql、oracle)LineConfig说明
     /// 需要把两个DBServerProvider.cs文件都更新下
     /// </summary>
     public partial class DBServerProvider

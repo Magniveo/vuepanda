@@ -46,7 +46,7 @@ namespace VOL.Core.Extensions
             return sb.ToString();
         }
         /// <summary>
-        /// 格式化字符型、日期型、布尔型
+        /// 格式化字符型、Date型、布尔型
         /// </summary>
         /// <param name="str"></param>
         /// <param name="type"></param>

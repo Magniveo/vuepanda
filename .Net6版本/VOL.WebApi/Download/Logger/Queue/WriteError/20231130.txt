@@ -1,0 +1,7 @@
+42P01: отношение "public.Sys_Log" не существует   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|213_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlBinaryImporter.Init(String copyFromCommand, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.BeginBinaryImport(String copyFromCommand, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.BeginBinaryImport(String copyFromCommand)
+   at VOL.Core.Dapper.SqlDapper.PGSqlBulkInsert(DataTable table, String tableName) in D:\Projects\vuepanda\.Net6版本\VOL.Core\Dapper\SqlDapper.cs:line 858
+   at VOL.Core.Dapper.SqlDapper.BulkInsert(DataTable table, String tableName, Nullable`1 sqlBulkCopyOptions, String fileName, String tmpPath) in D:\Projects\vuepanda\.Net6版本\VOL.Core\Dapper\SqlDapper.cs:line 729
+   at VOL.Core.Services.Logger.Start() in D:\Projects\vuepanda\.Net6版本\VOL.Core\Services\Logger.cs:line 186Npgsql

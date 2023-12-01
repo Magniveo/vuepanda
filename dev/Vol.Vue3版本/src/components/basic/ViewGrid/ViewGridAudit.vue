@@ -81,7 +81,7 @@
             </el-radio-group>
           </div>
           <el-input style="padding-top: 10px;" v-model="auditParam.reason" type="textarea"
-            :autosize="{ minRows: 4, maxRows: 10 }" placeholder="请输入备注..."></el-input>
+            :autosize="{ minRows: 4, maxRows: 10 }" placeholder="请输入Remark..."></el-input>
           <div class="btn">
             <el-button type="primary" @click="auditClick" icon="Check">审批</el-button>
           </div>
@@ -141,7 +141,7 @@ export default defineComponent({
       { title: '审批人', field: 'auditor', width: 80 },
       { title: '审批结果', field: 'auditStatus', width: 70, bind: { data: [] } },
       { title: '审批时间', field: 'auditDate', width: 145 },
-      { title: '备注', field: 'remark', width: 120 }
+      { title: 'Remark', field: 'remark', width: 120 }
     ]);
 
     const isCurrentUser = ref(null);

@@ -1,7 +1,7 @@
 <template>
   <div class="role-container">
     <div class="role-tree-left flex-col">
-      <div class="title"><i class="el-icon-user"></i>角色列表</div>
+      <div class="title"><i class="el-icon-user"></i>Role_Id列表</div>
       <el-scrollbar class="el-role-list">
         <el-tree
           :data="tree"
@@ -219,7 +219,7 @@ export default defineComponent({
       getCurrentInstance().appContext.config.globalProperties.$message;
     const save = () => {
       if (selectId.value <= 0) {
-        return $message.error("请选择角色!");
+        return $message.error("请选择Role_Id!");
       }
       let userPermissions = [];
       roleList.forEach((x) => {

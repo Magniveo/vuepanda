@@ -8,7 +8,7 @@ namespace VOL.Core.Tenancy
     public static class TenancyManager<T> where T : class
     {
         /// <summary>
-        /// 数据库表名
+        /// 数据库WorkTable
         /// </summary>
         /// <param name="tableName"></param>
         /// <returns></returns>
@@ -37,7 +37,7 @@ namespace VOL.Core.Tenancy
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="tableName">数据库表名</param>
+        /// <param name="tableName">数据库WorkTable</param>
         /// <param name="ids">当前操作的所有id</param>
         /// <param name="tableKey">主键字段</param>
         /// <returns></returns>

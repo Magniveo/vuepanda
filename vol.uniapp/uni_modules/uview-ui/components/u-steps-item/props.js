@@ -5,7 +5,7 @@ export default {
             type: [String, Number],
             default: uni.$u.props.stepsItem.title
         },
-        // 描述文本
+        // Describe文本
         desc: {
             type: [String, Number],
             default: uni.$u.props.stepsItem.desc

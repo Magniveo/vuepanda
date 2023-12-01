@@ -9,11 +9,11 @@ namespace VOL.Entity
     public class EntityAttribute : Attribute
     {
         /// <summary>
-        /// 真实表名(数据库表名，若没有填写默认实体为表名)
+        /// 真实WorkTable(数据库WorkTable，若没有填写默认实体为WorkTable)
         /// </summary>
         public string TableName { get; set; }
         /// <summary>
-        /// 表中文名
+        /// WorkTableName
         /// </summary>
         public string TableCnName { get; set; }
         /// <summary>
@@ -21,7 +21,7 @@ namespace VOL.Entity
         /// </summary>
         public Type[] DetailTable { get; set; }
         /// <summary>
-        /// 子表中文名
+        /// 子WorkTableName
         /// </summary>
         public string DetailTableCnName { get; set; }
         /// <summary>
@@ -29,7 +29,7 @@ namespace VOL.Entity
         /// </summary>
         public string DBServer { get; set; }
 
-        //是否开启用户数据权限,true=用户只能操作自己(及下级角色)创建的数据,如:查询、删除、修改等操作
+        //是否开启用户数据权限,true=用户只能操作自己(及下级Role_Id)创建的数据,如:查询、Del、修改等操作
         public bool CurrentUserPermission { get; set; }
 
         public Type ApiInput { get; set; }

@@ -199,7 +199,7 @@ namespace VOL.Core.WorkFlow
 
         }
         /// <summary>
-        /// 新建时写入流程
+        /// Add时写入流程
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="entity"></param>
@@ -293,7 +293,7 @@ namespace VOL.Core.WorkFlow
                         CreateDate = DateTime.Now,
                     }).FirstOrDefault();
 
-                    //显示后续部门与角色审批人待完
+                    //显示后续部门与Role_Id审批人待完
 
                     //设置下个审核节点
                     item.NextStepId = setp.StepId;
@@ -417,7 +417,7 @@ namespace VOL.Core.WorkFlow
 
             if (workFlow == null)
             {
-                return webResponse.Error("未查到流程信息,请检查数据是否被删除");
+                return webResponse.Error("未查到流程信息,请检查数据是否被Del");
             }
 
 
@@ -427,7 +427,7 @@ namespace VOL.Core.WorkFlow
 
             if (currentStep == null)
             {
-                return webResponse.Error($"未查到流程陈点[workFlow.CurrentStepId]信息,请检查数据是否被删除");
+                return webResponse.Error($"未查到流程陈点[workFlow.CurrentStepId]信息,请检查数据是否被Del");
             }
             Sys_WorkFlowTableStep nextStep = null;
             //获取下一步审核id
@@ -697,7 +697,7 @@ namespace VOL.Core.WorkFlow
                 {
                     string title = $"有新的任务待审批：流程【{workFlow.WorkName}】,任务【{nextStep.StepName}】";
                     MailHelper.Send(title, title, string.Join(";", emails));
-                    msg = $"审批流程发送邮件,流程名称：{workFlow.WorkName},流程id:{workFlow.WorkFlow_Id},步骤:{nextStep.StepName},步骤Id:{nextStep.StepId},收件人:{string.Join(";", emails)}";
+                    msg = $"审批流程发送邮件,WorkName：{workFlow.WorkName},流程id:{workFlow.WorkFlow_Id},步骤:{nextStep.StepName},步骤Id:{nextStep.StepId},收件人:{string.Join(";", emails)}";
                     Logger.AddAsync(msg);
                 }
                 catch (Exception ex)
@@ -720,7 +720,7 @@ namespace VOL.Core.WorkFlow
             {
                 return userIds;
             }
-            if (stepType == (int)AuditType.角色审批)
+            if (stepType == (int)AuditType.Role_Id审批)
             {
                 int roleId = nextId.GetInt();
                 userIds = DBServerProvider.DbContext.Set<Sys_User>().Where(s => s.Role_Id == roleId).Take(50).Select(s => s.User_Id).ToList();

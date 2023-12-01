@@ -51,10 +51,10 @@
           <Alert show-icon>
             <p>
               1、
-              如果是用代码生器生成的Vue页面,菜单配置的Url则为Vue项目中src->router->viewGrid.js对应表名的path路径
+              如果是用代码生器生成的Vue页面,菜单配置的Url则为Vue项目中src->router->viewGrid.js对应WorkTable的path路径
             </p>
             <p>
-              2、 如果只是建一级菜单或空菜单url不用填写,【视图/表名】填写.或者/
+              2、 如果只是建一级菜单或空菜单url不用填写,【视图/WorkTable】填写.或者/
             </p>
           </Alert>
           <vol-form
@@ -404,7 +404,7 @@ export default {
             required: true,
           },
           {
-            title: "视图/表名",
+            title: "视图/WorkTable",
             field: "tableName",
             dataType: "string",
             displayType: "text",

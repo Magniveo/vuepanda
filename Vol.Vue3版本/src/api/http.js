@@ -154,7 +154,7 @@ function get (url, param, loading, config) {
     })
 }
 
-//url:url地址
+//url:ApiUrl
 //params:请求参数
 //fileName:下载的文件名
 //loading:是否显示加载状态

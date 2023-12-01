@@ -122,13 +122,13 @@ namespace VOL.WebApi
             services.AddSwaggerGen(c =>
             {
                 //分为2份接口文档
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "VOL.Core后台Api", Version = "v1", Description = "这是对文档的描述。。" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "VOL.Core后台Api", Version = "v1", Description = "这是对文档的Describe。。" });
                 c.SwaggerDoc("v2", new OpenApiInfo { Title = "VOL.Core对外三方Api", Version = "v2", Description = "xxx接口文档" });  //控制器里使用[ApiExplorerSettings(GroupName = "v2")]              
                 //启用中文注释功能
                // var basePath = PlatformServices.Default.Application.ApplicationBasePath;
               //  var xmlPath = Path.Combine(basePath, "VOL.WebApi.xml");
              //   c.IncludeXmlComments(xmlPath, true);//显示控制器xml注释内容
-                //添加过滤器 可自定义添加对控制器的注释描述
+                //添加过滤器 可自定义添加对控制器的注释Describe
                 //c.DocumentFilter<SwaggerDocTag>();
 
                 var security = new Dictionary<string, IEnumerable<string>> { { AppSetting.Secret.Issuer, new string[] { } } };
@@ -195,8 +195,8 @@ namespace VOL.WebApi
             Services.AddModule(builder, Configuration);
             //初始化流程表，表里面必须有AuditStatus字段
             WorkFlowContainer.Instance
-                   //name= 流程实例名称
-                   //filterFields流程实例名称
+                   //name= 流程实例ExpertName
+                   //filterFields流程实例ExpertName
                 // .Use<SellOrder>(name: "订单管理",
                  //    filterFields: x => new { x.OrderType, x.Qty, x.CreateID, x.SellNo }, //审批过滤条件的字段
                  //    formFields: x => new { x.OrderType, x.TranNo, x.Qty, x.SellNo, x.Creator }//审批界面显示的字段
@@ -253,7 +253,7 @@ namespace VOL.WebApi
             {
                 //2个下拉框选项  选择对应的文档
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "VOL.Core后台Api");
-                c.SwaggerEndpoint("/swagger/v2/swagger.json", "测试第三方Api");
+                c.SwaggerEndpoint("/swagger/v2/swagger.json", "Modifier第三方Api");
                 c.RoutePrefix = "";
             });
             app.UseRouting();
@@ -292,11 +292,11 @@ namespace VOL.WebApi
         /// <param name="context"></param>
         public void Apply(OpenApiDocument swaggerDoc, DocumentFilterContext context)
         {
-            //添加对应的控制器描述
+            //添加对应的控制器Describe
             swaggerDoc.Tags = new List<OpenApiTag>
             {
-                new OpenApiTag { Name = "Test", Description = "这是描述" },
-                //new OpenApiTag { Name = "你的控制器名字，不带Controller", Description = "控制器描述" },
+                new OpenApiTag { Name = "Test", Description = "这是Describe" },
+                //new OpenApiTag { Name = "你的控制器名字，不带Controller", Description = "控制器Describe" },
             };
         }
     }

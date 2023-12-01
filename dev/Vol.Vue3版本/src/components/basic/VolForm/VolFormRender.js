@@ -5,7 +5,7 @@ export default {
   functional: true,
   props: {
     render: Function,
-    par: {}//测试参数
+    par: {}//Modifier参数
   },
   render: ({ render, par }) => {
     return render(h, { par }); //h();

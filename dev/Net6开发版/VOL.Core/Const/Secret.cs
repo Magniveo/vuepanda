@@ -6,7 +6,7 @@
     public class Secret
     {
         /// <summary>
-        /// 用户密码加密key
+        /// 用户UserPwd加密key
         /// </summary>
         public string User { get; set; }
         /// <summary>

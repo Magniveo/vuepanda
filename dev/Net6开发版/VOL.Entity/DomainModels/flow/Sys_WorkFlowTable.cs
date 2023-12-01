@@ -33,33 +33,33 @@ namespace VOL.Entity.DomainModels
        public Guid? WorkFlow_Id { get; set; }
 
        /// <summary>
-       ///流程名称
+       ///WorkName
        /// </summary>
-       [Display(Name ="流程名称")]
+       [Display(Name ="WorkName")]
        [MaxLength(200)]
        [Column(TypeName="nvarchar(200)")]
        public string WorkName { get; set; }
 
        /// <summary>
-       ///表主键id
+       ///WorkTableKey
        /// </summary>
-       [Display(Name ="表主键id")]
+       [Display(Name ="WorkTableKey")]
        [MaxLength(200)]
        [Column(TypeName="nvarchar(200)")]
        public string WorkTableKey { get; set; }
 
        /// <summary>
-       ///表名
+       ///WorkTable
        /// </summary>
-       [Display(Name ="表名")]
+       [Display(Name ="WorkTable")]
        [MaxLength(200)]
        [Column(TypeName="nvarchar(200)")]
        public string WorkTable { get; set; }
 
        /// <summary>
-       ///业务名称
+       ///业务ExpertName
        /// </summary>
-       [Display(Name ="业务名称")]
+       [Display(Name ="业务ExpertName")]
        [MaxLength(200)]
        [Column(TypeName="nvarchar(200)")]
        public string WorkTableName { get; set; }
@@ -73,17 +73,17 @@ namespace VOL.Entity.DomainModels
        public string CurrentStepId { get; set; }
 
        /// <summary>
-       ///审核节点名称
+       ///审核StepName
        /// </summary>
-       [Display(Name ="审核节点名称")]
+       [Display(Name ="审核StepName")]
        [MaxLength(500)]
        [Column(TypeName="nvarchar(500)")]
        public string StepName { get; set; }
 
        /// <summary>
-       ///不用
+       ///Dept_Id
        /// </summary>
-       [Display(Name ="不用")]
+       [Display(Name ="Dept_Id")]
        [Column(TypeName="int")]
        public int? CurrentOrderId { get; set; }
 
@@ -95,17 +95,17 @@ namespace VOL.Entity.DomainModels
        public int? AuditStatus { get; set; }
 
        /// <summary>
-       ///创建人
+       ///Creator
        /// </summary>
-       [Display(Name ="创建人")]
+       [Display(Name ="Creator")]
        [MaxLength(30)]
        [Column(TypeName="nvarchar(30)")]
        public string Creator { get; set; }
 
        /// <summary>
-       ///创建时间
+       ///CreateDate
        /// </summary>
-       [Display(Name ="创建时间")]
+       [Display(Name ="CreateDate")]
        [Column(TypeName="datetime")]
        public DateTime? CreateDate { get; set; }
 

@@ -161,7 +161,7 @@ export default defineComponent({
 
     /**
      * 菜单导航右键事件
-     * @param {*} enable 是否启用右键事件[true:启用;false:禁用;]
+     * @param {*} enable Enable右键事件[true:启用;false:禁用;]
      */
     const bindRightClickMenu = (enable) => {
       if (!enable) return;

@@ -37,34 +37,34 @@ namespace VOL.Entity.DomainModels
        public Guid? Id { get; set; }
 
        /// <summary>
-       ///任务名称
+       ///TaskName
        /// </summary>
-       [Display(Name ="任务名称")]
+       [Display(Name ="TaskName")]
        [MaxLength(500)]
        [Column(TypeName="nvarchar(500)")]
        [Editable(true)]
        public string TaskName { get; set; }
 
        /// <summary>
-       ///耗时(秒)
+       ///ElapsedTime
        /// </summary>
-       [Display(Name ="耗时(秒)")]
+       [Display(Name ="ElapsedTime")]
        [Column(TypeName="int")]
        [Editable(true)]
        public int? ElapsedTime { get; set; }
 
        /// <summary>
-       ///开始时间
+       ///StratDate
        /// </summary>
-       [Display(Name ="开始时间")]
+       [Display(Name ="StratDate")]
        [Column(TypeName="datetime")]
        [Editable(true)]
        public DateTime? StratDate { get; set; }
 
        /// <summary>
-       ///结束时间
+       ///EndDate
        /// </summary>
-       [Display(Name ="结束时间")]
+       [Display(Name ="EndDate")]
        [Column(TypeName="datetime")]
        [Editable(true)]
        public DateTime? EndDate { get; set; }
@@ -78,9 +78,9 @@ namespace VOL.Entity.DomainModels
        public int? Result { get; set; }
 
        /// <summary>
-       ///返回内容
+       ///ResponseContent
        /// </summary>
-       [Display(Name ="返回内容")]
+       [Display(Name ="ResponseContent")]
        [Column(TypeName="nvarchar(max)")]
        [Editable(true)]
        public string ResponseContent { get; set; }

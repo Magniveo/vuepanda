@@ -36,7 +36,7 @@ export default defineComponent({
       { title: '审批人', field: 'auditor' },
       { title: '审批结果', field: 'auditStatus' },
       { title: '审批时间', field: 'auditDate',width:150 },
-      { title: '备注', field: 'remark' }
+      { title: 'Remark', field: 'remark' }
     ]);
     return {
         columns

@@ -79,7 +79,7 @@ export default {
             filter: this.$store.getters.data().flowTable,
             customSql: "",
             value: "",
-            //{ field: "名称", value: "", filterType: "=" },
+            //{ field: "ExpertName", value: "", filterType: "=" },
             //  filters: [],
             fieldsOptions: [
 
@@ -100,7 +100,7 @@ export default {
     },
     methods: {
         delItem(index) {
-            this.$confirm('确认要删除字配置条件配置吗?', '警告', {
+            this.$confirm('确认要Del字配置条件配置吗?', '警告', {
                 confirmButtonText: '确定',
                 cancelButtonText: '取消',
                 type: 'warning',

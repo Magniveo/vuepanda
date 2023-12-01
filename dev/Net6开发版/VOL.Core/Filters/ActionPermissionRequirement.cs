@@ -11,7 +11,7 @@ namespace VOL.Core.Filters
         /// </summary>
         public string TableName { get; set; } = string.Empty;
         /// <summary>
-        /// 对表的操作/删除/查询等
+        /// 对表的操作/Del/查询等
         /// </summary>
         public string TableAction { get; set; } = string.Empty;
         /// <summary>
@@ -19,7 +19,7 @@ namespace VOL.Core.Filters
         /// </summary>
         public bool SysController { get; set; }
         /// <summary>
-        /// 限制只能由某些角色Id访问
+        /// 限制只能由某些Role_Id访问
         /// </summary>
         public int[] RoleIds { get; set; }
 

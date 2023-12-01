@@ -2,7 +2,7 @@
   <vol-box
     :lazy="false"
     v-model="model"
-    :title="isAdd ? '新建流程' : '编辑流程'"
+    :title="isAdd ? 'Add流程' : 'Edit流程'"
     :height="height"
     :width="1200"
     :padding="0"
@@ -152,13 +152,13 @@ export default {
       for (let index = 0; index < detailData.length; index++) {
         const step = detailData[index];
         if (!step.StepName) {
-          return this.$message.error(`请输入第【${index + 1}】个节点的名称`);
+          return this.$message.error(`请输入第【${index + 1}】个节点的ExpertName`);
         }
         // if (!step.StepType) {
-        //    return this.$message.error(`请输入第【${index + 1}】个节点的名称`);
+        //    return this.$message.error(`请输入第【${index + 1}】个节点的ExpertName`);
         // }
-        //区分用户、角色，这里待完
-        //节点删除后保存有问题，待处理
+        //区分用户、Role_Id，这里待完
+        //节点Del后保存有问题，待处理
         if (!step.StepType) {
           step.StepType = '1';
         }

@@ -111,7 +111,7 @@ export default {
       default: false
     },
     maxFile: {
-      //最多可选文件数量，必须multiple=true，才会生效
+      //最多可选文件Quantity，必须multiple=true，才会生效
       type: Number,
       default: 5
     },
@@ -343,7 +343,7 @@ export default {
       //如果传入了FileInfo需要自行处理移除FileInfo
       //t移除文件
       let removeFile = this.files[index];
-      //删除的还没上传的文件
+      //Del的还没上传的文件
       if (removeFile.input) {
         this.files.splice(index, 1);
       } else {
@@ -421,7 +421,7 @@ export default {
           accessKeySecret: x.data.accessKeySecret,
           // 从STS服务获取的安全令牌（SecurityToken）。
           stsToken: x.data.securityToken,
-          // 填写Bucket名称。
+          // 填写BucketExpertName。
           bucket: x.data.bucket
         });
         console.log(this.files);

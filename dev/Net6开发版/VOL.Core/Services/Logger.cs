@@ -112,8 +112,8 @@ namespace VOL.Core.Services
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="requestParameter">请求参数</param>
-        /// <param name="responseParameter">响应参数</param>
+        /// <param name="requestParameter">RequestParameter</param>
+        /// <param name="responseParameter">ResponseParameter</param>
         /// <param name="success">响应结果1、成功,2、异常，0、其他</param>
         /// <param name="userInfo">用户数据</param>
         public static void Add(LoggerType loggerType, string requestParameter, string responseParameter, string ex, LoggerStatus status)

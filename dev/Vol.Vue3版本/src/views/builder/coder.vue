@@ -4,15 +4,15 @@
       ref="add"
       :width="850"
       :height="450"
-      title="新建配置信息"
+      title="Add配置信息"
       padding="10px"
       v-model="addModel"
     >
       <div style="padding: 30px 30px 10px 34px">
         <el-alert type="warning" :closable="false">
-          1、如果只是创建目录，父级id填0,其他随便填写;
+          1、如果只是创建目录，ParentId填0,其他随便填写;
           <br />
-          2、如果是生成代码，父级id填写【代码生成配置】列表页面的id
+          2、如果是生成代码，ParentId填写【代码生成配置】列表页面的id
         </el-alert>
       </div>
       <div class="addModel" style="padding-right: 30px">
@@ -48,13 +48,13 @@
               <VolHeader icon="ios-chatbubbles" text="代码生成器">
                 <template #content>
                   <div style="color: red; font-size: 13px">
-                    删除左侧配置菜单:删除行->保存->删除菜单
+                    Del左侧配置菜单:Del行->保存->Del菜单
                   </div>
                 </template>
                 <div class="action">
                   <span @click="save"> <i class="el-icon-check"></i>保存 </span>
                   <span @click="addVisible()">
-                    <i class="el-icon-plus"></i>新建
+                    <i class="el-icon-plus"></i>Add
                   </span>
                   <span @click="ceateVuePage(0)">
                     <i class="el-icon-document"></i>生成Vue页面
@@ -69,7 +69,7 @@
                     <i class="el-icon-document"></i>生成业务类
                   </span>
                   <span @click="delTree">
-                    <i class="el-icon-delete"></i>删除菜单
+                    <i class="el-icon-delete"></i>Del菜单
                   </span>
                 </div>
               </VolHeader>
@@ -84,7 +84,7 @@
             </div>
             <el-alert type="warning" :closable="false">
               1、如果需要修改表结构，请在数据库修改，再点同步表结构->生成vue页面->生成model。
-              2、修改编辑行后需要点击生成model、生成vue页面
+              2、修改Edit行后需要点击生成model、生成vue页面
             </el-alert>
             <div class="coder-item">
               <VolHeader
@@ -106,7 +106,7 @@
                     >代码生成器参数文档</span
                   >
                   <span @click="delRow" class="ivu-icon ivu-icon-md-close"
-                    >删除行数据</span
+                    >Del行数据</span
                   >
                   <span @click="syncTable" class="ivu-icon ivu-icon-md-sync"
                     >同步表结构</span
@@ -199,7 +199,7 @@ export default {
       let tableId = this.layOutOptins.fields.table_Id;
       if (!tableId) return this.$message.error('请选择节点');
       let tigger = false;
-      this.$confirm('删除警告?', '确认要删除吗', {
+      this.$confirm('Del警告?', '确认要Del吗', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning',
@@ -211,7 +211,7 @@ export default {
           .post('/api/builder/delTree?table_Id=' + tableId, {}, true)
           .then((x) => {
             if (!x.status) return this.$message.error(x.message);
-            this.$message.error('删除成功,请刷新页面');
+            this.$message.error('Del成功,请刷新页面');
             // for (let index = 0; index < this.tree.length; index++) {
             //   if (this.tree[index].id == tableId) {
             //     this.tree.splice(index, 1);
@@ -283,7 +283,7 @@ export default {
     },
     delRow() {
       let tigger = false;
-      this.$confirm('删除警告?', '确认要删除选择的数据吗', {
+      this.$confirm('Del警告?', '确认要Del选择的数据吗', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning',
@@ -317,7 +317,7 @@ export default {
             keyInfo.columnType != 'bigint' &&
             !this.layOutOptins.fields.sortName
           ) {
-            this.$message.error('主键非自增类型,请设置上面表单的【排序字段】');
+            this.$message.error('主键非自增类型,请设置上面表单的【OrderNo字段】');
             return false;
           }
         }
@@ -461,7 +461,7 @@ export default {
           if (!x.data.tableTrueName) {
             x.data.tableTrueName = x.data.tableName;
           }
-          //2021.01.09增加代码生成器设置table排序功能
+          //2021.01.09增加代码生成器设置tableOrderNo功能
           const _fields = [
             'sortable',
             'isNull',

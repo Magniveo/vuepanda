@@ -118,9 +118,9 @@ namespace VOL.Entity.DomainModels
         public string Creator { get; set; }
 
         /// <summary>
-        ///创建时间
+        ///CreateDate
         /// </summary>
-        [Display(Name = "创建时间")]
+        [Display(Name = "CreateDate")]
         [Column(TypeName = "datetime")]
         [Editable(true)]
         public DateTime? CreateDate { get; set; }

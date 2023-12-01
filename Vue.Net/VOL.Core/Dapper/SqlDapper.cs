@@ -41,7 +41,7 @@ namespace VOL.Core.Dapper
         private IDbConnection _transactionConnection = null;
 
         /// <summary>
-        /// 超时时间(秒)
+        /// TimeOut
         /// </summary>
         /// <param name="timeout"></param>
         /// <returns></returns>

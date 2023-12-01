@@ -11,7 +11,7 @@ namespace VOL.Entity.DomainModels
     {
         public int User_Id { get; set; }
         /// <summary>
-        /// 多个角色ID
+        /// 多个Role_Id
         /// </summary>
         public int Role_Id { get; set; }
         public string RoleName { get; set; }

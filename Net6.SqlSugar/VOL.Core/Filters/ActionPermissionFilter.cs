@@ -14,8 +14,8 @@ namespace VOL.Core.Filters
     /// <summary>
     /// 1、控制器或controller设置了AllowAnonymousAttribute直接返回
     /// 2、TableName、TableAction 同时为null，SysController为false的，只判断是否登陆
-    /// 3、TableName、TableAction 都不null根据表名与action判断是否有权限
-    /// 4、SysController为true，通过httpcontext获取表名与action判断是否有权限
+    /// 3、TableName、TableAction 都不null根据WorkTable与action判断是否有权限
+    /// 4、SysController为true，通过httpcontext获取WorkTable与action判断是否有权限
     /// 5、Roles对指定角色验证
     /// </summary>
     public class ActionPermissionFilter : IAsyncActionFilter
@@ -57,7 +57,7 @@ namespace VOL.Core.Filters
                 return ResponseContent.Error(AppSetting.GlobalFilter.Message);
             }
 
-            //如果没有指定表的权限，则默认为代码生成的控制器，优先获取PermissionTableAttribute指定的表，如果没有数据则使用当前控制器的名作为表名权限
+            //如果没有指定表的权限，则默认为代码生成的控制器，优先获取PermissionTableAttribute指定的表，如果没有数据则使用当前控制器的名作为WorkTable权限
             if (ActionPermission.SysController)
             {
                 object[] permissionArray = ((Microsoft.AspNetCore.Mvc.Controllers.ControllerActionDescriptor)context.ActionDescriptor)?.ControllerTypeInfo.GetCustomAttributes(typeof(PermissionTableAttribute), false);

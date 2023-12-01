@@ -12,7 +12,7 @@ namespace VOL.Core.Enums
         //UserIDkey
         UID = 1,
         /// <summary>
-        /// 头像KEY
+        /// HeadImageUrlKEY
         /// </summary>
         HDImg = 2,
         Token = 3,

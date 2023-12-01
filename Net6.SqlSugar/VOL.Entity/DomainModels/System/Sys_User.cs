@@ -204,23 +204,23 @@ namespace VOL.Entity.DomainModels
        public string Modifier { get; set; }
 
        /// <summary>
-       ///修改时间
+       ///ModifyDate
        /// </summary>
-       [Display(Name ="修改时间")]
+       [Display(Name ="ModifyDate")]
        [Column(TypeName="datetime")]
        public DateTime? ModifyDate { get; set; }
 
        /// <summary>
-       ///审核状态
+       ///AuditStatus
        /// </summary>
-       [Display(Name ="审核状态")]
+       [Display(Name ="AuditStatus")]
        [Column(TypeName="int")]
        public int? AuditStatus { get; set; }
 
        /// <summary>
-       ///审核人
+       ///Auditor
        /// </summary>
-       [Display(Name ="审核人")]
+       [Display(Name ="Auditor")]
        [MaxLength(200)]
        [Column(TypeName="nvarchar(200)")]
        public string Auditor { get; set; }
@@ -240,9 +240,9 @@ namespace VOL.Entity.DomainModels
        public DateTime? LastLoginDate { get; set; }
 
        /// <summary>
-       ///最后密码修改时间
+       ///最后密码ModifyDate
        /// </summary>
-       [Display(Name ="最后密码修改时间")]
+       [Display(Name ="最后密码ModifyDate")]
        [Column(TypeName="datetime")]
        public DateTime? LastModifyPwdDate { get; set; }
 
@@ -274,9 +274,9 @@ namespace VOL.Entity.DomainModels
        public string Email { get; set; }
 
        /// <summary>
-       ///备注
+       ///Remark
        /// </summary>
-       [Display(Name ="备注")]
+       [Display(Name ="Remark")]
        [MaxLength(200)]
        [Column(TypeName="nvarchar(200)")]
        [Editable(true)]

@@ -51,7 +51,7 @@ namespace VOL.Core.CacheManager
         /// </summary>
         /// <param name="key">缓存Key</param>
         /// <param name="value">缓存Value</param>
-        /// <param name="expiresIn">缓存时长</param>
+        /// <param name="expiresIn">缓存ElapsedTime</param>
         /// <param name="isSliding">是否滑动过期（如果在过期时间内有操作，则以当前时间点延长过期时间） //new TimeSpan(0, 60, 0);</param>
         /// <returns></returns>
         bool AddObject(string key, object value, int expireSeconds = -1, bool isSliding = false);
@@ -59,7 +59,7 @@ namespace VOL.Core.CacheManager
         bool Add(string key, string value, int expireSeconds = -1, bool isSliding = false);
 
         /// <summary>
-        /// 删除缓存
+        /// Del缓存
         /// </summary>
         /// <param name="key">缓存Key</param>
         /// <returns></returns>
@@ -67,7 +67,7 @@ namespace VOL.Core.CacheManager
 
 
         /// <summary>
-        /// 批量删除缓存
+        /// 批量Del缓存
         /// </summary>
         /// <param name="key">缓存Key集合</param>
         /// <returns></returns>

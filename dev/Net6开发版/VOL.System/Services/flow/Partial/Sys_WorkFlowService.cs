@@ -3,7 +3,7 @@
 *可使用repository.调用常用方法，获取EF/Dapper等信息
 *如果需要事务请使用repository.DbContextBeginTransaction
 *也可使用DBServerProvider.手动获取数据库相关信息
-*用户信息、权限、角色等使用UserContext.Current操作
+*用户信息、权限、Role_Id等使用UserContext.Current操作
 *Sys_WorkFlowService对增、删、改查、导入、导出、审核业务代码扩展参照ServiceFunFilter
 */
 using VOL.Core.BaseProvider;
@@ -40,7 +40,7 @@ namespace VOL.System.Services
             _httpContextAccessor = httpContextAccessor;
             _repository = dbRepository;
             _stepRepository = stepRepository;
-            //多租户会用到这init代码，其他情况可以不用
+            //多租户会用到这init代码，其他情况可以Dept_Id
             //base.Init(dbRepository);
         }
 
@@ -79,7 +79,7 @@ namespace VOL.System.Services
                 {
                     if (Sys_WorkFlowTableRepository.Instance.Exists(x=>x.WorkFlow_Id==flow.WorkFlow_Id&&(x.AuditStatus == (int)AuditStatus.审核中)))
                     {
-                        return webResponse.Error("当前流程有审核中的数据，不能修改,可以修改,流程中的【审核中数据是否可以编辑】属性");
+                        return webResponse.Error("当前流程有审核中的数据，不能修改,可以修改,流程中的【审核中数据是否可以Edit】属性");
                     }
                 }
 
@@ -91,7 +91,7 @@ namespace VOL.System.Services
                 var steps = _stepRepository.FindAsIQueryable(x => x.WorkFlow_Id == workFlow.WorkFlow_Id)
                  .Select(s => new { s.WorkStepFlow_Id, s.StepId })
                  .ToList();
-                //删除的节点
+                //Del的节点
                 var delIds = steps.Where(x => !stepsClone.Any(c => c.StepId == x.StepId))
                  .Select(s => s.WorkStepFlow_Id).ToList();
                 delKeys.AddRange(delIds.Select(s=>s as object));

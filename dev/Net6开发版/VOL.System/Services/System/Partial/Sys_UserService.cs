@@ -118,7 +118,7 @@ namespace VOL.System.Services
                          RoleName = s.RoleName
                      });
 
-                if (userInfo == null) return webResponse.Error("未查到用户信息!");
+                if (userInfo == null) return webResponse.Error("未查到User信息!");
 
                 string token = JwtHelper.IssueJwt(userInfo);
                 //移除当前缓存
@@ -134,8 +134,8 @@ namespace VOL.System.Services
             }
             finally
             {
-                Logger.Info(LoggerType.ReplaceToeken, ($"User_Id:{userInfo?.User_Id},用户{userInfo?.UserTrueName}")
-                    + (webResponse.Status ? "token替换成功" : "token替换失败"), null, error);
+                Logger.Info(LoggerType.ReplaceToeken, ($"User_Id:{userInfo?.User_Id},User{userInfo?.UserTrueName}")
+                    + (webResponse.Status ? "tokenSuccessfulReplacement" : "token替换失败"), null, error);
             }
             return webResponse;
         }
@@ -163,7 +163,7 @@ namespace VOL.System.Services
                 if (_oldPwd != userCurrentPwd) return webResponse.Error("旧UserPwd不正确");
 
                 string _newPwd = newPwd.EncryptDES(AppSetting.Secret.User);
-                if (userCurrentPwd == _newPwd) return webResponse.Error("新UserPwd不能与旧UserPwd相同");
+                if (userCurrentPwd == _newPwd) return webResponse.Error("新UserPwd不能With旧UserPwd相同");
 
 
                 repository.Update(new Sys_User
@@ -173,18 +173,18 @@ namespace VOL.System.Services
                     LastModifyPwdDate = DateTime.Now
                 }, x => new { x.UserPwd, x.LastModifyPwdDate }, true);
 
-                webResponse.OK("UserPwd修改成功");
+                webResponse.OK("UserPwd修改Success");
             }
             catch (Exception ex)
             {
                 message = ex.Message;
-                webResponse.Error("服务器了点问题,请稍后再试");
+                webResponse.Error("服务Device了点问题,请稍后再试");
             }
             finally
             {
                 if (message == "")
                 {
-                    Logger.OK(LoggerType.ApiModifyPwd, "UserPwd修改成功");
+                    Logger.OK(LoggerType.ApiModifyPwd, "UserPwd修改Success");
                 }
                 else
                 {
@@ -194,7 +194,7 @@ namespace VOL.System.Services
             return webResponse;
         }
         /// <summary>
-        /// 个人中心获取当前用户信息
+        /// 个人中心获取当前User信息
         /// </summary>
         /// <returns></returns>
         public async Task<WebResponseContent> GetCurrentUserInfo()
@@ -219,14 +219,14 @@ namespace VOL.System.Services
         }
 
         /// <summary>
-        /// 设置固定OrderNo方式及显示用户过滤
+        /// SetUp固定OrderNo方式及显示User过滤
         /// </summary>
         /// <param name="pageData"></param>
         /// <returns></returns>
         public override PageGridData<Sys_User> GetPageData(PageDataOptions pageData)
         {
             int roleId = -1;
-            //树形菜单传查询Role_Id下所有用户
+            //TreeShapedVegetablesSingle传QueryRole_Id下所有User
             if (pageData.Value != null)
             {
                 roleId = pageData.Value.ToString().GetInt();
@@ -239,12 +239,12 @@ namespace VOL.System.Services
                     roleId = UserContext.Current.RoleId;
                 }
 
-                //查看用户时，只能看下自己Role_Id下的所有用户
+                //ViewUser时，只能看下自己Role_Id下的所有User
                 List<int> roleIds = Sys_RoleService
                    .Instance
                    .GetAllChildrenRoleId(roleId);
                 roleIds.Add(roleId);
-                //判断查询的Role_Id是否越权
+                //判断Query的Role_Id是否越权
                 if (roleId != UserContext.Current.RoleId && !roleIds.Contains(roleId))
                 {
                     roleId = -999;
@@ -255,13 +255,13 @@ namespace VOL.System.Services
         }
 
         /// <summary>
-        /// Add用户，根据实际情况自行处理
+        /// AddUser，根据实际情况自行处理
         /// </summary>
         /// <param name="saveModel"></param>
         /// <returns></returns>
         public override WebResponseContent Add(SaveModel saveModel)
         {
-            saveModel.MainData["RoleName"] = "无";
+            saveModel.MainData["RoleName"] = "None";
             base.AddOnExecute = (SaveModel userModel) =>
             {
                 int roleId = userModel?.MainData?["Role_Id"].GetInt() ?? 0;
@@ -277,14 +277,14 @@ namespace VOL.System.Services
 
             ///生成6位数随机UserPwd
             string pwd = 6.GenerateRandomNumber();
-            //在AddOnExecuting之前已经对提交的数据做过验证是否为空
+            //在AddOnExecuting之前已经对提交的Data做过验证是否为空
             base.AddOnExecuting = (Sys_User user, object obj) =>
             {
                 user.UserName = user.UserName.Trim();
                 if (repository.Exists(x => x.UserName == user.UserName))
-                    return webResponse.Error("用户名已经被注册");
+                    return webResponse.Error("User名已经被注册");
                 user.UserPwd = pwd.EncryptDES(AppSetting.Secret.User);
-                //设置默认HeadImageUrl
+                //SetUp默认HeadImageUrl
                 return webResponse.OK();
             };
 
@@ -292,14 +292,14 @@ namespace VOL.System.Services
             {
                 var deptIds = user.DeptIds?.Split(",").Select(s => s.GetGuid()).Where(x => x != null).Select(s => (Guid)s).ToArray();
                 SaveDepartment(deptIds, user.User_Id);
-                return webResponse.OK($"用户Add成功.UserName{user.UserName}UserPwd{pwd}");
+                return webResponse.OK($"UserAddSuccess.UserName{user.UserName}UserPwd{pwd}");
             };
             return base.Add(saveModel); ;
         }
 
         /// <summary>
-        /// Del用户拦截过滤
-        /// 用户被Del后同时清空对应缓存
+        /// DelUser拦截过滤
+        /// User被Del后同时清空对应缓存
         /// </summary>
         /// <param name="keys"></param>
         /// <param name="delList"></param>
@@ -311,7 +311,7 @@ namespace VOL.System.Services
                 if (!UserContext.Current.IsSuperAdmin)
                 {
                     int[] userIds = ids.Select(x => Convert.ToInt32(x)).ToArray();
-                    //校验只能Del当前Role_Id下能看到的用户
+                    //校验只能Del当前Role_Id下能看到的User
                     var xxx = repository.Find(x => userIds.Contains(x.User_Id));
                     var delUserIds = repository.Find(x => userIds.Contains(x.User_Id), s => new { s.User_Id, s.Role_Id, s.UserTrueName });
                     List<int> roleIds = Sys_RoleService
@@ -323,7 +323,7 @@ namespace VOL.System.Services
                      .ToArray();
                     if (userNames.Count() > 0)
                     {
-                        return webResponse.Error($"没有权限Del用户：{string.Join(',', userNames)}");
+                        return webResponse.Error($"没有AuthorityDelUser：{string.Join(',', userNames)}");
                     }
                 }
 
@@ -340,7 +340,7 @@ namespace VOL.System.Services
 
         private string GetChildrenName(int roleId)
         {
-            //只能修改当前Role_Id能看到的用户
+            //只能修改当前Role_Id能看到的User
             string roleName = Sys_RoleService
                 .Instance
                 .GetAllChildren(UserContext.Current.UserInfo.Role_Id).Where(x => x.Id == roleId)
@@ -349,7 +349,7 @@ namespace VOL.System.Services
         }
 
         /// <summary>
-        /// 修改用户拦截过滤
+        /// 修改User拦截过滤
         /// 
         /// </summary>
         /// <param name="saveModel"></param>
@@ -357,8 +357,8 @@ namespace VOL.System.Services
         public override WebResponseContent Update(SaveModel saveModel)
         {
             UserInfo userInfo = UserContext.Current.UserInfo;
-            saveModel.MainData["RoleName"] = "无";
-            //禁止修改用户名
+            saveModel.MainData["RoleName"] = "None";
+            //禁止修改User名
             base.UpdateOnExecute = (SaveModel saveInfo) =>
             {
                 if (!UserContext.Current.IsSuperAdmin)
@@ -384,11 +384,11 @@ namespace VOL.System.Services
                     s => new { s.UserName, s.UserPwd })
                     .FirstOrDefault();
                 user.UserName = _user.UserName;
-                //Sys_User实体的UserPwd用户UserPwd字段的属性不是Edit，此处不会修改UserPwd。但防止代码生成器将UserPwd字段的修改成了可Edit造成UserPwd被修改
+                //Sys_User实体的UserPwdUserUserPwd字段的属性不是Edit，此处不会修改UserPwd。但防止CodeGenerationDevice将UserPwd字段的修改成了可Edit造成UserPwd被修改
                 user.UserPwd = _user.UserPwd;
                 return webResponse.OK();
             };
-            //用户信息被修改后，将用户的缓存信息清除
+            //User信息被修改后，将User的缓存信息清除
             base.UpdateOnExecuted = (Sys_User user, object obj1, object obj2, List<object> List) =>
             {
                 base.CacheContext.Remove(user.User_Id.GetUserIdKey());
@@ -401,7 +401,7 @@ namespace VOL.System.Services
 
 
         /// <summary>
-        /// 保存部门
+        /// 保存Department
         /// </summary>
         /// <param name="deptIds"></param>
         /// <param name="userId"></param>
@@ -417,19 +417,19 @@ namespace VOL.System.Services
                 deptIds = new Guid[] { };
             }
 
-            //如果需要判断当前Role_Id是否越权，再调用一下获取当前部门下的所有子Role_Id判断即可
+            //如果需要判断当前Role_Id是否越权，再调用一下获取当前Department下的所有子Role_Id判断即可
 
             var roles = repository.DbContext.Set<Sys_UserDepartment>().Where(x => x.UserId == userId)
               .Select(s => new { s.DepartmentId, s.Enable, s.Id })
               .ToList();
-            //没有设置部门
+            //没有SetUpDepartment
             if (deptIds.Length == 0 && !roles.Exists(x => x.Enable == 1))
             {
                 return;
             }
 
             UserInfo user = UserContext.Current.UserInfo;
-            //新设置的部门
+            //新SetUp的Department
             var add = deptIds.Where(x => !roles.Exists(r => r.DepartmentId == x)).Select(s => new Sys_UserDepartment()
             {
                 DepartmentId = s,
@@ -440,7 +440,7 @@ namespace VOL.System.Services
                 CreateID = user.User_Id
             }).ToList();
 
-            //Del的部门
+            //Del的Department
             var update = roles.Where(x => !deptIds.Contains(x.DepartmentId) && x.Enable == 1).Select(s => new Sys_UserDepartment()
             {
                 Id = s.Id,
@@ -450,7 +450,7 @@ namespace VOL.System.Services
                 ModifyID = user.User_Id
             }).ToList();
 
-            //之前设置过的部门重新分配 
+            //之前SetUp过的Department重新分配 
             update.AddRange(roles.Where(x => deptIds.Contains(x.DepartmentId) && x.Enable != 1).Select(s => new Sys_UserDepartment()
             {
                 Id = s.Id,
@@ -466,13 +466,13 @@ namespace VOL.System.Services
         }
 
         /// <summary>
-        /// 导出处理
+        /// Export处理
         /// </summary>
         /// <param name="pageData"></param>
         /// <returns></returns>
         public override WebResponseContent Export(PageDataOptions pageData)
         {
-            //限定只能导出当前Role_Id能看到的所有用户
+            //限定只能Export当前Role_Id能看到的所有User
             QueryRelativeExpression = (IQueryable<Sys_User> queryable) =>
             {
                 if (UserContext.Current.IsSuperAdmin) return queryable;

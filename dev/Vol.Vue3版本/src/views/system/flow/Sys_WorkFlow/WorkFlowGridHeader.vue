@@ -2,7 +2,7 @@
   <vol-box
     :lazy="false"
     v-model="model"
-    :title="isAdd ? 'Add流程' : 'Edit流程'"
+    :title="isAdd ? 'AddProcess' : 'EditProcess'"
     :height="height"
     :width="1200"
     :padding="0"
@@ -49,7 +49,7 @@ export default {
         this.nodeList = [
           {
             id: '1659276275052',
-            name: '流程C-节点A',
+            name: 'ProcessC-NodeA',
             type: 'task',
             left: '230px',
             top: '15px',
@@ -57,7 +57,7 @@ export default {
           },
           {
             id: '1659276282115',
-            name: '流程C-节点B',
+            name: 'ProcessC-NodeB',
             type: 'task',
             left: '225px',
             top: '165px',
@@ -99,16 +99,16 @@ export default {
       let nodes = JSON.parse(mainData.NodeConfig);
       let lines = JSON.parse(mainData.LineConfig);
       if (!nodes.length) {
-        return this.$message.error('请添加流程节点');
+        return this.$message.error('请添加ProcessNode');
       }
-      //获取根节点
+      //获取根Node
       let root = nodes.filter((x) => {
         return !lines.some((s) => {
           return s.to == x.id;
         });
       });
       if (root.length > 1) {
-        return this.$message.error('只能设置一个流程根节点');
+        return this.$message.error('只能SetUp一个Process根Node');
       }
       let detailData = [];
       let ids = nodeList.map((x) => {
@@ -123,14 +123,14 @@ export default {
         })
       );
 
-      //查找当前节点的下一个节点(后面增加会签等分支的时候,find改为filter批量查找)
+      //查找当前Node的下一个Node(后面增加会签等分支的时候,find改为filter批量查找)
       for (let index = 0; index < detailData.length; index++) {
         let id = detailData[index].id;
         let item = lineList.find((x) => {
           return x.from == id;
         });
         if (item) {
-          //查找下一个节点
+          //查找下一个Node
           item = nodeList.find((x) => {
             return x.id == item.to;
           });
@@ -152,19 +152,19 @@ export default {
       for (let index = 0; index < detailData.length; index++) {
         const step = detailData[index];
         if (!step.StepName) {
-          return this.$message.error(`请输入第【${index + 1}】个节点的ExpertName`);
+          return this.$message.error(`请输入第【${index + 1}】个Node的ExpertName`);
         }
         // if (!step.StepType) {
-        //    return this.$message.error(`请输入第【${index + 1}】个节点的ExpertName`);
+        //    return this.$message.error(`请输入第【${index + 1}】个Node的ExpertName`);
         // }
-        //区分用户、Role_Id，这里待完
-        //节点Del后保存有问题，待处理
+        //区分User、Role_Id，这里待完
+        //NodeDel后保存有问题，待处理
         if (!step.StepType) {
           step.StepType = '1';
         }
         if (step.StepType == '1' && !step.StepValue) {
           return this.$message.error(
-            `请选择第【${index + 1}】个节点的审批用户`
+            `请选择第【${index + 1}】个Node的ApprovalUser`
           );
         }
       }
@@ -179,7 +179,7 @@ export default {
         if (!result.status) {
           return this.$message.error(result.message);
         }
-        this.$message.success('保存成功');
+        this.$message.success('保存Success');
         this.model = false;
         this.$emit('parentCall', ($parent) => {
           $parent.search();

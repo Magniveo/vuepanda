@@ -29,7 +29,7 @@ namespace VOL.Core.ObjectActionValidator
                 ? typeof(T).GetGenericProperties().Select(x => x.Name).ToArray()
                 : loginExpress.GetExpressionToArray()))
             {
-                throw new Exception($"键{validatorGroup.ToString()}的表达式已经注册过了");
+                throw new Exception($"键{validatorGroup.ToString()}的Table达式已经注册过了");
             }
         }
         /// <summary>
@@ -79,7 +79,7 @@ namespace VOL.Core.ObjectActionValidator
             }
         }
         /// <summary>
-        /// 自定义验证
+        /// Customize验证
         /// </summary>
         /// <param name="general"></param>
         /// <param name="customValidator"></param>
@@ -112,8 +112,8 @@ namespace VOL.Core.ObjectActionValidator
         {
             if (!ValidatorCollection.TryGetValue(validatorGroup.ToLower(), out string[] values))
             {
-                Console.WriteLine($"未注册{validatorGroup}参数的表达式");
-                throw new Exception($"未注册{validatorGroup}参数的表达式");
+                Console.WriteLine($"未注册{validatorGroup}参数的Table达式");
+                throw new Exception($"未注册{validatorGroup}参数的Table达式");
             }
             return values;
         }
@@ -197,7 +197,7 @@ namespace VOL.Core.ObjectActionValidator
         public static void ModelValidator(this ActionContext actionContext, string prefix, object model)
         {
             string[] parameters = actionContext.GetModelValidatorParams();
-            //没有设置模型校验的直接返回
+            //没有SetUp模型校验的直接返回
             if (parameters == null) return;
             if (model == null)
             {
@@ -241,7 +241,7 @@ namespace VOL.Core.ObjectActionValidator
                         actionContext.ActionErrorResult($"参数[{general.CNName}]不能为空");
                         return;
                     }
-                    //自定义验证
+                    //Customize验证
                     if (general.CustomValidator != null)
                     {
                         ObjectValidatorResult validatorResult = general.CustomValidator(value);

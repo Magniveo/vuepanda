@@ -1,7 +1,7 @@
 <!--
 *Author：jxx
  *Contact：283591387@qq.com
- *代码由框架生成,任何更改都可能导致被代码生成器覆盖
+ *代码由框架生成,任何更改都可能导致被CodeGenerationDevice覆盖
  *业务请在@/extension/system/form/FormCollection.js此处编写
  -->
 <template>
@@ -31,13 +31,13 @@
             });
             const editFormFields = ref({"Title":"","FormData":""});
             const editFormOptions = ref([[{"title":"Title","field":"Title"},
-                               {"title":"Form数据","field":"FormData"}]]);
+                               {"title":"FormData","field":"FormData"}]]);
             const searchFormFields = ref({"Title":"","Creator":"","CreateDate":""});
             const searchFormOptions = ref([[{"title":"Title","field":"Title","type":"like"},{"title":"Creator","field":"Creator","type":"like"},{"title":"CreateDate","field":"CreateDate","type":"datetime"}]]);
             const columns = ref([{field:'FormCollectionId',title:'FormCollectionId',type:'guid',width:110,hidden:true,readonly:true,require:true,align:'left'},
                        {field:'FormId',title:'FormID',type:'guid',width:110,hidden:true,align:'left'},
                        {field:'Title',title:'Title',type:'string',width:110,align:'left',sort:true},
-                       {field:'FormData',title:'Form数据',type:'string',width:110,hidden:true,align:'left'},
+                       {field:'FormData',title:'FormData',type:'string',width:110,hidden:true,align:'left'},
                        {field:'Creator',title:'Creator',type:'string',width:100,align:'left'},
                        {field:'CreateDate',title:'CreateDate',type:'datetime',width:145,align:'left',sort:true},
                        {field:'CreateID',title:'CreateID',type:'int',width:80,hidden:true,align:'left'},

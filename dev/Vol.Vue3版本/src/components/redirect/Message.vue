@@ -11,7 +11,7 @@ export default {
   props: {
     text: {
       type: String,
-      default: "操作成功！",
+      default: "OperationSuccess！",
     },
   },
   methods: {

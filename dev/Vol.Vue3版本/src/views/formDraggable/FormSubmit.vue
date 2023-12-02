@@ -40,7 +40,7 @@
       </div>
       <div v-else style="font-size: 16px; color: #939292">未获取到参数</div>
     </div>
-    <div class="f-loading" v-show="loading">正在加载中...</div>
+    <div class="f-loading" v-show="loading">正在Load中...</div>
   </div>
 </template>
 
@@ -92,8 +92,8 @@ export default {
             if (!result.status) {
               return this.$message.error(result.message);
             }
-            this.$Message.success("提交成功");
-            this.$router.push({ path: "/message", text: "提交成功" });
+            this.$Message.success("提交Success");
+            this.$router.push({ path: "/message", text: "提交Success" });
           });
       });
     },
@@ -107,7 +107,7 @@ export default {
         });
         if (x.length > maxColumns) maxColumns = x.length;
       });
-      //设置宽度
+      //SetUp宽度
       if (this.options.tables.length) {
         this.formWidth = 800;
       } else {
@@ -122,13 +122,13 @@ export default {
     },
   },
   created() {
-    //加载后台保存的配置
+    //Load后台保存的Configuration
     this.options.fields.FormId = this.$route.query.id;
     this.hasId = !!this.options.fields.FormId;
     let url = "api/formDesignOptions/getFormOptions?id=" + this.$route.query.id;
     this.http.get(url, {}, true).then((result) => {
       if (!result.data.formOptions) {
-        return this.$message.error("未获取到配置信息");
+        return this.$message.error("未获取到Configuration信息");
       }
       var formOptions = JSON.parse(result.data.formOptions);
       this.options.formOptions = formOptions.formOptions;

@@ -21,7 +21,7 @@ namespace VOL.Core.UserManager
         public static List<RoleNodes> GetAllRoleId()
         {
             ICacheService cacheService = AutofacContainerModule.GetService<ICacheService>();
-            //每次比较缓存是否更新过，如果更新则重新获取数据
+            //每次比较缓存是否更新过，如果更新则重新获取Data
             if (_roles != null && _RoleVersionn == cacheService.Get(Key))
             {
                 return _roles;
@@ -79,7 +79,7 @@ namespace VOL.Core.UserManager
             return roleIds;
         }
         /// <summary>
-        /// 获取所有子节点
+        /// 获取所有子Node
         /// </summary>
         /// <param name="roleId"></param>
         private static List<RoleNodes> GetChildren(List<RoleNodes> roles, int roleId)
@@ -95,7 +95,7 @@ namespace VOL.Core.UserManager
             return rolesChildren;
         }
         /// <summary>
-        /// 获取当前Role_Id下的所有用户
+        /// 获取当前Role_Id下的所有User
         /// </summary>
         /// <returns></returns>
         public static IQueryable<int> GetCurrentAllChildUser()

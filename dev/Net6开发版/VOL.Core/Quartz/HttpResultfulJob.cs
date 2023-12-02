@@ -110,8 +110,8 @@ namespace VOL.Core.Quartz
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"日志写入异常:{taskOptions.TaskName},{ex.Message}");
-                    QuartzFileHelper.Error($"日志写入异常:{typeof(HttpResultfulJob).Name},{taskOptions.TaskName},{ex.Message}");
+                    Console.WriteLine($"Log写入异常:{taskOptions.TaskName},{ex.Message}");
+                    QuartzFileHelper.Error($"Log写入异常:{typeof(HttpResultfulJob).Name},{taskOptions.TaskName},{ex.Message}");
                 }
             }
             Console.WriteLine(trigger.FullName + " " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:sss") + " " + httpMessage);

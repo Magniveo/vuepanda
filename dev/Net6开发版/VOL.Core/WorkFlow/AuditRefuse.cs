@@ -6,8 +6,8 @@ namespace VOL.Core.WorkFlow
 {
     public enum AuditRefuse
     {
-        流程结束 = 0,
-        返回上一节点 = 1,
-        流程重新开始 = 2
+        ProcessEnd = 0,
+        返回上一Node = 1,
+        Process重新Start = 2
     }
 }

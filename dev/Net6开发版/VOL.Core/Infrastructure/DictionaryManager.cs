@@ -34,7 +34,7 @@ namespace VOL.Core.Infrastructure
         /// 
         /// </summary>
         /// <param name="dicNos"></param>
-        /// <param name="executeSql">是否执行自定义sql</param>
+        /// <param name="executeSql">是否ExecuteCustomizesql</param>
         /// <returns></returns>
         public static IEnumerable<Sys_Dictionary> GetDictionaries(IEnumerable<string> dicNos, bool executeSql = true)
         {
@@ -50,7 +50,7 @@ namespace VOL.Core.Infrastructure
                 }
                 catch (Exception ex)
                 {
-                    Logger.Error($"字典执行sql异常,sql:{sql},ExceptionInfo：{ex.Message + ex.StackTrace}");
+                    Logger.Error($"字典Executesql异常,sql:{sql},ExceptionInfo：{ex.Message + ex.StackTrace}");
                     throw ex;
                     //  Console.WriteLine(ex.Message);
                     // return null;
@@ -60,7 +60,7 @@ namespace VOL.Core.Infrastructure
             {
                 if (executeSql)
                 {
-                    //  2020.05.01增加根据用户信息加载字典数据源sql
+                    //  2020.05.01增加根据User信息LoadDictionaryData源sql
                     string sql = DictionaryHandler.GetCustomDBSql(item.DicNo, item.DbSql);
                     if (!string.IsNullOrEmpty(item.DbSql))
                     {
@@ -77,7 +77,7 @@ namespace VOL.Core.Infrastructure
         private static List<Sys_Dictionary> GetAllDictionary()
         {
             ICacheService cacheService = AutofacContainerModule.GetService<ICacheService>();
-            //每次比较缓存是否更新过，如果更新则重新获取数据
+            //每次比较缓存是否更新过，如果更新则重新获取Data
             if (_dictionaries != null && _dicVersionn == cacheService.Get(Key))
             {
                 return _dictionaries;

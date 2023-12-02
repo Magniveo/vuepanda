@@ -20,7 +20,7 @@
      </div>
       <template #footer>
         <el-button type="default" size="small" @click="model = false"
-          >关闭</el-button
+          >{{ $locales[$i18n.locale].Close }}</el-button
         >
       </template>
     </VolBox>

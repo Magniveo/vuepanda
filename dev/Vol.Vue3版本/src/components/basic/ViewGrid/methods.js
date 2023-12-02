@@ -1,12 +1,13 @@
 import detailMethods from './detailMethods.js';
 //业务处理方法,全部可以由开发覆盖
 import serviceFilter from './serviceFilter.js';
+
 let methods = {
-  //当添加扩展组件gridHeader/gridBody/gridFooter及明细modelHeader/modelBody/modelFooter时，
+  //当添加扩展ComponentgridHeader/gridBody/gridFooter及明细modelHeader/modelBody/modelFooter时，
   //如果要获取父级Vue对象,请使用此方法进行回调
   parentCall(fun) {
     if (typeof fun != 'function') {
-      return console.log('扩展组件需要传入一个回调方法才能获取父级Vue对象');
+      return console.log('扩展Component需要传入一个回调方法才能获取父级Vue对象');
     }
     fun(this);
   },
@@ -14,10 +15,10 @@ let methods = {
     if (this.currentReadonly) {
       return '';
     }
-    return '--' + (this.currentAction == this.const.ADD ? '新增' : 'Edit');
+    return '--' + (this.currentAction == this.const.ADD ? window.locales[window.localei18n.locale].Add : 'Edit');
   },
   quickSearchKeyPress($event) {
-    //查询字段为input时，按回车查询
+    //Query字段为input时，按回车Query
     if ($event.keyCode == 13) {
       if (this.searchFormFields[this.singleSearch.field] != '') {
         this.search();
@@ -25,18 +26,18 @@ let methods = {
     }
   },
   getButtons() {
-    //生成ViewGrid界面的操作按钮及更多选项
+    //生成ViewGrid界面的Operation按钮及更多选项
     let searchIndex = this.buttons.findIndex((x) => {
       return x.value == 'Search';
     });
-    //添加高级查询
+    //添加高级Query
     let hasOneFormItem =
       this.searchFormOptions.length == 1 &&
       this.searchFormOptions[0].length == 1;
     if (searchIndex != -1 && !hasOneFormItem) {
       this.buttons.splice(searchIndex + 1, 0, {
         icon: this.fiexdSearchForm ? 'el-icon-refresh-left' : 'el-icon-search',
-        name: this.fiexdSearchForm ? '重置' : '高级查询',
+        name: this.fiexdSearchForm ? window.locales[window.localei18n.locale].Reset : window.locales[window.localei18n.locale].Reset +'Query',
         plain: true,
         type: this.buttons[searchIndex].type,
         onClick: () => {
@@ -59,11 +60,11 @@ let methods = {
     // return btns;
   },
   extendBtn(btns, source) {
-    //btns权限按钮，source为扩展按钮
+    //btnsAuthority按钮，source为扩展按钮
     if (!btns || !(source && source instanceof Array)) {
       return;
     }
-    //source通过在表的扩展js文件中buttons对应按钮的属性index决定按钮所放位置
+    //source通过在Table的扩展js文件中buttons对应按钮的属性index决定按钮所放位置
     source.forEach((x) => {
       //通过按钮的Index属性，放到指定的位置
       btns.splice(x.index == undefined ? btns.length : x.index, 0, x);
@@ -76,9 +77,9 @@ let methods = {
     // }
   },
   initBoxButtons() {
-    //初始化ViewGird与弹出框/明细表按钮
+    //初始化ViewGirdWith弹出框/明细Table按钮
     let path = this.$route.path;
-    //通过菜单获取用户所对应菜单需要显示的按钮
+    //通过DishSingle获取User所对应DishSingle需要显示的按钮
     let permissionButtons = this.permission.getButtons(
       path,
       null,
@@ -102,7 +103,7 @@ let methods = {
     if (!this.extend.buttons) {
       this.extend.buttons = {};
     }
-    //查询界面扩展按钮(扩展按钮可自行通过设置按钮的Index属性显示到具体位置)
+    //Query界面扩展按钮(扩展按钮可自行通过SetUp按钮的Index属性显示到具体位置)
     if (this.extend.buttons.view) {
       this.extendBtn(this.buttons, this.extend.buttons.view);
     }
@@ -119,13 +120,13 @@ let methods = {
         return true;
     });
     this.currentReadonly = !saveBtn;
-    //从表表格操作按钮
+    //从TableFormOperation按钮
     let detailGridButtons = {
-      name: '刷新',
+      name: window.locales[window.localei18n.locale].Refresh,
       type: 'info',
       icon: 'el-icon-refresh',
       onClick() {
-        //如果明细表当前的状态为Add时，禁止刷新
+        //如果明细Table当前的状态为Add时，禁止刷新
         if (this.currentAction == this.const.ADD) {
           return;
         }
@@ -136,7 +137,7 @@ let methods = {
     let importExcel = this.buttons.some((x) => {
       if (x.value == this.const.IMPORT) return true;
     });
-    //如果有导入权限,则需要初始化导入组件
+    //如果有导入Authority,则需要初始化导入Component
     if (importExcel) {
       this.upload.url = this.getUrl(this.const.IMPORT);
       //定义下载模板的文件名
@@ -147,15 +148,15 @@ let methods = {
     }
 
     // disabled
-    //如果当前Role_Id没有Edit或Add功能，查看明细时字段设置全部只读
-    //只有明细表，将明细表也设置为不可能Edit，并且不显示添加行、Del行
+    //如果当前Role_Id没有Edit或Add功能，View明细时字段SetUp全部ReadOnly
+    //只有明细Table，将明细Table也SetUp为不可能Edit，并且不显示添加行、Del行
     if (!saveBtn) {
       this.editFormOptions.forEach((row) => {
         row.forEach((x) => {
           x.disabled = true;
         });
       });
-      //没有新增Edit权限的，弹出框都设置为只读
+      //没有新增EditAuthority的，弹出框都SetUp为ReadOnly
       this.detail.columns.forEach((column) => {
         if (column.hasOwnProperty('edit')) {
           column.readonly = true;
@@ -164,7 +165,7 @@ let methods = {
       });
       //弹出框扩展按钮
       this.extendBtn(boxButtons, this.extend.buttons.box);
-      //弹出弹框按钮(2020.04.21),没有Edit或Add权限时，也可以通过buttons属性添加自定义弹出框按钮
+      //弹出弹框按钮(2020.04.21),没有Edit或AddAuthority时，也可以通过buttons属性添加Customize弹出框按钮
       this.boxButtons.push(...boxButtons);
       this.detailOptions.buttons.push(detailGridButtons);
       this.detailOptions.buttons.forEach((button) => {
@@ -172,7 +173,7 @@ let methods = {
           button.hidden = false;
         }
       });
-      //弹出框扩展明细表按钮
+      //弹出框扩展明细Table按钮
       this.extendBtn(this.detailOptions.buttons, this.extend.buttons.detail);
 
       return boxButtons;
@@ -182,7 +183,7 @@ let methods = {
     boxButtons.push(
       ...[
         {
-          name: '保 存',
+          name: window.locales[window.localei18n.locale].Save,
           icon: 'el-icon-check',
           type: 'danger',
           disabled: false,
@@ -202,11 +203,11 @@ let methods = {
         // }
       ]
     );
-    //从表表格操作按钮
+    //从TableFormOperation按钮
     this.detailOptions.buttons.push(
       ...[
         {
-          name: '添加行',
+          name: window.locales[window.localei18n.locale].AddRow,
           icon: 'el-icon-plus',
           type: 'primary',
           hidden: false,
@@ -218,19 +219,19 @@ let methods = {
         {
           type: 'danger',
           plain: true,
-          name: 'Del行',
+          name: window.locales[window.localei18n.locale].Delete,
           hidden: false,
           icon: 'el-icon-delete',
           onClick() {
             this.delRow();
           }
         },
-        //2022.01.08增加明细表导入导出功能
-        //注意需要重写后台明细表接口的导入与下载模板、导出的权限,Sys_DictionaryListController.cs/SellOrderListController.cs
+        //2022.01.08增加明细TableImportExport功能
+        //注意需要重写后台明细Table接口的导入With下载模板、Export的Authority,Sys_DictionaryListController.cs/SellOrderListController.cs
         {
           type: 'danger',
           plain: true,
-          name: '导入',
+          name: window.locales[window.localei18n.locale].Import,
           value: 'import',
           hidden: false,
           icon: 'el-icon-upload2',
@@ -245,7 +246,7 @@ let methods = {
         {
           type: 'danger',
           plain: true,
-          name: '导出',
+          name: 'Export',
           value: 'export',
           icon: 'el-icon-download',
           hidden: false,
@@ -263,7 +264,7 @@ let methods = {
     //弹出框扩展按钮
     this.extendBtn(boxButtons, this.extend.buttons.box);
 
-    //弹出框扩展明细表按钮
+    //弹出框扩展明细Table按钮
     this.detailOptions.buttons.push(detailGridButtons);
     this.extendBtn(this.detailOptions.buttons, this.extend.buttons.detail);
 
@@ -291,8 +292,8 @@ let methods = {
     return value === null || value === undefined || value === '';
   },
   getSearchParameters() {
-    //获取查询参数
-    // 2020.09.11增加固定查询Form,如果设置固定了查询Form，点击查询时，不再关闭
+    //获取Query参数
+    // 2020.09.11增加固定QueryForm,如果SetUp固定了QueryForm，点击Query时，不再关闭
     if (!this.fiexdSearchForm) {
       this.searchBoxShow = false;
     }
@@ -307,12 +308,12 @@ let methods = {
       }
       let displayType = this.getSearchItem(key);
 
-      //联级只保留选中节点的最后一个值
+      //联级只保留选中Node的最后一个值
       if (displayType == 'cascader') {
-        //查询下面所有的子节点，如：选中的是父节点，应该查询下面所有的节点数据--待完
+        //Query下面所有的子Node，如：选中的是父Node，应该Query下面所有的NodeData--待完
         value = value.length ? value[value.length - 1] + '' : '';
       }
-      //2021.05.02增加区间查询
+      //2021.05.02增加区间Query
       if (
         typeof value == 'string' ||
         ['date', 'datetime', 'range'].indexOf(displayType) == -1
@@ -343,13 +344,13 @@ let methods = {
     return query;
   },
   search() {
-    //查询
+    //Query
     // let query = this.getSearchParameters();
     // this.$refs.table.load(query, true);
     this.$refs.table.load(null, true);
   },
   loadTableBefore(param, callBack) {
-    //查询前设置查询条件及分页信息
+    //Query前SetUpQuery条件及分页信息
     let query = this.getSearchParameters();
     if (query) {
       param = Object.assign(param, query);
@@ -374,15 +375,15 @@ let methods = {
   },
 
   loadTableAfter(data, callBack, result) {
-    //查询后
-    //2020.10.30增加查询后返回所有的查询信息
+    //Query后
+    //2020.10.30增加Query后返回所有的Query信息
     let status = this.searchAfter(data, result);
     callBack(status);
-    //自动弹出框审批详情
+    //自动弹出框Approval详情
   },
   loadDetailTableBefore(param, callBack,data) {
-    //明细查询前
-    //Add时禁止加载明细
+    //明细Query前
+    //Add时禁止Load明细
     if (this.currentAction == this.const.ADD) {
       callBack(false);
       return false;
@@ -391,12 +392,12 @@ let methods = {
     callBack(status);
   },
   loadDetailTableAfter(data, callBack,result) {
-    //明细查询后
+    //明细Query后
     let status = this.searchDetailAfter(data,result);
     callBack(status);
   },
   getSearchItem(field) {
-    //获取查询的参数
+    //获取Query的参数
     let data;
     for (let index = 0; index < this.searchFormOptions.length; index++) {
       if (data) return data.type;
@@ -409,13 +410,13 @@ let methods = {
     return (data || {}).type;
   },
   resetSearch() {
-    //重置查询对象
+    //重置Query对象
     this.resetSearchForm();
     //2020.10.17增加重置后方法
     this.resetSearchFormAfter && this.resetSearchFormAfter();
   },
   resetEdit() {
-    //重置Edit的数据
+    //重置Edit的Data
     let isEdit = this.currentAction != this.const.ADD;
     //重置之前
     if (!this[isEdit ? 'resetUpdateFormBefore' : 'resetAddFormBefore']()) {
@@ -434,7 +435,7 @@ let methods = {
     }
   },
   resetSearchForm(sourceObj) {
-    //重置查询表
+    //重置QueryTable
     this.resetForm('searchForm', sourceObj);
   },
   resetEditForm(sourceObj) {
@@ -488,7 +489,7 @@ let methods = {
   },
   resetForm(formName, sourceObj) {
     //   return;
-    //重置Form数据
+    //重置FormData
     if (this.$refs[formName]) {
       this.$refs[formName].reset();
     }
@@ -502,7 +503,7 @@ let methods = {
       form = this.editFormFields;
       keyLeft = 'e' + '_b_';
     }
-    //获取数据源的dataAppType，否则如果数据源data的key是数字，重置的值是字符串就无法绑定值
+    //获取Data源的dataAppType，否则如果Data源data的key是数字，重置的值是字符串就None法绑定值
     if (!this.keyValueType._dinit) {
       this.getKeyValueType(this.editFormOptions, true);
       this.getKeyValueType(this.searchFormOptions, false);
@@ -520,8 +521,8 @@ let methods = {
           kv_type == 'cascader' ||
           kv_type == 'treeSelect'
         ) {
-          // 2020.05.31增加iview组件Cascader
-          // 2020.11.01增加iview组件CascaderForm重置时查询所有的父节点
+          // 2020.05.31增加iviewComponentCascader
+          // 2020.11.01增加iviewComponentCascaderForm重置时Query所有的父Node
           if (kv_type == 'cascader' || kv_type == 'treeSelect') {
             var treeDic = this.dicKeys.find((dic) => {
               return dic.fileds && dic.fileds.indexOf(key) != -1;
@@ -565,7 +566,7 @@ let methods = {
           }
           else if (typeof newVal=='number') {
             newVal= [newVal+''];
-            this.$message.error(`多选时数据库字段[${key}]必须是字符串AppType`);
+            this.$message.error(`多选时Data库字段[${key}]必须是字符串AppType`);
           }
           else if (
             newVal != '' &&
@@ -646,7 +647,7 @@ let methods = {
           editFormFields[key] = this.editFormFields[key]();
         } catch (error) { }
       } else {
-        //2021.05.30修复下拉框清除数据后后台不能保存的问题
+        //2021.05.30修复下拉框清除Data后后台不能保存的问题
         if (
           this.editFormFields[key] === undefined &&
           this.dicKeys.some((x) => {
@@ -683,7 +684,7 @@ let methods = {
       delKeys: null
     };
 
-    //获取明细数据(前台数据明细未做校验，待完.后台已经校验)
+    //获取明细Data(前台Data明细未做校验，待完.后台已经校验)
     if (this.hasDetail) {
       formData.detailData = this.$refs.detail.rowData;
       let _fields = this.detail.columns
@@ -695,7 +696,7 @@ let methods = {
         .map((c) => {
           return c.field;
         });
-      //2022.06.20增加保存时对明细表下拉框多选的判断
+      //2022.06.20增加保存时对明细Table下拉框多选的判断
       if (_fields.length) {
         formData.detailData = JSON.parse(JSON.stringify(formData.detailData));
         formData.detailData.forEach((row) => {
@@ -752,11 +753,11 @@ let methods = {
         if (!this.updateAfter(x)) return;
       }
       if (!x.status) return this.$error(x.message);
-      this.$success(x.message || '操作成功');
-      //如果保存成功后需要关闭Edit框，直接返回不处理后面
+      this.$success(x.message || 'OperationSuccess');
+      //如果保存Success后需要关闭Edit框，直接返回不处理后面
       if (this.boxOptions.saveClose) {
         this.boxModel = false;
-        //2020.12.27如果是Edit保存后不重置分页页数，刷新页面时还是显示当前页的数据
+        //2020.12.27如果是Edit保存后不重置分页页数，刷新Page时还是显示当前页的Data
         this.$refs.table.load(null, _currentIsAdd);
         //this.refresh();
         return;
@@ -794,29 +795,29 @@ let methods = {
     } else {
       rows = this.$refs.table.getSelected();
     }
-    //Del数据
+    //DelData
 
     if (!rows || rows.length == 0) return this.$error('请选择要Del的行!');
     let delKeys = rows.map((x) => {
       return x[this.table.key];
     });
     if (!delKeys || delKeys.length == 0)
-      return this.$error('没有获取要Del的行数据!');
+      return this.$error('没有获取要Del的行Data!');
     //Del前
     if (!this.delBefore(delKeys, rows)) {
       return;
     }
     let tigger = false;
-    this.$confirm('确认要Del选择的数据吗?', '警告', {
-      confirmButtonText: '确定',
-      cancelButtonText: '取消',
+    this.$confirm('确认要Del选择的Data吗?', '警告', {
+      confirmButtonText: window.locales[window.localei18n.locale].Confirm ,
+      cancelButtonText: window.locales[window.localei18n.locale].Cancel,
       type: 'warning',
       center: true
     }).then(() => {
       if (tigger) return;
       tigger = true;
       let url = this.getUrl(this.const.DEL);
-      this.http.post(url, delKeys, '正在Del数据....').then((x) => {
+      this.http.post(url, delKeys, '正在DelData....').then((x) => {
         if (!x.status) return this.$error(x.message);
         this.$success(x.message);
         //Del后
@@ -831,7 +832,7 @@ let methods = {
     return true;
   },
   async initBox() {
-    //2022.01.08增加Add时隐藏明细表导出功能
+    //2022.01.08增加Add时隐藏明细TableExport功能
     this.detailOptions.buttons.forEach((x) => {
       if (x.value == 'export') {
         x.hidden = this.currentAction == 'Add';
@@ -860,7 +861,7 @@ let methods = {
       });
     });
     this.editFormFields;
-    //重置EditForm数据
+    //重置EditFormData
     this.editFormFields[this.table.key] = row[this.table.key];
 
     this.resetEditForm(row);
@@ -869,16 +870,16 @@ let methods = {
   },
   async linkData(row, column) {
     this.boxOptions.title = this.table.cnName + '(Edit)';
-    //点击table单元格快捷链接显示Edit数据
+    //点击tableSingle元格快捷链接显示EditData
     this.currentAction = this.const.EDIT;
     this.currentRow = row;
     if (!(await this.initBox())) return;
     this.resetDetailTable(row);
     this.setEditForm(row);
     this.setContinueAdd(false);
-    //设置Enable查询Form的默认key/value
+    //SetUpEnableQueryForm的默认key/value
     this.getRemoteFormDefaultKeyValue();
-    //点击Edit按钮弹出框后，可以在此处写逻辑，如，从后台获取数据
+    //点击Edit按钮弹出框后，可以在此处写逻辑，如，从后台获取Data
     this.modelOpenProcess(row);
   },
   setContinueAdd(isAdd) {
@@ -887,7 +888,7 @@ let methods = {
       return x.value == 'save';
     });
     if (_button) {
-      _button.name = isAdd ? this.continueAddName : '保 存';
+      _button.name = isAdd ? this.continueAddName : window.locales[window.localei18n.locale].Save;
     }
   },
   resetAdd() {
@@ -897,7 +898,7 @@ let methods = {
         this.$refs.detail.reset();
     }
     let obj = {};
-    //如果有switch标签，默认都设置为否
+    //如果有switch标签，默认都SetUp为否
     this.editFormOptions.forEach((x) => {
       x.forEach((item) => {
         if (item.type == 'switch') {
@@ -918,7 +919,7 @@ let methods = {
     this.setContinueAdd(true);
     //  this.resetEditForm();
     this.boxModel = true;
-    //点击Add按钮弹出框后，可以在此处写逻辑，如，从后台获取数据
+    //点击Add按钮弹出框后，可以在此处写逻辑，如，从后台获取Data
     this.modelOpenProcess();
     // this.modelOpenAfter();
   },
@@ -937,7 +938,7 @@ let methods = {
       return this.$error('请选择要Edit的行!');
     }
     if (rows.length != 1) {
-      return this.$error('只能选择一行数据进行Edit!');
+      return this.$error('只能选择一行Data进行Edit!');
     }
     //记录当前Edit的行
     this.currentRow = rows[0];
@@ -947,16 +948,16 @@ let methods = {
     //重置Form
     this.resetDetailTable();
 
-    //设置当前的数据到Form上
+    //SetUp当前的Data到Form上
     this.setEditForm(rows[0]);
-    //设置Enable查询Form的默认key/value
+    //SetUpEnableQueryForm的默认key/value
     this.getRemoteFormDefaultKeyValue();
-    //点击Edit按钮弹出框后，可以在此处写逻辑，如，从后台获取数据
+    //点击Edit按钮弹出框后，可以在此处写逻辑，如，从后台获取Data
     this.modelOpenProcess(rows[0]);
     // this.modelOpenAfter(rows[0]);
   },
   getRemoteFormDefaultKeyValue() {
-    //设置FormEnable数据源的默认key.value
+    //SetUpFormEnableData源的默认key.value
     if (this.currentAction != this.const.EDIT || this.remoteKeys.length == 0)
       return;
     this.editFormOptions.forEach((x, xIndex) => {
@@ -970,7 +971,7 @@ let methods = {
           let obj = column.bind.data.find((x) => {
             return x.key == key;
           });
-          // obj ? obj.value : key如果没有查到数据源，直接使用原数据
+          // obj ? obj.value : key如果没有查到Data源，直接使用原Data
           item.data = [{ key: key, value: obj ? obj.value : key }];
           this.editFormOptions[xIndex].splice(yIndex, 1, item);
           // this.$set(item, 'data', [{ key: key + '', value: obj.value }])
@@ -993,12 +994,12 @@ let methods = {
     // this.modelOpenAfter(row);
   },
   import() {
-    //导入(上传excel),弹出导入组件UploadExcel.vue
+    //导入(上传excel),弹出导入ComponentUploadExcel.vue
     this.upload.excel = true;
     this.$refs.upload_excel && this.$refs.upload_excel.reset();
   },
   download(url, fileName) {
-    //下载导出的文件
+    //下载Export的文件
     let xmlResquest = new XMLHttpRequest();
     xmlResquest.open('GET', url, true);
     xmlResquest.setRequestHeader('Content-type', 'application/json');
@@ -1026,17 +1027,17 @@ let methods = {
     xmlResquest.send();
   },
   getFileName(isDetail) {
-    //2021.01.08增加导出excel时自定义文件名
+    //2021.01.08增加Exportexcel时Customize文件名
     if (isDetail) {
       return this.detail.cnName + '.xlsx';
     }
     return this.table.cnName + '.xlsx';
   },
   export(isDetail) {
-    //导出
+    //Export
     let url, query, param;
     if (isDetail) {
-      //明细表导出时如果是Add状态，禁止导出
+      //明细TableExport时如果是Add状态，禁止Export
       if (this.currentAction == 'Add') {
         return;
       }
@@ -1047,12 +1048,12 @@ let methods = {
         ]
       };
     } else {
-      //主表导出
+      //主TableExport
       url = this.getUrl(this.const.EXPORT);
       query = this.getSearchParameters();
       param = { order: this.pagination.order, wheres: query.wheres || [] };
     }
-    //2020.06.25增加导出前处理
+    //2020.06.25增加Export前处理
     if (!isDetail && !this.exportBefore(param)) {
       return;
     }
@@ -1061,11 +1062,11 @@ let methods = {
       param.wheres = JSON.stringify(param.wheres);
     }
     let $http = this.http;
-    //2022.09.26增加自定义导出文件名
+    //2022.09.26增加CustomizeExport文件名
     let fileName = this.downloadFileName || this.getFileName(isDetail);
-    //2021.01.08优化导出功能
+    //2021.01.08优化Export功能
     $http
-      .post(url, param, '正在导出数据....', { responseType: 'blob' })
+      .post(url, param, '正在ExportData....', { responseType: 'blob' })
       .then((content) => {
         const blob = new Blob([content]);
         if ('download' in document.createElement('a')) {
@@ -1113,12 +1114,12 @@ let methods = {
     if (rows.length == 0) return this.$error('请选择要审核的行!');
     let auditStatus = Object.keys(rows[0]).find(x => { return x.toLowerCase() === 'auditstatus' });
     if (!auditStatus) {
-      return this.$message.error(`表必须包括审核字段【AuditStatus】,并且是intAppType`)
+      return this.$message.error(`Table必须包括审核字段【AuditStatus】,并且是intAppType`)
     }
     // let checkStatus = rows.every((x) => {
     //   return this.$global.audit.status.some(c => { return c === x[auditStatus] || !x[auditStatus] })
     // });
-    // if (!checkStatus) return this.$error('只能选择待审批或审核中的数据!');
+    // if (!checkStatus) return this.$error('只能选择待Approval或审核中的Data!');
     this.$refs.audit.open(rows);
   },
   saveAudit(params, rows, callback) {
@@ -1141,15 +1142,15 @@ let methods = {
     });
   },
   viewModelCancel() {
-    //查看表结构
+    //ViewTable结构
     this.viewModel = false;
   },
   initFormOptions(formOptions, keys, formFields, isEdit) {
-    //初始化查询、Edit对象的下拉框数据源、ImageUpload链接Address
+    //初始化Query、Edit对象的下拉框Data源、ImageUpload链接Address
     //let defaultOption = { key: "", value: "请选择" };
     //有上传的字段
     //2020.05.03新增
-    //Edit数据源的AppType
+    //EditData源的AppType
     formOptions.forEach((item) => {
       item.forEach((d) => {
         if (d.type == 'number') {
@@ -1169,9 +1170,9 @@ let methods = {
           this.uploadfiled.push(d.field);
         }
         if (!d.dataKey) return true;
-        //2022.02.20强制开启联级可以选择某个节点
+        //2022.02.20强制开启联级可以选择某个Node
         if (d.type == 'cascader' && !d.hasOwnProperty('changeOnSelect')) {
-          //强制开启联级可以选择某个节点
+          //强制开启联级可以选择某个Node
           d.changeOnSelect = true;
         }
         //开启Enable搜索
@@ -1185,12 +1186,12 @@ let methods = {
           formFields[d.field] = [];
         }
         if (keys.indexOf(d.dataKey) == -1) {
-          //2020.05.03增加记录Edit字段的数据源AppType
+          //2020.05.03增加记录Edit字段的Data源AppType
 
           keys.push(d.dataKey);
-          //2020.05.03修复查询Form与EditFormtypeAppType变成强一致性的问题
+          //2020.05.03修复QueryFormWithEditFormtypeAppType变成强一致性的问题
           //this.dicKeys.push({ dicNo: d.dataKey, data: [], type: d.type });
-          //  2020.11.01增加iview组件Cascader数据源存储
+          //  2020.11.01增加iviewComponentCascaderData源存储
           let _dic = {
             dicNo: d.dataKey,
             data: [],
@@ -1213,7 +1214,7 @@ let methods = {
           });
         }
         if (d.type != 'cascader') {
-          //2020.01.30移除内部FormformOptions数据源配置格式data.data，所有参数改为与组件api格式相同
+          //2020.01.30移除内部FormformOptionsData源Configuration格式data.data，所有参数改为WithComponentapi格式相同
           Object.assign(
             d,
             this.dicKeys.filter((f) => {
@@ -1225,7 +1226,7 @@ let methods = {
       });
     });
   },
-  //初始table与明细表的数据源指向dicKeys对象，再去后台加载数据源
+  //初始tableWith明细Table的Data源指向dicKeys对象，再去后台LoadData源
   initColumns(scoure, dicKeys, keys) {
     if (!scoure || !(scoure instanceof Array)) return;
     scoure.forEach((item) => {
@@ -1253,13 +1254,13 @@ let methods = {
       } else {
         item.bind = dic[0];
       }
-      //2020.05.03优化table数据源checkbox与selectAppType从Edit列中选取
+      //2020.05.03优化tableData源checkboxWithselectAppType从Edit列中选取
       item.bind.type = item.bind.e_type || 'string';
     });
   },
   bindOptions(dic) {
-    //绑定下拉框的数据源
-    //绑定后台的字典数据
+    //绑定下拉框的Data源
+    //绑定后台的DictionaryData
     dic.forEach((d) => {
       if (d.data.length >= (this.select2Count || 500)) {
         if (
@@ -1278,12 +1279,12 @@ let methods = {
       }
       this.dicKeys.forEach((x) => {
         if (x.dicNo != d.dicNo) return true;
-        //2020.10.26增加级联数据源绑定处理
+        //2020.10.26增加级联DataSourceBinding处理
         if (x.type == 'cascader' || x.type == 'treeSelect') {
           // x.data=d.data;
           //生成tree结构
           let _data = JSON.parse(JSON.stringify(d.data));
-          //2022.04.04增加级联字典数据源刷新后table没有变化的问题
+          //2022.04.04增加级联DictionaryData源刷新后table没有变化的问题
           this.columns.forEach((column) => {
             if (column.bind && column.bind.key == d.dicNo) {
               column.bind.data = d.data;
@@ -1298,7 +1299,7 @@ let methods = {
           });
           x.data.push(...arr);
           x.orginData.push(...d.data);
-          //2021.10.17修复查询级联不能绑定数据源的问题
+          //2021.10.17修复Query级联不能绑定Data源的问题
           this.searchFormOptions.forEach((searhcOption) => {
             searhcOption.forEach((_option) => {
               if (_option.type == 'cascader' && _option.dataKey == x.dicNo) {
@@ -1324,7 +1325,7 @@ let methods = {
             newSource = new Array(source.length);
           for (let index = 0; index < source.length; index++) {
             newSource[index] = {
-              //默认从字典数据读出来的key都是stringAppType,但如果数据从sql中查询的可能为非string,否是async-validator需要重置设置格式
+              //默认从DictionaryData读出来的key都是stringAppType,但如果Data从sql中Query的可能为非string,否是async-validator需要重置SetUp格式
               key: source['key'] + '', //source[index][x.config.valueField] + "",
               value: source['value'] //source[index][x.config.textField]
             };
@@ -1332,7 +1333,7 @@ let methods = {
 
           x.data.push(...newSource);
         } else {
-          //2020.06.06，如果是selectList数据源使用的自定义sql并且key是数字，强制转换成字符串
+          //2020.06.06，如果是selectListData源使用的Customizesql并且key是数字，强制转换成字符串
           if (
             x.e_type == 'selectList' &&
             d.data.length > 0 &&
@@ -1355,36 +1356,36 @@ let methods = {
     });
   },
   getUrl(action, ingorPrefix) {
-    //是否忽略前缀/  获取操作的url
+    //是否忽略前缀/  获取Operation的url
     return (!ingorPrefix ? '/' : '') + 'api' + this.table.url + action;
   },
   initDicKeys() {
-    //初始化字典数据
+    //初始化DictionaryData
     let keys = [];
-    //2022.04.17优化重新加载数据源
+    //2022.04.17优化重新LoadData源
     this.dicKeys.forEach((item) => {
       item.data.splice(0);
       item.orginData && item.orginData.splice(0);
     });
     //this.dicKeys.splice(0);
-    //初始化Edit数据源,默认为一个空数组，如果要求必填设置type=number/decimal的最小值
+    //初始化EditData源,默认为一个空数组，如果要求必填SetUptype=number/decimal的最小值
     this.initFormOptions(this.editFormOptions, keys, this.editFormFields, true);
-    //初始化查询数据源,默认为一个空数组
+    //初始化QueryData源,默认为一个空数组
     this.initFormOptions(
       this.searchFormOptions,
       keys,
       this.searchFormFields,
       false
     );
-    //查询Date设置为可选开始与结果Date
+    //QueryDateSetUp为可选StartWith结果Date
     this.searchFormOptions.forEach((item) => {
       item.forEach((x) => {
         if (x.type == 'date' || x.type == 'datetime') x.range = true;
       });
     });
-    //初始化datatable表数据源,默认为一个空数组,dicKeys为界面所有的数据DicNo
+    //初始化datatableTableData源,默认为一个空数组,dicKeys为界面所有的DataDicNo
     this.initColumns(this.columns, this.dicKeys, keys);
-    //2021.05.23默认开启查询页面所有字段OrderNo,如果不需要OrderNo，在onInited遍历columns设置sort=false
+    //2021.05.23默认开启QueryPage所有字段OrderNo,如果不需要OrderNo，在onInited遍历columnsSetUpsort=false
     //2021.09.25移除强制OrderNo功能
     // this.columns.forEach(x => {
     //   x.sort = x.render ? false : true;
@@ -1392,7 +1393,7 @@ let methods = {
     if (this.detailOptions && this.detailOptions.columns) {
       this.initColumns(this.detailOptions.columns, this.dicKeys, keys);
     }
-    //初始化快速查询字段,默认使用代码生成器配置的第一个查询字段
+    //初始化快速Query字段,默认使用CodeGenerationDeviceConfiguration的第一个Query字段
     if (this.searchFormOptions.length > 0) {
       this.singleSearch = {
         dataKey: this.searchFormOptions[0][0].dataKey,
@@ -1408,7 +1409,7 @@ let methods = {
     let $this = this;
     this.http.post('/api/Sys_Dictionary/GetVueDictionary', keys).then((dic) => {
       $this.bindOptions(dic);
-      //2022.04.04增加字典加载完成方法
+      //2022.04.04增加字典Load完成方法
       $this.dicInited && $this.dicInited(dic);
     });
   },
@@ -1430,7 +1431,7 @@ let methods = {
     // }
   },
   initBoxHeightWidth() {
-    //初始化弹出框的高度与宽度
+    //初始化弹出框的高度With宽度
     let clientHeight = document.documentElement.clientHeight;
     //弹出框高度至少250px
     clientHeight = clientHeight < 250 ? 250 : clientHeight;
@@ -1447,13 +1448,13 @@ let methods = {
       this.boxOptions.width = clientWidth * 0.8;
     } else {
       if (this.boxOptions.height) {
-        //如果高度与宽度超过了获取到的可见高宽度，则设为默认的90%高宽
+        //如果高度With宽度超过了获取到的可见高宽度，则设为默认的90%高宽
         if (this.boxOptions.height > clientHeight * 0.8) {
           this.boxOptions.height = clientHeight * 0.8;
         }
       }
       if (this.boxOptions.width) {
-        //如果高度与宽度超过了获取到的可见高宽度，则设为默认的90%高宽
+        //如果高度With宽度超过了获取到的可见高宽度，则设为默认的90%高宽
         if (this.boxOptions.width > clientWidth * 0.8) {
           this.boxOptions.width = clientWidth * 0.8;
         }
@@ -1465,8 +1466,8 @@ let methods = {
 
     this.height = this.tableHeight || clientHeight - 206;
     this.url = this.getUrl(this.const.PAGE);
-    //计算弹出框的高与宽度
-    //如果有明细表，高度与宽带设置为0.9/0.82
+    //计算弹出框的高With宽度
+    //如果有明细Table，高度With宽带SetUp为0.9/0.82
     if (this.detail.columns && this.detail.columns.length > 0) {
       this.hasDetail = true;
       clientWidth = clientWidth * 0.8;
@@ -1506,7 +1507,7 @@ let methods = {
     if (!this.boxOptions.width) {
       this.boxOptions.width = clientWidth + 30;
     }
-    //2023.10.11隐藏分页时调整表格高度
+    //2023.10.11隐藏分页时调整Form高度
     if (this.paginationHide) {
       this.height=this.height+37
     }
@@ -1515,7 +1516,7 @@ let methods = {
     this.rowChange(row);
   },
   rowChange(row) {
-    //选中行checkbox行事件
+    //选中行checkbox行Event
   },
   selectionOnChange(rows){
     this.selectionChange(rows);
@@ -1527,13 +1528,13 @@ let methods = {
     this.rowClick({ row, column, event });
   },
   rowClick({ row, column, event }) {
-    // 点击行事件(2020.11.07)
+    // 点击行Event(2020.11.07)
   },
   rowOnDbClick({ row, column, event }) {
     this.rowDbClick({ row, column, event });
   },
   rowDbClick({ row, column, event }) {
-    // 双击击行事件(2021.05.23)
+    // 双击击行Event(2021.05.23)
   },
   $error(message) {
     this.$message.error(message);
@@ -1547,7 +1548,7 @@ let methods = {
     this.$message.success(message);
   },
   setFiexdSearchForm(visiable) {
-    //2020.09.011增加固定查询Form功能,visiable=true默认将查询Form展开
+    //2020.09.011增加固定QueryForm功能,visiable=true默认将QueryForm展开
     this.fiexdSearchForm = true;
     let refreshBtn = this.buttons.find((x) => x.name == '刷 新');
     if (visiable) {
@@ -1561,22 +1562,22 @@ let methods = {
     }
   },
   tableBeginEdit(row, column, index) {
-    //2021.03.19是否开启查询界面表格双击Edit结束方法,返回false不会结束Edit
+    //2021.03.19是否开启Query界面Form双击EditEnd方法,返回false不会EndEdit
     return this.beginEdit(row, column, index);
   },
   beginEdit(row, column, index) {
-    //2021.03.19是否开启查询界面表格双击Edit结束方法,返回false不会结束Edit
+    //2021.03.19是否开启Query界面Form双击EditEnd方法,返回false不会EndEdit
     return true;
   },
   tableEndEditBefore(row, column, index) {
     return this.endEditBefore(row, column, index);
   },
   endEditBefore(row, column, index) {
-    //2021.03.19是否开启查询界面表格双击Edit结束方法,返回false不会结束Edit
+    //2021.03.19是否开启Query界面Form双击EditEnd方法,返回false不会EndEdit
     return true;
   },
   filterPermission(tableName, permission) {
-    //2021.03.19判断是否有某个表的按钮权限
+    //2021.03.19判断是否有某个Table的按钮Authority
     //:["Search","Add","Delete","Update","Import","Export","Upload","Audit"]
     const _result = (this.$store.state.permission || []).find((x) => {
       return x.url == '/' + tableName;
@@ -1584,25 +1585,25 @@ let methods = {
     return _result && _result.permission.some((x) => x == permission);
   },
   destroyed() {
-    //2021.04.11增加vue页面销毁方法,路由必须设置keepLive:false，设置方法见：前端开发文档-》[禁用页面缓存keepAlive]
+    //2021.04.11增加vuePage销毁方法,路由必须SetUpkeepLive:false，SetUp方法见：前端开发Document-》[禁用Page缓存keepAlive]
   },
   loadTreeTableChildren(tree, treeNode, resolve) {
     this.loadTreeChildren.call(this, tree, treeNode, resolve);
   },
   loadTreeChildren(tree, treeNode, resolve) {
-    //树形结构加载子节点(2021.05.02),在onInit中设置了rowKey主键字段后才会生效
+    //树形结构Load子Node(2021.05.02),在onInit中SetUp了rowKey主键字段后才会生效
     return resolve([]);
   },
   importDetailAfter(data) {
-    //2022.01.08增加明细表导入后处理
+    //2022.01.08增加明细Table导入后处理
   },
   importExcelAfter(data) {
-    //2022.01.08增加明细表导入后方法判断
+    //2022.01.08增加明细Table导入后方法判断
 
     if (!data.status) {
       return; // this.$message.error(data.message);
     }
-    //明细表导入
+    //明细Table导入
     if (this.boxModel) {
       if (data.data) {
         data.data = JSON.parse(data.data);
@@ -1613,7 +1614,7 @@ let methods = {
         x[this.detail.key] = undefined;
         x[this.table.key] = undefined;
       });
-      this.importDetailAfter(data); //增加明细表导入后处理
+      this.importDetailAfter(data); //增加明细Table导入后处理
       this.$refs.detail.rowData.unshift(...data.data);
       this.upload.excel = false;
       return;
@@ -1636,7 +1637,7 @@ let methods = {
       }`;
     this.http.get(url, {}, true).then((result) => {
       this.workFlowSteps.splice(0);
-      //有可能没有配置审批流程
+      //有可能没有ConfigurationApprovalProcess
       if (!result.list || !result.list.length) {
         result.list = [];
         this.auditParam.showAction = true;
@@ -1700,11 +1701,11 @@ let methods = {
   fullscreen(full){ //弹出框全屏方法
 
   },
-  //查询页面表格合并行或列，见https://element-plus.gitee.io/zh-CN/component/table.html#%E5%90%88%E5%B9%B6%E8%A1%8C%E6%88%96%E5%88%97
+  //QueryPageForm合并行或列，见https://element-plus.gitee.io/zh-CN/component/table.html#%E5%90%88%E5%B9%B6%E8%A1%8C%E6%88%96%E5%88%97
   spanMethod({row,column,rowIndex, columnIndex}){
 
   },
-  //查询页面表格合并行或列，见https://element-plus.gitee.io/zh-CN/component/table.html#%E5%90%88%E5%B9%B6%E8%A1%8C%E6%88%96%E5%88%97
+  //QueryPageForm合并行或列，见https://element-plus.gitee.io/zh-CN/component/table.html#%E5%90%88%E5%B9%B6%E8%A1%8C%E6%88%96%E5%88%97
   detailSpanMethod({row,column,rowIndex, columnIndex}){
 
   }

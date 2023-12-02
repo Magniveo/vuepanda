@@ -43,7 +43,7 @@ const routes = [
         component: () => import('@/views/formDraggable/formDraggable.vue')
       },
       {
-        path: '/formSubmit',  //Form提交页面
+        path: '/formSubmit',  //Form提交Page
         name: 'formSubmit',
         component: () => import('@/views/formDraggable/FormSubmit.vue'),
         meta:{
@@ -51,7 +51,7 @@ const routes = [
         }
       },
       {
-        path: '/formCollectionResultTree',  //显示收集的数据Form
+        path: '/formCollectionResultTree',  //显示收集的DataForm
         name: 'formCollectionResultTree',
         component: () => import('@/views/formDraggable/FormCollectionResultTree.vue'),
         meta:{
@@ -110,7 +110,7 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   if (to.matched.length == 0) return next({ path: '/404' });
-  //2020.06.03增加路由切换时加载提示
+  //2020.06.03增加路由切换时Load提示
   store.dispatch("onLoading", true);
   if ((to.hasOwnProperty('meta') && to.meta.anonymous) || store.getters.isLogin() || to.path == '/login') {
     return next();

@@ -11,10 +11,10 @@ namespace VOL.Core.Infrastructure
 {
     public static class DictionaryHandler
     {
-        /*2020.05.01增加根据用户信息加载字典数据源sql*/
+        /*2020.05.01增加根据User信息LoadDictionaryData源sql*/
 
         /// <summary>
-        /// 获取自定义数据源sql
+        /// 获取CustomizeData源sql
         /// </summary>
         /// <param name="dicNo"></param>
         /// <param name="originalSql"></param>
@@ -24,9 +24,9 @@ namespace VOL.Core.Infrastructure
             switch (dicNo)
             {
                 case "roles":
-                //2020.05.24增加绑定table表时，获取所有的Role_Id列表
-                //注意，如果是2020.05.24之前获取的数据库脚本
-                //请在菜单【下拉框绑定设置】添加一个DicNo【t_roles】,除了DicNo，其他内容随便填写
+                //2020.05.24增加绑定tableTable时，获取所有的Role_IdList
+                //注意，如果是2020.05.24之前获取的Data库脚本
+                //请在DishSingle【Drop-down box binding settings】添加一个DicNo【t_roles】,除了DicNo，OtherContent随便填写
                 case "t_roles":
                 case "tree_roles":
                     originalSql = GetRolesSql(originalSql);
@@ -38,7 +38,7 @@ namespace VOL.Core.Infrastructure
         }
 
         /// <summary>
-        /// 获取解决的数据源，只能看到自己与下级所有Role_Id
+        /// 获取解决的Data源，只能看到自己With下级所有Role_Id
         /// </summary>
         /// <param name="context"></param>
         /// <param name="originalSql"></param>

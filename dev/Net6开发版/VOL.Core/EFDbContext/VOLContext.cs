@@ -15,7 +15,7 @@ namespace VOL.Core.EFDbContext
     public class VOLContext : DbContext, IDependency
     {
         /// <summary>
-        /// 数据库连接ExpertName 
+        /// Data库连接ExpertName 
         /// </summary>
         public string DataBaseName = null;
         public VOLContext()
@@ -57,7 +57,7 @@ namespace VOL.Core.EFDbContext
         //    return base.Set<TEntity>();
         //}
         /// <summary>
-        /// 设置跟踪状态
+        /// SetUp跟踪状态
         /// </summary>
         public bool QueryTracking
         {
@@ -103,7 +103,7 @@ namespace VOL.Core.EFDbContext
                     .Where(x => !x.Serviceable && x.Type != "package" && x.Type == "project");
                 foreach (var _compilation in compilationLibrary)
                 {
-                    //加载指定类
+                    //Load指定类
                     AssemblyLoadContext.Default
                     .LoadFromAssemblyName(new AssemblyName(_compilation.Name))
                     .GetTypes()

@@ -1,7 +1,7 @@
 <!--
 *Author：jxx
  *Contact：283591387@qq.com
- *代码由框架生成,任何更改都可能导致被代码生成器覆盖
+ *代码由框架生成,任何更改都可能导致被CodeGenerationDevice覆盖
  *业务请在@/extension/system/flow/Sys_WorkFlowTableStep.js此处编写
  -->
 <template>
@@ -24,7 +24,7 @@
             const table = ref({
                 key: 'Sys_WorkFlowTableStep_Id',
                 footer: "Foots",
-                cnName: '审批节点',
+                cnName: 'ApprovalNode',
                 name: 'flow/Sys_WorkFlowTableStep',
                 url: "/Sys_WorkFlowTableStep/",
                 sortName: "CreateDate"
@@ -37,8 +37,8 @@
                        {field:'WorkFlowTable_Id',title:'WorkFlowTable_Id',type:'guid',width:110,require:true,align:'left',sort:true},
                        {field:'WorkFlow_Id',title:'WorkFlow_Id',type:'guid',width:110,align:'left'},
                        {field:'StepId',title:'StepId',type:'string',width:120,align:'left'},
-                       {field:'StepName',title:'节ExpertName',type:'string',width:180,align:'left'},
-                       {field:'StepType',title:'审批AppType',type:'int',width:110,align:'left'},
+                       {field:'StepName',title:'StepName',type:'string',width:180,align:'left'},
+                       {field:'StepType',title:'StepType',type:'int',width:110,align:'left'},
                        {field:'StepValue',title:'StepType',type:'int',width:110,align:'left'},
                        {field:'OrderId',title:'OrderId',type:'int',width:110,align:'left'},
                        {field:'Remark',title:'Remark',type:'string',width:220,align:'left'},

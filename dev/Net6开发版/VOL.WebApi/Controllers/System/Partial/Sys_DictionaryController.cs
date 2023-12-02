@@ -18,7 +18,7 @@ namespace VOL.System.Controllers
             return Content(Service.GetVueDictionary(dicNos).Serialize());
         }
         /// <summary>
-        /// table加载数据后刷新当前table数据的字典项(适用字典数据量比较大的情况)
+        /// tableLoadData后刷新当前tableData的字典项(适用DictionaryData量比较大的情况)
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
@@ -39,7 +39,7 @@ namespace VOL.System.Controllers
         }
 
         /// <summary>
-        /// Form设置为Enable查询，重置或第一次添加Form时，获取字典的key、value
+        /// FormSetUp为EnableQuery，重置或第一次添加Form时，获取字典的key、value
         /// </summary>
         /// <param name="dicNo"></param>
         /// <param name="key"></param>
@@ -50,7 +50,7 @@ namespace VOL.System.Controllers
             return Json(await Service.GetRemoteDefaultKeyValue(dicNo, key));
         }
         /// <summary>
-        /// 代码生成器获取所有字典项(超级管理权限)
+        /// CodeGenerationDevice获取所有字典项(超级管理Authority)
         /// </summary>
         /// <returns></returns>
         [HttpPost, Route("GetBuilderDictionary")]

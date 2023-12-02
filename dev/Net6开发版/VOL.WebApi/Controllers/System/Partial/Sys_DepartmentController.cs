@@ -1,6 +1,6 @@
 /*
  *接口编写处...
-*如果接口需要做Action的权限验证，请在Action上使用属性
+*如果接口需要做Action的Authority验证，请在Action上使用属性
 *如: [ApiActionPermission("Sys_Department",Enums.ActionPermissionOptions.Search)]
  */
 using Microsoft.AspNetCore.Mvc;
@@ -43,7 +43,7 @@ namespace VOL.System.Controllers
 
 
         /// <summary>
-        /// treetable 获取子节点数据(2021.05.02)
+        /// treetable 获取子NodeData(2021.05.02)
         /// </summary>
         /// <param name="loadData"></param>
         /// <returns></returns>
@@ -59,14 +59,14 @@ namespace VOL.System.Controllers
         }
 
         /// <summary>
-        /// treetable 获取子节点数据
+        /// treetable 获取子NodeData
         /// </summary>
         /// <returns></returns>
         [HttpPost, Route("getTreeTableRootData")]
         [ApiActionPermission(ActionPermissionOptions.Search)]
         public async Task<ActionResult> GetTreeTableRootData([FromBody] PageDataOptions options)
         {
-            //页面加载根节点数据条件x => x.ParentId == 0,自己根据需要设置
+            //PageLoad根NodeData条件x => x.ParentId == 0,自己根据需要SetUp
             var query = _repository.FindAsIQueryable(x => true);
             if (UserContext.Current.IsSuperAdmin)
             {
@@ -99,14 +99,14 @@ namespace VOL.System.Controllers
         }
 
         /// <summary>
-        ///treetable 获取子节点数据
+        ///treetable 获取子NodeData
         /// </summary>
         /// <returns></returns>
         [HttpPost, Route("getTreeTableChildrenData")]
         [ApiActionPermission(ActionPermissionOptions.Search)]
         public async Task<ActionResult> GetTreeTableChildrenData(Guid departmentId)
         {
-            //点击节点时，加载子节点数据
+            //点击Node时，Load子NodeData
             var query = _repository.FindAsIQueryable(x => true);
             var rows = await query.Where(x => x.ParentId == departmentId)
                 .Select(s => new

@@ -1,6 +1,6 @@
 
 <template>
-   <div style="padding:50px;"><a ref="http://v2.volcore.xyz/app/guide" >点击查看</a></div>
+   <div style="padding:50px;"><a ref="http://v2.volcore.xyz/app/guide" >点击View</a></div>
 </template>
 
 <script>

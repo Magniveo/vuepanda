@@ -22,7 +22,7 @@
             <div v-for="(item, index) in workFlowSteps" :key="index">
               <div class="step-item" :class="{'step-item-ad':item.auditId||item.stepAttrType=='start'}" v-if="item.stepAttrType == 'start'">
                 <div class="left-item">
-                  <div>流程开始</div>
+                  <div>ProcessStart</div>
                   <div class="left-date">{{ item.createDate }}</div>
                 </div>
                 <div class="right-item">
@@ -36,7 +36,7 @@
               </div>
               <div class="step-item" v-else-if="item.stepAttrType == 'end'">
                 <div class="left-item">
-                  <div>流程结束</div>
+                  <div>ProcessEnd</div>
                 </div>
                 <div class="right-item">
                   <div class="step-line"></div>
@@ -48,8 +48,8 @@
               </div>
               <div v-else :class="{ 'step-current': item.isCurrent }" class="step-item">
                 <div class="left-item">
-                  <div>审批时间</div>
-                  <div class="left-date">{{ item.auditDate || '待审批' }}</div>
+                  <div>Approval时间</div>
+                  <div class="left-date">{{ item.auditDate || '待Approval' }}</div>
                 </div>
                 <div class="right-item">
                   <div class="step-line"></div>
@@ -57,7 +57,7 @@
                   <div class="step-title">
                     {{ item.stepName }}
                   </div>
-                  <div class="step-text">审批人：{{ item.auditor }}</div>
+                  <div class="step-text">Approval人：{{ item.auditor }}</div>
                   <div class="step-text">
                     状 态： {{ getAuditStatus(item.auditStatus) }}
                   </div>
@@ -73,7 +73,7 @@
             <el-alert :title="'当前选中【' + rowLen + '】条记录待审核..'" type="success" :closable="false" />
           </div>
           <div class="rd">
-            <span>审批：</span>
+            <span>Approval：</span>
             <el-radio-group style="margin-left:15px" v-model="auditParam.value">
               <el-radio v-for="item in auditParam.data" :key="item.value" :label="item.value">
                 <span>{{ item.text }}</span>
@@ -83,7 +83,7 @@
           <el-input style="padding-top: 10px;" v-model="auditParam.reason" type="textarea"
             :autosize="{ minRows: 4, maxRows: 10 }" placeholder="请输入Remark..."></el-input>
           <div class="btn">
-            <el-button type="primary" @click="auditClick" icon="Check">审批</el-button>
+            <el-button type="primary" @click="auditClick" icon="Check">Approval</el-button>
           </div>
         </div>
       </div>
@@ -130,17 +130,17 @@ export default defineComponent({
       model: false, //审核弹出框
       value: -1, //审核结果
       reason: '', //审核原因
-      //审核选项(main.js里面可以添加其他选项)
+      //审核选项(main.js里面可以添加Other选项)
       data: []
     })
     const { proxy } = getCurrentInstance();
     auditParam.data = proxy.$global.audit.data;
     const tableData = reactive([]);
     const columns = reactive([
-      { title: '节点', field: 'stepName', width: 100 },
-      { title: '审批人', field: 'auditor', width: 80 },
-      { title: '审批结果', field: 'auditStatus', width: 70, bind: { data: [] } },
-      { title: '审批时间', field: 'auditDate', width: 145 },
+      { title: 'Node', field: 'stepName', width: 100 },
+      { title: 'Approval人', field: 'auditor', width: 80 },
+      { title: 'Approval结果', field: 'auditStatus', width: 70, bind: { data: [] } },
+      { title: 'Approval时间', field: 'auditDate', width: 145 },
       { title: 'Remark', field: 'remark', width: 120 }
     ]);
 
@@ -174,7 +174,7 @@ export default defineComponent({
             return proxy.$global.audit.status.some(c => { return c === x[auditStatus] || !x[auditStatus] })
           });
           if (!checkStatus) {
-            proxy.$message.error('只能选择待审批或审核中的数据');
+            proxy.$message.error('只能选择待Approval或审核中的Data');
             return;
           }
           rowLen.value = currentRows.length;
@@ -182,7 +182,7 @@ export default defineComponent({
           width.value = 430;
           height.value = 350;
           isCurrentUser.value = true;
-          //没有审批流程的数据只显示
+          //没有ApprovalProcess的Data只显示
           return;
         }
         model.value = true;
@@ -209,7 +209,7 @@ export default defineComponent({
 
     const auditClick = () => {
       if (auditParam.value == -1) {
-        proxy.$message.error('请选择审批项');
+        proxy.$message.error('请选择Approval项');
         return;
       }
 
@@ -222,7 +222,7 @@ export default defineComponent({
         });
         return;
       }
-      //我的流程中点击审批
+      //我的Process中点击Approval
       //保存审核
       let keys = currentRows.map(x => { return x[currentOption.key] });
       let url = `api/${currentOption.table}/audit?auditReason=${auditParam.reason}&auditStatus=${auditParam.value}`

@@ -1,7 +1,7 @@
 <!--
 *Author：jxx
  *Contact：283591387@qq.com
- *代码由框架生成,任何更改都可能导致被代码生成器覆盖
+ *代码由框架生成,任何更改都可能导致被CodeGenerationDevice覆盖
  *业务请在@/extension/system/Sys_DictionaryList.js此处编写
  -->
 <template>
@@ -26,7 +26,7 @@
                 table: {
                     key: 'DicList_ID',
                     footer: "Foots",
-                    cnName: '字典明细',
+                    cnName: 'DictionaryDetails',
                     name: 'Sys_DictionaryList',
                     url: "/Sys_DictionaryList/",
                     sortName: "DicList_ID"

@@ -10,7 +10,7 @@ namespace VOL.Core.Extensions
     public static class LambdaExtensions
     {
         /// <summary>
-        /// 分页查询
+        /// 分页Query
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="queryable"></param>
@@ -22,7 +22,7 @@ namespace VOL.Core.Extensions
             return queryable.TakeOrderByPage<T>(page, size);
         }
         /// <summary>
-        /// 分页查询
+        /// 分页Query
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="queryable"></param>
@@ -42,7 +42,7 @@ namespace VOL.Core.Extensions
         }
 
         /// <summary>
-        /// 创建lambda表达式：p=>true
+        /// 创建lambdaTable达式：p=>true
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
@@ -52,7 +52,7 @@ namespace VOL.Core.Extensions
         }
 
         /// <summary>
-        /// 创建lambda表达式：p=>false
+        /// 创建lambdaTable达式：p=>false
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
@@ -68,7 +68,7 @@ namespace VOL.Core.Extensions
             return Expression.Parameter(type, "p");
         }
         /// <summary>
-        /// 创建lambda表达式：p=>p.propertyName
+        /// 创建lambdaTable达式：p=>p.propertyName
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <typeparam name="TKey"></typeparam>
@@ -79,7 +79,7 @@ namespace VOL.Core.Extensions
             return propertyName.GetExpression<T, TKey>(typeof(T).GetExpressionParameter());
         }
         /// <summary>
-        /// 创建委托有返回值的表达式：p=>p.propertyName
+        /// 创建委托有返回值的Table达式：p=>p.propertyName
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <typeparam name="TKey"></typeparam>
@@ -91,7 +91,7 @@ namespace VOL.Core.Extensions
         }
 
         /// <summary>
-        /// 创建lambda表达式：p=>false
+        /// 创建lambdaTable达式：p=>false
         /// 在已知TKey字段AppType时,如动态OrderNoOrderBy(x=>x.ID)会用到此功能,返回的就是x=>x.ID
         /// Expression<Func<Out_Scheduling, DateTime>> expression = x => x.CreateDate;指定了AppType
         /// </summary>
@@ -104,7 +104,7 @@ namespace VOL.Core.Extensions
             return Expression.Lambda<Func<T, TKey>>(Expression.Property(parameter, propertyName), parameter);
         }
         /// <summary>
-        /// 创建lambda表达式：p=>false
+        /// 创建lambdaTable达式：p=>false
         /// object不能确认字段AppType(datetime,int,string),如动态OrderNoOrderBy(x=>x.ID)会用到此功能,返回的就是x=>x.ID
         /// Expression<Func<Out_Scheduling, object>> expression = x => x.CreateDate;任意AppType的字段
         /// </summary>
@@ -127,8 +127,8 @@ namespace VOL.Core.Extensions
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="propertyName">字段名</param>
-        /// <param name="propertyValue">表达式的值</param>
-        /// <param name="expressionType">创建表达式的AppType,如:p=>p.propertyName != propertyValue 
+        /// <param name="propertyValue">Table达式的值</param>
+        /// <param name="expressionType">创建Table达式的AppType,如:p=>p.propertyName != propertyValue 
         /// p=>p.propertyName.Contains(propertyValue)</param>
         /// <returns></returns>
         public static Expression<Func<T, bool>> CreateExpression<T>(this string propertyName, object propertyValue, LinqExpressionType expressionType)
@@ -141,8 +141,8 @@ namespace VOL.Core.Extensions
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="propertyName">字段名</param>
-        /// <param name="propertyValue">表达式的值</param>
-        /// <param name="expressionType">创建表达式的AppType,如:p=>p.propertyName != propertyValue 
+        /// <param name="propertyValue">Table达式的值</param>
+        /// <param name="expressionType">创建Table达式的AppType,如:p=>p.propertyName != propertyValue 
         /// p=>p.propertyName.Contains(propertyValue)</param>
         /// <returns></returns>
         private static Expression<Func<T, bool>> CreateExpression<T>(
@@ -152,11 +152,11 @@ namespace VOL.Core.Extensions
           LinqExpressionType expressionType)
         {
             Type proType = typeof(T).GetProperty(propertyName).PropertyType;
-            //创建节点变量如p=>的节点p
+            //创建Node变量如p=>的Nodep
             //  parameter ??= Expression.Parameter(typeof(T), "p");//创建参数p
             parameter = parameter ?? Expression.Parameter(typeof(T), "p");
 
-            //创建节点的属性p=>p.name 属性name
+            //创建Node的属性p=>p.name 属性name
             MemberExpression memberProperty = Expression.PropertyOrField(parameter, propertyName);
             if (expressionType == LinqExpressionType.In)
             {
@@ -177,11 +177,11 @@ namespace VOL.Core.Extensions
 
                 if (isStringValue)
                 {
-                    //string AppType的字段，如果值带有'单引号,EF会默认变成''两个单引号
+                    //string AppType的字段，如果值带有'Single引号,EF会默认变成''两个Single引号
                     MethodInfo method = typeof(System.Collections.IList).GetMethod("Contains");
-                    //创建集合常量并设置为常量的值
+                    //创建集合常量并SetUp为常量的值
                     ConstantExpression constantCollection = Expression.Constant(list);
-                    //创建一个表示调用带参数的方法的：new string[]{"1","a"}.Contains("a");
+                    //创建一个Table示调用带参数的方法的：new string[]{"1","a"}.Contains("a");
                     MethodCallExpression methodCall = Expression.Call(constantCollection, method, memberProperty);
                     return Expression.Lambda<Func<T, bool>>(methodCall, parameter);
                 }
@@ -203,7 +203,7 @@ namespace VOL.Core.Extensions
             ConstantExpression constant = proType.ToString() == "System.String"
                 ? Expression.Constant(propertyValue) : Expression.Constant(propertyValue.ToString().ChangeType(proType));
 
-            // DateTime只选择了Date的时候自动在结束Date加一天，修复DateTimeAppType使用Date区间查询无法查询到结束Date的问题
+            // DateTime只选择了Date的时候自动在EndDate加一天，修复DateTimeAppType使用Date区间QueryNone法Query到EndDate的问题
             if ((proType == typeof(DateTime) || proType == typeof(DateTime?)) && expressionType == LinqExpressionType.LessThanOrEqual && propertyValue.ToString().Length == 10)
             {
                 expressionType = LinqExpressionType.LessThan;
@@ -262,7 +262,7 @@ namespace VOL.Core.Extensions
         }
 
         /// <summary>
-        /// 表达式转换成KeyValList(主要用于多字段OrderNo，并且多个字段的OrderNo规则不一样)
+        /// Table达式转换成KeyValList(主要用于多字段OrderNo，并且多个字段的OrderNo规则不一样)
         /// 如有多个字段进行OrderNo,参数格式为
         ///  Expression<Func<Out_Scheduling, Dictionary<object, bool>>> orderBy = x => new Dictionary<object, bool>() {
         ///            { x.ID, true },
@@ -285,7 +285,7 @@ namespace VOL.Core.Extensions
                  (QueryOrderBy)(
                  exp.Arguments[1] as ConstantExpression != null
                   ? (exp.Arguments[1] as ConstantExpression).Value
-                 //2021.07.04增加自定OrderNo按条件表达式
+                 //2021.07.04增加自定OrderNo按条件Table达式
                  : Expression.Lambda<Func<QueryOrderBy>>(exp.Arguments[1] as Expression).Compile()()
                  ));
             }
@@ -293,7 +293,7 @@ namespace VOL.Core.Extensions
 
 
         /// <summary>
-        /// 表达式转换成KeyValList(主要用于多字段OrderNo，并且多个字段的OrderNo规则不一样)
+        /// Table达式转换成KeyValList(主要用于多字段OrderNo，并且多个字段的OrderNo规则不一样)
         /// 如有多个字段进行OrderNo,参数格式为
         ///  Expression<Func<Out_Scheduling, Dictionary<object, QueryOrderBy>>> orderBy = x => new Dictionary<object, QueryOrderBy>() {
         ///            { x.ID, QueryOrderBy.Desc },
@@ -342,7 +342,7 @@ namespace VOL.Core.Extensions
         }
 
         /// <summary>
-        /// 获取对象表达式指定属性的值
+        /// 获取对象Table达式指定属性的值
         /// 如获取:Out_Scheduling对象的ID或基他字段
         /// </summary>
         /// <typeparam name="TEntity"></typeparam>
@@ -363,18 +363,18 @@ namespace VOL.Core.Extensions
         }
 
         /// <summary>
-        /// 与下面and生成方式有所不同，如果直接用表达式1.2进行合并产会提示数据源不同的异常，只能使用下面的的and合并
-        /// 此种合并是在使用的同一个数据源(变量),生成的DbSql同样有性能问题(本身可以索引扫描的,生成的DbSql的case when变成索引查找)
+        /// With下面and生成方式有所不同，如果直接用Table达式1.2进行合并产会提示Data源不同的异常，只能使用下面的的and合并
+        /// 此种合并是在使用的同一个Data源(变量),生成的DbSql同样有性能问题(本身可以索引扫描的,生成的DbSql的case when变成索引查找)
         /// <summary>
-        /// 通过字段动态生成where and /or表达
+        /// 通过字段动态生成where and /orTable达
         /// 如:有多个where条件，当条件成立时where 1=1 and/or 2=2,依次往后拼接
         /// 
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="listParas">ExpressionParameters
         /// 1、Field生成的字段
-        /// 2、ExpressionType 表达式AppType大于、小于、于大=、小于=、contains
-        /// 3、Value表达式的值
+        /// 2、ExpressionType Table达式AppType大于、小于、于大=、小于=、contains
+        /// 3、ValueTable达式的值
         /// </param>
         /// <returns></returns>
         public static Expression<Func<T, bool>> And<T>(List<ExpressionParameters> listExpress)
@@ -410,8 +410,8 @@ namespace VOL.Core.Extensions
         }
         /// <summary>
         /// https://blogs.msdn.microsoft.com/meek/2008/05/02/linq-to-entities-combining-predicates/
-        /// 表达式合并(合并生产的DbSql有性能问题)
-        /// 合并两个where条件，如：多个查询条件时，判断条件成立才where
+        /// Table达式合并(合并生产的DbSql有性能问题)
+        /// 合并两个where条件，如：多个Query条件时，判断条件成立才where
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="first"></param>
@@ -442,9 +442,9 @@ namespace VOL.Core.Extensions
         }
 
         /// <summary>
-        /// 动态创建表达式Expression<Func<Animal, User>> expression = CreateMemberInitExpression<Animal, User>();
+        /// 动态创建Table达式Expression<Func<Animal, User>> expression = CreateMemberInitExpression<Animal, User>();
         ///结果为Expression<Func<Animal, User>> expression1 = x => new User() { Age = x.Age, Species = x.Species };
-        ///参照文档https://docs.microsoft.com/zh-cn/dotnet/api/system.linq.expressions.memberinitexpression?redirectedfrom=MSDN&view=netframework-4.8
+        ///参照Documenthttps://docs.microsoft.com/zh-cn/dotnet/api/system.linq.expressions.memberinitexpression?redirectedfrom=MSDN&view=netframework-4.8
         /// </summary>
         /// <typeparam name="Source"></typeparam>
         /// <typeparam name="Result"></typeparam>

@@ -91,7 +91,7 @@ namespace VOL.Core.CacheManager
         /// </summary>
         /// <param name="key">缓存Key</param>
         /// <param name="value">缓存Value</param>
-        /// <param name="expiresSliding">滑动过期ElapsedTime（如果在过期时间内有操作，则以当前时间点延长过期时间）</param>
+        /// <param name="expiresSliding">滑动过期ElapsedTime（如果在过期时间内有Operation，则以当前时间点延长过期时间）</param>
         /// <param name="expiressAbsoulte">绝对过期ElapsedTime</param>
         /// <returns></returns>
         public bool Add(string key, object value, TimeSpan expiresSliding, TimeSpan expiressAbsoulte)
@@ -110,7 +110,7 @@ namespace VOL.Core.CacheManager
         /// <param name="key">缓存Key</param>
         /// <param name="value">缓存Value</param>
         /// <param name="expiresIn">缓存ElapsedTime</param>
-        /// <param name="isSliding">是否滑动过期（如果在过期时间内有操作，则以当前时间点延长过期时间）</param>
+        /// <param name="isSliding">是否滑动过期（如果在过期时间内有Operation，则以当前时间点延长过期时间）</param>
         /// <returns></returns>
         public bool Add(string key, object value, TimeSpan expiresIn, bool isSliding = false)
         {

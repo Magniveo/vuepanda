@@ -104,7 +104,7 @@ namespace VOL.Core.Dapper
 
 
         /// <summary>
-        /// sqlserver使用的临时表参数化批量更新，mysql批量更新待发开
+        /// sqlserver使用的临时Table参数化批量更新，mysql批量更新待发开
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="entity">实体必须带主键</param>
@@ -114,7 +114,7 @@ namespace VOL.Core.Dapper
         int Update<T>(T entity, Expression<Func<T, object>> updateFileds = null, bool beginTransaction = false);
 
         /// <summary>
-        /// sqlserver使用的临时表参数化批量更新，mysql批量更新待发开
+        /// sqlserver使用的临时Table参数化批量更新，mysql批量更新待发开
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="entity">实体必须带主键</param>
@@ -135,7 +135,7 @@ namespace VOL.Core.Dapper
         int DelWithKey<T, KeyType>(IEnumerable<KeyType> keys);
         /// <summary>
         ///  sqlserver批量写入
-        /// 使用时DataTable table表字段顺序要和数据库字段顺序一致
+        /// 使用时DataTable tableTable字段顺序要和Data库字段顺序一致
         /// <summary>
         /// mysql批量写入
         /// </summary>

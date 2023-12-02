@@ -1,6 +1,6 @@
 <template>
   <div style="height: 100%">
-    <redirect-error :text="text" message="请求确认是否配置权限" :errorNumber="errorNumber"></redirect-error>
+    <redirect-error :text="text" message="请求确认是否ConfigurationAuthority" :errorNumber="errorNumber"></redirect-error>
   </div>
 </template>
   <script>
@@ -12,7 +12,7 @@ export default {
   data() {
     return {
       errorNumber: "401",
-      text: "抱歉，您没有权限进行此操作~",
+      text: "抱歉，您没有Authority进行此Operation~",
     };
   },
 };

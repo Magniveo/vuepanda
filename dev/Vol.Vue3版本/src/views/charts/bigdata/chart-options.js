@@ -209,7 +209,7 @@ let chartLeft2 = {
       }
     }, {
       type: "bar",
-      name: "订单",
+      name: "Order",
       data: [1000, 750, 380, 450, 450, 120],
       barWidth: "25%",
       itemStyle: {
@@ -226,7 +226,7 @@ let chartLeft2 = {
 let chartLeft3 = {
   tooltip: {
     trigger: 'axis',
-    axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+    axisPointer: {            // 坐标轴指示Device，坐标轴触发有效
       type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
     }
   },
@@ -328,7 +328,7 @@ let chartRight1 = {
   legend: {
     top: "0%",
     icon: "roundRect",
-    data: ["销售订单", "退货订单", "折扣订单"],
+    data: ["SalesOrder", "ReturnOrder", "折扣Order"],
     textStyle: {
       color: "rgba(255,255,255,.5)",
       fontSize: "12"
@@ -397,7 +397,7 @@ let chartRight1 = {
   ],
   series: [
     {
-      name: "销售订单",
+      name: "SalesOrder",
       type: "line",
       smooth: true,
       lineStyle: {
@@ -419,7 +419,7 @@ let chartRight1 = {
       data: [5, 22, 150, 54, 1, 230, 4, 1]
     },
     {
-      name: "退货订单",
+      name: "ReturnOrder",
       type: "line",
 
       smooth: true,
@@ -442,7 +442,7 @@ let chartRight1 = {
       data: [10, 150, 1, 250, 20, 100, 10, 150]
     },
     {
-      name: "折扣订单",
+      name: "折扣Order",
       type: "line",
 
       lineStyle: {

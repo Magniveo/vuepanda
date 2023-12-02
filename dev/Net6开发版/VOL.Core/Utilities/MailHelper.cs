@@ -29,32 +29,32 @@ namespace VOL.Core.Utilities
         }
 
         /// <summary>
-        /// 发送邮件
+        /// Send邮件
         /// </summary>
         /// <param name="title">Title</param>
-        /// <param name="content">内容</param>
+        /// <param name="content">Content</param>
         /// <param name="list">收件人</param>
         public static void Send(string title, string content, params string[] list)
         {
             MailMessage message = new MailMessage
             {
-                From = new MailAddress(address, name)//发送人邮箱
+                From = new MailAddress(address, name)//Send人邮箱
             };
             foreach (var item in list)
             {
                 message.To.Add(item);//收件人Address
             }
 
-            message.Subject = title;//发送邮件的Title
+            message.Subject = title;//Send邮件的Title
 
-            message.Body = content;//发送邮件的内容
+            message.Body = content;//Send邮件的Content
             //配置smtp服务Address
             SmtpClient client = new SmtpClient
             {
                 Host = host,
                 Port = port,//端口587
                 EnableSsl = enableSsl,
-                //发送人邮箱与授权UserPwd
+                //Send人邮箱With授权UserPwd
                 Credentials = new NetworkCredential(address, authPwd)
             };
             client.Send(message);

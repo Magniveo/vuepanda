@@ -61,7 +61,7 @@ export default defineComponent({
       default: (x) => { },
     },
     openSelect: {
-      //打开的时候是否触发选中事件
+      //打开的时候是否触发选中Event
       type: Boolean,
       default: true,
     },
@@ -160,8 +160,8 @@ export default defineComponent({
     const handleClose = () => { };
 
     /**
-     * 菜单导航右键事件
-     * @param {*} enable Enable右键事件[true:启用;false:禁用;]
+     * DishSingle导航右键Event
+     * @param {*} enable Enable右键Event[true:启用;false:禁用;]
      */
     const bindRightClickMenu = (enable) => {
       if (!enable) return;

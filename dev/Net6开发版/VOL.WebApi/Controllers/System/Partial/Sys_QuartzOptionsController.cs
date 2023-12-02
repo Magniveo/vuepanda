@@ -1,6 +1,6 @@
 /*
  *接口编写处...
-*如果接口需要做Action的权限验证，请在Action上使用属性
+*如果接口需要做Action的Authority验证，请在Action上使用属性
 *如: [ApiActionPermission("Sys_QuartzOptions",Enums.ActionPermissionOptions.Search)]
  */
 using Microsoft.AspNetCore.Mvc;
@@ -57,7 +57,7 @@ namespace VOL.System.Controllers
 
 
         /// <summary>
-        /// 手动执行一次
+        /// 手动Execute一次
         /// </summary>
         /// <param name="taskOptions"></param>
         /// <returns></returns>
@@ -81,7 +81,7 @@ namespace VOL.System.Controllers
         }
 
         /// <summary>
-        /// 暂停任务
+        /// Pause任务
         /// </summary>
         /// <param name="schedulerFactory"></param>
         /// <param name="taskOptions"></param>

@@ -2,7 +2,7 @@
 <template>
   <div id="big-data-container" class="big-data-container">
     <div class="head">
-      <h1>大屏数据统计分析显示</h1>
+      <h1>大屏Data统计分析显示</h1>
     </div>
     <div class="data-container">
       <div class="data-left">
@@ -18,7 +18,7 @@
           <div class="data-foot-line"></div>
         </div>
         <div class="data-left-item">
-          <div class="title">7日订单销量</div>
+          <div class="title">7日Order销量</div>
           <div id="chart-vleft-2" style="height: calc(100% - 30px)"></div>
           <div class="data-foot-line"></div>
         </div>
@@ -35,7 +35,7 @@
             <div class="num">58,000,000</div>
           </div>
           <div class="item">
-            <div class="text">购买用户人数</div>
+            <div class="text">购买User人数</div>
             <div class="num">15,000</div>
           </div>
           <div class="data-foot-line"></div>
@@ -44,12 +44,12 @@
           class="center-top"
           style="height: 260px; padding-top: 25px; overflow: hidden"
         >
-          <!-- <div class="title">用户活跃信息-1</div> -->
+          <!-- <div class="title">User活跃信息-1</div> -->
           <div id="chart-vgauge-1" style="height: 400px"></div>
           <!-- <iview-circle :size="200" style="padding: 8px 0;"></iview-circle> -->
           <div class="data-foot-line"></div>
         </div>
-        <div class="title">订单销售统计</div>
+        <div class="title">Order销售统计</div>
         <div id="chart-vcenter" style="height:400px;" class="chart-vcenter"></div>
       </div>
       <div class="data-right">
@@ -59,7 +59,7 @@
           <div class="data-foot-line"></div>
         </div>
         <div class="data-right-item" style="height: 220px; padding-top: 25px">
-          <!-- <div class="title">用户活跃信息</div> -->
+          <!-- <div class="title">User活跃信息</div> -->
           <!-- <iview-circle></iview-circle> -->
           <div id="chart-vgauge-2" style="height: 300px"></div>
           <div class="data-foot-line"></div>
@@ -69,7 +69,7 @@
           <div id="chart-vright-3" class="right-item">
             <div class="item">
               <div class="top">排名</div>
-              <div class="pro-name">商品ExpertName</div>
+              <div class="pro-name">ProductName</div>
               <div class="num">销量</div>
               <div class="num">销售金额</div>
             </div>

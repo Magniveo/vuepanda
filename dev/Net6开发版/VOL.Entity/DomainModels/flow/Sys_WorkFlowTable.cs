@@ -1,6 +1,6 @@
 /*
- *代码由框架生成,任何更改都可能导致被代码生成器覆盖
- *如果数据库字段发生变化，请在代码生器重新生成此Model
+ *代码由框架生成,任何更改都可能导致被CodeGenerationDevice覆盖
+ *如果Data库字段发生变化，请在代码生Device重新生成此Model
  */
 using System;
 using System.Collections.Generic;
@@ -13,7 +13,7 @@ using VOL.Entity.SystemModels;
 
 namespace VOL.Entity.DomainModels
 {
-    [Entity(TableCnName = "审批流程",TableName = "Sys_WorkFlowTable",DetailTable =  new Type[] { typeof(Sys_WorkFlowTableStep)},DetailTableCnName = "审批节点")]
+    [Entity(TableCnName = "ApprovalProcess",TableName = "Sys_WorkFlowTable",DetailTable =  new Type[] { typeof(Sys_WorkFlowTableStep)},DetailTableCnName = "ApprovalNode")]
     public partial class Sys_WorkFlowTable:BaseEntity
     {
         /// <summary>
@@ -57,9 +57,9 @@ namespace VOL.Entity.DomainModels
        public string WorkTable { get; set; }
 
        /// <summary>
-       ///业务ExpertName
+       ///WorkTableName
        /// </summary>
-       [Display(Name ="业务ExpertName")]
+       [Display(Name ="WorkTableName")]
        [MaxLength(200)]
        [Column(TypeName="nvarchar(200)")]
        public string WorkTableName { get; set; }
@@ -88,9 +88,9 @@ namespace VOL.Entity.DomainModels
        public int? CurrentOrderId { get; set; }
 
        /// <summary>
-       ///审批状态
+       ///AuditStatus
        /// </summary>
-       [Display(Name ="审批状态")]
+       [Display(Name ="AuditStatus")]
        [Column(TypeName="int")]
        public int? AuditStatus { get; set; }
 
@@ -145,7 +145,7 @@ namespace VOL.Entity.DomainModels
        [Column(TypeName="int")]
        public int? ModifyID { get; set; }
 
-       [Display(Name ="审批节点")]
+       [Display(Name ="ApprovalNode")]
        [ForeignKey("WorkFlowTable_Id")]
        public List<Sys_WorkFlowTableStep> Sys_WorkFlowTableStep { get; set; }
 

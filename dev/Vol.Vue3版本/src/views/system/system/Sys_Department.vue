@@ -1,7 +1,7 @@
 <!--
 *Author：jxx
  *Contact：283591387@qq.com
- *代码由框架生成,任何更改都可能导致被代码生成器覆盖
+ *代码由框架生成,任何更改都可能导致被CodeGenerationDevice覆盖
  *业务请在@/extension/system/system/Sys_Department.js此处编写
  -->
 <template>
@@ -30,14 +30,14 @@
                 sortName: "CreateDate"
             });
             const editFormFields = ref({"DepartmentName":"","DepartmentCode":"","ParentId":[],"Remark":""});
-            const editFormOptions = ref([[{"title":"组织ExpertName","required":true,"field":"DepartmentName"}],
+            const editFormOptions = ref([[{"title":"DepartmentName","required":true,"field":"DepartmentName"}],
                               [{"title":"DepartmentCode","field":"DepartmentCode"}],
                               [{"dataKey":"organization","data":[],"title":"ParentId","field":"ParentId","type":"cascader"}],
                               [{"title":"Remark","field":"Remark","type":"textarea"}]]);
             const searchFormFields = ref({"DepartmentName":"","DepartmentCode":"","Creator":"","CreateDate":""});
-            const searchFormOptions = ref([[{"title":"组织ExpertName","field":"DepartmentName","type":"like"},{"title":"DepartmentCode","field":"DepartmentCode"},{"title":"Creator","field":"Creator"},{"title":"CreateDate","field":"CreateDate","type":"datetime"}]]);
+            const searchFormOptions = ref([[{"title":"DepartmentName","field":"DepartmentName","type":"like"},{"title":"DepartmentCode","field":"DepartmentCode"},{"title":"Creator","field":"Creator"},{"title":"CreateDate","field":"CreateDate","type":"datetime"}]]);
             const columns = ref([{field:'DepartmentId',title:'DepartmentId',type:'guid',width:110,hidden:true,readonly:true,require:true,align:'left'},
-                       {field:'DepartmentName',title:'组织ExpertName',type:'string',link:true,width:180,require:true,align:'left',sort:true},
+                       {field:'DepartmentName',title:'DepartmentName',type:'string',link:true,width:180,require:true,align:'left',sort:true},
                        {field:'DepartmentCode',title:'DepartmentCode',type:'string',width:90,align:'left'},
                        {field:'ParentId',title:'ParentId',type:'guid',bind:{ key:'organization',data:[]},width:110,hidden:true,align:'left'},
                        {field:'DepartmentType',title:'DepartmentType',type:'string',width:110,hidden:true,align:'left'},

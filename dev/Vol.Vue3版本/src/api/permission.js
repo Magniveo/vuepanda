@@ -4,11 +4,12 @@ import buttons from '@/../config/buttons.js'
 import store from '../store/index'
 import { useRouter } from 'vue-router'
 let permission = {
+  
     getMenu() {
         return http.get("/api/getTreeMenu");
     }, getButtons(path, extra, table, tableName) {//extra自定额外按钮
        //extra自定额外按钮
-    //table获取指定表的权限
+    //table获取指定Table的Authority
     if (table) {
         table = '/' + table;
       }
@@ -30,7 +31,9 @@ let permission = {
           }
         }
       }
-  
+      buttons.forEach(element => {
+        element.name = window.locales[window.localei18n.locale][element.name];
+      });
       let permissions = permission.permission; //.split(',');
       let gridButtons = buttons.filter((item) => {
         return !item.value || permissions.indexOf(item.value) != -1;

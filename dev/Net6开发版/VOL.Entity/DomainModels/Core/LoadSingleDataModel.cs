@@ -22,7 +22,7 @@ namespace VOL.Entity.DomainModels
         public bool Export { get; set; }
         public object Value { get; set; }
         /// <summary>
-        /// 查询条件
+        /// Query条件
         /// </summary>
         public List<SearchParameters> Filter { get; set; }
     }
@@ -30,7 +30,7 @@ namespace VOL.Entity.DomainModels
     {
         public string Name { get; set; }
         public string Value { get; set; }
-        //查询AppType：LinqExpressionType
+        //QueryAppType：LinqExpressionType
         public string DisplayType { get; set; }
     }
 

@@ -8,7 +8,7 @@ let formFields1 = {
     IsTop: "还没想好..."
 }
 let formRules1 = [
-    //两列的Form，formRules数据格式为:[[{},{}]]
+    //两列的Form，formRulesData格式为:[[{},{}]]
     [
         {
             link:true,
@@ -21,19 +21,19 @@ let formRules1 = [
         },
         {
             title: "多选Date",
-            range: true, //设置为true可以选择开始与结束Date
+            range: true, //SetUp为true可以选择StartWithEndDate
             required: false,
             field: "DateRange",
-            //   colSize: 4,//设置宽度为1/3
+            //   colSize: 4,//SetUp宽度为1/3
             type: "date"
         }
     ],
     [
         {
-            dataKey: "age", //后台下拉框对应的数据DicNo
-            data: [], //loadKey设置为true,会根据dataKey从后台的下拉框数据源中自动加载数据
+            dataKey: "age", //后台下拉框对应的DataDicNo
+            data: [], //loadKeySetUp为true,会根据dataKey从后台的下拉框Data源中自动LoadData
             title: "下拉",
-            required: true, //设置为必选项
+            required: true, //SetUp为必选项
             field: "AgeRange",
             type: "select"
         },
@@ -41,8 +41,8 @@ let formRules1 = [
             title: "Date",
             required: true,
             field: "Date",
-            placeholder: "你可以设置colSize属性决定标签的长度，可选值12/8/6/4",
-            //  colSize: 8,//设置宽度为2/3
+            placeholder: "你可以SetUpcolSize属性决定标签的长度，可选值12/8/6/4",
+            //  colSize: 8,//SetUp宽度为2/3
             type: "datetime"
         }
     ],
@@ -50,8 +50,8 @@ let formRules1 = [
         {
             title: "Modifier",
             dataKey: "age",
-            placeholder: "此处数据源为手动绑定",
-            //如果这里绑定了data数据，后台不会加载此数据源
+            placeholder: "此处Data源为手动绑定",
+            //如果这里绑定了dataData，后台不会Load此Data源
             data: [{ key: "1", value: "Modifier1" }, { key: "2", value: "Modifier2" }],
             required: false,
             field: "Variety",
@@ -70,7 +70,7 @@ let formRules1 = [
             title: "Remark",
             required: true,
             field: "IsTop",
-            colSize: 12, //设置12，此列占100%宽度
+            colSize: 12, //SetUp12，此列占100%宽度
             type: "textarea"
         }
     ]
@@ -88,12 +88,12 @@ let formFields2 = {
     IsChange: 1
 }
 let formRules2 = [
-    //两列的Form，formRules数据格式为:[[{},{}]]
+    //两列的Form，formRulesData格式为:[[{},{}]]
     [
         {
             title: "商品AppType",
             dataKey: "age",
-            //如果这里绑定了data数据，后台不会加载此数据源
+            //如果这里绑定了dataData，后台不会Load此Data源
             data: [{ key: "1", value: "1" }, { key: "2", value: "2" }],
             field: "Variety",
             disabled: true,
@@ -138,7 +138,7 @@ let formRules2 = [
         {
             title: "是否成交",
             field: "IsChange",
-            dataKey: "enable",//这里设置了数据字典源的编号会自动从后台加载数据源的key/value
+            dataKey: "enable",//这里SetUp了Data字典源的编号会自动从后台LoadData源的key/value
             data: [],
             disabled: true
         }]

@@ -22,7 +22,7 @@ export default {
     },
     message: {
       type: String,
-      default: "页面未找到！",
+      default: "Page未找到！",
     },
     text: {
       type: String,

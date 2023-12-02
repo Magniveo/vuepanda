@@ -13,7 +13,7 @@ namespace VOL.System.IServices
     {
 
         /// <summary>
-        /// 手动执行一次
+        /// 手动Execute一次
         /// </summary>
         /// <param name="taskOptions"></param>
         /// <returns></returns>
@@ -26,7 +26,7 @@ namespace VOL.System.IServices
         /// <returns></returns>
         Task<object> Start(Sys_QuartzOptions taskOptions);
         /// <summary>
-        /// 暂停任务
+        /// Pause任务
         /// </summary>
         /// <param name="schedulerFactory"></param>
         /// <param name="taskOptions"></param>

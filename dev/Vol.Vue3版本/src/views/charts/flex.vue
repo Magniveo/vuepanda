@@ -2,7 +2,7 @@
   <div class="home-contianer">
     <div>
       <div class="order-title">
-        <h2>订单统计</h2>
+        <h2>Order统计</h2>
       </div>
       <div
         data-v-542f4644
@@ -43,7 +43,7 @@
       </div>
 
       <div class="order-title">
-        <h2>订单查询</h2>
+        <h2>OrderQuery</h2>
       </div>
      
       <div class="order-range">
@@ -78,7 +78,7 @@ export default {
       n: 90,
       topColor: [
         {
-          name: "订单数",
+          name: "Order数",
           desc: "#205",
           background: "rgb(25, 190, 107)",
           icon: "el-icon-shopping-cart-full",
@@ -94,7 +94,7 @@ export default {
           key: "total",
         },
         {
-          name: "待发货",
+          name: "待Delivery",
           desc: "#412",
           background: "#f2b458",
           icon: "el-icon-shopping-cart-1",
@@ -118,7 +118,7 @@ export default {
           key: "completed",
         },
         {
-          name: "退货订单",
+          name: "ReturnOrder",
           desc: "#12",
           background: "rgb(237, 64, 20)",
           icon: "el-icon-data-analysis",
@@ -128,7 +128,7 @@ export default {
       ],
       totalRange: [
         {
-          name: "订单数",
+          name: "Order数",
           desc: "#205",
           background: "rgb(25, 190, 107)",
           icon: "ios-cart",
@@ -144,7 +144,7 @@ export default {
           key: "total",
         },
         {
-          name: "待发货",
+          name: "待Delivery",
           desc: "#412",
           background: "rgb(255, 153, 0)",
           icon: "md-bus",
@@ -168,7 +168,7 @@ export default {
           key: "completed",
         },
         {
-          name: "退货订单",
+          name: "ReturnOrder",
           desc: "#12",
           background: "rgb(237, 64, 20)",
           icon: "ios-navigate",

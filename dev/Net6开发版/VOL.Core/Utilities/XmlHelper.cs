@@ -38,7 +38,7 @@ namespace Rattan.Basic.Utility
 			set { this._name = value; }
 		}
 		/// <summary>
-		/// 节点文本
+		/// Node文本
 		/// </summary>
 		public string InnerText
 		{
@@ -46,7 +46,7 @@ namespace Rattan.Basic.Utility
 			set { this._innerText = value; }
 		}
 		/// <summary>
-		/// 节点前缀xmlns声明(命名空间URI)
+		/// Node前缀xmlns声明(命名空间URI)
 		/// </summary>
 		public string NamespaceOfPrefix
 		{
@@ -108,7 +108,7 @@ namespace Rattan.Basic.Utility
 		}
 		private static string _configName = "XmlPath";
 		/// <summary>
-		/// 配置文件StepName，请设置在AppSettings节点下
+		/// 配置文件StepName，请SetUp在AppSettingsNode下
 		/// </summary>
 		public static string ConfigName
 		{
@@ -133,10 +133,10 @@ namespace Rattan.Basic.Utility
 
 		#region private AppendChild
 		/// <summary>
-		/// 添加一个子节点
+		/// 添加一个子Node
 		/// </summary>
 		/// <param name="xDoc">XmlDocument对象</param>
-		/// <param name="parentNode">父节点</param>
+		/// <param name="parentNode">父Node</param>
 		/// <param name="xlParameter">Xml参数</param>
 		private static void AppendChild(XmlDocument xDoc, XmlNode parentNode, params XmlParameter[] xlParameter)
 		{
@@ -195,7 +195,7 @@ namespace Rattan.Basic.Utility
 
 		#region CreateXmlFile
 		/// <summary>
-		/// 创建一个XML文档，成功创建后操作路径将直接指向该文件
+		/// 创建一个XMLDocument，Success创建后Operation路径将直接指向该文件
 		/// </summary>
 		/// <param name="fileName">文件物理路径名</param>
 		/// <param name="rootNode">根结点ExpertName</param>
@@ -222,7 +222,7 @@ namespace Rattan.Basic.Utility
 			}
 		}
 		/// <summary>
-		/// 创建一个XML文档，成功创建后操作路径将直接指向该文件
+		/// 创建一个XMLDocument，Success创建后Operation路径将直接指向该文件
 		/// </summary>
 		/// <param name="fileName">文件物理路径名</param>
 		/// <param name="xmlString">xml字符串</param>
@@ -241,9 +241,9 @@ namespace Rattan.Basic.Utility
 
 		#region AddNewNode
 		/// <summary>
-		/// 添加新节点
+		/// 添加新Node
 		/// </summary>
-		/// <param name="parentNode">新节点的父节点对象</param>
+		/// <param name="parentNode">新Node的父Node对象</param>
 		/// <param name="xmlParameter">Xml参数对象</param>
 		public static void AddNewNode(XmlNode parentNode, params XmlParameter[] xmlParameter)
 		{
@@ -261,10 +261,10 @@ namespace Rattan.Basic.Utility
 			xDoc.Save(_xPath);
 		}
 		/// <summary>
-		/// 添加新节点
+		/// 添加新Node
 		/// </summary>
 		/// <param name="xDoc">XmlDocument对象</param>
-		/// <param name="parentName">新节点的父StepName</param>
+		/// <param name="parentName">新Node的父StepName</param>
 		/// <param name="xmlParameter">XML参数对象</param>
 		public static void AddNewNode(string parentName, params XmlParameter[] xmlParameter)
 		{
@@ -289,8 +289,8 @@ namespace Rattan.Basic.Utility
 		/// <summary>
 		/// 添加StepAttrType
 		/// </summary>
-		/// <param name="node">节点对象</param>
-		/// <param name="namespaceOfPrefix">该节点的命名空间URI</param>
+		/// <param name="node">Node对象</param>
+		/// <param name="namespaceOfPrefix">该Node的命名空间URI</param>
 		/// <param name="attributeName">新属性ExpertName</param>
 		/// <param name="attributeValue">属性值</param>
 		public static void AddAttribute(XmlNode node, string namespaceOfPrefix, string attributeName, string attributeValue)
@@ -305,8 +305,8 @@ namespace Rattan.Basic.Utility
 		/// <summary>
 		/// 添加StepAttrType
 		/// </summary>
-		/// <param name="node">节点对象</param>
-		/// <param name="namespaceOfPrefix">该节点的命名空间URI</param>
+		/// <param name="node">Node对象</param>
+		/// <param name="namespaceOfPrefix">该Node的命名空间URI</param>
 		/// <param name="attributeParameters">StepAttrType参数</param>
 		public static void AddAttribute(XmlNode node, string namespaceOfPrefix, params AttributeParameter[] attributeParameters)
 		{
@@ -324,7 +324,7 @@ namespace Rattan.Basic.Utility
 		/// 添加StepAttrType
 		/// </summary>
 		/// <param name="nodeName">StepName</param>
-		/// <param name="namespaceOfPrefix">该节点的命名空间URI</param>
+		/// <param name="namespaceOfPrefix">该Node的命名空间URI</param>
 		/// <param name="attributeName">新属性ExpertName</param>
 		/// <param name="attributeValue">属性值</param>
 		public static void AddAttribute(string nodeName, string namespaceOfPrefix, string attributeName, string attributeValue)
@@ -343,7 +343,7 @@ namespace Rattan.Basic.Utility
 		/// 添加StepAttrType
 		/// </summary>
 		/// <param name="nodeName">StepName</param>
-		/// <param name="namespaceOfPrefix">该节点的命名空间URI</param>
+		/// <param name="namespaceOfPrefix">该Node的命名空间URI</param>
 		/// <param name="attributeParameters">StepAttrType参数</param>
 		public static void AddAttribute(string nodeName, string namespaceOfPrefix, params AttributeParameter[] attributeParameters)
 		{
@@ -361,7 +361,7 @@ namespace Rattan.Basic.Utility
 
 		#region GetNode
 		/// <summary>
-		/// 获取指定StepName的节点对象
+		/// 获取指定StepName的Node对象
 		/// </summary>
 		/// <param name="nodeName">StepName</param>
 		/// <returns></returns>
@@ -370,21 +370,21 @@ namespace Rattan.Basic.Utility
 			XmlDocument xDoc = GetXmlDom();
 			if (xDoc.DocumentElement.Name == nodeName) return (XmlNode)xDoc.DocumentElement;
 			XmlNodeList nlst = xDoc.DocumentElement.ChildNodes;
-			foreach (XmlNode xns in nlst)  // 遍历所有子节点
+			foreach (XmlNode xns in nlst)  // 遍历所有子Node
 			{
 				if (xns.Name == nodeName) return xns;
 				else
 				{
 					XmlNode xn = GetNode(xns, nodeName);
-					if (xn != null) return xn;  /// V1.0.0.3添加节点判断
+					if (xn != null) return xn;  /// V1.0.0.3添加Node判断
 				}
 			}
 			return null;
 		}
 		/// <summary>
-		/// 获取指定StepName的节点对象
+		/// 获取指定StepName的Node对象
 		/// </summary>
-		/// <param name="node">节点对象</param>
+		/// <param name="node">Node对象</param>
 		/// <param name="nodeName">StepName</param>
 		/// <returns></returns>
 		public static XmlNode GetNode(XmlNode node, string nodeName)
@@ -401,9 +401,9 @@ namespace Rattan.Basic.Utility
 			return null;
 		}
 		/// <summary>
-		/// 获取指定StepName的节点对象
+		/// 获取指定StepName的Node对象
 		/// </summary>
-		/// <param name="index">节点索引</param>
+		/// <param name="index">Node索引</param>
 		/// <param name="nodeName">StepName</param>
 		public static XmlNode GetNode(int index, string nodeName)
 		{
@@ -418,11 +418,11 @@ namespace Rattan.Basic.Utility
 			return null;
 		}
 		/// <summary>
-		/// 获取指定StepName的节点对象
+		/// 获取指定StepName的Node对象
 		/// </summary>
-		/// <param name="node">节点对象</param>
+		/// <param name="node">Node对象</param>
 		/// <param name="nodeName">StepName</param>
-		/// <param name="innerText">节点内容</param>
+		/// <param name="innerText">NodeContent</param>
 		public static XmlNode GetNode(XmlNode node, string nodeName, string innerText)
 		{
 			foreach (XmlNode xn in node)
@@ -437,15 +437,15 @@ namespace Rattan.Basic.Utility
 			return null;
 		}
 		/// <summary>
-		/// 获取指定StepName的节点对象
+		/// 获取指定StepName的Node对象
 		/// </summary>
 		/// <param name="nodeName">StepName</param>
-		/// <param name="innerText">节点内容</param>
+		/// <param name="innerText">NodeContent</param>
 		public static XmlNode GetNode(string nodeName, string innerText)
 		{
 			XmlDocument xDoc = GetXmlDom();
 			XmlNodeList nlst = xDoc.DocumentElement.ChildNodes;
-			foreach (XmlNode xns in nlst)  // 遍历所有子节点
+			foreach (XmlNode xns in nlst)  // 遍历所有子Node
 			{
 				if (xns.Name == nodeName && xns.InnerText == innerText) return xns;
 				XmlNode tmp = GetNode(xns, nodeName, innerText);
@@ -454,7 +454,7 @@ namespace Rattan.Basic.Utility
 			return null;
 		}
 		/// <summary>
-		/// 获取指定StepName的节点对象
+		/// 获取指定StepName的Node对象
 		/// </summary>
 		/// <param name="xmlParameter">XML参数</param>
 		public static XmlNode GetNode(XmlParameter xmlParameter)
@@ -462,9 +462,9 @@ namespace Rattan.Basic.Utility
 			return GetNode(xmlParameter.Name, xmlParameter.InnerText);
 		}
 		/// <summary>
-		/// 获取指定StepName的节点对象
+		/// 获取指定StepName的Node对象
 		/// </summary>
-		/// <param name="node">节点对象</param>
+		/// <param name="node">Node对象</param>
 		/// <param name="xmlParameter">XML参数</param>
 		public static XmlNode GetNode(XmlNode node, XmlParameter xmlParameter)
 		{
@@ -502,9 +502,9 @@ namespace Rattan.Basic.Utility
 			}
 		}
 		/// <summary>
-		/// 修改节点的内容
+		/// 修改Node的Content
 		/// </summary>
-		/// <param name="index">节点索引</param>
+		/// <param name="index">Node索引</param>
 		/// <param name="xmlParameter">XML参数对象</param>
 		public static void UpdateNode(int index, XmlParameter xmlParameter)
 		{
@@ -529,11 +529,11 @@ namespace Rattan.Basic.Utility
 			xDoc.Save(_xPath);
 		}
 		/// <summary>
-		/// 修改节点的内容
+		/// 修改Node的Content
 		/// </summary>
-		/// <param name="index">节点索引</param>
+		/// <param name="index">Node索引</param>
 		/// <param name="nodeName">StepName</param>
-		/// <param name="newInnerText">修改后的内容</param>
+		/// <param name="newInnerText">修改后的Content</param>
 		public static void UpdateNode(int index, string nodeName, string newInnerText)
 		{
 			XmlDocument xDoc = GetXmlDom();
@@ -557,16 +557,16 @@ namespace Rattan.Basic.Utility
 			xDoc.Save(_xPath);
 		}
 		/// <summary>
-		/// 修改节点的内容
+		/// 修改Node的Content
 		/// </summary>
 		/// <param name="xmlParameter">XmlParameter对象</param>
-		/// <param name="innerText">修改后的内容</param>
+		/// <param name="innerText">修改后的Content</param>
 		/// <param name="attributeParameters">需要修改的属性</param>
 		public static void UpdateNode(XmlParameter xmlParameter, string innerText, params AttributeParameter[] attributeParameters)
 		{
 			XmlDocument xDoc = GetXmlDom();
 			XmlNodeList nlst = xDoc.DocumentElement.ChildNodes;
-			foreach (XmlNode xns in nlst)  // 遍历所有子节点
+			foreach (XmlNode xns in nlst)  // 遍历所有子Node
 			{
 				if (xns.Name == xmlParameter.Name && xns.InnerText == xmlParameter.InnerText)
 				{
@@ -586,9 +586,9 @@ namespace Rattan.Basic.Utility
 
 		#region DeleteNode
 		/// <summary>
-		/// Del节点
+		/// DelNode
 		/// </summary>
-		/// <param name="index">节点索引</param>
+		/// <param name="index">Node索引</param>
 		public static void DeleteNode(int index)
 		{
 			XmlDocument xDoc = GetXmlDom();
@@ -597,9 +597,9 @@ namespace Rattan.Basic.Utility
 			xDoc.Save(_xPath);
 		}
 		/// <summary>
-		/// Del节点
+		/// DelNode
 		/// </summary>
-		/// <param name="nodeList">需要Del的节点对象</param>
+		/// <param name="nodeList">需要Del的Node对象</param>
 		public static void DeleteNode(params XmlNode[] nodeList)
 		{
 			XmlDocument xDoc = GetXmlDom();
@@ -617,11 +617,11 @@ namespace Rattan.Basic.Utility
 			xDoc.Save(_xPath);
 		}
 		/// <summary>
-		/// Del节点
+		/// DelNode
 		/// </summary>
 		/// <param name="xDoc">XmlDocument对象</param>
 		/// <param name="nodeName">StepName</param>
-		/// <param name="nodeText">节点内容</param>
+		/// <param name="nodeText">NodeContent</param>
 		public static void DeleteNode(string nodeName, string nodeText)
 		{
 			XmlDocument xDoc = GetXmlDom();
@@ -671,7 +671,7 @@ namespace Rattan.Basic.Utility
 		{
 			XmlDocument xDoc = GetXmlDom();
 			XmlNodeList nlst = xDoc.DocumentElement.ChildNodes;
-			foreach (XmlNode xns in nlst)  // 遍历所有子节点
+			foreach (XmlNode xns in nlst)  // 遍历所有子Node
 			{
 				if (xns.Name == xmlParameter.Name && xns.InnerText == xmlParameter.InnerText)
 				{
@@ -696,7 +696,7 @@ namespace Rattan.Basic.Utility
 		{
 			XmlDocument xDoc = GetXmlDom();
 			XmlNodeList nlst = xDoc.DocumentElement.ChildNodes;
-			foreach (XmlNode xns in nlst)  // 遍历所有子节点
+			foreach (XmlNode xns in nlst)  // 遍历所有子Node
 			{
 				if (xns.Name == xmlParameter.Name && xns.InnerText == xmlParameter.InnerText)
 				{

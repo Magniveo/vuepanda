@@ -6,11 +6,11 @@
     public class Secret
     {
         /// <summary>
-        /// 用户UserPwd加密key
+        /// UserUserPwd加密key
         /// </summary>
         public string User { get; set; }
         /// <summary>
-        /// 数据库加密key
+        /// Data库加密key
         /// </summary>
         public string DB { get; set; }
 
@@ -28,7 +28,7 @@
         public string Issuer { get; set; }
 
         /// <summary>
-        /// 导出文件加密key
+        /// Export文件加密key
         /// </summary>
         public string ExportFile = "C5ABA9E202D94C13A3CB66002BF77FAF";
 

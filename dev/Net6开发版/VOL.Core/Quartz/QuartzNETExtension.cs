@@ -117,7 +117,7 @@ namespace VOL.Core.Quartz
                 (bool, string) validExpression = taskOptions.CronExpression.IsValidExpression();
                 if (!validExpression.Item1)
                 {
-                    msg = $"添加作业失败，作业:{taskOptions.TaskName},表达式不正确:{ taskOptions.CronExpression}";
+                    msg = $"添加作业失败，作业:{taskOptions.TaskName},Table达式不正确:{ taskOptions.CronExpression}";
                     Console.WriteLine(msg);
                     QuartzFileHelper.Error(msg);
                     return new { status = false, msg = validExpression.Item2 };
@@ -195,14 +195,14 @@ namespace VOL.Core.Quartz
         }
 
         /// <summary>
-        /// 暂停作业
+        /// Pause作业
         /// </summary>
         /// <param name="schedulerFactory"></param>
         /// <param name="taskOptions"></param>
         /// <returns></returns>
         public static Task<object> Pause(this ISchedulerFactory schedulerFactory, Sys_QuartzOptions taskOptions)
         {
-            return schedulerFactory.TriggerAction(JobAction.暂停, taskOptions);
+            return schedulerFactory.TriggerAction(JobAction.Pause, taskOptions);
         }
 
         /// <summary>
@@ -218,18 +218,18 @@ namespace VOL.Core.Quartz
         }
 
         /// <summary>
-        /// 立即执行一次作业
+        /// 立即Execute一次作业
         /// </summary>
         /// <param name="schedulerFactory"></param>
         /// <param name="taskOptions"></param>
         /// <returns></returns>
         public static Task<object> Run(this ISchedulerFactory schedulerFactory, Sys_QuartzOptions taskOptions)
         {
-            return schedulerFactory.TriggerAction(JobAction.立即执行, taskOptions);
+            return schedulerFactory.TriggerAction(JobAction.立即Execute, taskOptions);
         }
 
         /// <summary>
-        /// 触发新增、Del、修改、暂停、启用、立即执行事件
+        /// 触发新增、Del、修改、Pause、启用、立即ExecuteEvent
         /// </summary>
         /// <param name="schedulerFactory"></param>
         /// <param name="taskName"></param>
@@ -259,7 +259,7 @@ namespace VOL.Core.Quartz
                                 .FirstOrDefault();
                 if (jobKey == null)
                 {
-                    errorMsg = $"未找到触发器[{taskName}]";
+                    errorMsg = $"未找到触发Device[{taskName}]";
                     return new { status = false, msg = errorMsg };
                 }
                 var triggers = await scheduler.GetTriggersOfJob(jobKey);
@@ -267,7 +267,7 @@ namespace VOL.Core.Quartz
 
                 if (trigger == null)
                 {
-                    errorMsg = $"未找到触发器[{taskName}]";
+                    errorMsg = $"未找到触发Device[{taskName}]";
                     return new { status = false, msg = errorMsg };
                 }
                 object result = null;
@@ -275,13 +275,13 @@ namespace VOL.Core.Quartz
                 {
                     case JobAction.Del:
                     case JobAction.修改:
-                    case JobAction.暂停:
+                    case JobAction.Pause:
                         await scheduler.PauseTrigger(trigger.Key);
-                        await scheduler.UnscheduleJob(trigger.Key);// 移除触发器
+                        await scheduler.UnscheduleJob(trigger.Key);// 移除触发Device
                         await scheduler.DeleteJob(trigger.JobKey);
-                        if (action==JobAction.暂停)
+                        if (action==JobAction.Pause)
                         {
-                            taskOptions.Status = (int)JobAction.暂停;
+                            taskOptions.Status = (int)JobAction.Pause;
                         }
                         break;
                     case JobAction.开启:
@@ -289,7 +289,7 @@ namespace VOL.Core.Quartz
                         await scheduler.TriggerJob(jobKey);
                         break;
                 }  
-                return result ?? new { status = true, msg = $"作业{action.ToString()}成功" };
+                return result ?? new { status = true, msg = $"作业{action.ToString()}Success" };
             }
             catch (Exception ex)
             {
@@ -337,11 +337,11 @@ namespace VOL.Core.Quartz
                 CronTriggerImpl trigger = new CronTriggerImpl();
                 trigger.CronExpressionString = cronExpression;
                 DateTimeOffset? date = trigger.ComputeFirstFireTimeUtc(null);
-                return (date != null, date == null ? $"请确认表达式{cronExpression}是否正确!" : "");
+                return (date != null, date == null ? $"请确认Table达式{cronExpression}是否正确!" : "");
             }
             catch (Exception e)
             {
-                return (false, $"请确认表达式{cronExpression}是否正确!{e.Message}");
+                return (false, $"请确认Table达式{cronExpression}是否正确!{e.Message}");
             }
         }
     }

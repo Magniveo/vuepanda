@@ -7224,7 +7224,7 @@
                 id:_internalLabelOverlayId
             }];
         }else if(params.id){
-            // 新增 label 为空时设置的cssClass无效问题，可以使用  emptyLabelStyle: {cssClass: 'emptyFlowLabel'} 进行设置 by_ 萌级小菜鸟
+            // 新增 label 为空时SetUp的cssClassNone效问题，可以使用  emptyLabelStyle: {cssClass: 'emptyFlowLabel'} 进行SetUp by_ 萌级小Dish鸟
             this.getDefaultType().overlays[_internalLabelOverlayId] = ["Label", {
                 label: params.label,
                 location: params.labelLocation || this.defaultLabelLocation || 0.5,
@@ -7416,7 +7416,7 @@
                     lo.setLabel(l);
                 }
                 else {
-                    // 修复设置label为空时原来的值无法替换，by_萌级小菜鸟 2020年05月08日21:26:15
+                    // 修复SetUplabel为空时原来的值None法替换，by_萌级小Dish鸟 2020年05月08日21:26:15
                     if (!l.label) {
                         l.label = ''
                     }

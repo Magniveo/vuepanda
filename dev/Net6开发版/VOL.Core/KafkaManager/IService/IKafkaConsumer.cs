@@ -22,20 +22,20 @@
 //        void ConsumeBatch(Func<ConsumeResult<TKey, TValue>, bool> Func, List<string> Topics);
 
 //        /// <summary>
-//        /// 批量消费模式-单次消费(消费出当前Kafka缓存的所有数据,并持续监听 300ms,如无新数据生产,则返回(最多一次消费 100条)
+//        /// 批量消费模式-Single次消费(消费出当前Kafka缓存的所有Data,并持续监听 300ms,如None新Data生产,则返回(最多一次消费 100条)
 //        /// </summary>
 //        /// <param name="Topic">主题</param>
-//        /// <param name="TimeOut">持续监听时间,单位ms 默认值:300ms</param>
-//        /// <param name="MaxRow">最多单次消费行数 默认值:100行</param>
-//        /// <returns>待消费数据</returns>
+//        /// <param name="TimeOut">持续监听时间,Single位ms 默认值:300ms</param>
+//        /// <param name="MaxRow">最多Single次消费行数 默认值:100行</param>
+//        /// <returns>待消费Data</returns>
 //        List<ConsumeResult<TKey, TValue>> ConsumeOnce(string Topic, int TimeOut = 300, int MaxRow = 100);
 
 //        /// <summary>
-//        /// 单笔消费模式-单行消费
+//        /// Single笔消费模式-Single行消费
 //        /// </summary>
 //        /// <param name="Topic">主题</param>
-//        /// <param name="TimeOut">持续监听时间,单位ms 默认值:300ms</param>
-//        /// <returns>待消费数据</returns>
+//        /// <param name="TimeOut">持续监听时间,Single位ms 默认值:300ms</param>
+//        /// <returns>待消费Data</returns>
 //        ConsumeResult<TKey, TValue> ConsumeOneRow(string Topic, int TimeOut = 300);
 //    }
 //}

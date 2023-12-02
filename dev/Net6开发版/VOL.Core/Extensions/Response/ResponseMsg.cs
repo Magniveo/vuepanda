@@ -16,19 +16,19 @@ namespace VOL.Core.Extensions
                 case ResponseType.AccountLocked:
                     msg = "UserName已被锁定"; break;
                 case ResponseType.LoginSuccess:
-                    msg = "Login成功"; break;
+                    msg = "LoginSuccess"; break;
                 case ResponseType.ParametersLack:
                     msg = "参数不完整"; break;
                 case ResponseType.NoPermissions:
-                    msg = "没有权限操作"; break;
+                    msg = "没有AuthorityOperation"; break;
                 case ResponseType.NoRolePermissions:
-                    msg = "Role_Id没有权限操作"; break;
+                    msg = "Role_Id没有AuthorityOperation"; break;
                 case ResponseType.ServerError:
-                    msg = "服务器好像出了点问题....."; break;
+                    msg = "服务Device好像出了点问题....."; break;
                 case ResponseType.LoginError:
-                    msg = "用户名或UserPwd错误"; break;
+                    msg = "User名或UserPwd错误"; break;
                 case ResponseType.SaveSuccess:
-                    msg = "保存成功"; break;
+                    msg = "保存Success"; break;
                 case ResponseType.NoKey:
                     msg = "没有主键不能Edit"; break;
                 case ResponseType.NoKeyDel:
@@ -36,17 +36,17 @@ namespace VOL.Core.Extensions
                 case ResponseType.KeyError:
                     msg = "主键不正确或没有传入主键"; break;
                 case ResponseType.EidtSuccess:
-                    msg = "Edit成功"; break;
+                    msg = "EditSuccess"; break;
                 case ResponseType.DelSuccess:
-                    msg = "Del成功"; break;
+                    msg = "DelSuccess"; break;
                 case ResponseType.RegisterSuccess:
-                    msg = "注册成功"; break;
+                    msg = "注册Success"; break;
                 case ResponseType.AuditSuccess:
-                    msg = "审核成功"; break;
+                    msg = "审核Success"; break;
                 case ResponseType.ModifyPwdSuccess:
-                    msg = "UserPwd修改成功"; break;
+                    msg = "UserPwd修改Success"; break;
                 case ResponseType.OperSuccess:
-                    msg = "操作成功"; break;
+                    msg = "OperationSuccess"; break;
                 case ResponseType.PINError:
                     msg = "验证码不正确"; break;
                     

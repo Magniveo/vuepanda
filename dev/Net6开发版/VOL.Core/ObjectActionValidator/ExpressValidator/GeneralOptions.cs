@@ -11,7 +11,7 @@ namespace VOL.Core.ObjectActionValidator
     {
 
         /// <summary>
-        /// 自定义验证
+        /// Customize验证
         /// </summary>
         /// <param name="generalName"></param>
         /// <param name="customValidator"></param>
@@ -24,7 +24,7 @@ namespace VOL.Core.ObjectActionValidator
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="generalName">普通参数的名字，与方法参数名字必须一致（不分大小写）,可以直接在ValidatorGeneral上添加</param>
+        /// <param name="generalName">普通参数的名字，With方法参数名字必须一致（不分大小写）,可以直接在ValidatorGeneral上添加</param>
         public GeneralOptions(ValidatorGeneral generalName, string CNName)
         {
             this.Name = generalName.ToString().ToLower();

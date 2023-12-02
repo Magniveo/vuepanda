@@ -16,7 +16,7 @@ using VOL.Entity;
 using VOL.Entity.DomainModels;
 /*
 * jxx 2017-08-09 
-* 通用实体属操作
+* 通用实体属Operation
 */
 
 namespace VOL.Core.Extensions
@@ -102,7 +102,7 @@ namespace VOL.Core.Extensions
                 return new string[] { ((MemberExpression)properties.Body).Member.Name };
             if (properties.Body is UnaryExpression)
                 return new string[] { ((properties.Body as UnaryExpression).Operand as MemberExpression).Member.Name };
-            throw new Exception("未实现的表达式");
+            throw new Exception("未实现的Table达式");
         }
         public static string ValidateHashInEntity(this Type typeinfo, Dictionary<string, object> dic)
         {
@@ -164,7 +164,7 @@ namespace VOL.Core.Extensions
                     {typeof(string),"nvarchar" }
         };
         /// <summary>
-        /// 返回属性的字段及数据库AppType
+        /// 返回属性的字段及Data库AppType
         /// </summary>
         /// <param name="property"></param>
         /// <param name="lenght">是否包括后字段具体长度:nvarchar(100)</param>
@@ -226,7 +226,7 @@ namespace VOL.Core.Extensions
         /// 
         /// </summary>
         /// <param name="array">将数组转换成DbSql</param>
-        /// <param name="fieldType">指定FieldType数据库字段AppType</param>
+        /// <param name="fieldType">指定FieldTypeData库字段AppType</param>
         /// <param name="sql"></param>
         /// <returns></returns>
         public static string GetArraySql(this object[] array, FieldType fieldType)
@@ -240,7 +240,7 @@ namespace VOL.Core.Extensions
             return arrrayEntityList.GetEntitySql(false, null, null, null, fieldType);
         }
         /// <summary>
-        ///<param name="sql">要执行的DbSql如：通过EntityToSqlTempName.Temp_Insert0.ToString()字符串占位，生成的的DbSql会把EntityToSqlTempName.Temp_Insert0.ToString()替换成生成的sql临时表数据
+        ///<param name="sql">要Execute的DbSql如：通过EntityToSqlTempName.Temp_Insert0.ToString()字符串占位，生成的的DbSql会把EntityToSqlTempName.Temp_Insert0.ToString()替换成生成的sql临时TableData
         ///    string sql = " ;DELETE FROM " + typeEntity.Name + " where " + typeEntity.GetKeyName() +
         ///      " in (select * from " + EntityToSqlTempName.Temp_Insert0.ToString() + ")";
         /// </param>
@@ -264,7 +264,7 @@ namespace VOL.Core.Extensions
             return array.GetArraySql(typeof(T).GetFieldType(), sql);
         }
         /// <summary>
-        /// 根据实体获取key的AppType，用于update或del操作
+        /// 根据实体获取key的AppType，用于update或delOperation
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
@@ -324,7 +324,7 @@ namespace VOL.Core.Extensions
             }
             if (dictProperties.Keys.Count * entityList.Count() > 50 * 3000)
             {
-                throw new Exception("写入数据太多,请分开写入。");
+                throw new Exception("写入Data太多,请分开写入。");
             }
 
             string cols = string.Join(",", dictProperties.Select(c => "[" + c.Key + "]" + " " + c.Value));
@@ -341,7 +341,7 @@ namespace VOL.Core.Extensions
             int maxParsCount = 2050;
             if (parCount > maxParsCount)
             {
-                //如果参数总Quantity超过2100，设置每次分批循环写入表的大小
+                //如果参数总Quantity超过2100，SetUp每次分批循环写入Table的大小
                 takeCount = maxParsCount / dictProperties.Count;
             }
 
@@ -353,7 +353,7 @@ namespace VOL.Core.Extensions
             int index = 0;
             foreach (T entity in entityList)
             {
-                //每1000行需要分批写入(数据库限制每批至多写入1000行数据)
+                //每1000行需要分批写入(Data库限制每批至多写入1000行Data)
                 if (index == 0 || index >= 1000 || takeCount - index == 0)
                 {
                     if (stringLeft.Length > 0)
@@ -423,8 +423,8 @@ namespace VOL.Core.Extensions
 
 
         /// <summary>
-        ///此方法适用于数据量少,只有几列数据，不超过1W行，或几十列数据不超过1000行的情况下使用
-        /// 大批量的数据考虑其他方式
+        ///此方法适用于Data量少,只有几列Data，不超过1W行，或几十列Data不超过1000行的情况下使用
+        /// 大批量的Data考虑Other方式
         /// 將datatable生成sql語句，替換datatable作為參數傳入存儲過程
         /// </summary>
         /// <param name="table"></param>
@@ -444,13 +444,13 @@ namespace VOL.Core.Extensions
             int maxParsCount = 2050;
             if (parCount > maxParsCount)
             {
-                //如果参数总Quantity超过2100，设置每次分批循环写入表的大小
+                //如果参数总Quantity超过2100，SetUp每次分批循环写入Table的大小
                 takeCount = maxParsCount / dictCloumn.Count;
             }
 
             if (dictCloumn.Keys.Count * table.Rows.Count > 50 * 3000)
             {
-                throw new Exception("写入数据太多,请分开写入。");
+                throw new Exception("写入Data太多,请分开写入。");
             }
 
             string cols = string.Join(",", dictCloumn.Select(c => "[" + c.Key + "]" + " " + c.Value));
@@ -468,7 +468,7 @@ namespace VOL.Core.Extensions
 
             foreach (DataRow row in table.Rows)
             {
-                //每1000行需要分批写入(数据库限制每批至多写入1000行数据)
+                //每1000行需要分批写入(Data库限制每批至多写入1000行Data)
                 if (index == 0 || index >= 1000 || takeCount - index == 0)
                 {
                     if (stringLeft.Length > 0)
@@ -571,7 +571,7 @@ namespace VOL.Core.Extensions
                 if (!keyType)
                     return propertyInfo.Name;
                 var attributes = propertyInfo.GetCustomAttributes(typeof(ColumnAttribute), false);
-                //如果没有ColumnAttribute的需要单独再验证，下面只验证有属性的
+                //如果没有ColumnAttribute的需要Single独再验证，下面只验证有属性的
                 if (attributes.Length > 0)
                     return ((ColumnAttribute)attributes[0]).TypeName.ToLower();
                 else
@@ -729,13 +729,13 @@ namespace VOL.Core.Extensions
             }
             List<PropertyInfo> compareProper = new List<PropertyInfo>();
 
-            //只验证数据合法性，验证非空
+            //只验证Data合法性，验证非空
             if (specificProperties != null && specificProperties.Length > 0)
             {
                 compareProper.AddRange(propertyArray.Where(x => specificProperties.Contains(x.Name)));
             }
 
-            //只验证数据合法性，不验证非空
+            //只验证Data合法性，不验证非空
             if (validateProperties != null && validateProperties.Length > 0)
             {
                 compareProper.AddRange(propertyArray.Where(x => validateProperties.Contains(x.Name)));
@@ -747,7 +747,7 @@ namespace VOL.Core.Extensions
             foreach (PropertyInfo propertyInfo in propertyArray)
             {
                 object value = propertyInfo.GetValue(entity);
-                //设置默认状态的值
+                //SetUp默认状态的值
                 if (propertyInfo.Name == "Enable" || propertyInfo.Name == "AuditStatus")
                 {
                     if (value == null)
@@ -767,7 +767,7 @@ namespace VOL.Core.Extensions
         }
 
         /// <summary>
-        /// 获取数据库AppType，不带长度，如varchar(100),只返回的varchar
+        /// 获取Data库AppType，不带长度，如varchar(100),只返回的varchar
         /// </summary>
         /// <param name="propertyInfo"></param>
         /// <returns></returns>
@@ -801,14 +801,14 @@ namespace VOL.Core.Extensions
         }
 
         /// <summary>
-        /// 验证数据库字段AppType与值是否正确，
+        /// 验证Data库字段AppTypeWith值是否正确，
         /// </summary>
         /// <param name="propertyInfo">propertyInfo为当字段，当前字段必须有ColumnAttribute属性,
-        /// 如字段:标识为数据库intAppType[Column(TypeName="int")]  public int Id { get; set; }
+        /// 如字段:标识为Data库intAppType[Column(TypeName="int")]  public int Id { get; set; }
         /// 如果是小数float或Decimal必须对propertyInfo字段加DisplayFormatAttribute属性
         /// </param>
         /// <param name="value"></param>
-        /// <returns>IEnumerable<(bool, string, object)> bool成否校验成功,string校验失败信息,object,当前校验的值</returns>
+        /// <returns>IEnumerable<(bool, string, object)> bool成否校验Success,string校验失败信息,object,当前校验的值</returns>
         public static IEnumerable<(bool, string, object)> ValidationValueForDbType(this PropertyInfo propertyInfo, params object[] values)
         {
             string dbTypeName = propertyInfo.GetTypeCustomValue<ColumnAttribute>(c => c.TypeName);
@@ -852,12 +852,12 @@ namespace VOL.Core.Extensions
         }
 
         /// <summary>
-        /// 验证数据库字段AppType与值是否正确，
+        /// 验证Data库字段AppTypeWith值是否正确，
         /// </summary>
-        /// <param name="dbType">数据库字段AppType(如varchar,nvarchar,decimal,不要带后面长度如:varchar(50))</param>
+        /// <param name="dbType">Data库字段AppType(如varchar,nvarchar,decimal,不要带后面长度如:varchar(50))</param>
         /// <param name="value">值</param>
         /// <param name="propertyInfo">要验证的类的属性，若不为null，则会判断字符串的长度是否正确</param>
-        /// <returns>(bool, string, object)bool成否校验成功,string校验失败信息,object,当前校验的值</returns>
+        /// <returns>(bool, string, object)bool成否校验Success,string校验失败信息,object,当前校验的值</returns>
         public static (bool, string, object) ValidationVal(this string dbType, object value, PropertyInfo propertyInfo = null)
         {
             if (string.IsNullOrEmpty(dbType))
@@ -928,7 +928,7 @@ namespace VOL.Core.Extensions
                 {
                     int length = propertyInfo.GetTypeCustomValue<MaxLengthAttribute>(x => new { x.Length }).GetInt();
                     if (length == 0) { return (true, null, null); }
-                    //判断双字节与单字段
+                    //判断双字节WithSingle字段
                     else if (length < 8000 &&
                         ((dbType.Substring(0, 1) != "n"
                         && Encoding.UTF8.GetBytes(val.ToCharArray()).Length > length)
@@ -992,7 +992,7 @@ namespace VOL.Core.Extensions
             //列名
             string typeName = propertyInfo.GetSqlDbType();
 
-            //如果没有ColumnAttribute的需要单独再验证，下面只验证有属性的
+            //如果没有ColumnAttribute的需要Single独再验证，下面只验证有属性的
             if (typeName == null) { return (true, null, objectVal); }
             //验证长度
             return typeName.ValidationVal(val, propertyInfo);
@@ -1051,7 +1051,7 @@ namespace VOL.Core.Extensions
         }
 
         /// <summary>
-        /// 获取类的单个指定属性的值(只会返回第一个属性的值)
+        /// 获取类的Single个指定属性的值(只会返回第一个属性的值)
         /// </summary>
         /// <param name="member">当前类</param>
         /// <param name="type">指定的类</param>
@@ -1104,7 +1104,7 @@ namespace VOL.Core.Extensions
         /// <returns></returns>
         private static string ValidateDicInEntity(this Type typeinfo, Dictionary<string, object> dic, PropertyInfo[] propertyInfo, bool removeNotContains, bool removerKey, string[] ignoreFields = null)
         {
-            if (dic == null || dic.Count == 0) { return "参数无效"; }
+            if (dic == null || dic.Count == 0) { return "参数None效"; }
             if (propertyInfo == null)
                 propertyInfo = typeinfo.GetProperties().Where(x => x.PropertyType.Name != "List`1").ToArray();
             if (removeNotContains)
@@ -1123,15 +1123,15 @@ namespace VOL.Core.Extensions
             }
             foreach (PropertyInfo property in propertyInfo)
             {
-                //忽略与主键的字段不做验证
+                //忽略With主键的字段不做验证
                 if (property.Name == keyName || (ignoreFields != null && ignoreFields.Contains(property.Name)))
                     continue;
 
                 //不在Edit中的列，是否也要必填
                 if (!dic.ContainsKey(property.Name))
                 {
-                    //移除主键默认为新增数据，将不在Edit列中的有默认值的数据设置为默认值
-                    //如果为true默认为添加功能，添加操作所有不能为空的列也必须要提交
+                    //移除主键默认为新增Data，将不在Edit列中的有默认值的DataSetUp为默认值
+                    //如果为true默认为添加功能，添加Operation所有不能为空的列也必须要提交
                     if (property.GetCustomAttributes(typeof(RequiredAttribute)).Count() > 0
                         && property.PropertyType != typeof(int)
                         && property.PropertyType != typeof(long)
@@ -1146,7 +1146,7 @@ namespace VOL.Core.Extensions
                 bool isEdit = property.ContainsCustomAttributes(typeof(EditableAttribute));
                 //不是Edit列的直接移除,并且不是主键
                 //removerKey=true，不保留主键，直接移除
-                //removerKey=false,保留主键，属性与主键不同的直接移除
+                //removerKey=false,保留主键，属性With主键不同的直接移除
                 //  if (!isEdit && (removerKey || (!removerKey && property.Name != keyName)))
                 if (!isEdit)
                 {
@@ -1157,25 +1157,25 @@ namespace VOL.Core.Extensions
                     dic.Remove(property.Name);
                     continue;
                 }
-                ////移除忽略的不保存的数据
+                ////移除忽略的不保存的Data
                 //if (property.ContainsCustomAttributes(typeof(JsonIgnoreAttribute)))
                 //{
                 //    hash.Remove(property.Name);
                 //    continue;
                 //}
-                //验证数据AppType,不验证是否为空
+                //验证DataAppType,不验证是否为空
                 var result = property.ValidationProperty(dic[property.Name], false);
                 if (!result.Item1)
                     return result.Item2;
 
-                //将所有空值设置为null
+                //将所有空值SetUp为null
                 if (dic[property.Name] != null && dic[property.Name].ToString() == string.Empty)
                     dic[property.Name] = null;
             }
             return string.Empty;
         }
         /// <summary>
-        /// 获取表带有EntityAttribute属性的真实WorkTable
+        /// 获取Table带有EntityAttribute属性的真实WorkTable
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
@@ -1189,7 +1189,7 @@ namespace VOL.Core.Extensions
             return type.Name;
         }
         /// <summary>
-        /// 获取表带有EntityAttribute属性的WorkTableName
+        /// 获取Table带有EntityAttribute属性的WorkTableName
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
@@ -1287,14 +1287,14 @@ namespace VOL.Core.Extensions
         }
 
         /// <summary>
-        /// 将数据源映射到新的数据中,目前只支持List<TSource>映射到List<TResult>或TSource映射到TResult
+        /// 将Data源映射到新的Data中,目前只支持List<TSource>映射到List<TResult>或TSource映射到TResult
         /// 目前只支持Dictionary或实体AppType
         /// </summary>
         /// <typeparam name="TSource"></typeparam>
         /// <typeparam name="TResult"></typeparam>
         /// <param name="source"></param>
         /// <param name="resultExpression">只映射返回对象的指定字段,若为null则默认为全部字段</param>
-        /// <param name="sourceExpression">只映射数据源对象的指定字段,若为null则默认为全部字段</param>
+        /// <param name="sourceExpression">只映射Data源对象的指定字段,若为null则默认为全部字段</param>
         /// <returns></returns>
         public static TResult MapToObject<TSource, TResult>(this TSource source, Expression<Func<TResult, object>> resultExpression,
             Expression<Func<TSource, object>> sourceExpression = null
@@ -1334,7 +1334,7 @@ namespace VOL.Core.Extensions
         /// <typeparam name="TResult"></typeparam>
         /// <param name="source"></param>
         /// <param name="result"></param>
-        /// <param name="expression">指定对需要的字段赋值,格式x=>new {x.Name,x.P},返回的结果只会对Name与P赋值</param>
+        /// <param name="expression">指定对需要的字段赋值,格式x=>new {x.Name,x.P},返回的结果只会对NameWithP赋值</param>
         public static void MapValueToEntity<TSource, TResult>(this TSource source, TResult result, Expression<Func<TResult, object>> expression = null) where TResult : class
         {
             if (source == null)
@@ -1353,11 +1353,11 @@ namespace VOL.Core.Extensions
         }
 
         /// <summary>
-        /// 设置默认字段的值"CreateID", "Creator", "CreateDate"，"ModifyID", "Modifier", "ModifyDate"
+        /// SetUp默认字段的值"CreateID", "Creator", "CreateDate"，"ModifyID", "Modifier", "ModifyDate"
         /// </summary>
         /// <param name="saveDataModel"></param>
-        /// <param name="setType">true=新增设置"CreateID", "Creator", "CreateDate"值
-        /// false=Edit设置"ModifyID", "Modifier", "ModifyDate"值
+        /// <param name="setType">true=新增SetUp"CreateID", "Creator", "CreateDate"值
+        /// false=EditSetUp"ModifyID", "Modifier", "ModifyDate"值
         /// </param>
         public static SaveModel SetDefaultVal(this SaveModel saveDataModel, TableDefaultColumns defaultColumns, UserInfo userInfo = null)
         {
@@ -1383,11 +1383,11 @@ namespace VOL.Core.Extensions
         }
         /// <summary>
         /// 
-        /// 设置默认字段的值如:"CreateID", "Creator", "CreateDate"，"ModifyID", "Modifier", "ModifyDate"
+        /// SetUp默认字段的值如:"CreateID", "Creator", "CreateDate"，"ModifyID", "Modifier", "ModifyDate"
         /// </summary>
         /// <param name="saveDataModel"></param>
-        /// <param name="setType">true=新增设置"CreateID", "Creator", "CreateDate"值
-        /// false=Edit设置"ModifyID", "Modifier", "ModifyDate"值
+        /// <param name="setType">true=新增SetUp"CreateID", "Creator", "CreateDate"值
+        /// false=EditSetUp"ModifyID", "Modifier", "ModifyDate"值
         /// </param>
         private static TSource SetDefaultVal<TSource>(this TSource source, TableDefaultColumns defaultColumns, UserInfo userInfo = null)
         {

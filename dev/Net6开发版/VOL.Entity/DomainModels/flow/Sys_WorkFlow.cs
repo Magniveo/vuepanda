@@ -1,6 +1,6 @@
 /*
- *代码由框架生成,任何更改都可能导致被代码生成器覆盖
- *如果数据库字段发生变化，请在代码生器重新生成此Model
+ *代码由框架生成,任何更改都可能导致被CodeGenerationDevice覆盖
+ *如果Data库字段发生变化，请在代码生Device重新生成此Model
  */
 using System;
 using System.Collections.Generic;
@@ -13,7 +13,7 @@ using VOL.Entity.SystemModels;
 
 namespace VOL.Entity.DomainModels
 {
-    [Entity(TableCnName = "审批流程配置",TableName = "Sys_WorkFlow",DetailTable =  new Type[] { typeof(Sys_WorkFlowStep)},DetailTableCnName = "审批步骤")]
+    [Entity(TableCnName = "ApprovalProcess配置",TableName = "Sys_WorkFlow",DetailTable =  new Type[] { typeof(Sys_WorkFlowStep)},DetailTableCnName = "ApprovalSteps")]
     public partial class Sys_WorkFlow:BaseEntity
     {
         /// <summary>
@@ -55,9 +55,9 @@ namespace VOL.Entity.DomainModels
        public string WorkTableName { get; set; }
 
        /// <summary>
-       ///Weight(相同条件Weight大的优先匹配)
+       ///Weight
        /// </summary>
-       [Display(Name ="Weight(相同条件Weight大的优先匹配)")]
+       [Display(Name ="Weight")]
        [Column(TypeName="int")]
        [Editable(true)]
        public int? Weight { get; set; }
@@ -140,14 +140,14 @@ namespace VOL.Entity.DomainModels
        public DateTime? ModifyDate { get; set; }
 
        /// <summary>
-       ///审核中数据是否可以Edit
+       ///AuditingEdit
        /// </summary>
-       [Display(Name ="审核中数据是否可以Edit")]
+       [Display(Name ="AuditingEdit")]
        [Column(TypeName="int")]
        [Editable(true)]
        public int? AuditingEdit { get; set; }
 
-       [Display(Name ="审批步骤")]
+       [Display(Name ="ApprovalSteps")]
        [ForeignKey("WorkFlow_Id")]
        public List<Sys_WorkFlowStep> Sys_WorkFlowStep { get; set; }
 

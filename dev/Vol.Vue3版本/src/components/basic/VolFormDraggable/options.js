@@ -27,14 +27,14 @@ const components = [
         icon: "el-icon-turn-off",
         value: 0,
     },
-    { id: 5, name: "单选", type: "radio", icon: "el-icon-aim", value: 0, data: [{ label: "0", value: "请设置数据源1" }, { label: "1", value: "请设置数据源2" }], key: "" },
+    { id: 5, name: "Single选", type: "radio", icon: "el-icon-aim", value: 0, data: [{ label: "0", value: "请SetUpData源1" }, { label: "1", value: "请SetUpData源2" }], key: "" },
     {
         id: 6,
         name: "多选",
         values: [],
         type: "checkbox",
         key: "",
-        data: [{ label: "请设置数据源", value: "请设置数据源" }],
+        data: [{ label: "请SetUpData源", value: "请SetUpData源" }],
         icon: "el-icon-circle-check",
     },
     {
@@ -42,7 +42,7 @@ const components = [
         name: "下拉框",
         value: null,
         key: "",
-        data: [{ label: "请设置数据源", value: "请设置数据源" }],
+        data: [{ label: "请SetUpData源", value: "请SetUpData源" }],
         type: "select",
         icon: "el-icon-arrow-down",
     },
@@ -52,7 +52,7 @@ const components = [
         type: "selectList",
         key: "",
         values: [],
-        data: [{ label: "请设置数据源", value: "请设置数据源" }],
+        data: [{ label: "请SetUpData源", value: "请SetUpData源" }],
         icon: "el-icon-arrow-down",
     },
     {
@@ -64,12 +64,12 @@ const components = [
         key: "",
         data: [
             {
-                value: "请配置数据源",
-                label: "请配置数据源",
+                value: "请ConfigurationData源",
+                label: "请ConfigurationData源",
                 children: [
                     {
                         value: "具体",
-                        label: "菜单:下拉框绑定设置",
+                        label: "DishSingle:Drop-down box binding settings",
                     },
                     {
                         value: "color",
@@ -105,7 +105,7 @@ const components = [
     },
     {
         id: 11,
-        name: "文件上传",
+        name: "FileUpload",
         type: "file",
         url: "",
         maxSize: 3,
@@ -123,7 +123,7 @@ const components = [
     },
     {
         id: 13,
-        name: "Edit器",
+        name: "EditDevice",
         type: "editor",
         value: "",
         url: "",
@@ -141,7 +141,7 @@ const components = [
     },
     {
         id: 13,
-        name: "表格",
+        name: "Form",
         type: "table",
         tabs: false,
         columns: [
@@ -192,7 +192,7 @@ const tableOption = [
     {
         field: 'dataType', title: '显示AppType', edit: { type: "select", keep: true }, width: 120, bind: {
             key: '', data: [
-                { "key": "switch", "value": "单选" },
+                { "key": "switch", "value": "Single选" },
                 { "key": "date", "value": "年月日" },
                 { "key": "img", "value": "图片" },
                 { "key": "excel", "value": "excel" },
@@ -206,7 +206,7 @@ const tableOption = [
     {
         field: 'editType', title: 'EditAppType', edit: { type: "select", keep: true, }, width: 120, bind: {
             key: '', data: [{ "key": "text", "value": "输入框" },
-            { "key": "switch", "value": "单选" },
+            { "key": "switch", "value": "Single选" },
             { "key": "select", "value": "下拉框" },
             { "key": "selectList", "value": "下拉框多选" },
             { "key": "date", "value": "Date" },
@@ -219,7 +219,7 @@ const tableOption = [
             ]
         }
     },
-    { field: 'dataSource', title: '数据源', edit: { type: "select", keep: true, data: [] }, bind: { key: '', data: [] }, width: 120 },
+    { field: 'dataSource', title: 'Data源', edit: { type: "select", keep: true, data: [] }, bind: { key: '', data: [] }, width: 120 },
     { field: 'width', title: '列宽度', edit: { type: "text", keep: true }, width: 80 },
     { field: 'orderNo', title: '列显示顺序', edit: { type: "text", keep: true }, width: 100 }
 ];

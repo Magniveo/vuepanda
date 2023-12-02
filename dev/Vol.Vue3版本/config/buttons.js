@@ -1,6 +1,5 @@
-
 let buttons = [{
-    name: "查 询",
+    name: "Search",
     value: 'Search',
     icon: 'el-icon-search',
     class: '',
@@ -10,7 +9,7 @@ let buttons = [{
     }
 }, 
 {
-    name: "新 建",
+    name: "Add",
     icon: 'el-icon-plus',
     value: 'Add',
     class: '',
@@ -21,7 +20,7 @@ let buttons = [{
         this.add();
     }
 },{
-    name: "编 辑",
+    name: "Update",
     icon: 'el-icon-edit',
     value: 'Update',
    // plain:true,
@@ -31,7 +30,7 @@ let buttons = [{
         this.edit();
     }
 },  {
-    name: "删 除",
+    name: "Delete",
     icon: 'el-icon-delete',
     class: '',
     value: 'Delete',
@@ -40,7 +39,7 @@ let buttons = [{
         this.del();
     }
 },  {
-    name: "审 核",
+    name: "Audit",
     icon: 'el-icon-check',
     class: '',
     value: 'Audit',
@@ -51,7 +50,7 @@ let buttons = [{
     }
 },
 {
-    name: "导 入",
+    name: "Import",
     icon: 'el-icon-top',
     class: '',
     type:'success',
@@ -60,8 +59,9 @@ let buttons = [{
     onClick: function () {
         this.import();
     }
-}, {
-    name: "导 出",
+}, 
+{//logIn
+    name: "Export",
     icon: 'el-icon-bottom',
     type:'success',
     plain:true,
@@ -71,7 +71,7 @@ let buttons = [{
     }
 }
 // , {
-//     name: "数据结构",
+//     name: "Data结构",
 //     icon: 'ios-cog',
 //     class: '',
 //     value: '',
@@ -80,5 +80,6 @@ let buttons = [{
 //     }
 // }
 ]
+
 
 export default buttons

@@ -16,7 +16,7 @@ using VOL.Entity.SystemModels;
 namespace VOL.Entity.DomainModels
 {
     [Table("Sys_Menu")]
-    [EntityAttribute(TableCnName = "菜单配置")]
+    [EntityAttribute(TableCnName = "DishSingle配置")]
     public class Sys_Menu:BaseEntity
     {
         /// <summary>
@@ -42,9 +42,9 @@ namespace VOL.Entity.DomainModels
 
 
        /// <summary>
-       ///菜单ExpertName
+       ///DishSingleExpertName
        /// </summary>
-       [Display(Name ="菜单ExpertName")]
+       [Display(Name ="DishSingleExpertName")]
        [MaxLength(50)]
        [Column(TypeName="nvarchar(50)")]
        [Editable(true)]
@@ -70,9 +70,9 @@ namespace VOL.Entity.DomainModels
        public string Url { get; set; }
 
        /// <summary>
-       ///权限
+       ///Authority
        /// </summary>
-       [Display(Name ="权限")]
+       [Display(Name ="Authority")]
        [MaxLength(10000)]
        [Column(TypeName="nvarchar(10000)")]
        [Editable(true)]
@@ -152,7 +152,7 @@ namespace VOL.Entity.DomainModels
 
         /// <summary>
         /// 2022.03.26
-        /// 菜单AppType1:移动端，0:PC端
+        /// DishSingleAppType1:移动端，0:PC端
         /// </summary>
         /// </summary>
         [Display(Name = "Enable")]

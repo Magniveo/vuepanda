@@ -82,19 +82,19 @@ namespace VOL.Core.BaseProvider
         }
 
         /// <summary>
-        ///  2020.08.15添加自定义原生查询sql或多租户(查询、导出)
+        ///  2020.08.15添加Customize原生Querysql或多租户(Query、Export)
         /// </summary>
         /// <returns></returns>
         private IQueryable<T> GetSearchQueryable()
         {
-            //2021.08.22移除数据隔离(租房管理)超级管理员的判断
-            //没有自定sql与多租户执行默认查询
+            //2021.08.22移除Data隔离(租房管理)SuperAdministrator的判断
+            //没有自定sqlWith多租户Execute默认Query
             if (QuerySql == null && !IsMultiTenancy)
             //  if ((QuerySql == null && !IsMultiTenancy) || UserContext.Current.IsSuperAdmin)
             {
                 return repository.DbContext.Set<T>();
             }
-            //自定sql,没有使用多租户，直接执行自定义sql
+            //自定sql,没有使用多租户，直接ExecuteCustomizesql
             if (QuerySql != null && !IsMultiTenancy)
             // if ((QuerySql != null && !IsMultiTenancy) || UserContext.Current.IsSuperAdmin)
             {
@@ -105,7 +105,7 @@ namespace VOL.Core.BaseProvider
         }
 
         /// <summary>
-        ///  2020.08.15添加获取多租户数据过滤sql（Del、Edit）
+        ///  2020.08.15添加获取多租户Data过滤sql（Del、Edit）
         /// </summary>
         /// <returns></returns>
         private string GetMultiTenancySql(string ids, string tableKey)
@@ -114,38 +114,38 @@ namespace VOL.Core.BaseProvider
         }
 
         /// <summary>
-        ///  2020.08.15添加多租户数据过滤（Edit）
+        ///  2020.08.15添加多租户Data过滤（Edit）
         /// </summary>
         private void CheckUpdateMultiTenancy(string ids, string tableKey)
         {
             string sql = GetMultiTenancySql(ids, tableKey);
 
             //请接着过滤条件
-            //例如sql，只能(Edit)自己创建的数据:判断数据是不是当前用户创建的
+            //例如sql，只能(Edit)自己创建的Data:判断Data是不是当前User创建的
             //sql = $" {sql} and createid!={UserContext.Current.UserId}";
             object obj = repository.DapperContext.ExecuteScalar(sql, null);
             if (obj == null || obj.GetInt() == 0)
             {
-                Response.Error("不能Edit此数据");
+                Response.Error("不能Edit此Data");
             }
         }
 
 
         /// <summary>
-        ///  2020.08.15添加多租户数据过滤（Del）
+        ///  2020.08.15添加多租户Data过滤（Del）
         /// </summary>
         private void CheckDelMultiTenancy(string ids, string tableKey)
         {
             string sql = GetMultiTenancySql(ids, tableKey);
 
             //请接着过滤条件
-            //例如sql，只能(Del)自己创建的数据:找出不是自己创建的数据
+            //例如sql，只能(Del)自己创建的Data:找出不是自己创建的Data
             //sql = $" {sql} and createid!={UserContext.Current.UserId}";
             object obj = repository.DapperContext.ExecuteScalar(sql, null);
             int idsCount = ids.Split(",").Distinct().Count();
             if (obj == null || obj.GetInt() != idsCount)
             {
-                Response.Error("不能Del此数据");
+                Response.Error("不能Del此Data");
             }
         }
 
@@ -210,10 +210,10 @@ namespace VOL.Core.BaseProvider
         }
 
         /// <summary>
-        /// 前端查询条件转换为EF查询Queryable(2023.04.02)
+        /// 前端Query条件转换为EFQueryQueryable(2023.04.02)
         /// </summary>
-        /// <param name="options">前端查询参数</param>
-        /// <param name="useTenancy">是否使用数据隔离</param>
+        /// <param name="options">前端Query参数</param>
+        /// <param name="useTenancy">是否使用Data隔离</param>
         /// <returns></returns>
         public IQueryable<T> GetPageDataQueryFilter(PageDataOptions options, bool useTenancy = true)
         {
@@ -222,7 +222,7 @@ namespace VOL.Core.BaseProvider
         }
 
         /// <summary>
-        /// 验证OrderNo与查询字段合法性
+        /// 验证OrderNoWithQuery字段合法性
         /// </summary>
         /// <param name="options"></param>
         /// <param name="queryable"></param>
@@ -256,10 +256,10 @@ namespace VOL.Core.BaseProvider
             }
             //  Connection
             // queryable = repository.DbContext.Set<T>();
-            //2020.08.15添加自定义原生查询sql或多租户
+            //2020.08.15添加Customize原生Querysql或多租户
 
 
-            //判断列的数据AppType数字，Date的需要判断值的格式是否正确
+            //判断列的DataAppType数字，Date的需要判断值的格式是否正确
             for (int i = 0; i < searchParametersList.Count; i++)
             {
                 SearchParameters x = searchParametersList[i];
@@ -272,7 +272,7 @@ namespace VOL.Core.BaseProvider
                 //2020.06.25增加字段null处理
                 if (property == null) continue;
                 // property
-                //移除查询的值与数据库AppType不匹配的数据
+                //移除Query的值WithData库AppType不匹配的Data
                 object[] values = property.ValidationValueForDbType(x.Value.Split(',')).Where(q => q.Item1).Select(s => s.Item3).ToArray();
                 if (values == null || values.Length == 0)
                 {
@@ -290,7 +290,7 @@ namespace VOL.Core.BaseProvider
         }
 
         /// <summary>
-        /// 加载页面数据
+        /// LoadPageData
         /// </summary>
         /// <param name="loadSingleParameters"></param>
         /// <returns></returns>
@@ -322,7 +322,7 @@ namespace VOL.Core.BaseProvider
                                     out int rowCount,
                                     orderbyDic).ToList();
                 pageGridData.total = rowCount;
-                //查询界面统计求等字段
+                //Query界面统计求等字段
                 if (SummaryExpress != null)
                 {
                     pageGridData.summary = SummaryExpress.Invoke(queryable);
@@ -354,13 +354,13 @@ namespace VOL.Core.BaseProvider
 
         private PageGridData<Detail> GetDetailPage<Detail>(PageDataOptions options) where Detail : class
         {
-            //校验查询值，OrderNo字段，分页大小规则待完
+            //校验Query值，OrderNo字段，分页大小规则待完
             PageGridData<Detail> gridData = new PageGridData<Detail>();
             if (options.Value == null) return gridData;
-            //主表主键字段
+            //主Table主键字段
             string keyName = typeof(T).GetKeyName();
 
-            //生成查询条件
+            //生成Query条件
             Expression<Func<Detail, bool>> whereExpression = keyName.CreateExpression<Detail>(options.Value, LinqExpressionType.Equal);
 
             var queryeable = repository.DbContext.Set<Detail>().Where(whereExpression);
@@ -420,9 +420,9 @@ namespace VOL.Core.BaseProvider
             catch (Exception ex)
             {
                 Logger.Error($"上传文件失败：{typeof(T).GetEntityTableCnName()},路径：{filePath},失败文件:{files[i]},{ex.Message + ex.StackTrace}");
-                return Response.Error("文件上传失败");
+                return Response.Error("FileUpload失败");
             }
-            return Response.OK("文件上传成功", filePath);
+            return Response.OK("FileUploadSuccess", filePath);
         }
 
         private List<string> GetIgnoreTemplate()
@@ -440,13 +440,13 @@ namespace VOL.Core.BaseProvider
             string dicPath = $"Download/{DateTime.Now.ToString("yyyMMdd")}/Template/".MapPath();
             if (!Directory.Exists(dicPath)) Directory.CreateDirectory(dicPath);
             string fileName = tableName + DateTime.Now.ToString("yyyyMMddHHssmm") + ".xlsx";
-            //DownLoadTemplateColumns 2020.05.07增加扩展指定导出模板的列
+            //DownLoadTemplateColumns 2020.05.07增加扩展指定Export模板的列
             EPPlusHelper.ExportTemplate<T>(DownLoadTemplateColumns, GetIgnoreTemplate(), dicPath, fileName);
             return Response.OK(null, dicPath + fileName);
         }
 
         /// <summary>
-        /// 导入表数据Excel文件夹
+        /// 导入TableDataExcel文件夹
         /// </summary>
         /// <param name="files"></param>
         /// <returns></returns>
@@ -465,13 +465,13 @@ namespace VOL.Core.BaseProvider
             }
             try
             {
-                //2022.06.20增加原生excel读取方法(导入时可以自定义读取excel内容)
+                //2022.06.20增加原生excel读取方法(导入时可以Customize读取excelContent)
                 Response = EPPlusHelper.ReadToDataTable<T>(dicPath, DownLoadTemplateColumns, GetIgnoreTemplate(), readValue: ImportOnReadCellValue, ignoreSelectValidationColumns: ImportIgnoreSelectValidationColumns);
             }
             catch (Exception ex)
             {
                 Response.Error("未能处理导入的文件,请检查导入的文件是否正确");
-                string msg = $"表{typeof(T).GetEntityTableCnName()}导入失败{ex.Message + ex.InnerException?.Message}";
+                string msg = $"Table{typeof(T).GetEntityTableCnName()}导入失败{ex.Message + ex.InnerException?.Message}";
                 Console.WriteLine(msg);
                 Logger.Error(msg);
             }
@@ -482,11 +482,11 @@ namespace VOL.Core.BaseProvider
                 Response = ImportOnExecuting.Invoke(list);
                 if (CheckResponseResult()) return Response;
             }
-            //2022.01.08增加明细表导入判断
+            //2022.01.08增加明细Table导入判断
             if (HttpContext.Current.Request.Query.ContainsKey("table"))
             {
                 ImportOnExecuted?.Invoke(list);
-                return Response.OK("文件上传成功", list.Serialize());
+                return Response.OK("FileUploadSuccess", list.Serialize());
             }
             repository.AddRange(list, true);
             if (ImportOnExecuted != null)
@@ -494,11 +494,11 @@ namespace VOL.Core.BaseProvider
                 Response = ImportOnExecuted.Invoke(list);
                 if (CheckResponseResult()) return Response;
             }
-            return Response.OK("文件上传成功");
+            return Response.OK("FileUploadSuccess");
         }
 
         /// <summary>
-        /// 导出
+        /// Export
         /// </summary>
         /// <param name="pageData"></param>
         /// <returns></returns>
@@ -521,10 +521,10 @@ namespace VOL.Core.BaseProvider
                 ExportColumnsArray = ExportColumns.GetExpressionToArray();
             }
 
-            //ExportColumns 2020.05.07增加扩展指定导出模板的列
+            //ExportColumns 2020.05.07增加扩展指定Export模板的列
             EPPlusHelper.Export(list, ExportColumnsArray, ignoreColumn, savePath, fileName);
             //return Response.OK(null, (savePath + "/" + fileName).EncryptDES(AppSetting.Secret.ExportFile));
-            //2022.01.08优化导出功能
+            //2022.01.08优化Export功能
             return Response.OK(null, (savePath + "/" + fileName));
         }
 
@@ -547,7 +547,7 @@ namespace VOL.Core.BaseProvider
 
             saveDataModel.DetailData = saveDataModel.DetailData?.Where(x => x.Count > 0).ToList();
             Type type = typeof(T);
-            // 修改为与Update一致，先设置默认值再进行实体的校验
+            // 修改为WithUpdate一致，先SetUp默认值再进行实体的校验
             UserInfo userInfo = UserContext.Current.UserInfo;
             saveDataModel.SetDefaultVal(AppSetting.CreateMember, userInfo);
 
@@ -556,7 +556,7 @@ namespace VOL.Core.BaseProvider
             if (!string.IsNullOrEmpty(validReslut)) return Response.Error(validReslut);
 
             if (saveDataModel.MainData.Count == 0)
-                return Response.Error("保存的数据为空，请检查model是否配置正确!");
+                return Response.Error("保存的Data为空，请检查model是否配置正确!");
 
             PropertyInfo keyPro = type.GetKeyProperty();
             if (keyPro.PropertyType == typeof(Guid) || keyPro.PropertyType == typeof(string))
@@ -608,7 +608,7 @@ namespace VOL.Core.BaseProvider
         }
 
         /// <summary>
-        /// 保存主、明细数据
+        /// 保存主、明细Data
         /// </summary>
         /// <typeparam name="TDetail"></typeparam>
         /// <param name="entity"></param>
@@ -617,7 +617,7 @@ namespace VOL.Core.BaseProvider
         /// <returns></returns>
         public WebResponseContent Add<TDetail>(T entity, List<TDetail> list = null, bool validationEntity = true) where TDetail : class
         {
-            //设置用户默认值
+            //SetUpUser默认值
             entity.SetCreateDefaultVal();
             SetAuditDefaultValue(entity);
             if (validationEntity)
@@ -649,7 +649,7 @@ namespace VOL.Core.BaseProvider
                     object keyValue = mainKey.GetValue(entity);
                     list.ForEach(x =>
                     {
-                        //设置用户默认值
+                        //SetUpUser默认值
                         x.SetCreateDefaultVal();
                         detailMainKey.SetValue(x, keyValue);
                         repository.DbContext.Entry<TDetail>(x).State = EntityState.Added;
@@ -670,7 +670,7 @@ namespace VOL.Core.BaseProvider
         }
 
         /// <summary>
-        /// 设置审批字段默认值
+        /// SetUpApproval字段默认值
         /// </summary>
         /// <param name="entity"></param>
         private void SetAuditDefaultValue(T entity)
@@ -686,11 +686,11 @@ namespace VOL.Core.BaseProvider
             }
         }
         /// <summary>
-        /// 写入流程
+        /// 写入Process
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="entity"></param>
-        /// <param name="changeTableStatus">是否修改原表的审批状态</param>
+        /// <param name="changeTableStatus">是否修改原Table的AuditStatus</param>
         protected void RewriteFlow(T entity, bool changeTableStatus = true)
         {
             WorkFlowManager.AddProcese(entity, true, changeTableStatus);
@@ -703,7 +703,7 @@ namespace VOL.Core.BaseProvider
                 {
                     return;
                 }
-                //写入流程
+                //写入Process
                 WorkFlowManager.AddProcese<T>(entity, addWorkFlowExecuted: AddWorkFlowExecuted);
                 //   WorkFlowManager.Audit<T>(entity, AuditStatus.待审核, null, null, null, null, init: true, initInvoke: AddWorkFlowExecuted);
             }
@@ -760,7 +760,7 @@ namespace VOL.Core.BaseProvider
         }
 
         /// <summary>
-        /// 将数据转换成对象后最终保存
+        /// 将Data转换成对象后最终保存
         /// </summary>
         /// <typeparam name="DetailT"></typeparam>
         /// <param name="saveModel"></param>
@@ -772,9 +772,9 @@ namespace VOL.Core.BaseProvider
         {
             T mainEnity = saveModel.MainData.DicToEntity<T>();
             List<DetailT> detailList = saveModel.DetailData.DicToList<DetailT>();
-            //2021.08.21优化明细表Del
+            //2021.08.21优化明细TableDel
             //Del的主键
-            //查出所有明细表数据的ID
+            //查出所有明细TableData的ID
             //System.Collections.IList detailKeys = this.GetType().GetMethod("GetUpdateDetailSelectKeys")
             //        .MakeGenericMethod(new Type[] { typeof(DetailT), detailKeyInfo.PropertyType })
             //        .Invoke(this, new object[] {
@@ -790,13 +790,13 @@ namespace VOL.Core.BaseProvider
             //Del的主键
             List<object> delKeys = new List<object>();
             mainKeyProperty = typeof(DetailT).GetProperties().Where(x => x.Name == mainKeyProperty.Name).FirstOrDefault();
-            //获取新增与修改的对象
+            //获取新增With修改的对象
             foreach (DetailT item in detailList)
             {
                 object value = detailKeyInfo.GetValue(item);
-                if (keyDefaultVal.Equals(value))//主键为默认值的,新增数据
+                if (keyDefaultVal.Equals(value))//主键为默认值的,新增Data
                 {
-                    //设置新增的主表的值
+                    //SetUp新增的主Table的值
                     mainKeyProperty.SetValue(item,
                         saveModel.MainData[mainKeyProperty.Name]
                         .ChangeType(mainKeyProperty.PropertyType));
@@ -817,7 +817,7 @@ namespace VOL.Core.BaseProvider
             //获取需要Del的对象的主键
             if (saveModel.DelKeys != null && saveModel.DelKeys.Count > 0)
             {
-                //2021.08.21优化明细表Del
+                //2021.08.21优化明细TableDel
                 delKeys = saveModel.DelKeys.Select(q => q.ChangeType(detailKeyInfo.PropertyType)).Where(x => x != null).ToList();
                 //.Where(x => detailKeys.Contains(x.ChangeType(detailKeyInfo.PropertyType)))
                 //.Select(q => q.ChangeType(detailKeyInfo.PropertyType)).ToList();
@@ -830,7 +830,7 @@ namespace VOL.Core.BaseProvider
                     return Response;
             }
             mainEnity.SetModifyDefaultVal();
-            //主表修改
+            //主Table修改
             //不修改!CreateFields.ContainsCreator信息
             repository.Update(mainEnity, typeof(T).GetEditField()
                 .Where(c => saveModel.MainData.Keys.Contains(c) && !CreateFields.Contains(c))
@@ -896,7 +896,7 @@ namespace VOL.Core.BaseProvider
         }
 
         /// <summary>
-        /// 获取配置的CreatorIDCreateDateCreator,ModifierIDModifyDate、Modifier与数据相同的字段
+        /// 获取配置的CreatorIDCreateDateCreator,ModifierIDModifyDate、ModifierWithData相同的字段
         /// </summary>
         private static string[] _userIgnoreFields { get; set; }
 
@@ -940,8 +940,8 @@ namespace VOL.Core.BaseProvider
 
         /// <summary>
         /// Edit
-        /// 1、明细表必须把主表的主键字段也设置为可Edit
-        /// 2、修改、增加只会操作设置为Edit列的数据
+        /// 1、明细Table必须把主Table的主键字段也SetUp为可Edit
+        /// 2、修改、增加只会OperationSetUp为Edit列的Data
         /// </summary>
         /// <param name="saveModel"></param>
         /// <returns></returns>
@@ -962,17 +962,17 @@ namespace VOL.Core.BaseProvider
             //    string value = saveModel.MainData[auditProperty.Name]?.ToString();
             //    if (WorkFlowManager.GetAuditStatus<T>(value) != 1)
             //    {
-            //        return Response.Error("数据已经在审核中，不能修改");
+            //        return Response.Error("Data已经在审核中，不能修改");
             //    }
             //}
             Type type = typeof(T);
 
-            //设置ModifyDate,Modifier的默认值
+            //SetUpModifyDate,Modifier的默认值
             UserInfo userInfo = UserContext.Current.UserInfo;
             saveModel.SetDefaultVal(AppSetting.ModifyMember, userInfo);
 
 
-            //判断提交的数据与实体格式是否一致
+            //判断提交的DataWith实体格式是否一致
             string result = type.ValidateDicInEntity(saveModel.MainData, true, false, UserIgnoreFields);
             if (result != string.Empty)
                 return Response.Error(result);
@@ -993,7 +993,7 @@ namespace VOL.Core.BaseProvider
                     if (result != string.Empty) return Response.Error(result);
                 }
 
-                //主从关系指定外键,即从表的外键可以不是主键的主表,还需要改下代码生成器设置属性外键,功能预留后面再开发(2020.04.25)
+                //主从关系指定外键,即从Table的外键可以不是主键的主Table,还需要改下CodeGenerationDeviceSetUp属性外键,功能预留后面再开发(2020.04.25)
                 //string foreignKey = type.GetTypeCustomValue<System.ComponentModel.DataAnnotations.Schema.ForeignKeyAttribute>(x => new { x.Name });
                 //if (!string.IsNullOrEmpty(foreignKey))
                 //{
@@ -1005,7 +1005,7 @@ namespace VOL.Core.BaseProvider
                 //}
             }
 
-            //获取主建AppType的默认值用于判断后面数据是否正确,int long默认值为0,guid :0000-000....
+            //获取主建AppType的默认值用于判断后面Data是否正确,int long默认值为0,guid :0000-000....
             object keyDefaultVal =
                 mainKeyProperty.PropertyType == typeof(string)
                 ? ""
@@ -1033,9 +1033,9 @@ namespace VOL.Core.BaseProvider
                 ))
                 return Response.Error(ResponseType.KeyError);
 
-            if (saveModel.MainData.Count <= 1) return Response.Error("System没有配置好Edit的数据，请检查model!");
+            if (saveModel.MainData.Count <= 1) return Response.Error("System没有配置好Edit的Data，请检查model!");
 
-            // 2020.08.15添加多租户数据过滤（Edit）
+            // 2020.08.15添加多租户Data过滤（Edit）
             if (IsMultiTenancy && !UserContext.Current.IsSuperAdmin)
             {
                 CheckUpdateMultiTenancy(mainKeyProperty.PropertyType == typeof(Guid) ? "'" + mainKeyVal.ToString() + "'" : mainKeyVal.ToString(), mainKeyProperty.Name);
@@ -1047,8 +1047,8 @@ namespace VOL.Core.BaseProvider
 
 
             Expression<Func<T, bool>> expression = mainKeyProperty.Name.CreateExpression<T>(mainKeyVal.ToString(), LinqExpressionType.Equal);
-            if (!repository.Exists(expression)) return Response.Error("保存的数据不存在!");
-            //没有明细的直接保存主表数据
+            if (!repository.Exists(expression)) return Response.Error("保存的Data不存在!");
+            //没有明细的直接保存主TableData
             if (detailType == null)
             {
                 saveModel.SetDefaultVal(AppSetting.ModifyMember, userInfo);
@@ -1082,16 +1082,16 @@ namespace VOL.Core.BaseProvider
 
             saveModel.DetailData = saveModel.DetailData.Where(x => x.Count > 0).ToList();
 
-            //明细操作
+            //明细Operation
             PropertyInfo detailKeyInfo = detailType.GetKeyProperty();
             //主键AppType
             //  string detailKeyType = mainKeyProperty.GetTypeCustomValue<ColumnAttribute>(c => new { c.TypeName });
-            //判断明细是否包含了主表的主键
+            //判断明细是否包含了主Table的主键
 
             string deatilDefaultVal = detailKeyInfo.PropertyType.Assembly.CreateInstance(detailKeyInfo.PropertyType.FullName).ToString();
             foreach (Dictionary<string, object> dic in saveModel.DetailData)
             {
-                //不包含主键的默认添加主键默认值，用于后面判断是否为新增数据
+                //不包含主键的默认添加主键默认值，用于后面判断是否为新增Data
                 if (!dic.ContainsKey(detailKeyInfo.Name))
                 {
                     dic.Add(detailKeyInfo.Name, keyDefaultVal);
@@ -1114,7 +1114,7 @@ namespace VOL.Core.BaseProvider
                     || deatilDefaultVal == detailKeyVal)
                     return Response.Error(ResponseType.KeyError);
 
-                //判断主表的值是否正确
+                //判断主Table的值是否正确
                 if (detailKeyVal != keyDefaultVal.ToString() && (!dic.ContainsKey(mainKeyProperty.Name) || dic[mainKeyProperty.Name] == null || dic[mainKeyProperty.Name].ToString() == keyDefaultVal.ToString()))
                 {
                     return Response.Error(mainKeyProperty.Name + "是必填项!");
@@ -1122,7 +1122,7 @@ namespace VOL.Core.BaseProvider
             }
 
             if (saveModel.DetailData.Exists(c => c.Count <= 2))
-                return Response.Error("System没有配置好明细Edit的数据，请检查model!");
+                return Response.Error("System没有配置好明细Edit的Data，请检查model!");
             return this.GetType().GetMethod("UpdateToEntity")
                 .MakeGenericMethod(new Type[] { detailType })
                 .Invoke(this, new object[] { saveModel, mainKeyProperty, detailKeyInfo, keyDefaultVal })
@@ -1135,7 +1135,7 @@ namespace VOL.Core.BaseProvider
         /// 
         /// </summary>
         /// <param name="keys"></param>
-        /// <param name="delList">是否Del明细数据(默认会Del明细)</param>
+        /// <param name="delList">是否Del明细Data(默认会Del明细)</param>
         /// <returns></returns>
         public virtual WebResponseContent Del(object[] keys, bool delList = true)
         {
@@ -1177,7 +1177,7 @@ namespace VOL.Core.BaseProvider
                  ? string.Join(",", keys)
                  : $"'{string.Join("','", keys)}'";
 
-            // 2020.08.15添加判断多租户数据（Del）
+            // 2020.08.15添加判断多租户Data（Del）
             //if (IsMultiTenancy && !UserContext.Current.IsSuperAdmin)
             //{
             //    CheckDelMultiTenancy(joinKeys, tKey);
@@ -1212,9 +1212,9 @@ namespace VOL.Core.BaseProvider
 
             //repository.DapperContext.ExcuteNonQuery(sql, CommandType.Text, null, true);
 
-            //可能在Del后还要做一些其它数据库新增或Del操作，这样就可能需要与Del保持在同一个事务中处理
+            //可能在Del后还要做一些其它Data库新增或DelOperation，这样就可能需要WithDel保持在同一个事务中处理
             //采用此方法 repository.DbContextBeginTransaction(()=>{//do delete......and other});
-            //做的其他操作，在DelOnExecuted中加入委托实现
+            //做的OtherOperation，在DelOnExecuted中加入委托实现
             Response = repository.DbContextBeginTransaction(() =>
             {
                 repository.ExecuteSqlCommand(sql);
@@ -1231,7 +1231,7 @@ namespace VOL.Core.BaseProvider
         private static string[] auditFields = new string[] { "auditid", "auditstatus", "auditor", "auditdate", "auditreason" };
 
         /// <summary>
-        /// 审核默认对应数据库字段为AuditIdAuditId ,AuditStatusAuditStatus,AuditorAuditor,AuditdateAuditDate,Auditreason审核原因
+        /// 审核默认对应Data库字段为AuditIdAuditId ,AuditStatusAuditStatus,AuditorAuditor,AuditdateAuditDate,Auditreason审核原因
         /// </summary>
         /// <param name="keys"></param>
         /// <param name="auditStatus"></param>
@@ -1246,22 +1246,22 @@ namespace VOL.Core.BaseProvider
             T entity = repository.FindAsIQueryable(whereExpression).FirstOrDefault();
             if (entity == null)
             {
-                return Response.Error($"未查到数据,或者数据已被Del,id:{keys[0]}");
+                return Response.Error($"未查到Data,或者Data已被Del,id:{keys[0]}");
             }
-            //进入流程审批
+            //进入ProcessApproval
             if (WorkFlowManager.Exists<T>(entity))
             {
                 var auditProperty = TProperties.Where(x => x.Name.ToLower() == "auditstatus").FirstOrDefault();
                 if (auditProperty == null)
                 {
-                    return Response.Error("表缺少AuditStatus字段：AuditStatus");
+                    return Response.Error("Table缺少AuditStatus字段：AuditStatus");
                 }
 
                 AuditStatus status = (AuditStatus)Enum.Parse(typeof(AuditStatus), auditStatus.ToString());
                 int val = auditProperty.GetValue(entity).GetInt();
                 if (!(val == (int)AuditStatus.待审核 || val == (int)AuditStatus.审核中))
                 {
-                    return Response.Error("只能审批[待审核或审核中]的数据");
+                    return Response.Error("只能Approval[待审核或审核中]的Data");
                 }
                 Response = repository.DbContextBeginTransaction(() =>
                 {
@@ -1271,7 +1271,7 @@ namespace VOL.Core.BaseProvider
                 {
                     return Response.OK(ResponseType.AuditSuccess);
                 }
-                return Response.Error(Response.Message ?? "审批失败");
+                return Response.Error(Response.Message ?? "Approval失败");
             }
 
 
@@ -1282,7 +1282,7 @@ namespace VOL.Core.BaseProvider
 
             UserInfo userInfo = UserContext.Current.UserInfo;
 
-            //表如果有审核相关字段，设置默认审核
+            //Table如果有审核相关字段，SetUp默认审核
 
             PropertyInfo[] updateFileds = TProperties.Where(x => auditFields.Contains(x.Name.ToLower())).ToArray();
             List<T> auditList = new List<T>();
@@ -1344,13 +1344,13 @@ namespace VOL.Core.BaseProvider
         }
 
         /// <summary>
-        /// 对指定类与api的参数进行验证
+        /// 对指定类Withapi的参数进行验证
         /// </summary>
         /// <typeparam name="TInput"></typeparam>
         /// <param name="bizContent"></param>
         /// <param name="input"></param>
         /// <param name="expression">对指属性验证</param>
-        /// <returns>(string,TInput, bool) string:返回验证消息,TInput：bizContent序列化后的对象,bool:验证是否通过</returns>
+        /// <returns>(string,TInput, bool) string:返回验证Message,TInput：bizContent序列化后的对象,bool:验证是否通过</returns>
         public virtual (string, TInput, bool) ApiValidateInput<TInput>(string bizContent, Expression<Func<TInput, object>> expression)
         {
             return ApiValidateInput(bizContent, expression, null);
@@ -1363,7 +1363,7 @@ namespace VOL.Core.BaseProvider
         /// <param name="bizContent"></param>
         /// <param name="expression">对指属性验证格式如：x=>new { x.UserName,x.Value }</param>
         /// <param name="validateExpression">对指定的字段只做合法性判断比如长度是是否超长</param>
-        /// <returns>(string,TInput, bool) string:返回验证消息,TInput：bizContent序列化后的对象,bool:验证是否通过</returns>
+        /// <returns>(string,TInput, bool) string:返回验证Message,TInput：bizContent序列化后的对象,bool:验证是否通过</returns>
         public virtual (string, TInput, bool) ApiValidateInput<TInput>(string bizContent, Expression<Func<TInput, object>> expression, Expression<Func<TInput, object>> validateExpression)
         {
             try
@@ -1394,19 +1394,19 @@ namespace VOL.Core.BaseProvider
         }
 
         /// <summary>
-        /// 将数据源映射到新的数据中,目前只支持List<TSource>映射到List<TResult>或TSource映射到TResult
+        /// 将Data源映射到新的Data中,目前只支持List<TSource>映射到List<TResult>或TSource映射到TResult
         /// 目前只支持Dictionary或实体AppType
         /// </summary>
         /// <typeparam name="TSource"></typeparam>
         /// <typeparam name="TResult"></typeparam>
         /// <param name="source"></param>
         /// <param name="resultExpression">只映射返回对象的指定字段</param>
-        /// <param name="sourceExpression">只映射数据源对象的指定字段</param>
-        /// 过滤条件表达式调用方式：List表达式x => new { x[0].MenuName, x[0].Menu_Id}，表示指定映射MenuName,Menu_Id字段
+        /// <param name="sourceExpression">只映射Data源对象的指定字段</param>
+        /// 过滤条件Table达式调用方式：ListTable达式x => new { x[0].MenuName, x[0].Menu_Id}，Table示指定映射MenuName,Menu_Id字段
         ///  List<Sys_Menu> list = new List<Sys_Menu>();
         ///  list.MapToObject<List<Sys_Menu>, List<Sys_Menu>>(x => new { x[0].MenuName, x[0].Menu_Id}, null);
         ///  
-        ///过滤条件表达式调用方式：实体表达式x => new { x.MenuName, x.Menu_Id}，表示指定映射MenuName,Menu_Id字段
+        ///过滤条件Table达式调用方式：实体Table达式x => new { x.MenuName, x.Menu_Id}，Table示指定映射MenuName,Menu_Id字段
         ///  Sys_Menu sysMenu = new Sys_Menu();
         ///  sysMenu.MapToObject<Sys_Menu, Sys_Menu>(x => new { x.MenuName, x.Menu_Id}, null);
         /// <returns></returns>
@@ -1424,13 +1424,13 @@ namespace VOL.Core.BaseProvider
         /// <typeparam name="TResult"></typeparam>
         /// <param name="source"></param>
         /// <param name="result"></param>
-        /// <param name="expression">指定对需要的字段赋值,格式x=>new {x.Name,x.P},返回的结果只会对Name与P赋值</param>
+        /// <param name="expression">指定对需要的字段赋值,格式x=>new {x.Name,x.P},返回的结果只会对NameWithP赋值</param>
         public virtual void MapValueToEntity<TSource, TResult>(TSource source, TResult result, Expression<Func<TResult, object>> expression = null) where TResult : class
         {
             source.MapValueToEntity<TSource, TResult>(result, expression);
         }
         /// <summary>
-        /// 2021.07.04增加code="-1"强制返回，具体使用见：后台开发文档->后台基础代码扩展实现
+        /// 2021.07.04增加code="-1"强制返回，具体使用见：后台开发Document->后台Basic代码扩展实现
         /// </summary>
         /// <returns></returns>
         private bool CheckResponseResult()

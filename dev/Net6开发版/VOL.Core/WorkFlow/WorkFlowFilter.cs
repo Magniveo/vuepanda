@@ -33,7 +33,7 @@ namespace VOL.Core.WorkFlow
                 }
                 if (!fields.Contains(filter.Field))
                 {
-                    string msg = $"表【{typeof(T).GetEntityTableName()}】不存在字段【{filter.Field}】";
+                    string msg = $"Table【{typeof(T).GetEntityTableName()}】不存在字段【{filter.Field}】";
                     Console.WriteLine(msg);
                     throw new Exception(msg);
                 }

@@ -3,10 +3,10 @@
     <div style="padding: 0 0 20px 10px">
       <el-alert title="关于signalR使用" type="success" show-icon
         ><p>
-          1、目前只是用来处理首页消息发送,可参照Index.vue与HomePageMessageHub.cs
+          1、目前只是用来处理首页MessageSend,可参照Index.vueWithHomePageMessageHub.cs
         </p>
         <p>
-          2、文档见：https://docs.microsoft.com/zh-cn/aspnet/core/signalr/introduction?view=aspnetcore-3.1
+          2、Document见：https://docs.microsoft.com/zh-cn/aspnet/core/signalr/introduction?view=aspnetcore-3.1
         </p></el-alert
       >
     </div>
@@ -22,7 +22,7 @@
       <el-button
         type="primary"
         @click="sendMessage"
-        ><i class="el-icon-chat-line-round"></i>发送消息</el-button
+        ><i class="el-icon-chat-line-round"></i>SendMessage</el-button
       >
     </div>
   </div>
@@ -45,11 +45,11 @@ export default {
         maxRows: 30
       },
       formOptions: [
-        [{ title: 'Login账号', required: true, field: 'userName' }],
-        [{ title: '消息Title', required: true, field: 'title' }],
+        [{ title: 'LoginAccountNumber', required: true, field: 'userName' }],
+        [{ title: 'MessageTitle', required: true, field: 'title' }],
         [
           {
-            title: '消息内容',
+            title: 'MessageContent',
             required: true,
             field: 'message',
             type: 'textarea',
@@ -59,7 +59,7 @@ export default {
       ],
       formFields: {
         userName: 'admin666',
-        title: '发送Title',
+        title: 'SendTitle',
         message: ''
       }
     };
@@ -70,14 +70,14 @@ export default {
         'sendHomeMessage',
         this.formFields.userName,
         this.formFields.title,
-        this.formFields.message || '无'
+        this.formFields.message || 'None'
       );
-      this.$message.success('消息发送成功');
+      this.$message.success('MessageSendSuccess');
     }
   },
   created() {},
   mounted() {
-    //获取当前Login的用户信息
+    //获取当前Login的User信息
     this.http.post('api/user/GetCurrentUserInfo').then((result) => {
       connection = new signalR.HubConnectionBuilder()
         .withAutomaticReconnect()
@@ -87,14 +87,14 @@ export default {
         .build();
       connection.qs = { test: 123 };
       connection.start().catch((err) => alert(err.message));
-      //自动重连成功后的处理
+      //自动重连Success后的处理
       connection.onreconnected((connectionId) => {
         console.log(connectionId);
       });
       let _this = this;
       connection.on('ReceiveHomePageMessage', function (message) {
         _this.$notify.info({
-          title: '消息',
+          title: 'Message',
           message: message + ''
         });
       });

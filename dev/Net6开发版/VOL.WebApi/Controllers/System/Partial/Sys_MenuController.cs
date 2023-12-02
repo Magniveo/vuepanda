@@ -14,7 +14,7 @@ namespace VOL.System.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet, HttpPost, Route("getTreeMenu")]
-        //2019.10.24屏蔽用户查询自己权限菜单
+        //2019.10.24屏蔽UserQuery自己AuthorityDishSingle
         // [ApiActionPermission("Sys_Menu", ActionPermissionOptions.Search)]
         public async Task<IActionResult> GetTreeMenu()
         {
@@ -35,7 +35,7 @@ namespace VOL.System.Controllers
         }
 
         //[ActionPermission("Sys_Menu", "1", ActionPermissionOptions.Add)]
-        //只有Role_Id为1的才能进行保存操作
+        //只有Role_Id为1的才能进行保存Operation
         [HttpPost, Route("save"), ApiActionPermission(ActionRolePermission.SuperAdmin)]
         public async Task<ActionResult> Save([FromBody] Sys_Menu menu)
         {
@@ -43,7 +43,7 @@ namespace VOL.System.Controllers
         }
 
         /// <summary>
-        /// 限制只能超级管理员才Del菜单 
+        /// 限制只能SuperAdministrator才DelDishSingle 
         /// </summary>
         /// <param name="keys"></param>
         /// <returns></returns>

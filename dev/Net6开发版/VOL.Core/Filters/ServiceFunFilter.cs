@@ -15,12 +15,12 @@ namespace VOL.Core.Filters
 
         /// <summary>
         /// 2020.08.15是否开启多租户功能
-        /// 使用方法见文档或SellOrderService.cs
+        /// 使用方法见Document或SellOrderService.cs
         /// </summary>
         protected bool IsMultiTenancy { get; set; }
 
         /// <summary>
-        /// 查询界面table 统计、求和、平均值等
+        /// Query界面table 统计、求和、平均值等
         /// 实现方式
         ///SummaryExpress = (IQueryable<App_TransactionAvgPrice> queryable) =>
         //                {
@@ -43,12 +43,12 @@ namespace VOL.Core.Filters
         protected abstract object GetDetailSummary<Detail>(IQueryable<Detail> queryeable);
 
         /// <summary>
-        /// 是否开启用户数据权限,true=用户只能操作自己(及下级Role_Id)创建的数据,如:查询、Del、修改等操作
-        /// 注意：需要在代码生成器界面选择【是】及生成Model才会生效)
+        /// 是否开启UserDataAuthority,true=User只能Operation自己(及下级Role_Id)创建的Data,如:Query、Del、修改等Operation
+        /// 注意：需要在CodeGenerationDevice界面选择【是】及生成Model才会生效)
         /// </summary>
         protected bool LimitCurrentUserPermission { get; set; } = false;
 
-        ///默认导出最大表Quantity：0不限制 
+        ///默认Export最大TableQuantity：0不限制 
         protected int Limit { get; set; } = 0;
 
         /// <summary>
@@ -58,28 +58,28 @@ namespace VOL.Core.Filters
 
 
         /// <summary>
-        /// 2020.08.15添加自定义原生查询sql,这个对于不想写表达式关联或者复杂查询非常有用
+        /// 2020.08.15添加Customize原生Querysql,这个对于不想写Table达式关联或者复杂Query非常有用
         /// 例：QuerySql=$"select * from tb1 as a where  a.name='xxxx' x.id in (select b.id from tb2 b)";
-        ///  select * 这里可以自定义，但select 必须返回表所有的列，不能少
+        ///  select * 这里可以Customize，但select 必须返回Table所有的列，不能少
         /// </summary>
         protected string QuerySql = null;
 
         /// <summary>
-        /// 查询前,对现在有的查询字符串条件增加或Del
+        /// Query前,对现在有的Query字符串条件增加或Del
         /// </summary>
         protected Action<List<SearchParameters>> QueryRelativeList { get; set; }
 
-        //查询前,在现有的查询条件上通过表达式修改查询条件
+        //Query前,在现有的Query条件上通过Table达式修改Query条件
         protected Func<IQueryable<T>, IQueryable<T>> QueryRelativeExpression { get; set; }
 
 
         /// <summary>
-        /// 指定查询的列，格式:Expression<Func<T, object>> exp = x => new { x.字段1, x.字段2 }(暂时未启用)
+        /// 指定Query的列，格式:Expression<Func<T, object>> exp = x => new { x.字段1, x.字段2 }(暂时未启用)
         /// </summary>
         protected Expression<Func<T, object>> Columns { get; set; }
 
         /// <summary>
-        /// 设置查询OrderNo参数及方式,参数格式为：
+        /// SetUpQueryOrderNo参数及方式,参数格式为：
         ///  Expression<Func<T, Dictionary<object, bool>>> orderBy = x => new Dictionary<object, QueryOrderBy>() 
         ///            {{ x.ID, QueryOrderBy.Asc },{ x.DestWarehouseName, QueryOrderBy.Desc } };
         /// 返回的是new Dictionary<object, bool>(){{}}key为OrderNo字段，QueryOrderBy为OrderNo方式
@@ -87,55 +87,55 @@ namespace VOL.Core.Filters
         protected Expression<Func<T, Dictionary<object, QueryOrderBy>>> OrderByExpression;
 
         /// <summary>
-        /// 设置查询的WorkTable(已弃用)
+        /// SetUpQuery的WorkTable(已弃用)
         /// </summary>
         protected string TableName { get; set; }
 
         /// <summary>
-        /// 页面查询或导出，从数据库查询出来的结果
+        /// PageQuery或Export，从Data库Query出来的结果
         /// </summary>
         protected Action<PageGridData<T>> GetPageDataOnExecuted;
 
         /// <summary>
-        /// 调用Add处理前(SaveModel为传入的原生数据)
+        /// 调用Add处理前(SaveModel为传入的原生Data)
         /// </summary>
         protected Func<SaveModel, WebResponseContent> AddOnExecute;
 
         /// <summary>
-        /// 调用Add保存数据库前处理(已将提交的原生数据转换成了对象)
-        ///  Func<T, object,ResponseData>  T为主表数据，object为明细数据(如果需要使用明细对象,请用 object as List<T>转换) 
+        /// 调用Add保存Data库前处理(已将提交的原生Data转换成了对象)
+        ///  Func<T, object,ResponseData>  T为主TableData，object为明细Data(如果需要使用明细对象,请用 object as List<T>转换) 
         /// </summary>
         protected Func<T, object, WebResponseContent> AddOnExecuting;
 
         /// <summary>
-        /// 调用Add保存数据库后处理。
-        /// **实现当前方法时，内部默认已经开启事务，如果实现的方法操作的是同一数据库,则不需要在AddOnExecuted中事务
-        ///  Func<T, object,ResponseData>  T为主表数据，object为明细数据(如果需要使用明细对象,请用 object as List<T>转换) 
-        ///  此处已开启了DbContext事务(重点),如果还有其他业务处事，直接在这里写EF代码,不需要再开启事务
-        /// 如果执行的是手写sql请用repository.DbContext.Database.ExecuteSqlCommand()或 repository.DbContext.Set<T>().FromSql执行具体DbSql
+        /// 调用Add保存Data库后处理。
+        /// **实现当前方法时，内部默认已经开启事务，如果实现的方法Operation的是同一Data库,则不需要在AddOnExecuted中事务
+        ///  Func<T, object,ResponseData>  T为主TableData，object为明细Data(如果需要使用明细对象,请用 object as List<T>转换) 
+        ///  此处已开启了DbContext事务(重点),如果还有Other业务处事，直接在这里写EF代码,不需要再开启事务
+        /// 如果Execute的是手写sql请用repository.DbContext.Database.ExecuteSqlCommand()或 repository.DbContext.Set<T>().FromSqlExecute具体DbSql
         /// </summary>
         protected Func<T, object, WebResponseContent> AddOnExecuted;
 
         /// <summary>
-        /// 进入审批流程方法之前
+        /// 进入ApprovalProcess方法之前
         /// </summary>
         protected Func<T, bool> AddWorkFlowExecuting;
 
         /// <summary>
-        /// 写入审批流程数据之后
-        /// list:审批的人id
+        /// 写入ApprovalProcessData之后
+        /// list:Approval的人id
         /// </summary>
         protected Action<T,List<int>> AddWorkFlowExecuted;
 
         /// <summary>
-        /// 调用更新方法前处理(SaveModel为传入的原生数据)
+        /// 调用更新方法前处理(SaveModel为传入的原生Data)
         /// </summary>
         protected Func<SaveModel, WebResponseContent> UpdateOnExecute;
 
         /// <summary>
-        ///  调用更新方法保存数据库前处理
-        ///  (已将提交的原生数据转换成了对象,将明细新增、修改、Del的数据分别用object1/2/3标识出来 )
-        ///  T=更新的主表对象
+        ///  调用更新方法保存Data库前处理
+        ///  (已将提交的原生Data转换成了对象,将明细新增、修改、Del的Data分别用object1/2/3标识出来 )
+        ///  T=更新的主Table对象
         ///  object1=为新增明细的对象，使用时将object as List<T>转换一下
         ///  object2=为更新明细的对象
         ///  List<object>=为Del的细的对象Key
@@ -143,15 +143,15 @@ namespace VOL.Core.Filters
         protected Func<T, object, object, List<object>, WebResponseContent> UpdateOnExecuting;
 
         /// <summary>
-        ///  调用更新方法保存数据库后处理
-        ///   **实现当前方法时，内部默认已经开启事务，如果实现的方法操作的是同一数据库,则不需要在UpdateOnExecuted中事务
-        ///  (已将提交的原生数据转换成了对象,将明细新增、修改、Del的数据分别用object1/2/3标识出来 )
-        ///  T=更新的主表对象
+        ///  调用更新方法保存Data库后处理
+        ///   **实现当前方法时，内部默认已经开启事务，如果实现的方法Operation的是同一Data库,则不需要在UpdateOnExecuted中事务
+        ///  (已将提交的原生Data转换成了对象,将明细新增、修改、Del的Data分别用object1/2/3标识出来 )
+        ///  T=更新的主Table对象
         ///  object1=为新增明细的对象，使用时将object as List<T>转换一下
         ///  object2=为更新明细的对象
         ///  List<object>=为Del的细的对象Key
-        /// 此处已开启了DbContext事务(重点),如果还有其他业务处事，直接在这里写EF代码,不需要再开启事务
-        /// 如果执行的是手写sql请用repository.DbContext.Database.ExecuteSqlCommand()或 repository.DbContext.Set<T>().FromSql执行具体DbSql
+        /// 此处已开启了DbContext事务(重点),如果还有Other业务处事，直接在这里写EF代码,不需要再开启事务
+        /// 如果Execute的是手写sql请用repository.DbContext.Database.ExecuteSqlCommand()或 repository.DbContext.Set<T>().FromSqlExecute具体DbSql
         /// </summary>
         protected Func<T, object, object, List<object>, WebResponseContent> UpdateOnExecuted;
 
@@ -161,8 +161,8 @@ namespace VOL.Core.Filters
         protected Func<object[], WebResponseContent> DelOnExecuting;
 
         /// <summary>
-        /// Del后处理,object[]已Del的主键,此处已开启了DbContext事务(重点),如果还有其他业务处事，直接在这里写EF代码,不需要再开启事务
-        /// 如果执行的是手写sql请用repository.DbContext.Database.ExecuteSqlCommand()或 repository.DbContext.Set<T>().FromSql执行具体DbSql
+        /// Del后处理,object[]已Del的主键,此处已开启了DbContext事务(重点),如果还有Other业务处事，直接在这里写EF代码,不需要再开启事务
+        /// 如果Execute的是手写sql请用repository.DbContext.Database.ExecuteSqlCommand()或 repository.DbContext.Set<T>().FromSqlExecute具体DbSql
         /// </summary>
         protected Func<object[], WebResponseContent> DelOnExecuted;
 
@@ -177,42 +177,42 @@ namespace VOL.Core.Filters
 
 
         /// <summary>
-        /// 审批流程审核前
-        /// T:当前审核的数据
+        /// ApprovalProcess审核前
+        /// T:当前审核的Data
         /// AuditStatus:AuditStatus
-        /// bool:当前数据是否为最后一个人审核
+        /// bool:当前Data是否为最后一个人审核
         /// </summary>
         protected Func<T, AuditStatus, bool, WebResponseContent> AuditWorkFlowExecuting;
 
         /// <summary>
-        /// 审批流程审核后
-        /// T:当前审核的数据
+        /// ApprovalProcess审核后
+        /// T:当前审核的Data
         /// AuditStatus:AuditStatus
-        /// list:下一个节点的审批人id
-        /// bool:当前数据是否为最后一个人审核
+        /// list:下一个Node的Approval人id
+        /// bool:当前Data是否为最后一个人审核
         /// </summary>
         protected Func<T, AuditStatus,List<int>, bool, WebResponseContent> AuditWorkFlowExecuted;
 
         /// <summary>
-        ///导出前处理,DataTable导出的表数据
-        ///List<T>导出的数据, List<string>忽略不需要导出的字段
+        ///Export前处理,DataTableExport的TableData
+        ///List<T>Export的Data, List<string>忽略不需要Export的字段
         ///此方法不建议使用,由下面ExportColumns委托替代2020.05.07
         /// </summary>
         protected Func<List<T>, List<string>, WebResponseContent> ExportOnExecuting;
 
         /// <summary>
         /// 2020.05.07
-        /// 导出表数据(界面上导出操作),指定要导出的列，格式:Expression<Func<T, object>> exp = x => new { x.字段1, x.字段2 }
+        /// ExportTableData(界面上ExportOperation),指定要Export的列，格式:Expression<Func<T, object>> exp = x => new { x.字段1, x.字段2 }
         /// </summary>
         protected Expression<Func<T, object>> ExportColumns { get; set; }
         /// <summary>
-        /// 指定要导出的列
+        /// 指定要Export的列
         /// </summary>
         protected string[] ExportColumnsArray { get; set; }
 
         /// <summary>
         /// 2020.05.07
-        /// 导出下载模板，指定要导出的模板列，格式:Expression<Func<T, object>> exp = x => new { x.字段1, x.字段2 }
+        /// Export下载模板，指定要Export的模板列，格式:Expression<Func<T, object>> exp = x => new { x.字段1, x.字段2 }
         /// </summary>
         protected Expression<Func<T, object>> DownLoadTemplateColumns { get; set; }
 
@@ -228,15 +228,15 @@ namespace VOL.Core.Filters
         protected Func<List<T>, WebResponseContent> ImportOnExecuting;
 
         /// <summary>
-        /// 导入时不验证下拉框数据源的字段值2023.05.03
+        /// 导入时不验证下拉框Data源的字段值2023.05.03
         /// </summary>
         protected Expression<Func<T, object>> ImportIgnoreSelectValidationColumns;
 
         /// <summary>
-        /// 2022.06.20增加原生excel读取方法(导入时可以自定义读取excel内容)
-        /// string=当前读取的excel单元格的值
+        /// 2022.06.20增加原生excel读取方法(导入时可以Customize读取excelContent)
+        /// string=当前读取的excelSingle元格的值
         /// ExcelWorksheet=excel对象
-        /// ExcelRange当前excel单元格对象
+        /// ExcelRange当前excelSingle元格对象
         /// int=当前读取的第几数
         /// int=当前读取的第几列
         /// string=返回的值
@@ -245,7 +245,7 @@ namespace VOL.Core.Filters
 
 
         /// <summary>
-        /// 自定义上传文件夹(2022.10.07)
+        /// Customize上传文件夹(2022.10.07)
         /// </summary>
         protected string UploadFolder = null;
 

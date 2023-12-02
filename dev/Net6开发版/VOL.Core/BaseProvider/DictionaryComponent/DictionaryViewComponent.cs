@@ -16,8 +16,8 @@ using System.Threading.Tasks;
 namespace VOL.Core.BaseProvider.DictionaryComponent
 {
     /// <summary>
-    /// 组件视图，参照：https://docs.microsoft.com/en-us/aspnet/core/mvc/views/view-components?view=aspnetcore-2.1
-    /// 与Controller命名一样必须以ViewComponent结尾
+    /// Component视图，参照：https://docs.microsoft.com/en-us/aspnet/core/mvc/views/view-components?view=aspnetcore-2.1
+    /// WithController命名一样必须以ViewComponent结尾
     /// </summary>
     public class DictionaryViewComponent : ViewComponent
     {

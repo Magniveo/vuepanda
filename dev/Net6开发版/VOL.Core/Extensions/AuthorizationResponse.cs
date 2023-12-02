@@ -30,12 +30,12 @@ namespace VOL.Core.Extensions
         {
             return context.FilterResult(HttpStatusCode.Unauthorized, message);
         }
-        //不通过JWT验证的，直接将用户信息缓存起来
+        //不通过JWT验证的，直接将User信息缓存起来
         public static void AddIdentity(this AuthorizationFilterContext context, int? userId=null)
         {
             int _userId = userId ?? JwtHelper.GetUserId(context.HttpContext.Request.Headers[AppSetting.TokenHeaderName]);
             if (_userId <= 0) return;
-            //将User_Id缓存到上下文(或者自定一个对象，通过DI以AddScoped方式注入上下文来管理用户信息)
+            //将User_Id缓存到上下文(或者自定一个对象，通过DI以AddScoped方式注入上下文来管理User信息)
             var claims = new Claim[] { new Claim(JwtRegisteredClaimNames.Jti, _userId.ToString()) };
             context.HttpContext.User.AddIdentity(new ClaimsIdentity(claims));
         }

@@ -57,7 +57,7 @@ namespace VOL.Core.CacheManager
         }
 
         /// <summary>
-        /// 移除list中的数据，keepIndex为保留的位置到最后一个元素如list 元素为1.2.3.....100
+        /// 移除list中的Data，keepIndex为保留的位置到最后一个元素如list 元素为1.2.3.....100
         /// 需要移除前3个数，keepindex应该为4
         /// </summary>
         /// <param name="key"></param>

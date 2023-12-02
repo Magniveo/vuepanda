@@ -1,12 +1,12 @@
-<!-- 审核流程插件基于https://gitee.com/xiaoka2017/easy-flow修改-->
-<!--感谢萌级小菜鸟 / easy-flow -->
+<!-- 审核Process插件基于https://gitee.com/xiaoka2017/easy-flow修改-->
+<!--感谢萌级小Dish鸟 / easy-flow -->
 <template>
     <div v-if="easyFlowVisible" class="flow-panel">
 
         <div style="display: flex;height: 100%;position: relative;">
             <el-scrollbar style="height: 100%;border-right: 1px solid rgb(220, 227, 232);">
                 <div style="width: 220px;">
-                    <div class="ef-node-pmenu-item"><i class="el-icon-warning-outline"></i>基础信息</div>
+                    <div class="ef-node-pmenu-item"><i class="el-icon-warning-outline"></i>Basic信息</div>
                     <VolForm ref="form" style="padding: 10px;" :label-width="180" :loadKey="true" :formFields="formFields"
                         :disabled="disabled" :formRules="formRules"></VolForm>
                     <node-menu @addNode="addNode" ref="nodeMenu" v-if="!disabled"></node-menu>
@@ -76,7 +76,7 @@ export default {
                     }],
                 [{
                     dataKey: '',
-                    title: '流程实例',
+                    title: 'Process实例',
                     required: true,
                     field: 'WorkTable',
                     data: [],
@@ -102,7 +102,7 @@ export default {
                 ],
                 
                 [{
-                    title: '审核中数据是否可以Edit',
+                    title: 'AuditingEdit',
                     field: 'AuditingEdit',
                     type: "switch",
                     data: [{ key: 0, value: "否" }, { key: 1, value: "是" }]
@@ -118,11 +118,11 @@ export default {
             jsPlumb: null,
             // 控制画布销毁
             easyFlowVisible: true,
-            // 是否加载完毕标志位
+            // 是否Load完毕标志位
             loadEasyFlowFinish: false,
-            // 数据
+            // Data
             data: {},
-            // 激活的元素、可能是节点、可能是连线
+            // 激活的元素、可能是Node、可能是连线
             activeElement: {
                 // 可选值 node 、line
                 type: undefined,
@@ -135,7 +135,7 @@ export default {
             zoom: 1
         }
     },
-    // 一些基础配置移动该文件中
+    // 一些BasicConfiguration移动该文件中
     mixins: [easyFlowMixin],
     components: {
         draggable, flowNode, nodeMenu, FlowNodeForm, VolForm
@@ -157,7 +157,7 @@ export default {
                     el.style.cursor = 'move'
 
                     document.onmousemove = function (e) {
-                        // 移动时禁止默认事件
+                        // 移动时禁止默认Event
                         e.preventDefault()
                         const left = e.clientX - disX
                         disX = e.clientX
@@ -180,7 +180,7 @@ export default {
     mounted() {
         this.jsPlumb = jsPlumb.getInstance()
         // this.$nextTick(() => {
-        //     // 默认加载流程A的数据、在这里可以根据具体的业务返回符合流程数据格式的数据即可
+        //     // 默认LoadProcessA的Data、在这里可以根据具体的业务返回符合ProcessData格式的Data即可
         //     this.dataReload(getDataA())
         // })
     },
@@ -203,13 +203,13 @@ export default {
         },
         jsPlumbInit() {
             this.jsPlumb.ready(() => {
-                // 导入默认配置
+                // 导入默认Configuration
                 this.jsPlumb.importDefaults(this.jsplumbSetting)
                 // 会使整个jsPlumb立即重绘。
                 this.jsPlumb.setSuspendDrawing(false, true);
-                // 初始化节点
+                // 初始化Node
                 this.loadEasyFlow()
-                // 单点击了连接线, https://www.cnblogs.com/ysx215/p/7615677.html
+                // Single点击了连接线, https://www.cnblogs.com/ysx215/p/7615677.html
                 this.jsPlumb.bind('click', (conn, originalEvent) => {
                     this.activeElement.type = 'line'
                     this.activeElement.sourceId = conn.sourceId
@@ -235,7 +235,7 @@ export default {
                     this.deleteLine(evt.sourceId, evt.targetId)
                 })
 
-                // 改变线的连接节点
+                // 改变线的连接Node
                 this.jsPlumb.bind("connectionMoved", (evt) => {
                     this.changeLine(evt.originalSourceId, evt.originalTargetId)
                 })
@@ -250,7 +250,7 @@ export default {
                     let from = evt.sourceId
                     let to = evt.targetId
                     if (from === to) {
-                        this.$message.error('节点不支持连接自己')
+                        this.$message.error('Node不支持连接自己')
                         return false
                     }
                     if (this.hasLine(from, to)) {
@@ -258,10 +258,10 @@ export default {
                         return false
                     }
                     if (this.hashOppositeLine(from, to)) {
-                        this.$message.error('不支持两个节点之间连线回环');
+                        this.$message.error('不支持两个Node之间连线回环');
                         return false
                     }
-                    this.$message.success('连接成功')
+                    this.$message.success('连接Success')
                     setTimeout(() => { this.setLineLabel(from, to, 'x') }, 50)
                     return true
                 })
@@ -273,9 +273,9 @@ export default {
                 this.jsPlumb.setContainer(this.$refs.efContainer)
             })
         },
-        // 加载流程图
+        // LoadProcess图
         loadEasyFlow() {
-            // 初始化节点
+            // 初始化Node
             for (var i = 0; i < this.data.nodeList.length; i++) {
                 let node = this.data.nodeList[i]
                 if (node.userId && node.userId != '') {
@@ -288,16 +288,16 @@ export default {
                 } else {
                     node.userId = []
                 }
-                // 设置源点，可以拖出线连接其他节点
+                // SetUp源点，可以拖出线连接OtherNode
                 this.jsPlumb.makeSource(node.id, lodash.merge(this.jsplumbSourceOptions, {}))
-                // // 设置目标点，其他源点拖出的线可以连接该节点
+                // // SetUp目标点，Other源点拖出的线可以连接该Node
                 this.jsPlumb.makeTarget(node.id, this.jsplumbTargetOptions)
                 if (!node.viewOnly && !this.disabled) {
                     this.jsPlumb.draggable(node.id, {
                         containment: 'parent',
                         stop: function (el) {
-                            // 拖拽节点结束后的对调
-                            console.log('拖拽结束: ', el)
+                            // 拖拽NodeEnd后的对调
+                            console.log('拖拽End: ', el)
                         }
                     })
                 }
@@ -320,7 +320,7 @@ export default {
                 this.loadEasyFlowFinish = true
             })
         },
-        // 设置连线条件
+        // SetUp连线条件
         setLineLabel(from, to, label) {
             var conn = this.jsPlumb.getConnections({
                 source: from,
@@ -350,8 +350,8 @@ export default {
                 this.deleteNode(this.activeElement.nodeId)
             } else if (this.activeElement.type === 'line') {
                 this.$confirm('确定Del所点击的线吗?', '提示', {
-                    confirmButtonText: '确定',
-                    cancelButtonText: '取消',
+                    confirmButtonText: window.locales[window.localei18n.locale].Confirm,
+                    cancelButtonText: window.locales[window.localei18n.locale].Cancel,
                     type: 'warning'
                 }).then(() => {
                     var conn = this.jsPlumb.getConnections({
@@ -376,7 +376,7 @@ export default {
         changeLine(oldFrom, oldTo) {
             this.deleteLine(oldFrom, oldTo)
         },
-        // 改变节点的位置
+        // 改变Node的位置
         changeNodeSite(data) {
             for (var i = 0; i < this.data.nodeList.length; i++) {
                 let node = this.data.nodeList[i]
@@ -387,27 +387,27 @@ export default {
             }
         },
         /**
-         * 拖拽结束后添加新的节点
+         * 拖拽End后添加新的Node
          * @param evt
-         * @param nodeMenu 被添加的节点对象
-         * @param mousePosition 鼠标拖拽结束的坐标
+         * @param nodeMenu 被添加的Node对象
+         * @param mousePosition 鼠标拖拽End的坐标
          */
         addNode(evt, nodeMenu, mousePosition) {
             if (nodeMenu.type == 'start' && this.data.nodeList.some(x => { return x.type == 'start' })) {
-                this.$message.error('【流程结束】节点已存在,只有选择一个流程开始节点');
+                this.$message.error('【ProcessEnd】Node已存在,只有选择一个ProcessStartNode');
                 return
             }
             if (nodeMenu.type == 'end' && this.data.nodeList.some(x => { return x.type == 'end' })) {
-                this.$message.error('【流程结束】节点已存在,只有选择一个流程开始节点');
+                this.$message.error('【ProcessEnd】Node已存在,只有选择一个ProcessStartNode');
                 return
             }
             var screenX = evt.originalEvent.clientX, screenY = evt.originalEvent.clientY
             let efContainer = this.$refs.efContainer
             var containerRect = efContainer.getBoundingClientRect()
             var left = screenX, top = screenY
-            // 计算是否拖入到容器中
+            // 计算是否拖入到容Device中
             if (left < containerRect.x || left > containerRect.width + containerRect.x || top < containerRect.y || containerRect.y > containerRect.y + containerRect.height) {
-                this.$message.error("请把节点拖入到画布中")
+                this.$message.error("请把Node拖入到画布中")
                 return
             }
             left = left - containerRect.x + efContainer.scrollLeft
@@ -445,7 +445,7 @@ export default {
                 state: 'success'
             }
             /**
-             * 这里可以进行业务判断、是否能够添加该节点
+             * 这里可以进行业务判断、是否能够添加该Node
              */
             this.data.nodeList.push(node)
             this.$nextTick(function () {
@@ -454,20 +454,20 @@ export default {
                 this.jsPlumb.draggable(nodeId, {
                     containment: 'parent',
                     stop: function (el) {
-                        // 拖拽节点结束后的对调
-                        console.log('拖拽结束: ', el)
+                        // 拖拽NodeEnd后的对调
+                        console.log('拖拽End: ', el)
                     }
                 })
             })
         },
         /**
-         * Del节点
-         * @param nodeId 被Del节点的ID
+         * DelNode
+         * @param nodeId 被DelNode的ID
          */
         deleteNode(nodeId) {
-            this.$confirm('确定要Del节点' + nodeId + '?', '提示', {
-                confirmButtonText: '确定',
-                cancelButtonText: '取消',
+            this.$confirm('确定要DelNode' + nodeId + '?', '提示', {
+                confirmButtonText: window.locales[window.localei18n.locale].Confirm,
+                cancelButtonText: window.locales[window.localei18n.locale].Cancel,
                 type: 'warning',
                 closeOnClickModal: false
             }).then(() => {
@@ -476,7 +476,7 @@ export default {
                  */
                 this.data.nodeList = this.data.nodeList.filter(function (node) {
                     if (node.id === nodeId) {
-                        // 伪Del，将节点隐藏，否则会导致位置错位
+                        // 伪Del，将Node隐藏，否则会导致位置错位
                         // node.show = false
                         return false
                     }
@@ -522,7 +522,7 @@ export default {
             console.log(_node);
             this.jsPlumb.repaint();
         },
-        // 加载流程图
+        // LoadProcess图
         dataReload(data, isAdd) {
             this.easyFlowVisible = false
             this.data.nodeList = []

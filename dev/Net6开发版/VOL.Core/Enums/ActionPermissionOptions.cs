@@ -13,6 +13,6 @@ namespace VOL.Core.Enums
         Export=4,
         Audit,
         Upload,//上传文件
-        Import //导入表数据Excel
+        Import //导入TableDataExcel
     }
 }

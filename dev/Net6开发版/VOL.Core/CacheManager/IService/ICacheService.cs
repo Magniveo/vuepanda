@@ -39,7 +39,7 @@ namespace VOL.Core.CacheManager
         T ListDequeue<T>(string key) where T : class;
 
         /// <summary>
-        /// 移除list中的数据，keepIndex为保留的位置到最后一个元素如list 元素为1.2.3.....100
+        /// 移除list中的Data，keepIndex为保留的位置到最后一个元素如list 元素为1.2.3.....100
         /// 需要移除前3个数，keepindex应该为4
         /// </summary>
         /// <param name="key"></param>
@@ -52,7 +52,7 @@ namespace VOL.Core.CacheManager
         /// <param name="key">缓存Key</param>
         /// <param name="value">缓存Value</param>
         /// <param name="expiresIn">缓存ElapsedTime</param>
-        /// <param name="isSliding">是否滑动过期（如果在过期时间内有操作，则以当前时间点延长过期时间） //new TimeSpan(0, 60, 0);</param>
+        /// <param name="isSliding">是否滑动过期（如果在过期时间内有Operation，则以当前时间点延长过期时间） //new TimeSpan(0, 60, 0);</param>
         /// <returns></returns>
         bool AddObject(string key, object value, int expireSeconds = -1, bool isSliding = false);
 

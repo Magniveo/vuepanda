@@ -7,15 +7,15 @@ namespace VOL.Core.Filters
     public class ActionPermissionRequirement
     {
         /// <summary>
-        /// 控制器要操作的表
+        /// 控制Device要Operation的Table
         /// </summary>
         public string TableName { get; set; } = string.Empty;
         /// <summary>
-        /// 对表的操作/Del/查询等
+        /// 对Table的Operation/Del/Query等
         /// </summary>
         public string TableAction { get; set; } = string.Empty;
         /// <summary>
-        /// 是否为框架定义的控制器
+        /// 是否为框架定义的控制Device
         /// </summary>
         public bool SysController { get; set; }
         /// <summary>

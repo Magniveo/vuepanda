@@ -111,29 +111,29 @@ export default {
         taotal: 1690
       }, //报名信息
       list: [
-        { desc: '框架2.x版本不支持直接升级Vue3版本(代码生成器已修改)' },
-        { desc: '框架使用的Element Plus组件，移除了Iview组件的依赖' },
-        { desc: '框架内部组件全部重新优化,相比2.x版本首屏大小减少60%' },
-        { desc: '框架Vue2版本会继续维护,并与Vue3版本同步更新,请放心使用' },
-        { desc: '框架Vue2、Vue3版本开发文档一致(差异部分文档会Remark说明)' },
-        //{ desc: "若正在使用Vue2框架版本继续使用即可;其他建议使用Vue3版本" },
+        { desc: '框架2.x版本不支持直接升级Vue3版本(CodeGenerationDevice已修改)' },
+        { desc: '框架使用的Element PlusComponent，移除了IviewComponent的依赖' },
+        { desc: '框架内部Component全部重新优化,相比2.x版本首屏大小减少60%' },
+        { desc: '框架Vue2版本会继续维护,并WithVue3版本同步更新,请放心使用' },
+        { desc: '框架Vue2、Vue3版本开发Document一致(差异部分Document会Remark说明)' },
+        //{ desc: "若正在使用Vue2框架版本继续使用即可;Other建议使用Vue3版本" },
         {
-          desc: 'vue2、vue3文档相同,开文档大部分文档仍然使用的vue2语法'
+          desc: 'vue2、vue3Document相同,开Document大部分Document仍然使用的vue2语法'
         },
         {
-          desc: '自定义部分既可以使用vue3语法与可以使用vue3语法'
+          desc: 'Customize部分既可以使用vue3语法With可以使用vue3语法'
         }
-        //(框架内部组件vue2/3语法都在使用),你也可以使用vue3语法
+        //(框架内部Componentvue2/3语法都在使用),你也可以使用vue3语法
       ],
       grid: [
         {
           name: 'UserManagement',
-          desc: 'SystemUserManagement,注册用户3000000人。',
+          desc: 'SystemUserManagement,注册User3000000人。',
           icon: 'el-icon-user'
         },
         {
-          name: '站内消息',
-          desc: '您有一条新的消息,请及时处理。',
+          name: '站内Message',
+          desc: '您有一条新的Message,请及时处理。',
           icon: 'el-icon-chat-dot-round'
         },
         {
@@ -153,7 +153,7 @@ export default {
         },
         {
           name: '垃圾回收',
-          desc: 'Del过的数据在此处找回。。。。',
+          desc: 'Del过的Data在此处找回。。。。',
           icon: 'el-icon-delete'
         }
       ]

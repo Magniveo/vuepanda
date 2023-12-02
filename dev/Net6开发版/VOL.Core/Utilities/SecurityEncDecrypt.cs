@@ -16,7 +16,7 @@ namespace VOL.Core.Utilities
         /// </summary> 
         /// <param name="encryptString">待加密的字符串</param> 
         /// <param name="encryptKey">加密密钥,要求为16位</param> 
-        /// <returns>加密成功返回加密后的字符串，失败返回源串</returns> 
+        /// <returns>加密Success返回加密后的字符串，失败返回源串</returns> 
 
         public static string EncryptDES(string encryptString, string encryptKey)
         {
@@ -34,7 +34,7 @@ namespace VOL.Core.Utilities
             }
             catch (Exception ex)
             {
-                throw new Exception("数据库UserPwd加密异常" + ex.Message);
+                throw new Exception("Data库UserPwd加密异常" + ex.Message);
             }
 
         }
@@ -44,7 +44,7 @@ namespace VOL.Core.Utilities
         /// </summary> 
         /// <param name="decryptString">待解密的字符串</param> 
         /// <param name="decryptKey">解密密钥,要求为16位,和加密密钥相同</param> 
-        /// <returns>解密成功返回解密后的字符串，失败返源串</returns> 
+        /// <returns>解密Success返回解密后的字符串，失败返源串</returns> 
 
         public static string DecryptDES(string decryptString, string decryptKey)
         {

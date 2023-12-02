@@ -54,7 +54,7 @@ namespace VOL.Core.BaseProvider
             get { return DBServerProvider.GetSqlDapper<TEntity>(); }
         }
         /// <summary>
-        /// 执行事务
+        /// Execute事务
         /// </summary>
         /// <param name="action">如果返回false则回滚事务(可自行定义规则)</param>
         /// <returns></returns>
@@ -164,7 +164,7 @@ namespace VOL.Core.BaseProvider
         }
 
         /// <summary>
-        /// 多条件查询
+        /// 多条件Query
         /// </summary>
         /// <typeparam name="Source"></typeparam>
         /// <param name="sources"></param>
@@ -189,7 +189,7 @@ namespace VOL.Core.BaseProvider
             return DBSet.Where(predicate).Select(selector).ToList();
         }
         /// <summary>
-        /// 单表查询
+        /// SingleTableQuery
         /// </summary>
         /// <param name="predicate"></param>
         /// <returns></returns>
@@ -223,7 +223,7 @@ namespace VOL.Core.BaseProvider
         }
 
         /// <summary>
-        /// 通过条件查询返回指定列的数据(将TEntity映射到匿名或实体T)
+        /// 通过条件Query返回指定列的Data(将TEntity映射到匿名或实体T)
         ///var result = Sys_UserRepository.GetInstance.Find(x => x.UserName == loginInfo.userName, p => new { uname = p.UserName });
         /// <summary>
         /// 
@@ -232,7 +232,7 @@ namespace VOL.Core.BaseProvider
         /// <param name="pageIndex"></param>
         /// <param name="pagesize"></param>
         /// <param name="rowcount"></param>
-        /// <param name="predicate">查询条件</param>
+        /// <param name="predicate">Query条件</param>
         /// <param name="orderBySelector">多个OrderNo字段key为字段，value为升序/降序</param>
         /// <returns></returns>
         public virtual IQueryable<TFind> IQueryablePage<TFind>(int pageIndex, int pagesize, out int rowcount, Expression<Func<TFind, bool>> predicate, Expression<Func<TEntity, Dictionary<object, QueryOrderBy>>> orderBy, bool returnRowCount = true) where TFind : class
@@ -287,7 +287,7 @@ namespace VOL.Core.BaseProvider
 
 
         /// <summary>
-        /// 更新表数据
+        /// 更新TableData
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="saveChanges">是否保存</param>
@@ -324,7 +324,7 @@ namespace VOL.Core.BaseProvider
         }
 
         /// <summary>
-        /// 更新表数据
+        /// 更新TableData
         /// </summary>
         /// <param name="models"></param>
         /// <param name="properties">格式 Expression<Func<entityt, object>> expTree = x => new { x.字段1, x.字段2 };</param>
@@ -369,7 +369,7 @@ namespace VOL.Core.BaseProvider
                     var proposedValues = entry.CurrentValues;
 
                     var databaseValues = entry.GetDatabaseValues();
-                    //databaseValues == null说明数据已被Del
+                    //databaseValues == null说明Data已被Del
                     if (databaseValues != null)
                     {
                         foreach (var property in properties == null
@@ -397,8 +397,8 @@ namespace VOL.Core.BaseProvider
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="updateDetail">是否修改明细</param>
-        /// <param name="delNotExist">是否Del明细不存在的数据</param>
-        /// <param name="updateMainFields">主表指定修改字段</param>
+        /// <param name="delNotExist">是否Del明细不存在的Data</param>
+        /// <param name="updateMainFields">主Table指定修改字段</param>
         /// <param name="updateDetailFields">明细指定修改字段</param>
         /// <param name="saveChange">是否保存</param>
         /// <returns></returns>
@@ -428,7 +428,7 @@ namespace VOL.Core.BaseProvider
             if (!saveChange) return webResponse.OK();
 
             DbContext.SaveChanges();
-            return webResponse.OK("修改成功,明细" + message, entity);
+            return webResponse.OK("修改Success,明细" + message, entity);
         }
         private string UpdateDetail<TDetail>(List<TDetail> list,
             string keyName,
@@ -458,18 +458,18 @@ namespace VOL.Core.BaseProvider
             {
                 var set = DbContext.Set<TDetail>();
                 object val = property.GetValue(x);
-                //主键是默认值的为新增的数据
+                //主键是默认值的为新增的Data
                 if (val.ToString() == keyDefaultVal)
                 {
                     x.SetCreateDefaultVal();
-                    //设置主表的值，也可以不设置
+                    //SetUp主Table的值，也可以不SetUp
                     mainKeyProperty.SetValue(x, keyValue);
                     details.Add(x);
                     addCount++;
                 }
-                else//修改的数据
+                else//修改的Data
                 {
-                    //获取所有修改的key,如果从数据库查来的key,不在修改中的key，则为Del的数据
+                    //获取所有修改的key,如果从Data库查来的key,不在修改中的key，则为Del的Data
                     keys.Add(val);
                     x.SetModifyDefaultVal();
                     Update<TDetail>(x, updateDetailFields);
@@ -576,7 +576,7 @@ namespace VOL.Core.BaseProvider
         }
 
         /// <summary>
-        /// 注意List生成的table的列顺序必须要和数据库表的列顺序一致
+        /// 注意List生成的table的列顺序必须要和Data库Table的列顺序一致
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="entities"></param>
@@ -616,7 +616,7 @@ namespace VOL.Core.BaseProvider
         }
 
         /// <summary>
-        /// 执行sql
+        /// Executesql
         /// 使用方式 FormattableString sql=$"select * from xx where name ={xx} and pwd={xx1} "，
         /// FromSqlInterpolated内部处理sql注入的问题，直接在{xx}写对应的值即可
         /// 注意：sql必须 select * 返回所有TEntity字段，
@@ -646,11 +646,11 @@ namespace VOL.Core.BaseProvider
         }
 
         /// <summary>
-        /// 查询字段不为null或者为空
+        /// Query字段不为null或者为空
         /// </summary>
         /// <param name="field">x=>new {x.字段}</param>
-        /// <param name="value">查询的类</param>
-        /// <param name="linqExpression">查询AppType</param>
+        /// <param name="value">Query的类</param>
+        /// <param name="linqExpression">QueryAppType</param>
         /// <returns></returns>
         public virtual IQueryable<TEntity> WhereIF([NotNull] Expression<Func<TEntity, object>> field, string value, LinqExpressionType linqExpression = LinqExpressionType.Equal)
         {

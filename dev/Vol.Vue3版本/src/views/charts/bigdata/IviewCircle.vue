@@ -11,7 +11,7 @@
       >
         <div class="demo-Circle-custom">
           <h1>1500</h1>
-          <p>昨日活跃用户Quantity</p>
+          <p>昨日活跃UserQuantity</p>
           <span>
             占比
             <i>{{1500/20000}}%</i>
@@ -30,7 +30,7 @@
       >
         <div class="demo-Circle-custom">
           <h1>12000</h1>
-          <p>上月活跃用户Quantity</p>
+          <p>上月活跃UserQuantity</p>
           <span>
             占比
             <i>{{12000/150000}}%</i>

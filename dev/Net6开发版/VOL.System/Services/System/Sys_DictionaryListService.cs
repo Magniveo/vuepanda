@@ -1,8 +1,8 @@
 /*
  *Author：jxx
  *Contact：283591387@qq.com
- *代码由框架生成,此处任何更改都可能导致被代码生成器覆盖
- *所有业务编写全部应在Partial文件夹下Sys_DictionaryListService与ISys_DictionaryListService中编写
+ *代码由框架生成,此处任何更改都可能导致被CodeGenerationDevice覆盖
+ *所有业务编写全部应在Partial文件夹下Sys_DictionaryListServiceWithISys_DictionaryListService中编写
  */
 using VOL.System.IRepositories;
 using VOL.System.IServices;

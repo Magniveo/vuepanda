@@ -4,15 +4,15 @@
       ref="add"
       :width="850"
       :height="450"
-      title="Add配置信息"
+      title="AddConfiguration信息"
       padding="10px"
       v-model="addModel"
     >
       <div style="padding: 30px 30px 10px 34px">
         <el-alert type="warning" :closable="false">
-          1、如果只是创建目录，ParentId填0,其他随便填写;
+          1、如果只是创建目录，ParentId填0,Other随便填写;
           <br />
-          2、如果是生成代码，ParentId填写【代码生成配置】列表页面的id
+          2、如果是生成代码，ParentId填写【CodeGenerationConfiguration】ListPage的id
         </el-alert>
       </div>
       <div class="addModel" style="padding-right: 30px">
@@ -32,7 +32,7 @@
       </template>
     </vol-box>
     <div class="builder-left">
-      <div class="module-name">代码生成配置</div>
+      <div class="module-name">CodeGenerationConfiguration</div>
       <div class="builder-tree">
         <el-scrollbar style="height: 100%; width: 200px">
           <!-- :onOpenChange="onOpenChange" -->
@@ -45,10 +45,10 @@
         <el-scrollbar style="height: 100%">
           <div class="coder-container">
             <div class="coder-item" style="padding-top: 7px">
-              <VolHeader icon="ios-chatbubbles" text="代码生成器">
+              <VolHeader icon="ios-chatbubbles" text="CodeGenerationDevice">
                 <template #content>
                   <div style="color: red; font-size: 13px">
-                    Del左侧配置菜单:Del行->保存->Del菜单
+                    Del左侧ConfigurationDishSingle:Del行->保存->DelDishSingle
                   </div>
                 </template>
                 <div class="action">
@@ -57,10 +57,10 @@
                     <i class="el-icon-plus"></i>Add
                   </span>
                   <span @click="ceateVuePage(0)">
-                    <i class="el-icon-document"></i>生成Vue页面
+                    <i class="el-icon-document"></i>生成VuePage
                   </span>
                   <span @click="ceateVuePage(1)">
-                    <i class="el-icon-document"></i>生成app页面
+                    <i class="el-icon-document"></i>生成appPage
                   </span>
                   <span @click="ceateModel">
                     <i class="el-icon-tickets"></i>生成Model
@@ -69,7 +69,7 @@
                     <i class="el-icon-document"></i>生成业务类
                   </span>
                   <span @click="delTree">
-                    <i class="el-icon-delete"></i>Del菜单
+                    <i class="el-icon-delete"></i>DelDishSingle
                   </span>
                 </div>
               </VolHeader>
@@ -83,18 +83,18 @@
               </div>
             </div>
             <el-alert type="warning" :closable="false">
-              1、如果需要修改表结构，请在数据库修改，再点同步表结构->生成vue页面->生成model。
-              2、修改Edit行后需要点击生成model、生成vue页面
+              1、如果需要修改Table结构，请在Data库修改，再点同步Table结构->生成vuePage->生成model。
+              2、修改Edit行后需要点击生成model、生成vuePage
             </el-alert>
             <div class="coder-item">
               <VolHeader
                 icon="md-podium"
                 style="border-bottom: 0"
-                text="表结构"
+                text="Table结构"
               >
                 <template #content>
                   <div style="color: red; font-size: 13px">
-                    数据库表结构发生变化时请点【同步表结构】
+                    Data库Table结构发生变化时请点【同步Table结构】
                   </div></template
                 >
 
@@ -103,13 +103,13 @@
                     style="color: rgb(23, 156, 216)"
                     class="ivu-icon ivu-icon-ios-folder"
                     @click="help"
-                    >代码生成器参数文档</span
+                    >CodeGenerationDevice参数Document</span
                   >
                   <span @click="delRow" class="ivu-icon ivu-icon-md-close"
-                    >Del行数据</span
+                    >Del行Data</span
                   >
                   <span @click="syncTable" class="ivu-icon ivu-icon-md-sync"
-                    >同步表结构</span
+                    >同步Table结构</span
                   >
                 </div>
               </VolHeader>
@@ -197,11 +197,11 @@ export default {
     },
     delTree() {
       let tableId = this.layOutOptins.fields.table_Id;
-      if (!tableId) return this.$message.error('请选择节点');
+      if (!tableId) return this.$message.error('请选择Node');
       let tigger = false;
       this.$confirm('Del警告?', '确认要Del吗', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
+        confirmButtonText: window.locales[window.localei18n.locale].Confirm,
+        cancelButtonText: window.locales[window.localei18n.locale].Cancel,
         type: 'warning',
         center: true
       }).then(() => {
@@ -211,7 +211,7 @@ export default {
           .post('/api/builder/delTree?table_Id=' + tableId, {}, true)
           .then((x) => {
             if (!x.status) return this.$message.error(x.message);
-            this.$message.error('Del成功,请刷新页面');
+            this.$message.error('DelSuccess,请刷新Page');
             // for (let index = 0; index < this.tree.length; index++) {
             //   if (this.tree[index].id == tableId) {
             //     this.tree.splice(index, 1);
@@ -274,7 +274,7 @@ export default {
       // this.$message.info("开发中");
       let id = this.layOutOptins.fields.table_Id;
       if (!id) {
-        return this.$message.error('请选中节点');
+        return this.$message.error('请选中Node');
       }
       this.addVisible(id);
     },
@@ -283,9 +283,9 @@ export default {
     },
     delRow() {
       let tigger = false;
-      this.$confirm('Del警告?', '确认要Del选择的数据吗', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
+      this.$confirm('Del警告?', '确认要Del选择的Data吗', {
+        confirmButtonText: window.locales[window.localei18n.locale].Confirm,
+        cancelButtonText: window.locales[window.localei18n.locale].Cancel,
         type: 'warning',
         center: true
       }).then(() => {
@@ -297,7 +297,7 @@ export default {
     validateTableInfo(callback) {
       this.$refs.form.validate(() => {
         if (!this.tableInfo) {
-          this.$message.error('请先加载数据');
+          this.$message.error('请先LoadData');
           return false;
         }
         if (this.data && this.data.length > 0) {
@@ -305,11 +305,11 @@ export default {
             return x.isKey;
           });
           if (!keyInfo) {
-            this.$message.error('请勾选设置主键');
+            this.$message.error('请勾选SetUp主键');
             return false;
           }
           if (keyInfo.isNull == 1) {
-            this.$message.error('主键【可为空】必须设置为否');
+            this.$message.error('主键【可为空】必须SetUp为否');
             return false;
           }
           if (
@@ -317,7 +317,7 @@ export default {
             keyInfo.columnType != 'bigint' &&
             !this.layOutOptins.fields.sortName
           ) {
-            this.$message.error('主键非自增AppType,请设置上面Form的【OrderNo字段】');
+            this.$message.error('主键非自增AppType,请SetUp上面Form的【OrderNo字段】');
             return false;
           }
         }
@@ -338,13 +338,13 @@ export default {
           vuePath = localStorage.getItem('vuePath');
           if (!vuePath) {
             return this.$message.error(
-              '请先设置Vue项目对应Views的绝对路径,然后再保存!'
+              '请先SetUpVue项目对应Views的绝对路径,然后再保存!'
             );
           }
         } else {
           vuePath = localStorage.getItem('appPath');
           if (!vuePath) {
-            return this.$message.error('请先设置app路径,然后再保存!');
+            return this.$message.error('请先SetUpapp路径,然后再保存!');
           }
         }
 
@@ -417,7 +417,7 @@ export default {
           return x.isKey == 1;
         }).length > 1
       ) {
-        return this.$Message.error('表结构只能勾选一个主键字段');
+        return this.$Message.error('Table结构只能勾选一个主键字段');
       }
       this.validateTableInfo(() => {
         this.http.post('/api/builder/Save', this.tableInfo, true).then((x) => {
@@ -461,7 +461,7 @@ export default {
           if (!x.data.tableTrueName) {
             x.data.tableTrueName = x.data.tableName;
           }
-          //2021.01.09增加代码生成器设置tableOrderNo功能
+          //2021.01.09增加CodeGenerationDeviceSetUptableOrderNo功能
           const _fields = [
             'sortable',
             'isNull',

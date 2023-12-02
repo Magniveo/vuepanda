@@ -42,7 +42,7 @@ namespace VOL.Core.Filters
                 fixedoken = ((ClaimsIdentity)context.HttpContext.User.Identity)
                 ?.BootstrapContext?.ToString();
             }
-            //判断当前用户的token与缓存的token是否相同
+            //判断当前User的tokenWith缓存的token是否相同
             if (UserContext.Current.Token != fixedoken)
             {
                 context.FilterResult(HttpStatusCode.Unauthorized, "token已失效");

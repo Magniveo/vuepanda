@@ -172,47 +172,47 @@ namespace VOL.Core.Extensions
             return null;
         }
         /// <summary>
-        /// 将集合转换为数据集。
+        /// 将集合转换为Data集。
         /// </summary>
         /// <typeparam name="T">转换的元素AppType。</typeparam>
         /// <param name="list">集合。</param>
-        /// <param name="generic">是否生成泛型数据集。</param>
-        /// <returns>数据集。</returns>
+        /// <param name="generic">是否生成泛型Data集。</param>
+        /// <returns>Data集。</returns>
         public static DataSet ToDataSet<T>(this IEnumerable<T> list, bool generic = true)
         {
             return ListToDataSet(list, generic);
         }
 
         /// <summary>
-        /// 将集合转换为数据集。
+        /// 将集合转换为Data集。
         /// </summary>
         /// <param name="list">集合。</param>
-        /// <param name="generic">是否生成泛型数据集。</param>
-        /// <returns>数据集。</returns>
+        /// <param name="generic">是否生成泛型Data集。</param>
+        /// <returns>Data集。</returns>
         public static DataSet ToDataSet(this IEnumerable list, bool generic = true)
         {
             return ListToDataSet(list, generic);
         }
 
         /// <summary>
-        /// 将集合转换为数据集。
+        /// 将集合转换为Data集。
         /// </summary>
         /// <typeparam name="T">转换的元素AppType。</typeparam>
         /// <param name="list">集合。</param>
-        /// <param name="generic">是否生成泛型数据集。</param>
-        /// <returns>数据集。</returns>
+        /// <param name="generic">是否生成泛型Data集。</param>
+        /// <returns>Data集。</returns>
         public static DataSet ToDataSet<T>(this IEnumerable list, bool generic = true)
         {
             return ListToDataSet(list, typeof(T), generic);
         }
 
         /// <summary>
-        /// 将实例转换为集合数据集。
+        /// 将实例转换为集合Data集。
         /// </summary>
         /// <typeparam name="T">实例AppType。</typeparam>
         /// <param name="o">实例。</param>
-        /// <param name="generic">是否生成泛型数据集。</param>
-        /// <returns>数据集。</returns>
+        /// <param name="generic">是否生成泛型Data集。</param>
+        /// <returns>Data集。</returns>
         public static DataSet ToListSet<T>(this T o, bool generic = true)
         {
             if (o is IEnumerable)
@@ -241,12 +241,12 @@ namespace VOL.Core.Extensions
         }
 
         /// <summary>
-        /// 将集合转换为数据集。
+        /// 将集合转换为Data集。
         /// </summary>
         /// <param name="list">集合。</param>
         /// <param name="t">转换的元素AppType。</param>
-        /// <param name="generic">是否生成泛型数据集。</param>
-        /// <returns>转换后的数据集。</returns>
+        /// <param name="generic">是否生成泛型Data集。</param>
+        /// <returns>转换后的Data集。</returns>
         private static DataSet ListToDataSet(IEnumerable list, Type t, bool generic)
         {
             DataSet ds = new DataSet("Data");
@@ -351,32 +351,32 @@ namespace VOL.Core.Extensions
         }
 
         /// <summary>
-        /// 将集合转换为数据集。
+        /// 将集合转换为Data集。
         /// </summary>
         /// <typeparam name="T">转换的元素AppType。</typeparam>
         /// <param name="list">集合。</param>
-        /// <param name="generic">是否生成泛型数据集。</param>
-        /// <returns>数据集。</returns>
+        /// <param name="generic">是否生成泛型Data集。</param>
+        /// <returns>Data集。</returns>
         private static DataSet ListToDataSet<T>(IEnumerable<T> list, bool generic)
         {
             return ListToDataSet(list, typeof(T), generic);
         }
 
         /// <summary>
-        /// 将集合转换为数据集。
+        /// 将集合转换为Data集。
         /// </summary>
         /// <param name="list">集合。</param>
         /// <param name="generic">是否转换为字符串形式。</param>
-        /// <returns>转换后的数据集。</returns>
+        /// <returns>转换后的Data集。</returns>
         private static DataSet ListToDataSet(IEnumerable list, bool generic)
         {
             return ListToDataSet(list, null, generic);
         }
 
         /// <summary>
-        /// 获取DataSet第一表，第一行，第一列的值。
+        /// 获取DataSet第一Table，第一行，第一列的值。
         /// </summary>
-        /// <param name="ds">DataSet数据集。</param>
+        /// <param name="ds">DataSetData集。</param>
         /// <returns>值。</returns>
         public static object GetData(this DataSet ds)
         {
@@ -396,7 +396,7 @@ namespace VOL.Core.Extensions
         /// <summary>
         /// 获取DataTable第一行，第一列的值。
         /// </summary>
-        /// <param name="dt">DataTable数据集表。</param>
+        /// <param name="dt">DataTableData集Table。</param>
         /// <returns>值。</returns>
         public static object GetData(this DataTable dt)
         {
@@ -416,7 +416,7 @@ namespace VOL.Core.Extensions
         /// <summary>
         /// 获取DataSet第一个匹配columnName的值。
         /// </summary>
-        /// <param name="ds">数据集。</param>
+        /// <param name="ds">Data集。</param>
         /// <param name="columnName">列名。</param>
         /// <returns>值。</returns>
         public static object GetData(this DataSet ds, string columnName)
@@ -442,7 +442,7 @@ namespace VOL.Core.Extensions
         /// <summary>
         /// 获取DataTable第一个匹配columnName的值。
         /// </summary>
-        /// <param name="dt">数据表。</param>
+        /// <param name="dt">DataTable。</param>
         /// <param name="columnName">列名。</param>
         /// <returns>值。</returns>
         public static object GetData(this DataTable dt, string columnName)
@@ -486,7 +486,7 @@ namespace VOL.Core.Extensions
         /// 将DateTime?转换为stringAppType信息。
         /// </summary>
         /// <param name="o">DateTime?。</param>
-        /// <param name="format">标准或自定义Date和时间格式的字符串。</param>
+        /// <param name="format">标准或CustomizeDate和时间格式的字符串。</param>
         /// <param name="t">默认值。</param>
         /// <returns>string。</returns>
         public static string ToString(this DateTime? o, string format, string t)
@@ -507,7 +507,7 @@ namespace VOL.Core.Extensions
         /// 将TimeSpan?转换为stringAppType信息。
         /// </summary>
         /// <param name="o">TimeSpan?。</param>
-        /// <param name="format">标准或自定义时间格式的字符串。</param>
+        /// <param name="format">标准或Customize时间格式的字符串。</param>
         /// <param name="t">默认值。</param>
         /// <returns>string。</returns>
         public static string ToString(this TimeSpan? o, string format, string t)
@@ -893,11 +893,11 @@ namespace VOL.Core.Extensions
         }
 
         /// <summary>
-        /// 读取XElement节点的文本内容。
+        /// 读取XElementNode的文本Content。
         /// </summary>
-        /// <param name="xElement">XElement节点。</param>
+        /// <param name="xElement">XElementNode。</param>
         /// <param name="t">默认值。</param>
-        /// <returns>文本内容。</returns>
+        /// <returns>文本Content。</returns>
         public static string Value(this XElement xElement, string t = default(string))
         {
             if (xElement == null)
@@ -911,11 +911,11 @@ namespace VOL.Core.Extensions
         }
 
         /// <summary>
-        /// 获取与指定键相关的值。
+        /// 获取With指定键相关的值。
         /// </summary>
         /// <typeparam name="TKey">键AppType。</typeparam>
         /// <typeparam name="TValue">值AppType。</typeparam>
-        /// <param name="dictionary">表示键/值对象的泛型集合。</param>
+        /// <param name="dictionary">Table示键/值对象的泛型集合。</param>
         /// <param name="key">键。</param>
         /// <param name="t">默认值。</param>
         /// <returns>值。</returns>
@@ -934,11 +934,11 @@ namespace VOL.Core.Extensions
         }
 
         /// <summary>
-        /// 获取与指定键相关或者第一个的值。
+        /// 获取With指定键相关或者第一个的值。
         /// </summary>
         /// <typeparam name="TKey">键AppType。</typeparam>
         /// <typeparam name="TValue">值AppType。</typeparam>
-        /// <param name="dictionary">表示键/值对象的泛型集合。</param>
+        /// <param name="dictionary">Table示键/值对象的泛型集合。</param>
         /// <param name="key">键。</param>
         /// <param name="t">默认值。</param>
         /// <returns>值。</returns>
@@ -964,12 +964,12 @@ namespace VOL.Core.Extensions
         }
 
         /// <summary>
-        /// 获取具有指定 System.Xml.Linq.XName 的第一个（按文档顺序）子元素。
+        /// 获取具有指定 System.Xml.Linq.XName 的第一个（按Document顺序）子元素。
         /// </summary>
         /// <param name="xContainer">XContainer。</param>
         /// <param name="xName">要匹配的 System.Xml.Linq.XName。</param>
         /// <param name="t">是否返回同名默认值。</param>
-        /// <returns>与指定 System.Xml.Linq.XName 匹配的 System.Xml.Linq.XElement，或者为 null。</returns>
+        /// <returns>With指定 System.Xml.Linq.XName 匹配的 System.Xml.Linq.XElement，或者为 null。</returns>
         public static XElement Element(this XContainer xContainer, XName xName, bool t)
         {
             XElement info;
@@ -989,11 +989,11 @@ namespace VOL.Core.Extensions
         }
 
         /// <summary>
-        /// 按文档顺序返回此元素或文档的子元素集合。
+        /// 按Document顺序返回此元素或Document的子元素集合。
         /// </summary>
         /// <param name="xContainer">XContainer。</param>
         /// <param name="t">是否返回非空默认值。</param>
-        /// <returns>System.Xml.Linq.XElement 的按文档顺序包含此System.Xml.Linq.XContainer 的子元素，或者非空默认值。</returns>
+        /// <returns>System.Xml.Linq.XElement 的按Document顺序包含此System.Xml.Linq.XContainer 的子元素，或者非空默认值。</returns>
         public static IEnumerable<XElement> Elements(this XContainer xContainer, bool t)
         {
             IEnumerable<XElement> info;
@@ -1013,12 +1013,12 @@ namespace VOL.Core.Extensions
         }
 
         /// <summary>
-        /// 按文档顺序返回此元素或文档的经过筛选的子元素集合。集合中只包括具有匹配 System.Xml.Linq.XName 的元素。
+        /// 按Document顺序返回此元素或Document的经过筛选的子元素集合。集合中只包括具有匹配 System.Xml.Linq.XName 的元素。
         /// </summary>
         /// <param name="xContainer">XContainer。</param>
         /// <param name="xName">要匹配的 System.Xml.Linq.XName。</param>
         /// <param name="t">是否返回非空默认值。</param>
-        /// <returns>System.Xml.Linq.XElement 的按文档顺序包含具有匹配System.Xml.Linq.XName 的 System.Xml.Linq.XContainer 的子级，或者非空默认值。</returns>
+        /// <returns>System.Xml.Linq.XElement 的按Document顺序包含具有匹配System.Xml.Linq.XName 的 System.Xml.Linq.XContainer 的子级，或者非空默认值。</returns>
         public static IEnumerable<XElement> Elements(this XContainer xContainer, XName xName, bool t)
         {
             IEnumerable<XElement> info;
@@ -1063,7 +1063,7 @@ namespace VOL.Core.Extensions
         /// </summary>
         /// <param name="s">首选默认非空字符串。</param>
         /// <param name="args">依次非空字符串可选项。</param>
-        /// <returns>默认非空字符串。若无可选项则返回string.Empty。</returns>
+        /// <returns>默认非空字符串。若None可选项则返回string.Empty。</returns>
         public static string DefaultStringIfEmpty(this string s, params string[] args)
         {
             if (string.IsNullOrEmpty(s))

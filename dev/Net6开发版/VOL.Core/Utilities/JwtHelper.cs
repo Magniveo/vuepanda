@@ -32,7 +32,7 @@ namespace VOL.Core.Utilities
                 //验证是否过期 从User读取过期 时间，再将时间戳转换成Date，如果时间在半个小时内即将过期，通知前台刷新JWT
                 //int val= HttpContext.User.Claims.Where(x => x.Type == JwtRegisteredClaimNames.Exp).FirstOrDefault().Value;
                 //new DateTime(621355968000000000 + (long)val* (long)10000000, DateTimeKind.Utc).ToLocalTime()
-                //默认设置jwt过期时间120分钟
+                //默认SetUpjwt过期时间120分钟
                 new Claim (JwtRegisteredClaimNames.Exp,exp),
                 new Claim(JwtRegisteredClaimNames.Iss,AppSetting.Secret.Issuer),
                 new Claim(JwtRegisteredClaimNames.Aud,AppSetting.Secret.Audience),

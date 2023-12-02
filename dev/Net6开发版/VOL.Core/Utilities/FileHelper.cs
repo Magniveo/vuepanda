@@ -12,7 +12,7 @@ namespace VOL.Core.Utilities
         private static object _filePathObj = new object();
 
         /// <summary>
-        /// 通过迭代器读取平面文件行内容(必须是带有\r\n换行的文件,百万行以上的内容读取效率存在问题,适用于100M左右文件，行100W内，超出的会有卡顿)
+        /// 通过迭代Device读取平面文件行Content(必须是带有\r\n换行的文件,百万行以上的Content读取效率存在问题,适用于100M左右文件，行100W内，超出的会有卡顿)
         /// </summary>
         /// <param name="fullPath">文件全路径</param>
         /// <param name="page">分页页数</param>
@@ -131,8 +131,8 @@ namespace VOL.Core.Utilities
         /// </summary>
         /// <param name="path">路径 </param>
         /// <param name="fileName">文件名</param>
-        /// <param name="content">写入的内容</param>
-        /// <param name="appendToLast">是否将内容添加到未尾,默认不添加</param>
+        /// <param name="content">写入的Content</param>
+        /// <param name="appendToLast">是否将Content添加到未尾,默认不添加</param>
         public static void WriteFile(string path, string fileName, string content, bool appendToLast = false)
         {
             path = path.ReplacePath();
@@ -161,7 +161,7 @@ namespace VOL.Core.Utilities
         /// 追加文件
         /// </summary>
         /// <param name="Path">文件路径</param>
-        /// <param name="strings">内容</param>
+        /// <param name="strings">Content</param>
         public static void FileAdd(string Path, string strings)
         {
             StreamWriter sw = File.AppendText(Path.ReplacePath());
@@ -257,7 +257,7 @@ namespace VOL.Core.Utilities
 
 
         /// <summary>
-        /// 指定文件夹下面的所有内容copy到目标文件夹下面
+        /// 指定文件夹下面的所有Contentcopy到目标文件夹下面
         /// </summary>
         /// <param name="srcPath">原始路径</param>
         /// <param name="aimPath">目标文件夹</param>
@@ -266,13 +266,13 @@ namespace VOL.Core.Utilities
             try
             {
                 aimPath = aimPath.ReplacePath();
-                // 检查目标目录是否以目录分割字符结束如果不是则添加之
+                // 检查目标目录是否以目录分割字符End如果不是则添加之
                 if (aimPath[aimPath.Length - 1] != Path.DirectorySeparatorChar)
                     aimPath += Path.DirectorySeparatorChar;
                 // 判断目标目录是否存在如果不存在则Add之
                 if (!Directory.Exists(aimPath))
                     Directory.CreateDirectory(aimPath);
-                // 得到源目录的文件列表，该里面是包含文件以及目录路径的一个数组
+                // 得到源目录的文件List，该里面是包含文件以及目录路径的一个数组
                 //如果你指向copy目标文件下面的文件而不包含目录请使用下面的方法
                 //string[] fileList = Directory.GetFiles(srcPath);
                 string[] fileList = Directory.GetFileSystemEntries(srcPath.ReplacePath());

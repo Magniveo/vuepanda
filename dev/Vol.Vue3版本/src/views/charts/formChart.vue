@@ -12,7 +12,7 @@
       <div class="right">
         <VolHeader
           icon="md-apps"
-          text="基础Form"
+          text="BasicForm"
           style="padding-left: 10px; margin-bottom: 20px"
         ></VolHeader>
         <VolForm
@@ -30,7 +30,7 @@
       <div class="left">
         <VolHeader
           icon="md-apps"
-          text="Form属性字段只读"
+          text="Form属性字段ReadOnly"
           style="padding-left: 10px; margin-bottom: 20px"
         ></VolHeader>
         <VolForm

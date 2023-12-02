@@ -591,7 +591,7 @@ namespace VOL.Core.Dapper
             }
             else
             {
-                //sqlserver通过临时表批量写入
+                //sqlserver通过临时Table批量写入
                 sql = $"insert into {entityType.GetEntityTableName()}({string.Join(",", columns)})" +
                  $"select {string.Join(",", columns)}  from  {EntityToSqlTempName.TempInsert};";
                 //2020.11.21修复sqlserver批量写入主键AppType判断错误
@@ -606,7 +606,7 @@ namespace VOL.Core.Dapper
 
 
         /// <summary>
-        /// sqlserver使用的临时表参数化批量更新，mysql批量更新待发开
+        /// sqlserver使用的临时Table参数化批量更新，mysql批量更新待发开
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="entity">实体必须带主键</param>
@@ -619,7 +619,7 @@ namespace VOL.Core.Dapper
         }
 
         /// <summary>
-        ///(根据主键批量更新实体) sqlserver使用的临时表参数化批量更新，mysql待优化
+        ///(根据主键批量更新实体) sqlserver使用的临时Table参数化批量更新，mysql待优化
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="entities">实体必须带主键</param>
@@ -733,12 +733,12 @@ namespace VOL.Core.Dapper
         }
 
         /// <summary>
-        ///大批量数据插入,返回成功插入行数
+        ///大批量Data插入,返回Success插入行数
         ////
         /// </summary>
-        /// <param name="connectionString">数据库连接字符串</param>
-        /// <param name="table">数据表</param>
-        /// <returns>返回成功插入行数</returns>
+        /// <param name="connectionString">Data库连接字符串</param>
+        /// <param name="table">DataTable</param>
+        /// <returns>返回Success插入行数</returns>
         private int MySqlBulkInsert(DataTable table, string tableName, string fileName = null, string tmpPath = null)
         {
             if (table.Rows.Count == 0) return 0;
@@ -793,7 +793,7 @@ namespace VOL.Core.Dapper
                     catch (Exception e)
                     {
 
-                        Console.WriteLine($"开启mysql日志写入异常:{e.Message}");
+                        Console.WriteLine($"开启mysqlLog写入异常:{e.Message}");
                     }
                 }
                 throw new Exception("vol:" + ex.Message, ex.InnerException);
@@ -803,13 +803,13 @@ namespace VOL.Core.Dapper
         /// <summary>
         ///将DataTable转换为标准的CSV
         /// </summary>
-        /// <param name="table">数据表</param>
+        /// <param name="table">DataTable</param>
         /// <returns>返回标准的CSV</returns>
         private string DataTableToCsv(DataTable table)
         {
-            //以半角逗号（即,）作分隔符，列为空也要表达其存在。
-            //列内容如存在半角逗号（即,）则用半角引号（即""）将该字段值包含起来。
-            //列内容如存在半角引号（即"）则应替换成半角双引号（""）转义，并用半角引号（即""）将该字段值包含起来。
+            //以半角逗号（即,）作分隔符，列为空也要Table达其存在。
+            //列Content如存在半角逗号（即,）则用半角引号（即""）将该字段值包含起来。
+            //列Content如存在半角引号（即"）则应替换成半角双引号（""）转义，并用半角引号（即""）将该字段值包含起来。
             StringBuilder sb = new StringBuilder();
             DataColumn colum;
             Type typeString = typeof(string);

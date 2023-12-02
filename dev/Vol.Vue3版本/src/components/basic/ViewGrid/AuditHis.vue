@@ -32,10 +32,10 @@ export default defineComponent({
   },
   setup() {
     const columns = reactive([
-      { title: '节点', field: 'stepName' },
-      { title: '审批人', field: 'auditor' },
-      { title: '审批结果', field: 'auditStatus' },
-      { title: '审批时间', field: 'auditDate',width:150 },
+      { title: 'Node', field: 'stepName' },
+      { title: 'Approval人', field: 'auditor' },
+      { title: 'Approval结果', field: 'auditStatus' },
+      { title: 'Approval时间', field: 'auditDate',width:150 },
       { title: 'Remark', field: 'remark' }
     ]);
     return {

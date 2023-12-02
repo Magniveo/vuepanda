@@ -42,9 +42,9 @@ namespace VOL.Core.WorkFlow
         /// 
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="name">流程实例ExpertName</param>
-        /// <param name="filterFields">流程配置可筛选条件字段</param>
-        ///<param name="formFields">审批界面要显示字段</param>
+        /// <param name="name">Process实例ExpertName</param>
+        /// <param name="filterFields">Process配置可筛选条件字段</param>
+        ///<param name="formFields">Approval界面要显示字段</param>
         /// <returns></returns>
         public WorkFlowContainer Use<T>(string name = null, Expression<Func<T, object>> filterFields = null, Expression<Func<T, object>> formFields = null)
         {
@@ -88,7 +88,7 @@ namespace VOL.Core.WorkFlow
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"初始化流程调用数据库异常,ExceptionInfo{ex.Message}");
+                    Console.WriteLine($"初始化Process调用Data库异常,ExceptionInfo{ex.Message}");
                 }
             });
         }
@@ -138,13 +138,13 @@ namespace VOL.Core.WorkFlow
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine($"初始化流程配置信息异常,表:【{tableName}】,ExceptionInfo{e.Message}");
+                    Console.WriteLine($"初始化Process配置信息异常,Table:【{tableName}】,ExceptionInfo{e.Message}");
                 }
             }
 
             if (list.Count > 0)
             {
-                Console.WriteLine($"初始化流程表:【{tableName}】成功");
+                Console.WriteLine($"初始化ProcessTable:【{tableName}】Success");
             }
 
             return _instance;
@@ -171,7 +171,7 @@ namespace VOL.Core.WorkFlow
 
             var entities = new List<T>() { entity };
 
-            //还未进入流程，找到满足流程的配置
+            //还未进入Process，找到满足Process的配置
             if (flowTable == null)
             {
                 //优先判断满足条件的
@@ -184,7 +184,7 @@ namespace VOL.Core.WorkFlow
                 {
                     return filter;
                 }
-                //没有找到满足条件的用无条件的流程
+                //没有找到满足条件的用None条件的Process
 
                 return _workFlowTableOptions.Where(x => x.WorkTable == tableName
                                         && x.FilterList.Any(c => c.StepAttrType == StepType.start.ToString()
@@ -214,7 +214,7 @@ namespace VOL.Core.WorkFlow
             webResponse = obj.Invoke(this, new object[] { workFlow, flowSteps, true }) as WebResponseContent;
             if (webResponse.Status && string.IsNullOrEmpty(webResponse.Message))
             {
-                webResponse.Message = "流程创建成功";
+                webResponse.Message = "Process创建Success";
             }
             return webResponse;
         }
@@ -233,7 +233,7 @@ namespace VOL.Core.WorkFlow
                     FilterList = new List<FilterOptions>()
                 };
                 bool success = true;
-                //结束节点不生成条件
+                //EndNode不生成条件
                 foreach (var item in flowSteps.Where(c => c.StepAttrType != StepType.end.ToString()))
                 {
                     var filters = item.Filters.DeserializeObject<List<FieldFilter>>();
@@ -260,7 +260,7 @@ namespace VOL.Core.WorkFlow
                     catch (Exception ex)
                     {
 
-                        string message = $"流程:【{workFlow.WorkName}】,节点:【{item.StepName}】条件异常,请检查【值】与【字段的AppType】是否匹配,节点配置：{item.Filters}";
+                        string message = $"Process:【{workFlow.WorkName}】,Node:【{item.StepName}】条件异常,请检查【值】With【字段的AppType】是否匹配,Node配置：{item.Filters}";
 
                         Console.WriteLine(message + ex.Message);
                         if (showError)

@@ -1,5 +1,5 @@
 <template>
-  <vol-box :lazy="false" v-model="model" :title="isAdd ? 'Add流程' : 'Edit流程'" :width="width" :padding="0">
+  <vol-box :lazy="false" v-model="model" :title="isAdd ? 'AddProcess' : 'EditProcess'" :width="width" :padding="0">
     <div :style="{ height: height + 'px' }">
       <flow-panel ref="flow"></flow-panel>
     </div>
@@ -49,7 +49,7 @@ export default {
         this.nodeList = [
           // {
           //   id: '1659276275052',
-          //   name: '流程C-节点A',
+          //   name: 'ProcessC-NodeA',
           //   type: 'task',
           //   left: '230px',
           //   top: '15px',
@@ -57,7 +57,7 @@ export default {
           // },
           // {
           //   id: '1659276282115',
-          //   name: '流程C-节点B',
+          //   name: 'ProcessC-NodeB',
           //   type: 'task',
           //   left: '225px',
           //   top: '165px',
@@ -109,7 +109,7 @@ export default {
       }
 
       if (!mainData.WorkTable) {
-        this.$message.error('请选择左侧Form【流程实例】')
+        this.$message.error('请选择左侧Form【Process实例】')
         return;
       }
 
@@ -152,29 +152,29 @@ export default {
           }
         });
       if (!rootNode.length) {
-        return this.$message.error('请添加流程开始节点');
+        return this.$message.error('请添加ProcessStartNode');
       }
 
       if (rootNode.length > 1) {
-        return this.$message.error('只能选择一个流程开始节点');
+        return this.$message.error('只能选择一个ProcessStartNode');
       }
       let endNodeCount = nodeList.filter(c => { return c.type == 'end' }).length;
       if (!endNodeCount) {
-        return this.$message.error('请选择左侧【流程结束】节点');
+        return this.$message.error('请选择左侧【ProcessEnd】Node');
       }
 
       if (endNodeCount > 1) {
-        return this.$message.error('只能选择一个【流程结束】节点');
+        return this.$message.error('只能选择一个【ProcessEnd】Node');
       }
 
       if (lineList.some(c => { return c.to == rootNode[0].id })) {
-        return this.$message.error('不开始结点回连');
+        return this.$message.error('不Start结点回连');
       }
 
       for (let index = 0; index < rootNode.length; index++) {
         const node = rootNode[index];
         node.OrderId = index;
-        //这里有一节点有多个上级节点的时候数据重复了，比如线束节点
+        //这里有一Node有多个上级Node的时候Data重复了，比如线束Node
 
         lineList.filter(c => { return c.from == node.StepId }).forEach(c => {
           let item = nodeList.find(x => { return x.id == c.to });
@@ -186,9 +186,9 @@ export default {
               ParentId: [node.StepId], //ParentId
               StepId: item.id,
               StepName: item.name,
-              StepAttrType: item.type, //节点AppType.start开始，end结束 
-              StepType: item.auditType,//审核AppType,Role_Id，用户，部门(这里后面考虑同时支持多个Role_Id、用户、部门)
-              //审核选择的值Role_Id，用户，部门(这里后面考虑同时支持多个Role_Id、用户、部门)
+              StepAttrType: item.type, //NodeAppType.startStart，endEnd 
+              StepType: item.auditType,//审核AppType,Role_Id，User，Department(这里后面考虑同时支持多个Role_Id、User、Department)
+              //审核选择的值Role_Id，User，Department(这里后面考虑同时支持多个Role_Id、User、Department)
               StepValue: item.auditType == 1 ? item.userId.join(',') : (item.auditType == 2 ? item.roleId : item.deptId),
               AuditRefuse: item.auditRefuse,//AuditRefuse
               AuditBack: item.auditBack, //AuditBack
@@ -226,7 +226,7 @@ export default {
         }
         if (step.StepAttrType == 'node' && !step.StepValue) {
           return this.$message.error(
-            `请选择【${step.StepName}】的审批AppType`
+            `请选择【${step.StepName}】的StepType`
           );
         }
       }
@@ -242,7 +242,7 @@ export default {
         if (!result.status) {
           return this.$message.error(result.message);
         }
-        this.$message.success('保存成功');
+        this.$message.success('保存Success');
         this.model = false;
         this.$emit('parentCall', ($parent) => {
           $parent.search();

@@ -12,10 +12,10 @@
 //    public class NPOIHelper
 //    {
 //        /// <summary>
-//        /// DataTable 导出到 Excel 的 MemoryStream
+//        /// DataTable Export到 Excel 的 MemoryStream
 //        /// </summary>
 //        /// <param name="dtSource">源 DataTable</param>
-//        /// <param name="strHeaderText">表头文本 空值未不要表头Title</param>
+//        /// <param name="strHeaderText">Table头文本 空值未不要Table头Title</param>
 //        /// <returns></returns>
 //        public static MemoryStream ExportExcel(DataTable dtSource, string strHeaderText)
 //        {
@@ -58,7 +58,7 @@
 //            int intTop = 0;
 //            foreach (DataRow row in dtSource.Rows)
 //            {
-//                #region Add表、填充表头、填充列头，样式
+//                #region AddTable、填充Table头、填充列头，样式
 //                if (rowIndex == 65535 || rowIndex == 0)
 //                {
 //                    if (rowIndex != 0)
@@ -66,7 +66,7 @@
 //                        sheet = workbook.CreateSheet();
 //                    }
 //                    intTop = 0;
-//                    #region 表头及样式
+//                    #region Table头及样式
 //                    {
 //                        if (strHeaderText.Length > 0)
 //                        {
@@ -99,7 +99,7 @@
 //                        {
 //                            headerRow.CreateCell(column.Ordinal).SetCellValue(column.ColumnName);
 //                            headerRow.GetCell(column.Ordinal).CellStyle = headStyle;
-//                            //设置列宽
+//                            //SetUp列宽
 //                            sheet.SetColumnWidth(column.Ordinal, (arrColWidth[column.Ordinal] + 1) * 256);
 //                        }
 
@@ -109,7 +109,7 @@
 //                    rowIndex = intTop;
 //                }
 //                #endregion
-//                #region 填充内容
+//                #region 填充Content
 //                IRow dataRow = sheet.CreateRow(rowIndex);
 //                foreach (DataColumn column in dtSource.Columns)
 //                {
@@ -124,7 +124,7 @@
 //                            DateTime dateV;
 //                            DateTime.TryParse(drValue, out dateV);
 //                            newCell.SetCellValue(dateV);
-//                            newCell.CellStyle = dateStyle;//格式化显示
+//                            newCell.CellStyle = dateStyle;//Format显示
 //                            break;
 //                        case "System.Boolean"://布尔型
 //                            bool boolV = false;
@@ -165,10 +165,10 @@
 //            }
 //        }
 //        /// <summary>
-//        /// DaataTable 导出到 Excel 文件
+//        /// DaataTable Export到 Excel 文件
 //        /// </summary>
 //        /// <param name="dtSource">源 DataaTable</param>
-//        /// <param name="strHeaderText">表头文本</param>
+//        /// <param name="strHeaderText">Table头文本</param>
 //        /// <param name="strFileName">保存位置(文件名及路径)</param>
 //        public static void ExportExcel(DataTable dtSource, string strHeaderText, string strFileName)
 //        {
@@ -187,7 +187,7 @@
 //        /// 读取 excel
 //        /// 默认第一行为标头
 //        /// </summary>
-//        /// <param name="strFileName">excel 文档路径</param>
+//        /// <param name="strFileName">excel Document路径</param>
 //        /// <returns></returns>
 //        public static DataTable ImportExcel(string strFileName)
 //        {
@@ -230,10 +230,10 @@
 
 
 //        /// <summary>
-//        /// DataSet 导出到 Excel 的 MemoryStream
+//        /// DataSet Export到 Excel 的 MemoryStream
 //        /// </summary>
 //        /// <param name="dsSource">源 DataSet</param>
-//        /// <param name="strHeaderText">表头文本 空值未不要表头Title(多个表对应多个表头以英文逗号(,)分开，个数应与表相同)</param>
+//        /// <param name="strHeaderText">Table头文本 空值未不要Table头Title(多个Table对应多个Table头以英文逗号(,)分开，个数应WithTable相同)</param>
 //        /// <returns></returns>
 //        public static MemoryStream ExportExcel(DataSet dsSource, string strHeaderText)
 //        {
@@ -283,7 +283,7 @@
 //            //int intTop = 0;
 //            //foreach (DataRow row in dtSource.Rows)
 //            //{
-//            //    #region Add表、填充表头、填充列头，样式
+//            //    #region AddTable、填充Table头、填充列头，样式
 //            //    if (rowIndex == 65535 || rowIndex == 0)
 //            //    {
 //            //        if (rowIndex != 0)
@@ -291,7 +291,7 @@
 //            //            sheet = workbook.CreateSheet();
 //            //        }
 //            //        intTop = 0;
-//            //        #region 表头及样式
+//            //        #region Table头及样式
 //            //        {
 //            //            if (strHeaderText.Length > 0)
 //            //            {
@@ -324,7 +324,7 @@
 //            //            {
 //            //                headerRow.CreateCell(column.Ordinal).SetCellValue(column.ColumnName);
 //            //                headerRow.GetCell(column.Ordinal).CellStyle = headStyle;
-//            //                //设置列宽
+//            //                //SetUp列宽
 //            //                sheet.SetColumnWidth(column.Ordinal, (arrColWidth[column.Ordinal] + 1) * 256);
 //            //            }
 
@@ -334,7 +334,7 @@
 //            //        rowIndex = intTop;
 //            //    }
 //            //    #endregion
-//            //    #region 填充内容
+//            //    #region 填充Content
 //            //    IRow dataRow = sheet.CreateRow(rowIndex);
 //            //    foreach (DataColumn column in dtSource.Columns)
 //            //    {
@@ -349,7 +349,7 @@
 //            //                DateTime dateV;
 //            //                DateTime.TryParse(drValue, out dateV);
 //            //                newCell.SetCellValue(dateV);
-//            //                newCell.CellStyle = dateStyle;//格式化显示
+//            //                newCell.CellStyle = dateStyle;//Format显示
 //            //                break;
 //            //            case "System.Boolean"://布尔型
 //            //                bool boolV = false;
@@ -401,11 +401,11 @@
 //            }
 //        }
 //        /// <summary>
-//        /// DataTable 导出到 Excel 的 MemoryStream
+//        /// DataTable Export到 Excel 的 MemoryStream
 //        /// </summary>
 //        /// <param name="workbook">源 workbook</param>
 //        /// <param name="dtSource">源 DataTable</param>
-//        /// <param name="strHeaderText">表头文本 空值未不要表头Title(多个表对应多个表头以英文逗号(,)分开，个数应与表相同)</param>
+//        /// <param name="strHeaderText">Table头文本 空值未不要Table头Title(多个Table对应多个Table头以英文逗号(,)分开，个数应WithTable相同)</param>
 //        /// <returns></returns>
 //        public static void ExportFromDSExcel(HSSFWorkbook workbook, DataTable dtSource, string strHeaderText)
 //        {
@@ -434,7 +434,7 @@
 //            int intTop = 0;
 //            foreach (DataRow row in dtSource.Rows)
 //            {
-//                #region Add表、填充表头、填充列头，样式
+//                #region AddTable、填充Table头、填充列头，样式
 //                if (rowIndex == 65535 || rowIndex == 0)
 //                {
 //                    if (rowIndex != 0)
@@ -442,7 +442,7 @@
 //                        sheet = workbook.CreateSheet();
 //                    }
 //                    intTop = 0;
-//                    #region 表头及样式
+//                    #region Table头及样式
 //                    {
 //                        if (strHeaderText.Length > 0)
 //                        {
@@ -475,8 +475,8 @@
 //                        {
 //                            headerRow.CreateCell(column.Ordinal).SetCellValue(column.ColumnName);
 //                            headerRow.GetCell(column.Ordinal).CellStyle = headStyle;
-//                            //设置列宽
-//                            // sheet.SetColumnWidth(column.Ordinal, (arrColWidth[column.Ordinal] + 1) * 256); // 设置设置列宽 太长会报错 修改2014 年9月22日
+//                            //SetUp列宽
+//                            // sheet.SetColumnWidth(column.Ordinal, (arrColWidth[column.Ordinal] + 1) * 256); // SetUpSetUp列宽 太长会报错 修改2014 年9月22日
 //                            int dd = (arrColWidth[column.Ordinal] + 1) * 256;
 
 //                            if (dd > 200 * 256)
@@ -494,7 +494,7 @@
 //                    rowIndex = intTop;
 //                }
 //                #endregion
-//                #region 填充内容
+//                #region 填充Content
 //                IRow dataRow = sheet.CreateRow(rowIndex);
 //                foreach (DataColumn column in dtSource.Columns)
 //                {
@@ -511,7 +511,7 @@
 //                                DateTime dateV;
 //                                DateTime.TryParse(drValue, out dateV);
 //                                newCell.SetCellValue(dateV);
-//                                newCell.CellStyle = dateStyle;//格式化显示
+//                                newCell.CellStyle = dateStyle;//Format显示
 //                            }
 //                            else { newCell.SetCellValue(drValue); }
 //                            break;

@@ -26,10 +26,10 @@ var code = `<template>
 
 <script>
 // 使用方式：
-// 1、Add一个vue页面，把此页面内容复制进去
-// 2、router->index.js配置路由，页面上输入Address即可看到数据(也可以把菜单配置上)
-// 3、或者参照FormDesign页面做动态页面
-//**FormDesign器的table下载还在开发中
+// 1、Add一个vuePage，把此PageContent复制进去
+// 2、router->index.jsConfiguration路由，Page上输入Address即可看到Data(也可以把DishSingleConfiguration上)
+// 3、或者参照FormDesignPage做动态Page
+//**FormDesignDevice的table下载还在开发中
 {import_VolTable}
 import VolForm from '@/components/basic/VolForm'
 export default {

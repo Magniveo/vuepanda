@@ -31,7 +31,7 @@
 //        }
 
 //        /// <summary>
-//        /// 获取服务器ExpertName
+//        /// 获取服务DeviceExpertName
 //        /// </summary>
 //        /// <returns></returns>
 //        public static string GetServerName()
@@ -68,11 +68,11 @@
 //        }
 //    }
 
-//    #region 实现消息序列化和反序列化
+//    #region 实现Message序列化和反序列化
 //    public class KafkaConverter<T> : ISerializer<T>
 //    {
 //        /// <summary>
-//        /// 序列化数据成字节
+//        /// 序列化Data成字节
 //        /// </summary>
 //        /// <param name="data"></param>
 //        /// <param name="context"></param>
@@ -87,7 +87,7 @@
 //    public class KafkaDConverter<T> : IDeserializer<T>
 //    {
 //        /// <summary>
-//        /// 反序列化字节数据成实体数据
+//        /// 反序列化字节Data成实体Data
 //        /// </summary>
 //        /// <param name="data"></param>
 //        /// <param name="isNull"></param>
@@ -110,14 +110,14 @@
 //    }
 //    #endregion
 
-//    #region 日志类
+//    #region Log类
 //    /// <summary>
-//    /// 默认日志类 可自行构造使用
+//    /// 默认Log类 可自行构造使用
 //    /// </summary>
 //    public class KafkaLogModel
 //    {
 //        /// <summary>
-//        /// 构造默认日志类(设置默认值 ServerIp,ServerName,TimeStamp,ApplicationVersion)
+//        /// 构造默认Log类(SetUp默认值 ServerIp,ServerName,TimeStamp,ApplicationVersion)
 //        /// </summary>
 //        public KafkaLogModel()
 //        {
@@ -159,7 +159,7 @@
 //        public string ServerIp { get; set; }
 
 //        /// <summary>
-//        /// 服务器ExpertName(默认抓取当前服务器ExpertName)
+//        /// 服务DeviceExpertName(默认抓取当前服务DeviceExpertName)
 //        /// </summary>
 //        public string ServerName { get; set; }
 
@@ -169,27 +169,27 @@
 //        public string ClientIp { get; set; }
 
 //        /// <summary>
-//        /// 模块(页面路径)
+//        /// 模块(Page路径)
 //        /// </summary>
 //        public string Module { get; set; }
 
 //        /// <summary>
-//        /// 操作人
+//        /// Operation人
 //        /// </summary>
 //        public string Operator { get; set; }
 
 //        /// <summary>
-//        /// 操作AppType 如:Query,Add,Update,Delete,Export等,可自定义
+//        /// OperationAppType 如:Query,Add,Update,Delete,Export等,可Customize
 //        /// </summary>
 //        public string OperationType { get; set; }
 
 //        /// <summary>
-//        /// 操作状态 如:http请求使用200,404,503等,其他操作 1:成功,0失败等 可自定义
+//        /// Operation状态 如:http请求使用200,404,503等,OtherOperation 1:Success,0失败等 可Customize
 //        /// </summary>
 //        public string Status { get; set; }
 
 //        /// <summary>
-//        /// 其他信息
+//        /// Other信息
 //        /// </summary>
 //        public string Message { get; set; }
 //    }

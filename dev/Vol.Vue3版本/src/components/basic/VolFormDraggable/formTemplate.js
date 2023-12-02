@@ -30,8 +30,8 @@ let options1 = [
         "key": "",
         "data": [
             {
-                "label": "请设置数据源",
-                "value": "请设置数据源"
+                "label": "请SetUpData源",
+                "value": "请SetUpData源"
             }
         ],
         "type": "select",
@@ -49,8 +49,8 @@ let options1 = [
         "values": [],
         "data": [
             {
-                "label": "请设置数据源",
-                "value": "请设置数据源"
+                "label": "请SetUpData源",
+                "value": "请SetUpData源"
             }
         ],
         "icon": "el-icon-arrow-down",
@@ -68,12 +68,12 @@ let options1 = [
         "key": "",
         "data": [
             {
-                "value": "请配置数据源",
-                "label": "请配置数据源",
+                "value": "请ConfigurationData源",
+                "label": "请ConfigurationData源",
                 "children": [
                     {
                         "value": "具体",
-                        "label": "菜单:下拉框绑定设置"
+                        "label": "DishSingle:Drop-down box binding settings"
                     },
                     {
                         "value": "color",
@@ -91,22 +91,22 @@ let options1 = [
         "id": 6,
         "name": "多选",
         "values": [
-            "发货"
+            "Delivery"
         ],
         "type": "checkbox",
         "key": "ordertype",
         "data": [
             {
                 "key": "1",
-                "value": "发货"
+                "value": "Delivery"
             },
             {
                 "key": "2",
-                "value": "退货"
+                "value": "Return"
             },
             {
                 "key": "3",
-                "value": "返单"
+                "value": "ReturnOrder"
             }
         ],
         "icon": "el-icon-circle-check",
@@ -117,7 +117,7 @@ let options1 = [
     },
     {
         "id": 5,
-        "name": "单选",
+        "name": "Single选",
         "type": "radio",
         "icon": "el-icon-aim",
         "value": 0,
@@ -199,7 +199,7 @@ let options1 = [
     },
     {
         "id": 5,
-        "name": "单选",
+        "name": "Single选",
         "type": "radio",
         "icon": "el-icon-aim",
         "value": 0,
@@ -257,8 +257,8 @@ let options2=[
         "key": "",
         "data": [
             {
-                "label": "请设置数据源",
-                "value": "请设置数据源"
+                "label": "请SetUpData源",
+                "value": "请SetUpData源"
             }
         ],
         "type": "select",
@@ -276,8 +276,8 @@ let options2=[
         "values": [],
         "data": [
             {
-                "label": "请设置数据源",
-                "value": "请设置数据源"
+                "label": "请SetUpData源",
+                "value": "请SetUpData源"
             }
         ],
         "icon": "el-icon-arrow-down",
@@ -299,12 +299,12 @@ let options2=[
     },
     {
         "id": 13,
-        "name": "表格",
+        "name": "Form",
         "type": "table",
         "tabs": true,
         "columns": [
             {
-                "title": "运单号",
+                "title": "TranNo",
                 "field": "TranNo",
                 "show": true,
                 "required": false,
@@ -316,7 +316,7 @@ let options2=[
                 "elementIndex": 0
             },
             {
-                "title": "销售订单号",
+                "title": "SellNo",
                 "field": "SellNo",
                 "show": true,
                 "required": false,
@@ -328,7 +328,7 @@ let options2=[
                 "elementIndex": 1
             },
             {
-                "title": "订单AppType",
+                "title": "OrderAppType",
                 "field": "OrderType",
                 "show": true,
                 "required": false,
@@ -341,7 +341,7 @@ let options2=[
                 "editType": "select"
             },
             {
-                "title": "销售Quantity",
+                "title": "Quantity",
                 "field": "Qty",
                 "show": true,
                 "required": false,
@@ -358,7 +358,7 @@ let options2=[
                 "show": 1,
                 "required": 0,
                 "edit": 0,
-                "title": "订单时间",
+                "title": "Order时间",
                 "dataType": "date",
                 "width": "100"
             }
@@ -417,7 +417,7 @@ let options2=[
     },
     {
         "id": 13,
-        "name": "表格",
+        "name": "Form",
         "type": "table",
         "tabs": true,
         "columns": [
@@ -550,8 +550,8 @@ let options3=[
         "key": "",
         "data": [
             {
-                "label": "请设置数据源",
-                "value": "请设置数据源"
+                "label": "请SetUpData源",
+                "value": "请SetUpData源"
             }
         ],
         "type": "select",
@@ -569,8 +569,8 @@ let options3=[
         "values": [],
         "data": [
             {
-                "label": "请设置数据源",
-                "value": "请设置数据源"
+                "label": "请SetUpData源",
+                "value": "请SetUpData源"
             }
         ],
         "icon": "el-icon-arrow-down",
@@ -581,7 +581,7 @@ let options3=[
     },
     {
         "id": 5,
-        "name": "单选",
+        "name": "Single选",
         "type": "radio",
         "icon": "el-icon-aim",
         "value": 0,
@@ -649,7 +649,7 @@ let options3=[
     },
     {
         "id": 13,
-        "name": "Edit器",
+        "name": "EditDevice",
         "type": "editor",
         "value": "",
         "url": "",

@@ -11,7 +11,7 @@ namespace VOL.Entity.DomainModels
         public List<object> DelKeys { get; set; }
 
         /// <summary>
-        /// 从前台传入的其他参数(自定义扩展可以使用)
+        /// 从前台传入的Other参数(CustomExtension可以使用)
         /// </summary>
         public object Extra { get; set; }
     }

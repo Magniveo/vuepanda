@@ -1,6 +1,6 @@
 /*
- *代码由框架生成,任何更改都可能导致被代码生成器覆盖
- *如果数据库字段发生变化，请在代码生器重新生成此Model
+ *代码由框架生成,任何更改都可能导致被CodeGenerationDevice覆盖
+ *如果Data库字段发生变化，请在代码生Device重新生成此Model
  */
 using System;
 using System.Collections.Generic;
@@ -42,9 +42,9 @@ namespace VOL.Entity.DomainModels
        public string Title { get; set; }
 
        /// <summary>
-       ///Form数据
+       ///FormData
        /// </summary>
-       [Display(Name ="Form数据")]
+       [Display(Name ="FormData")]
        [Column(TypeName="nvarchar(max)")]
        [Editable(true)]
        public string FormData { get; set; }

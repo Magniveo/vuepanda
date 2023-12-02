@@ -1,7 +1,7 @@
 <template>
   <div class="layout-container">
     <a :href="exportHref" ref="export"></a>
-    <!--开启懒加载2020.12.06 -->
+    <!--开启懒Load2020.12.06 -->
     <vol-box
       :on-model-close="closeCustomModel"
       v-model="viewModel"
@@ -9,7 +9,7 @@
       :width="500"
       :padding="0"
       :lazy="true"
-      title="设置"
+      title="SetUp"
     >
       <template #content>
         <custom-column :view-columns="viewColumns"></custom-column>
@@ -17,13 +17,13 @@
       <template #footer>
         <div style="text-align: center">
           <el-button type="default" size="small" @click="closeCustomModel"
-            ><i class="el-icon-close"></i>取消</el-button
+            ><i class="el-icon-close"></i>window.locales[window.localei18n.locale].Cancel</el-button
           >
           <el-button type="success" size="small" @click="initViewColumns(true)"
-            ><i class="el-icon-refresh"></i>重置</el-button
+            ><i class="el-icon-refresh"></i>{{ $locales[$i18n.locale].Reset }}</el-button
           >
           <el-button type="primary" size="small" @click="saveColumnConfig"
-            ><i class="el-icon-check"></i>确定</el-button
+            ><i class="el-icon-check"></i>window.locales[window.localei18n.locale].Confirm</el-button
           >
         </div>
       </template>
@@ -34,8 +34,8 @@
  
     <!--导入excel功能-->
     <!--2020.10.31添加导入前的方法-->
-    <!--开启懒加载2020.12.06 -->
-    <!-- 2022.01.08增加明细表导入判断 -->
+    <!--开启懒Load2020.12.06 -->
+    <!-- 2022.01.08增加明细Table导入判断 -->
     <vol-box
       v-if="upload.url"
       v-model="upload.excel"
@@ -52,16 +52,16 @@
         :template="upload.template"
       ></UploadExcel>
     </vol-box>
-    <!--头部自定义组件-->
+    <!--头部CustomizeComponent-->
     <component
       :is="dynamicComponent.gridHeader"
       ref="gridHeader"
       @parentCall="parentCall"
     ></component>
-    <!--主界面查询与tableFormLayout-->
+    <!--主界面QueryWithtableFormLayout-->
     <div class="view-container">
-      <!-- 2020.09.11增加固定查询Form -->
-      <!--查询条件-->
+      <!-- 2020.09.11增加固定QueryForm -->
+      <!--Query条件-->
       <div class="grid-search">
         <div
           :class="[fiexdSearchForm ? 'fiexd-search-box' : 'search-box']"
@@ -80,7 +80,7 @@
             <template #footer>
               <div v-if="!fiexdSearchForm" class="form-closex">
                 <el-button size="small" type="primary" plain @click="search">
-                  <i class="el-icon-search" />查询
+                  <i class="el-icon-search" />Query
                 </el-button>
 
                 <el-button
@@ -89,14 +89,14 @@
                   plain
                   @click="resetSearch"
                 >
-                  <i class="el-icon-refresh-right" />重置
+                  <i class="el-icon-refresh-right" />{{ $locales[$i18n.locale].Reset }}
                 </el-button>
                 <el-button
                   size="small"
                   plain
                   @click="searchBoxShow = !searchBoxShow"
                 >
-                  <i class="el-icon-switch-button" />关闭
+                  <i class="el-icon-switch-button" />{{ $locales[$i18n.locale].Close }}
                 </el-button>
               </div>
             </template>
@@ -111,7 +111,7 @@
           <div class="notice">
             <a class="text" :title="extend.text">{{ extend.text }}</a>
           </div>
-          <!--快速查询字段-->
+          <!--快速Query字段-->
           <div class="search-line" v-if="!fiexdSearchForm">
             <QuickSearch
               v-if="singleSearch"
@@ -120,8 +120,8 @@
               :tiggerPress="quickSearchKeyPress"
             ></QuickSearch>
           </div>
-          <!--操作按钮组-->
-          <!-- 2020.11.29增加查询界面hidden属性 -->
+          <!--Operation按钮组-->
+          <!-- 2020.11.29增加Query界面hidden属性 -->
 
           <div class="btn-group">
             <template
@@ -216,7 +216,7 @@
           :on-model-close="onGridModelClose"
           @fullscreen="fullscreen"
         >
-          <!--明细头部自定义组件-->
+          <!--明细头部CustomizeComponent-->
           <template #content>
             <div class="box-com">
               <component
@@ -240,7 +240,7 @@
                   :select2Count="select2Count"
                 ></vol-form>
               </div>
-              <!--明细body自定义组件-->
+              <!--明细bodyCustomizeComponent-->
               <component
                 :is="dynamicComponent.modelBody"
                 ref="modelBody"
@@ -258,7 +258,7 @@
                       {{ detail.cnName }}
                     </span>
                   </div>
-                  <!--明细表格按钮-->
+                  <!--明细Form按钮-->
                   <div class="btns" v-show="!isBoxAudit">
                     <el-button
                       v-for="(btn, bIndex) in detailOptions.buttons"
@@ -301,7 +301,7 @@
                   :spanMethod="detailSpanMethod"
                 ></vol-table>
               </div>
-              <!--明细footer自定义组件-->
+              <!--明细footerCustomizeComponent-->
               <component
                 :is="dynamicComponent.modelFooter"
                 ref="modelFooter"
@@ -317,7 +317,7 @@
                 plain
                 @click="onGridModelClose(false)"
               >
-                <i class="el-icon-close">关闭</i>
+                <i class="el-icon-close">{{ $locales[$i18n.locale].Close }}</i>
               </el-button>
               <el-button
                 size="small"
@@ -325,7 +325,7 @@
                 v-show="auditParam.showViewButton"
                 @click="auditParam.model = true"
               >
-                <i class="el-icon-view">审批</i>
+                <i class="el-icon-view">Approval</i>
               </el-button>
             </div>
             <div v-show="!isBoxAudit">
@@ -347,13 +347,13 @@
                 plain
                 @click="onGridModelClose(false)"
               >
-                <i class="el-icon-close">关闭</i>
+                <i class="el-icon-close">{{ $locales[$i18n.locale].Close }}</i>
               </el-button>
             </div>
           </template>
         </vol-box>
       </div>
-      <!--body自定义组件-->
+      <!--bodyCustomizeComponent-->
       <div class="grid-body">
         <component
           :is="dynamicComponent.gridBody"
@@ -362,7 +362,7 @@
         ></component>
       </div>
 
-      <!--table表格-->
+      <!--tableForm-->
       <div class="grid-container">
         <!-- 2021.05.02增加树形结构 rowKey -->
         <vol-table
@@ -402,7 +402,7 @@
       </div>
     </div>
 
-    <!--footer自定义组件-->
+    <!--footerCustomizeComponent-->
     <component
       :is="dynamicComponent.gridFooter"
       ref="gridFooter"
@@ -419,10 +419,10 @@ const _const = {
   PAGE: 'getPageData',
   AUDIT: 'audit',
   DEL: 'del',
-  EXPORT: 'Export', //导出操作返回加密后的路径
-  DOWNLOAD: 'DownLoadFile', //导出文件
+  EXPORT: 'Export', //ExportOperation返回加密后的路径
+  DOWNLOAD: 'DownLoadFile', //Export文件
   DOWNLOADTEMPLATE: 'DownLoadTemplate', //下载导入模板
-  IMPORT: 'Import', //导入(导入表的Excel功能)
+  IMPORT: 'Import', //导入(导入Table的Excel功能)
   UPLOAD: 'Upload' //上传文件
 };
 import Empty from '@/components/basic/Empty.vue';
@@ -456,7 +456,7 @@ var vueParam = {
   },
   props: {},
   setup(props) {
-    //2021.07.17调整扩展组件组件
+    //2021.07.17调整扩展ComponentComponent
     const dynamicCom = {
       gridHeader: Empty,
       gridBody: Empty,
@@ -465,7 +465,7 @@ var vueParam = {
       modelBody: Empty,
       modelFooter: Empty
     };
-    //合并扩展组件
+    //合并扩展Component
     if (props.extend.components) {
       for (const key in props.extend.components) {
         if (props.extend.components[key]) {
@@ -481,79 +481,79 @@ var vueParam = {
       isBoxAudit: false,
       formFieldsType: [],
       workFlowSteps: [],
-      //树形结构的主键字段，如果设置值默认会开启树形table；注意rowKey字段的值必须是唯一（2021.05.02）
+      //树形结构的主键字段，如果SetUp值默认会开启树形table；注意rowKey字段的值必须是唯一（2021.05.02）
       rowKey: undefined,
-      fiexdSearchForm: false, //2020.09.011是否固定查询Form，true查询Form将固定显示在Form的最上面
+      fiexdSearchForm: false, //2020.09.011是否固定QueryForm，trueQueryForm将固定显示在Form的最上面
       _inited: false,
-      doubleEdit: false, //2021.03.19是否开启查询界面表格双击Edit
-      single: false, //表是否单选
-      const: _const, //增删改查导入导出等对应的action
+      doubleEdit: false, //2021.03.19是否开启Query界面Form双击Edit
+      single: false, //Table是否Single选
+      const: _const, //增删改查ImportExport等对应的action
       boxInit: false, //Add或Edit的弹出框初化状态，默认不做初始化，点击Add或Edit才初始化弹出框
-      searchBoxShow: false, //高级查询(界面查询后的下拉框点击触发)
-      singleSearch: {}, //快速查询字段
+      searchBoxShow: false, //高级Query(界面Query后的下拉框点击触发)
+      singleSearch: {}, //快速Query字段
       exportHref: '',
-      currentAction: _const.ADD, //当Add或Edit时，记录当前的状态:如当前操作是Add
-      currentRow: {}, //当前Edit或查看数据的行
+      currentAction: _const.ADD, //当Add或Edit时，记录当前的状态:如当前Operation是Add
+      currentRow: {}, //当前Edit或ViewData的行
       closable: false,
       boxModel: false, //弹出Add、Edit框
-      width: 700, //弹出框查看表数据结构
-      labelWidth: 100, //高级查询的标签宽度
-      viewModel: false, //查看表结构的弹出框
-      viewColumns: [], //查看表结构的列数据
+      width: 700, //弹出框ViewTableData结构
+      labelWidth: 100, //高级Query的标签宽度
+      viewModel: false, //ViewTable结构的弹出框
+      viewColumns: [], //ViewTable结构的列Data
       viewColumnsClone: [],
-      showCustom: true, //是否显示自定义配置列按钮2022.05.27
-      // viewData: [], //查看表结构信息
+      showCustom: true, //是否显示CustomizeConfiguration列按钮2022.05.27
+      // viewData: [], //ViewTable结构信息
       maxBtnLength: 8, //界面按钮最多显示的个数，超过的Quantity都显示在更多中
-      buttons: [], //查询界面按钮  如需要其他操作按钮，可在表对应的.js中添加(如:Sys_User.js中buttons添加其他按钮)
+      buttons: [], //Query界面按钮  如需要OtherOperation按钮，可在Table对应的.js中添加(如:Sys_User.js中buttons添加Other按钮)
       splitButtons: [],
       uploadfiled: [], //上传文件图片的字段
-      boxButtons: [], //弹出框按钮 如需要其他操作按钮，可在表对应的.js中添加
-      dicKeys: [], //当前界面所有的下拉框DicNo及数据源
-      hasKeyField: [], //有字典数据源的字段
+      boxButtons: [], //弹出框按钮 如需要OtherOperation按钮，可在Table对应的.js中添加
+      dicKeys: [], //当前界面所有的下拉框DicNo及Data源
+      hasKeyField: [], //有DictionaryData源的字段
       keyValueType: { _dinit: false },
-      url: '', //界面表查询的数据源的url
-      hasDetail: false, //是否有从表(明细)表格数据
+      url: '', //界面TableQuery的Data源的url
+      hasDetail: false, //是否有从Table(明细)FormData
       initActivated: false,
-      load: true, //是否默认加载表数据
-      activatedLoad: false, //页面触发actived时是否刷新页面数据
-      summary: false, //查询界面table是否显示合计
-      //需要从Enable绑定数据源的DicNo,如果字典数据源的查询结果较多，请在onInit中将DicNo添加进来
+      load: true, //是否默认LoadTableData
+      activatedLoad: false, //Page触发actived时是否刷新PageData
+      summary: false, //Query界面table是否显示合计
+      //需要从Enable绑定Data源的DicNo,如果DictionaryData源的Query结果较多，请在onInit中将DicNo添加进来
       //只对自定sql有效
       remoteKeys: [],
       columnIndex: false, //2020.11.01是否显示行号
       ck: true, //2020.11.01是否显示checkbox
-      continueAdd: false, //2021.04.11Add时是否可以连续Add操作
+      continueAdd: false, //2021.04.11Add时是否可以连续AddOperation
       continueAddName: '保存后继续添加', //2021.04.11按钮ExpertName
       // detailUrl: "",
       detailOptions: {
-        paginationHide:false,//是否隐藏明细表分页2023.10.23
-        //弹出框从表(明细)对象
-        //从表配置
-        buttons: [], //弹出框从表表格操作按钮,目前有Del行，添加行，刷新操作，如需要其他操作按钮，可在表对应的.js中添加
+        paginationHide:false,//是否隐藏明细Table分页2023.10.23
+        //弹出框从Table(明细)对象
+        //从TableConfiguration
+        buttons: [], //弹出框从TableFormOperation按钮,目前有Del行，添加行，刷新Operation，如需要OtherOperation按钮，可在Table对应的.js中添加
         cnName: '', //从WorkTable称
-        key: '', //从表主键名
-        data: [], //数据源
-        columns: [], //从表列信息
+        key: '', //从Table主键名
+        data: [], //Data源
+        columns: [], //从Table列信息
         edit: true, //明细是否可以Edit
-        single: false, //明细表是否单选
+        single: false, //明细Table是否Single选
         load: false, //
         delKeys: [], //当Edit时Del当前明细的行主键值
-        url: '', //从表加载数据的url
-        pagination: { total: 0, size: 100, sortName: '' }, //从表分页配置数据
-        height: 0, //默认从表高度
-        textInline: true, //明细表行内容显示在一行上，如果需要换行显示，请设置为false
+        url: '', //从TableLoadData的url
+        pagination: { total: 0, size: 100, sortName: '' }, //从Table分页ConfigurationData
+        height: 0, //默认从Table高度
+        textInline: true, //明细Table行Content显示在一行上，如果需要换行显示，请SetUp为false
         doubleEdit: true, //使用双击Edit
-        clickEdit: false, //是否开启点击单元格Edit，点击其他行时结束Edit
-        currentReadonly: false, //当前用户没有Edit或Add权限时，FormReadOnly(可用于判断用户是否有Edit或Add权限)
+        clickEdit: false, //是否开启点击Single元格Edit，点击Other行时EndEdit
+        currentReadonly: false, //当前User没有Edit或AddAuthority时，FormReadOnly(可用于判断User是否有Edit或AddAuthority)
         //开启Edit时
         beginEdit: (row, column, index) => {
           return true;
         },
-        //结束Edit前
+        //EndEdit前
         endEditBefore: (row, column, index) => {
           return true;
         },
-        //结束Edit后
+        //EndEdit后
         endEditAfter: (row, column, index) => {
           return true;
         },
@@ -570,7 +570,7 @@ var vueParam = {
         height: 500,
         showViewButton: true,
         auditHis: [],
-        showAction: false, //是否显示审批操作(当前节点为用户审批时显示)
+        showAction: false, //是否显示ApprovalOperation(当前Node为UserApproval时显示)
         //审核选项(可自行再添加)
         data: [
           { text: '通过', value: 1 },
@@ -587,13 +587,13 @@ var vueParam = {
           url: '', //下载模板路径
           fileName: '' //模板下载的中文名
         },
-        init: false //是否有导入权限，有才渲染导入组件
+        init: false //是否有导入Authority，有才渲染导入Component
       },
-      height: 0, //表高度
-      tableHeight: 0, //查询页面table的高度
-      tableMaxHeight: 0, //查询页面table的最大高度
-      textInline: true, //table内容超出后是否不换行2020.01.16
-      pagination: { total: 0, size: 30, sortName: '' }, //从分页配置数据
+      height: 0, //Table高度
+      tableHeight: 0, //QueryPagetable的高度
+      tableMaxHeight: 0, //QueryPagetable的最大高度
+      textInline: true, //tableContent超出后是否不换行2020.01.16
+      pagination: { total: 0, size: 30, sortName: '' }, //从分页ConfigurationData
       boxOptions: {
         title: '', //弹出框显示的Title2022.08.01
         saveClose: true,
@@ -603,15 +603,15 @@ var vueParam = {
         summary: false, //弹出框明细table是否显示合计
         draggable: false, //2022.09.12弹出框拖动功能
         modal: true //2022.09.12弹出框背景遮罩层
-      }, //saveCloseAdd或Edit成功后是否关闭弹出框//弹出框的标签宽度labelWidth
+      }, //saveCloseAdd或EditSuccess后是否关闭弹出框//弹出框的标签宽度labelWidth
       editor: {
         uploadImgUrl: '', //上传路径
         upload: null //上传方法
       },
       numberFields: [],
-      //2022.09.26增加自定义导出文件名
+      //2022.09.26增加CustomizeExport文件名
       downloadFileName: null,
-      select2Count: 2000, //超出500Quantity显示select2组件
+      select2Count: 2000, //超出500Quantity显示select2Component
       paginationHide:false//是隐藏分页(2023.10.11)
     };
   },
@@ -636,20 +636,20 @@ var vueParam = {
     this.destroyed();
   },
   created: function() {
-    //合并自定义业务扩展方法
+    //合并Customize业务扩展方法
     Object.assign(this, this.extend.methods);
     //如果没有指定OrderNo字段，则用主键作为默认OrderNo字段
     this.pagination.sortName = this.table.sortName || this.table.key;
-    this.initBoxButtons(); //初始化弹出框与明细表格按钮
+    this.initBoxButtons(); //初始化弹出框With明细Form按钮
     this.initAuditColumn();
-    this.onInit(); //初始化前，如果需要做其他处理在扩展方法中覆盖此方法
+    this.onInit(); //初始化前，如果需要做Other处理在扩展方法中覆盖此方法
     this.getButtons();
-    //初始化自定义表格列
+    //初始化CustomizeForm列
     this.initViewColumns();
-    //初始Edit框等数据
+    //初始Edit框等Data
     this.initBoxHeightWidth();
-    this.initDicKeys(); //初始下框数据源
-    this.onInited(); //初始化后，如果需要做其他处理在扩展方法中覆盖此方法
+    this.initDicKeys(); //初始下框Data源
+    this.onInited(); //初始化后，如果需要做Other处理在扩展方法中覆盖此方法
   },
   beforeUpdate: function() {},
   updated: function() {}

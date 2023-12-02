@@ -4,7 +4,7 @@
     <vol-box :width="940"
              :mask="true"
              :height="500"
-             title="图标列表"
+             title="图标List"
              v-model="model">
       <Icons :onSelect="onSelect"></Icons>
       <template #footer>
@@ -16,7 +16,7 @@
     <vol-box :width="600"
              :mask="true"
              :height="270"
-             title="其他权限"
+             title="OtherAuthority"
              v-model="actionModel">
       <vol-form ref="actionForm"
                 :formRules="actionOptions"
@@ -25,9 +25,9 @@
           <div>
             <el-alert show-icon
                       type="success">
-              配置的其他权限
-              <br />1、添加新的权限后请在vue项目中config文件夹下buttns.js添加此权限的按钮。
-              <br />2、如果权限只在某少数几个功能中使用,在vue的对应页面扩展extension文件找到对应js,添加到el-buttons对象中,格式同config文件夹下buttns.js一样。
+              Configuration的OtherAuthority
+              <br />1、添加新的Authority后请在vue项目中config文件夹下buttns.js添加此Authority的按钮。
+              <br />2、如果Authority只在某少数几个功能中使用,在vue的对应Page扩展extension文件找到对应js,添加到el-buttons对象中,格式同config文件夹下buttns.js一样。
             </el-alert>
           </div>
         </template>
@@ -41,7 +41,7 @@
 
     <!-- v-if="tree.length" -->
     <div class="menu-left">
-      <div class="m-title"><i class="el-icon-warning-outline"></i>菜单列表</div>
+      <div class="m-title"><i class="el-icon-warning-outline"></i>DishSingleList</div>
       <el-scrollbar style="height: 100%; width: 200px">
         <VolMenu :onSelect="getTreeItem"
                  :list="tree"
@@ -50,15 +50,15 @@
     </div>
     <div class="menu-right">
       <el-scrollbar style="height: 100%">
-        <el-alert title="菜单配置说明"
+        <el-alert title="DishSingleConfiguration说明"
                   type="warning"
                   :closable="false"
                   show-icon>
           <div>
-            1、如果是用代码生器生成的Vue页面,Url为Vue项目中src->router->viewGrid.js对应WorkTable的path属性
+            1、如果是用代码生Device生成的VuePage,Url为Vue项目中src->router->viewGrid.js对应WorkTable的path属性
           </div>
           <div style="padding-top: 5px">
-            2、 如果只是建一级菜单或空菜单urlDept_Id填写,【视图/WorkTable】填写.或者/
+            2、 如果只是建一级DishSingle或空DishSingleurlDept_Id填写,【视图/WorkTable】填写.或者/
           </div>
         </el-alert>
         <div style="padding: 0px 30px 0 20px">
@@ -69,7 +69,7 @@
           </vol-form>
           <div>
             <div class="auth-group">
-              <label style="width: 100px">权限按钮：</label>
+              <label style="width: 100px">Authority按钮：</label>
               <div class="ck">
                 <el-checkbox-group v-model="actions">
                   <el-checkbox v-for="(item, index) in action"
@@ -87,7 +87,7 @@
             <el-button @click="actionModel = true"
                        size="mini"
                        type="primary"
-                       plain><i class="el-icon-plus"></i>其他权限</el-button>
+                       plain><i class="el-icon-plus"></i>OtherAuthority</el-button>
           </div>
           <div class="m-btn">
             <el-button type="primary"
@@ -101,7 +101,7 @@
                        @click="addBrother"><i class="el-icon-circle-plus"></i> 添加同级</el-button>
             <el-button type="warning"
                        plain
-                       @click="delMenu"><i class="el-icon-delete"></i> Del菜单</el-button>
+                       @click="delMenu"><i class="el-icon-delete"></i> DelDishSingle</el-button>
           </div>
         </div>
       </el-scrollbar>
@@ -141,7 +141,7 @@ export default defineComponent({
           );
         });
         if (exist) {
-          return this.$message.error("权限ExpertName或权限值已存在");
+          return this.$message.error("AuthorityExpertName或Authority值已存在");
         }
         this.actionModel = false;
         this.action.push({
@@ -179,7 +179,7 @@ export default defineComponent({
       );
       this.icon = "";
       // this.actions = [];
-      //2020.08.07Add菜单时，默认选中查询按钮权限
+      //2020.08.07AddDishSingle时，默认选中Query按钮Authority
       this.actions = ["Search"];
     },
     addChild () {
@@ -191,18 +191,18 @@ export default defineComponent({
       this.add({ parentId: this.fields.parentId });
     },
     delMenu () {
-      //2020.08.07增加菜单Del功能
+      //2020.08.07增加DishSingleDel功能
       if (this.fields.menu_Id == 0) {
-        return this.$Message.error("请选择菜单");
+        return this.$Message.error("请选择DishSingle");
       }
 
       let tigger = false;
       this.$confirm(
-        "确认要Del【" + this.fields.menuName + "】菜单吗？",
+        "确认要Del【" + this.fields.menuName + "】DishSingle吗？",
         "警告",
         {
-          confirmButtonText: "确定",
-          cancelButtonText: "取消",
+          confirmButtonText: window.locales[window.localei18n.locale].Confirm,
+          cancelButtonText: window.locales[window.localei18n.locale].Cancel,
           type: "warning",
           center: true,
         }
@@ -211,7 +211,7 @@ export default defineComponent({
         tigger = true;
         let menuId = this.fields.menu_Id;
         this.http
-          .post("/api/menu/delMenu?menuId=" + menuId, {}, "正在Del数据....")
+          .post("/api/menu/delMenu?menuId=" + menuId, {}, "正在DelData....")
           .then((x) => {
             if (!x.status) return this.$Message.error(x.message);
             this.$refs.form.reset();
@@ -268,7 +268,7 @@ export default defineComponent({
     isSelect () {
       let id = this.fields.menu_Id;
       if (!id) {
-        this.$message.error("请选择节点");
+        this.$message.error("请选择Node");
         return false;
       }
       return true;
@@ -286,12 +286,12 @@ export default defineComponent({
     const tree = ref([]);
     const actionValues = ref([]);
     const action = ref([
-      { text: "查询", value: "Search" },
+      { text: "Query", value: "Search" },
       { text: "Add", value: "Add" },
       { text: "Del", value: "Delete" },
       { text: "Edit", value: "Update" },
       { text: "导入", value: "Import" },
-      { text: "导出", value: "Export" },
+      { text: "Export", value: "Export" },
       { text: "上传", value: "Upload" },
       { text: "审核", value: "Audit" },
     ]);
@@ -340,9 +340,9 @@ export default defineComponent({
     const actionOptions = ref([
       [
         {
-          title: "权限ExpertName",
+          title: "AuthorityExpertName",
           field: "name",
-          placeholder: "权限ExpertName,如：新增",
+          placeholder: "AuthorityExpertName,如：新增",
           required: true,
         },
       ],
@@ -350,7 +350,7 @@ export default defineComponent({
         {
           title: "权 限 值",
           field: "value",
-          placeholder: "权限值,如：Add",
+          placeholder: "Authority值,如：Add",
           required: true,
         },
       ],
@@ -359,9 +359,9 @@ export default defineComponent({
     const options = ref([
       [
         {
-          title: "菜 单 ID",
+          title: "Dish Single ID",
           field: "menu_Id",
-          placeholder: "菜单ID",
+          placeholder: "DishSingleID",
           min: 0,
           disabled: true,
         },
@@ -374,7 +374,7 @@ export default defineComponent({
           // min: 0, max: 50
         },
         {
-          title: "菜单ExpertName",
+          title: "DishSingleExpertName",
           field: "menuName",
           required: true,
         },
@@ -383,13 +383,13 @@ export default defineComponent({
         {
           title: "视图/WorkTable",
           field: "tableName",
-          placeholder: "与代码生成器使用的ExpertName相同",
+          placeholder: "WithCodeGenerationDevice使用的ExpertName相同",
           required: true,
         },
         {
           title: "(路由)Url",
           field: "url",
-          placeholder: "见:上面菜单配置说明",
+          placeholder: "见:上面DishSingleConfiguration说明",
         },
         {
           title: "OrderNo",
@@ -414,15 +414,15 @@ export default defineComponent({
           ],
         },  
         {
-          // 2022.03.26增移动端加菜单AppType
-          title: "菜单AppType",
+          // 2022.03.26增移动端加DishSingleAppType
+          title: "DishSingleAppType",
           field: "menuType",
           required: true,
           type: "select",
           colSize: 4,
           data: [
-            { key: 0, value: "PC菜单" },
-            { key: 1, value: "移动端菜单" }
+            { key: 0, value: "PCDishSingle" },
+            { key: 1, value: "移动端DishSingle" }
           ],
         },
         {
@@ -479,7 +479,7 @@ export default defineComponent({
             actions.value = [];
           }
         } catch (error) {
-          console.log("菜单功能权限转换成JSON失败:" + x.auth);
+          console.log("DishSingle功能Authority转换成JSON失败:" + x.auth);
           x.auth = [];
           //   this.icon = "";
           actions.value = [];

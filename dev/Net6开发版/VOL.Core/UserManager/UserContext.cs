@@ -20,8 +20,8 @@ namespace VOL.Core.ManageUser
     public class UserContext
     {
         /// <summary>
-        /// 为了尽量减少redis或Memory读取,保证执行效率,将UserContext注入到DI，
-        /// 每个UserContext的属性至多读取一次redis或Memory缓存从而提高查询效率
+        /// 为了尽量减少redis或Memory读取,保证Execute效率,将UserContext注入到DI，
+        /// 每个UserContext的属性至多读取一次redis或Memory缓存从而提高Query效率
         /// </summary>
         public static UserContext Current
         {
@@ -63,14 +63,14 @@ namespace VOL.Core.ManageUser
         private UserInfo _userInfo { get; set; }
 
         /// <summary>
-        /// Role_Id为1的默认为超级管理员
+        /// Role_Id为1的默认为SuperAdministrator
         /// </summary>
         public bool IsSuperAdmin
         {
             get { return IsRoleIdSuperAdmin(this.RoleId); }
         }
         /// <summary>
-        /// Role_Id为1的默认为超级管理员
+        /// Role_Id为1的默认为SuperAdministrator
         /// </summary>
         public static bool IsRoleIdSuperAdmin(int roleId)
         {
@@ -121,25 +121,25 @@ namespace VOL.Core.ManageUser
         }
 
         /// <summary>
-        /// 获取Role_Id权限时通过安全字典锁定的Role_Id
+        /// 获取Role_IdAuthority时通过安全字典锁定的Role_Id
         /// </summary>
         private static ConcurrentDictionary<string, object> objKeyValue = new ConcurrentDictionary<string, object>();
 
         /// <summary>
-        /// Role_Id权限的版本号
+        /// Role_IdAuthority的版本号
         /// </summary>
         private static readonly Dictionary<int, string> rolePermissionsVersion = new Dictionary<int, string>();
 
         /// <summary>
-        /// 每个Role_Id对应的菜单权限（已做静态化处理）
-        /// 每次获取权限时用当前服务器的版本号与redis/memory缓存的版本比较,如果不同会重新刷新缓存
+        /// 每个Role_Id对应的DishSingleAuthority（已做Static化处理）
+        /// 每次获取Authority时用当前服务Device的版本号Withredis/memory缓存的版本比较,如果不同会重新刷新缓存
         /// </summary>
         private static readonly Dictionary<int, List<Permissions>> rolePermissions = new Dictionary<int, List<Permissions>>();
 
 
 
         /// <summary>
-        /// 获取用户所有的菜单权限
+        /// 获取User所有的DishSingleAuthority
         /// </summary>
 
         public List<Permissions> Permissions
@@ -151,7 +151,7 @@ namespace VOL.Core.ManageUser
         }
 
         /// <summary>
-        /// 菜单按钮变更时，同时刷新权限缓存2022.05.23
+        /// DishSingle按钮变更时，同时刷新Authority缓存2022.05.23
         /// </summary>
         /// <param name="menuId"></param>
         public void RefreshWithMenuActionChange(int menuId)
@@ -167,7 +167,7 @@ namespace VOL.Core.ManageUser
         }
 
         /// <summary>
-        /// 获取单个表的权限
+        /// 获取Single个Table的Authority
         /// </summary>
         /// <param name="tableName"></param>
         /// <returns></returns>
@@ -177,7 +177,7 @@ namespace VOL.Core.ManageUser
         }
         /// <summary>
         /// 2022.03.26
-        /// 菜单AppType1:移动端，0:PC端
+        /// DishSingleAppType1:移动端，0:PC端
         /// </summary>
         public static int MenuType
         {
@@ -187,13 +187,13 @@ namespace VOL.Core.ManageUser
             }
         }
         /// <summary>
-        /// 自定条件查询权限
+        /// 自定条件QueryAuthority
         /// </summary>
         /// <param name="func"></param>
         /// <returns></returns>
         public Permissions GetPermissions(Func<Permissions, bool> func)
         {
-            // 2022.03.26增移动端加菜单AppType判断
+            // 2022.03.26增移动端加DishSingleAppType判断
             return GetPermissions(RoleId).Where(func).Where(x => x.MenuType == MenuType).FirstOrDefault();
         }
 
@@ -245,18 +245,18 @@ namespace VOL.Core.ManageUser
         {
             if (IsRoleIdSuperAdmin(roleId))
             {
-                //2020.12.27增加菜单界面上不显示，但可以分配权限
+                //2020.12.27增加DishSingle界面上不显示，但可以分配Authority
                 var permissions = DBServerProvider.DbContext.Set<Sys_Menu>()
                     .Where(x => x.Enable == 1 || x.Enable == 2)
                     .Select(a => new Permissions
                     {
                         Menu_Id = a.Menu_Id,
                         ParentId = a.ParentId,
-                        //2020.05.06增加默认将WorkTable转换成小写，权限验证时不再转换
+                        //2020.05.06增加默认将WorkTable转换成小写，Authority验证时不再转换
                         TableName = (a.TableName ?? "").ToLower(),
                         //MenuAuth = a.Auth,
                         UserAuth = a.Auth,
-                        // 2022.03.26增移动端加菜单AppType
+                        // 2022.03.26增移动端加DishSingleAppType
                         MenuType = a.MenuType ?? 0
                     }).ToList();
                 return MenuActionToArray(permissions);
@@ -264,7 +264,7 @@ namespace VOL.Core.ManageUser
             ICacheService cacheService = CacheService;
             string roleKey = roleId.GetRoleIdKey();
 
-            //Role_Id有缓存，并且当前服务器的Role_Id版本号与redis/memory缓存Role_Id的版本号相同直接返回静态对象Role_Id权限
+            //Role_Id有缓存，并且当前服务Device的Role_Id版本号Withredis/memory缓存Role_Id的版本号相同直接返回Static对象Role_IdAuthority
             string currnetVeriosn = "";
             if (rolePermissionsVersion.TryGetValue(roleId, out currnetVeriosn)
                 && currnetVeriosn == cacheService.Get(roleKey))
@@ -283,7 +283,7 @@ namespace VOL.Core.ManageUser
                     return rolePermissions.ContainsKey(roleId) ? rolePermissions[roleId] : new List<Permissions>();
                 }
 
-                //没有redis/memory缓存Role_Id的版本号或与当前服务器的Role_Id版本号不同时，刷新缓存
+                //没有redis/memory缓存Role_Id的版本号或With当前服务Device的Role_Id版本号不同时，刷新缓存
                 var dbContext = DBServerProvider.DbContext;
                 List<Permissions> _permissions = (from a in dbContext.Set<Sys_Menu>()
                                                   join b in dbContext.Set<Sys_RoleAuth>()
@@ -295,11 +295,11 @@ namespace VOL.Core.ManageUser
                                                   {
                                                       Menu_Id = a.Menu_Id,
                                                       ParentId = a.ParentId,
-                                                      //2020.05.06增加默认将WorkTable转换成小写，权限验证时不再转换
+                                                      //2020.05.06增加默认将WorkTable转换成小写，Authority验证时不再转换
                                                       TableName = (a.TableName ?? "").ToLower(),
                                                       MenuAuth = a.Auth,
                                                       UserAuth = b.AuthValue ?? "",
-                                                      // 2022.03.26增移动端加菜单AppType
+                                                      // 2022.03.26增移动端加DishSingleAppType
                                                       MenuType = a.MenuType ?? 0
                                                   }).ToList();
                 ActionToArray(_permissions);
@@ -311,10 +311,10 @@ namespace VOL.Core.ManageUser
                     //将版本号写入缓存
                     cacheService.Add(roleKey, _version);
                 }
-                //刷新当前服务器Role_Id的权限
+                //刷新当前服务DeviceRole_Id的Authority
                 rolePermissions[roleId] = _permissions;
 
-                //写入当前服务器的Role_Id最新版本号
+                //写入当前服务Device的Role_Id最新版本号
                 rolePermissionsVersion[roleId] = _version;
                 return _permissions;
             }
@@ -322,7 +322,7 @@ namespace VOL.Core.ManageUser
         }
 
         /// <summary>
-        /// 判断是否有权限
+        /// 判断是否有Authority
         /// </summary>
         /// <param name="tableName"></param>
         /// <param name="authName"></param>
@@ -336,7 +336,7 @@ namespace VOL.Core.ManageUser
         }
 
         /// <summary>
-        /// 判断是否有权限
+        /// 判断是否有Authority
         /// </summary>
         /// <param name="tableName"></param>
         /// <param name="authName"></param>
@@ -379,7 +379,7 @@ namespace VOL.Core.ManageUser
             get { return UserInfo.DeptIds; }
         }
         /// <summary>
-        /// 获取所有子部门
+        /// 获取所有子Department
         /// </summary>
         /// <returns></returns>
         public List<Guid> GetAllChildrenDeptIds()

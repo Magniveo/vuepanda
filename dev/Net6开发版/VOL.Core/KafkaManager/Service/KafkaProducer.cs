@@ -10,11 +10,11 @@
 //namespace VOL.Core.KafkaManager.Service
 //{
 //    /// <summary>
-//    /// 生产者 控制器或Service里面构造函数注入即可调用
-//    /// Message.Key的数据AppType为string、Message.Value的数据AppType为string
+//    /// 生产者 控制Device或Service里面构造函数注入即可调用
+//    /// Message.Key的DataAppType为string、Message.Value的DataAppType为string
 //    /// </summary>
-//    /// <typeparam name="TKey">Message.Key 的数据AppType</typeparam>
-//    /// <typeparam name="TValue">Message.Value 的数据AppType</typeparam>
+//    /// <typeparam name="TKey">Message.Key 的DataAppType</typeparam>
+//    /// <typeparam name="TValue">Message.Value 的DataAppType</typeparam>
 //    public class KafkaProducer<TKey, TValue> : KafkaConfig, IKafkaProducer<TKey, TValue>
 //    {
 //        /// <summary>
@@ -43,13 +43,13 @@
 //        /// <summary>
 //        /// 生产
 //        /// </summary>
-//        /// <param name="Key">Message.Key 做消息指定分区投放有用的</param>
+//        /// <param name="Key">Message.Key 做Message指定分区投放有用的</param>
 //        /// <param name="Value">Message.Value</param>
 //        /// <param name="Topic">主题</param>
 //        public void Produce(TKey Key, TValue Value, string Topic)
 //        {
 //            var producerBuilder = new ProducerBuilder<TKey, TValue>(ProducerConfig);
-//            producerBuilder.SetValueSerializer(new KafkaConverter<TValue>());//设置序列化方式
+//            producerBuilder.SetValueSerializer(new KafkaConverter<TValue>());//SetUp序列化方式
 //            using var producer = producerBuilder.Build();
 //            try
 //            {

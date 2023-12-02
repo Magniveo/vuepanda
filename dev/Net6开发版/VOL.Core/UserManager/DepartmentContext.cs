@@ -34,7 +34,7 @@ namespace VOL.Core.UserManager
 
         public static List<Dept> GetAllDept()
         {
-            //每次比较缓存是否更新过，如果更新则重新获取数据
+            //每次比较缓存是否更新过，如果更新则重新获取Data
             string _cacheVersion = CacheContext.Get(_deptCacheKey);
             if (_deptVersionn != "" && _deptVersionn == _cacheVersion)
             {

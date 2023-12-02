@@ -1,39 +1,39 @@
 /*****************************************************************************************
 **  Author:jxx 2022
 **  QQ:283591387
-**完整文档见：http://v2.volcore.xyz/document/api 【代码生成页面ViewGrid】
+**完整Document见：http://v2.volcore.xyz/document/api 【CodeGenerationPageViewGrid】
 **常用示例见：http://v2.volcore.xyz/document/vueDev
-**后台操作见：http://v2.volcore.xyz/document/netCoreDev
+**后台Operation见：http://v2.volcore.xyz/document/netCoreDev
 *****************************************************************************************/
-//此js文件是用来自定义扩展业务代码，可以扩展一些自定义页面或者重新配置生成的代码
+//此js文件是用来CustomExtension业务代码，可以扩展一些CustomizePage或者重新Configuration生成的代码
 
 let extension = {
   components: {
-    //查询界面扩展组件
+    //Query界面扩展Component
     gridHeader: '',
     gridBody: '',
     gridFooter: '',
-    //Add、Edit弹出框扩展组件
+    //Add、Edit弹出框扩展Component
     modelHeader: '',
     modelBody: '',
     modelFooter: ''
   },
-  tableAction: '', //指定某张表的权限(这里填写WorkTable,默认Dept_Id填写)
+  tableAction: '', //指定某张Table的Authority(这里填写WorkTable,默认Dept_Id填写)
   buttons: { view: [], box: [], detail: [] }, //扩展的按钮
   methods: {
     //下面这些方法可以保留也可以Del
-    onInit() {  //框架初始化配置前，
+    onInit() {  //框架初始化Configuration前，
       this.rowKey = "DepartmentId";
     },
-    loadTreeChildren(tree, treeNode, resolve) { //加载子节点
+    loadTreeChildren(tree, treeNode, resolve) { //Load子Node
       let url = `api/Sys_Department/getTreeTableChildrenData?departmentId=${tree.DepartmentId}`;
       this.http.post(url, {}).then(result => {
         resolve(result.rows)
       })
     },
-    /***加载后台数据见Sys_RoleController.cs文件***/
-    searchBefore(params) {//判断加载根节点或子节点
-      //没有查询条件，默认查询返回所有根节点数据
+    /***Load后台Data见Sys_RoleController.cs文件***/
+    searchBefore(params) {//判断Load根Node或子Node
+      //没有Query条件，默认Query返回所有根NodeData
       if (!params.wheres.length) {
         params.value = 1;
       }
@@ -58,8 +58,8 @@ let extension = {
         return;
       }
       this.columns.push({
-        title: '操作',
-        field: '操作',
+        title: 'Operation',
+        field: 'Operation',
         width: 80,
         fixed: 'right',
         align: 'center',
@@ -109,7 +109,7 @@ let extension = {
       });
     },
     addBtnClick(row) {
-      //这里是动态addCurrnetRow属性记录当前点击的行数据,下面modelOpenAfter设置默认值
+      //这里是动态addCurrnetRow属性记录当前点击的行Data,下面modelOpenAfterSetUp默认值
       this.addCurrnetRow = row;
       this.add();
     },
@@ -121,17 +121,17 @@ let extension = {
       this.initDicKeys();
       return true;
     },
-    delAfter(result) {//查询界面的表Del后
+    delAfter(result) {//Query界面的TableDel后
       this.initDicKeys();
       return true;
     },
     modelOpenAfter(row) {
-      //点击行上的添加按钮事件
+      //点击行上的添加按钮Event
       if (this.addCurrnetRow) {
 
-        //获取当前DeptIds的所有ParentId,用于设置Add时ParentId的默认值
+        //获取当前DeptIds的所有ParentId,用于SetUpAdd时ParentId的默认值
 
-        //获取数据数据源
+        //获取DataData源
         let data = [];
         this.editFormOptions.forEach(options => {
           options.forEach(option => {
@@ -141,7 +141,7 @@ let extension = {
           })
         })
         let parentIds = this.base.getTreeAllParent(this.addCurrnetRow.DepartmentId, data).map(x => { return x.id });
-        //设置EditFormParentId的默认值
+        //SetUpEditFormParentId的默认值
         this.editFormFields.ParentId = parentIds;
         this.addCurrnetRow = null;
 

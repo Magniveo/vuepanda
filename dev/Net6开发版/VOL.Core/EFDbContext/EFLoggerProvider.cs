@@ -21,7 +21,7 @@ namespace VOL.Core.EFDbContext
 
         public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
         {
-            //ef core执行数据库查询时的categoryName为Microsoft.EntityFrameworkCore.Database.Command,日志级别为Information
+            //ef coreExecuteData库Query时的categoryName为Microsoft.EntityFrameworkCore.Database.Command,Log级别为Information
             if (categoryName == "Microsoft.EntityFrameworkCore.Database.Command"
                     && logLevel == LogLevel.Information)
             {

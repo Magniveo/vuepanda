@@ -1,7 +1,7 @@
 <template>
   <div class="role-container">
     <div class="role-tree-left flex-col">
-      <div class="title"><i class="el-icon-user"></i>Role_Id列表</div>
+      <div class="title"><i class="el-icon-user"></i>Role_IdList</div>
       <el-scrollbar class="el-role-list">
         <el-tree
           :data="tree"
@@ -23,7 +23,7 @@
     </div>
     <div class="role-tree-right flex-col">
       <div class="title">
-        <div><i class="el-icon-folder-opened"></i>菜单权限</div>
+        <div><i class="el-icon-folder-opened"></i>DishSingleAuthority</div>
         <el-button type="primary" @click="save">保存</el-button>
       </div>
       <el-scrollbar class="el-role-list">

@@ -8,26 +8,26 @@ namespace VOL.Core.Tenancy
     public static class TenancyManager<T> where T : class
     {
         /// <summary>
-        /// 数据库WorkTable
+        /// Data库WorkTable
         /// </summary>
         /// <param name="tableName"></param>
         /// <returns></returns>
         public static string GetSearchQueryable(string tableName)
         {
             string multiTenancyString = $"select * from {tableName}";
-            //超级管理员不限制
+            //SuperAdministrator不限制
             //if (UserContext.Current.IsSuperAdmin)
             //{
             //    return multiTenancyString;
             //}
             switch (tableName)
             {
-                //例如：指定用户表指定查询条件
+                //例如：指定UserTable指定Query条件
                 //case "Sys_User": 
                 //    multiTenancyString += $" where UserId='{UserContext.Current.UserId}'";
                 //    break;
                 default:
-                    //开启数租户数据隔离,用户只能看到自己的表数据(自己根据需要写条件做租户数据隔离)
+                    //开启数租户Data隔离,User只能看到自己的TableData(自己根据需要写条件做租户Data隔离)
                     multiTenancyString += $" where CreateID='{UserContext.Current.UserId}'";
                     break;
             }
@@ -37,8 +37,8 @@ namespace VOL.Core.Tenancy
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="tableName">数据库WorkTable</param>
-        /// <param name="ids">当前操作的所有id</param>
+        /// <param name="tableName">Data库WorkTable</param>
+        /// <param name="ids">当前Operation的所有id</param>
         /// <param name="tableKey">主键字段</param>
         /// <returns></returns>
         public static string GetMultiTenancySql(string tableName, string ids, string tableKey)

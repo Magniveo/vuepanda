@@ -1,7 +1,7 @@
 <template>
   <div class="form-container">
     <el-scrollbar class="left-title" style="height: 100%">
-      <h4>数据列表</h4>
+      <h4>DataList</h4>
       <ul>
         <li
           @click="loadById(item)"

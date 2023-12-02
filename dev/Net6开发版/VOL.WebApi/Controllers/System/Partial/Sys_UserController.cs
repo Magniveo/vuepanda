@@ -65,7 +65,7 @@ namespace VOL.System.Controllers
             UserInfo userInfo = null;
             try
             {
-                //如果5秒内替换过token,直接使用最新的token(防止一个页面多个并发请求同时替换token导致token错位)
+                //如果5秒内替换过token,直接使用最新的token(防止一个Page多个并发请求同时替换token导致token错位)
                 if (_cache.Exists(key))
                 {
                     return Json(responseContent.OK(null, _cache.Get(key)));
@@ -94,7 +94,7 @@ namespace VOL.System.Controllers
                                  RoleName = s.RoleName
                              }).FirstOrDefault();
 
-                    if (userInfo == null) return Json(responseContent.Error("未查到用户信息!"));
+                    if (userInfo == null) return Json(responseContent.Error("未查到User信息!"));
 
                     string token = JwtHelper.IssueJwt(userInfo);
                     //移除当前缓存
@@ -114,7 +114,7 @@ namespace VOL.System.Controllers
             finally
             {
                 _lockCurrent.TryRemove(UserContext.Current.UserId, out object val);
-                string _message = $"用户{userInfo?.User_Id}_{userInfo?.UserTrueName},({(responseContent.Status ? "token替换成功": "token替换失败")})";
+                string _message = $"User{userInfo?.User_Id}_{userInfo?.UserTrueName},({(responseContent.Status ? "tokenSuccessfulReplacement": "token替换失败")})";
                 Logger.Info(LoggerType.ReplaceToeken, _message, null, error);
             }
             return Json(responseContent);
@@ -123,7 +123,7 @@ namespace VOL.System.Controllers
 
         [HttpPost, Route("modifyPwd")]
         [ApiActionPermission]
-        //通过ObjectGeneralValidatorFilter校验参数，不再需要if esle判断OldPwd与NewPwd参数
+        //通过ObjectGeneralValidatorFilter校验参数，不再需要if esle判断OldPwdWithNewPwd参数
         [ObjectGeneralValidatorFilter(ValidatorGeneral.OldPwd, ValidatorGeneral.NewPwd)]
         public async Task<IActionResult> ModifyPwd(string oldPwd, string newPwd)
         {
@@ -136,7 +136,7 @@ namespace VOL.System.Controllers
             return Json(await Service.GetCurrentUserInfo());
         }
 
-        //只能超级管理员才能修改UserPwd
+        //只能SuperAdministrator才能修改UserPwd
         //2020.08.01增加修改UserPwd功能
         [HttpPost, Route("modifyUserPwd"), ApiActionPermission(ActionRolePermission.SuperAdmin)]
         public IActionResult ModifyUserPwd(string password, string userName)
@@ -152,13 +152,13 @@ namespace VOL.System.Controllers
             Sys_User user = repository.FindFirst(x => x.UserName == userName);
             if (user == null)
             {
-                return Json(webResponse.Error("用户不存在"));
+                return Json(webResponse.Error("User不存在"));
             }
             user.UserPwd = password.EncryptDES(AppSetting.Secret.User);
             repository.Update(user, x => new { x.UserPwd }, true);
-            //如果用户在线，强制下线
+            //如果User在线，强制下线
             UserContext.Current.LogOut(user.User_Id);
-            return Json(webResponse.OK("UserPwd修改成功"));
+            return Json(webResponse.OK("UserPwd修改Success"));
         }
 
         /// <summary>
@@ -189,7 +189,7 @@ namespace VOL.System.Controllers
             user.User_Id = UserContext.Current.UserId;
 
             _userRepository.Update(user, x => new { x.UserTrueName, x.Gender, x.Remark, x.HeadImageUrl }, true);
-            return Content("修改成功");
+            return Content("修改Success");
         }
     }
 }

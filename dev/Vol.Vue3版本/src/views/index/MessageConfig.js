@@ -11,7 +11,7 @@ export default function (http, receive) {
       .build();
 
     connection.start().catch((err) => console.log(ex.message));
-    //自动重连成功后的处理
+    //自动重连Success后的处理
     connection.onreconnected((connectionId) => {
       console.log(connectionId);
     });

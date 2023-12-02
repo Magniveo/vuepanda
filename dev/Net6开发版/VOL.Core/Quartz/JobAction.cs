@@ -9,9 +9,9 @@ namespace VOL.Core.Quartz
         新增 = 1,
         Del = 2,
         修改 = 3,
-        暂停 = 4,
+        Pause = 4,
         停止,
         开启,
-        立即执行
+        立即Execute
     }
 }

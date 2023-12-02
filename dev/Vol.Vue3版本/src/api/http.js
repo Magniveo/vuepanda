@@ -67,7 +67,7 @@ axios.interceptors.response.use((res) => {
         }
     }
     else {
-        httpMessage = '服务器处理异常'
+        httpMessage = '服务Device处理异常'
     }
     redirect(httpMessage);
     return Promise.reject(error.response || {}, httpMessage);
@@ -119,7 +119,7 @@ function getToken () {
   url
   params请求后台的参数,如：{name:123,values:['a','b','c']}
   loading是否显示遮罩层,可以传入true.false.及提示文本
-  config配置信息,如{timeout:3000,headers:{token:123}}
+  configConfiguration信息,如{timeout:3000,headers:{token:123}}
 */
 function post (url, params, loading, config) {
     showLoading(loading);
@@ -129,7 +129,7 @@ function post (url, params, loading, config) {
             .then(response => {
                 resolve(response.data);
             }, err => {
-                reject(err && err.data && err.data.message ? err.data.message : '服务器处理异常');
+                reject(err && err.data && err.data.message ? err.data.message : '服务Device处理异常');
             })
             .catch((error) => {
                 reject(error)
@@ -157,7 +157,7 @@ function get (url, param, loading, config) {
 //url:ApiUrl
 //params:RequestParameter
 //fileName:下载的文件名
-//loading:是否显示加载状态
+//loading:是否显示Load状态
 function download (url, params, fileName, loading,callback) {
     fileName = fileName.replace(">", "＞").replace("<", "＜");
     post(url, params, loading, { responseType: 'blob' }).then(content => {

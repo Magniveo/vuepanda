@@ -10,7 +10,7 @@
     ]"
   >
     <div class="mask" v-show="loading"></div>
-    <div class="message" v-show="loading">加载中.....</div>
+    <div class="message" v-show="loading">Load中.....</div>
     <el-table
       :show-summary="summary"
       :summary-method="getSummaryData"
@@ -76,7 +76,7 @@
         </template>
 
         <template #default="scope">
-          <!-- 2022.01.08增加多表头，现在只支持常用功能渲染，不支持Edit功能(涉及到组件重写) -->
+          <!-- 2022.01.08增加MultiHeader，现在只支持常用功能渲染，不支持Edit功能(涉及到Component重写) -->
           <el-table-column
             style="border: none"
             v-for="columnChildren in filterChildrenColumn(column.children)"
@@ -124,7 +124,7 @@
               </template>
             </template>
           </el-table-column>
-          <!-- 2020.06.18增加render渲染自定义内容 -->
+          <!-- 2020.06.18增加render渲染CustomizeContent -->
           <table-render
             v-if="column.render && typeof column.render == 'function'"
             :row="scope.row"
@@ -175,7 +175,7 @@
           >
             <div @click.stop class="e-item">
               <div>
-                <!-- 2020.07.24增加DateonChange事件 -->
+                <!-- 2020.07.24增加DateonChangeEvent -->
                 <el-date-picker
                   clearable
                   size="default"
@@ -376,7 +376,7 @@
               @click="formatterClick(scope.row, column, $event)"
               v-html="column.formatter(scope.row, column)"
             ></div>
-            <!-- 2021.11.18修复table数据源设置为normal后点击行$event缺失的问题 -->
+            <!-- 2021.11.18修复tableData源SetUp为normal后点击行$event缺失的问题 -->
             <div
               v-else-if="column.bind && (column.normal || column.edit)"
               @click="formatterClick(scope.row, column, $event)"
@@ -441,7 +441,7 @@
     :padding="15"
     lazy
   >
-    <!-- 上传图片、excel或其他文件、文件Quantity、大小限制都可以，参照volupload组件api -->
+    <!-- 上传图片、excel或Other文件、文件Quantity、大小限制都可以，参照voluploadComponentapi -->
     <div style="height: 200px;display: flex;align-items: center;">
       <VolUpload
       style="text-align: center; "
@@ -462,7 +462,7 @@
     </div>
     <template #footer>
         <div style="text-align: center; ">
-          <el-button type="default" size="small" @click="uploadModel=false">关闭</el-button >
+          <el-button type="default" size="small" @click="uploadModel=false">{{ $locales[$i18n.locale].Close }}</el-button >
           <el-button type="primary" size="small" @click="saveUpload" >保存</el-button >
         </div>
     </template>
@@ -476,7 +476,7 @@ import { defineComponent,defineAsyncComponent } from 'vue';
 export default defineComponent({
   //https://github.com/element-plus/element-plus/issues/1483
   //没有原先的selection属性了，看issue上使用select/selectall获取
-  //监听数组长度，如果Del了数据，现在只能被迫清除所有选中的行
+  //监听数组长度，如果Del了Data，现在只能被迫清除所有选中的行
   watch: {
     'tableData.length': {
       handler(newLen, oldLen) {
@@ -495,24 +495,24 @@ export default defineComponent({
 },
   props: {
     rowKey: {
-      // 树形结构的主键字段，如果设置值默认会开启树形table；注意rowKey字段的值必须是唯一（2021.05.02）
+      // 树形结构的主键字段，如果SetUp值默认会开启树形table；注意rowKey字段的值必须是唯一（2021.05.02）
       typeof: String,
       default: undefined
     },
     loadTreeChildren: {
-      // 树形结构加载子节点
+      // 树形结构Load子Node
       type: Function,
       default: (tree, treeNode, resolve) => {
         return resolve([]);
       }
     },
     textInline: {
-      // 表格内容超出后是否换行显示（2020.01.16）
+      // FormContent超出后是否换行显示（2020.01.16）
       type: Boolean,
       default: true
     },
     tableData: {
-      // 表数据源,配置了url就Dept_Id传这个参数了
+      // TableData源,Configuration了url就Dept_Id传这个参数了
       type: Array,
       default: () => {
         return [];
@@ -555,27 +555,27 @@ export default defineComponent({
       default: true
     },
     index: {
-      // 是否创建索引号,如果需要FormEdit功能，这里需要设置为true
+      // 是否创建索引号,如果需要FormEdit功能，这里需要SetUp为true
       type: Boolean,
       default: false
     },
     allowEmpty: {
-      // 表格数据为空时是否默认为--
+      // FormData为空时是否默认为--
       type: Boolean,
       default: true
     },
     defaultLoadPage: {
-      // 传入了url，是否默认加载表格数据
+      // 传入了url，是否默认LoadFormData
       type: Boolean,
       default: true
     },
     loadKey: {
-      // 是否自动从后台加载数据源
+      // 是否自动从后台LoadData源
       type: Boolean,
       default: true
     },
     single: {
-      type: Boolean, // 是否单选
+      type: Boolean, // 是否Single选
       default: false
     },
     doubleEdit: {
@@ -583,21 +583,21 @@ export default defineComponent({
       default: true
     },
     beginEdit: {
-      // Edit开始
+      // EditStart
       type: Function,
       default: function(row, column, index) {
         return true;
       }
     },
     endEditBefore: {
-      // 结束Edit前
+      // EndEdit前
       type: Function,
       default: function(row, column, index) {
         return true;
       }
     },
     endEditAfter: {
-      // 结束Edit前
+      // EndEdit前
       type: Function,
       default: function(row, column, index) {
         return true;
@@ -619,7 +619,7 @@ export default defineComponent({
       default: true
     },
     select2Count: {
-      //超出Quantity显示select2组件
+      //超出Quantity显示select2Component
       type: Number,
       default: 2000
     },
@@ -637,14 +637,14 @@ export default defineComponent({
   },
   data() {
     return {
-      fixed: false, //是固定行号与checkbox
-      clickEdit: true, //2021.07.17设置为点击行结束Edit
+      fixed: false, //是固定行号Withcheckbox
+      clickEdit: true, //2021.07.17SetUp为点击行EndEdit
       randomTableKey: 1,
       visiblyColumns: [],
       key: '',
       realHeight: 0,
       realMaxHeight: 0,
-      enableEdit: false, // 是否启表格用Edit功能
+      enableEdit: false, // 是否启Form用Edit功能
       empty: this.allowEmpty ? '' : '--',
       defaultImg: 'this.src="' + require('@/assets/imgs/error.png') + '"',
       loading: false,
@@ -652,7 +652,7 @@ export default defineComponent({
       total: 0,
       formatConfig: {},
       // defaultColor: "",
-      // 2020.09.06调整table列数据源的背景颜色
+      // 2020.09.06调整table列Data源的背景颜色
       colors: ['', 'warning', 'success', 'danger', 'info'],
       rule: {
         phone: /^[1][3,4,5,6,7,8,9][0-9]{9}$/,
@@ -666,7 +666,7 @@ export default defineComponent({
         order: 'desc',
         Foots: '',
         total: 0,
-        // 2020.08.29增加自定义分页条大小
+        // 2020.08.29增加Customize分页条大小
         sizes: [30, 60, 100, 120],
         size: 30, // 默认分页大小
         Wheres: [],
@@ -674,19 +674,19 @@ export default defineComponent({
         rows: 30
       },
       errorFiled: '',
-      edit: { columnIndex: -1, rowIndex: -1 }, // 当前双击Edit的行与列坐标
+      edit: { columnIndex: -1, rowIndex: -1 }, // 当前双击Edit的行With列坐标
       editStatus: {},
       summary: false, // 是否显示合计
-      // 目前只支持从后台返回的summaryData数据
+      // 目前只支持从后台返回的summaryDataData
       summaryData: [],
       summaryIndex: {},
-      remoteColumns: [], // 需要每次刷新或分页后从后台加载字典数据源的列配置
-      cellStyleColumns: {}, // 有背景颜色的配置
-      fxRight: false, //是否有右边固定表头
+      remoteColumns: [], // 需要每次刷新或分页后从后台LoadDictionaryData源的列Configuration
+      cellStyleColumns: {}, // 有背景颜色的Configuration
+      fxRight: false, //是否有右边固定Table头
       selectRows: [], //当前选中的行
       isChrome: false,
-      //vol-table带数据源的单元格Enabletag标签(下拉框等单元格以tag标签显示)
-      //2023.04.02更新voltable与main.js
+      //vol-table带Data源的Single元格Enabletag标签(下拉框等Single元格以tag标签显示)
+      //2023.04.02更新voltableWithmain.js
       useTag: true,
       currentRow:{},
       currentColumn:[],
@@ -709,7 +709,7 @@ export default defineComponent({
     this.fxRight = this.columns.some((x) => {
       return x.fixed == 'right';
     });
-    //2021.09.21移除强制固定行号与checkbox列
+    //2021.09.21移除强制固定行号Withcheckbox列
     if (
       this.columns.some((x) => {
         return x.fixed && x.fixed != 'right';
@@ -731,7 +731,7 @@ export default defineComponent({
     //   this.fixed = false;
     // }
 
-    // 从后台加下拉框的[Enable的]数据源
+    // 从后台加下拉框的[Enable的]Data源
     let keys = [];
     let columnBind = [];
     this.summaryData.push('合计');
@@ -784,7 +784,7 @@ export default defineComponent({
               });
             }
             columnBind.forEach((c) => {
-              // 转换数据源的AppType与列的AppType一致(2020.04.04)
+              // 转换Data源的AppTypeWith列的AppType一致(2020.04.04)
               if (
                 c.key == x.dicNo &&
                 (c.valueTyoe == 'int' || c.valueTyoe == 'sbyte')
@@ -803,7 +803,7 @@ export default defineComponent({
     }
 
     this.paginations.sort = this.pagination.sortName;
-    // 2020.08.29增加自定义分页条大小
+    // 2020.08.29增加Customize分页条大小
     Object.assign(this.paginations, this.pagination);
     if (this.pagination.size) {
       this.paginations.rows = this.pagination.size;
@@ -837,7 +837,7 @@ export default defineComponent({
       }
     },
     switchChange(val, row, column) {
-      //这里在初始化的时候也会触发change事件
+      //这里在初始化的时候也会触发changeEvent
       if (Object.keys(row).length <= 1) {
         return;
       }
@@ -873,28 +873,28 @@ export default defineComponent({
       // this.edit.rowIndex = -1;
     },
     rowDbClick(row, column, event) {
-      //2021.05.23增加双击行事件
+      //2021.05.23增加双击行Event
       this.$emit('rowDbClick', { row, column, event });
     },
     rowClick(row, column, event) {
-      //2022.02.20增加点击时表格参数判断
+      //2022.02.20增加点击时Form参数判断
       if (!column) {
         return;
       }
-      //正在Edit时，禁止出发rowClick事件
+      //正在Edit时，禁止出发rowClickEvent
       if (this.edit.rowIndex == -1) {
         this.$emit('rowClick', { row, column, event });
       }
-      // 点击行事件(2020.11.07)
+      // 点击行Event(2020.11.07)
 
       if (!this.doubleEdit) {
         return;
       }
-      // 点击其他行时，如果点击的行与正在Edit的行相同，保持Edit状态
+      // 点击Other行时，如果点击的行With正在Edit的行相同，保持Edit状态
       if (this.clickEdit && this.edit.rowIndex != -1) {
         if (row.elementIndex == this.edit.rowIndex) {
-          // 点击的单元格如果不可以Edit，直接结束Edit
-          // 2020.10.12修复结束Edit时，element table高版本属性获取不到的问题
+          // 点击的Single元格如果不可以Edit，直接EndEdit
+          // 2020.10.12修复EndEdit时，element table高版本属性获取不到的问题
           let _col = this.columns.find((x) => {
             return x.field == ((event && event.property) || column.property);
           });
@@ -908,8 +908,8 @@ export default defineComponent({
         if (this.rowEndEdit(row, event && event.property ? event : column)) {
           this.edit.rowIndex = -1;
         }
-        //当正在Edit，且点击到其他行时，在原Edit的行结束Edit后，触发新行的rowClick事件
-        //正在Edit时，禁止出发rowClick事件
+        //当正在Edit，且点击到Other行时，在原Edit的行EndEdit后，触发新行的rowClickEvent
+        //正在Edit时，禁止出发rowClickEvent
         if (this.edit.rowIndex == -1) {
           this.$emit('rowClick', { row, column, event });
         }
@@ -927,9 +927,9 @@ export default defineComponent({
       );
     },
     getFilePath(pathSring, column) {
-      // 获取表的图片与文件显示
+      // 获取Table的图片With文件显示
       if (!pathSring) return [];
-      // 增加图片自定义操作
+      // 增加图片CustomizeOperation
       // 返回格式必须是[{name:"文件名",path:"图片全路径或base64格式"}]
       if (column.formatter) {
         return column.formatter(pathSring);
@@ -991,7 +991,7 @@ export default defineComponent({
       this.edit.rowIndex = -1;
     },
     getHeight() {
-      // 没有定义高度与最大高度，使用table默认值
+      // 没有定义高度With最大高度，使用table默认值
       if (!this.height && !this.maxHeight) {
         return null;
       }
@@ -1003,7 +1003,7 @@ export default defineComponent({
       return this.height;
     },
     getMaxHeight() {
-      // 没有定义高度与最大高度，使用table默认值
+      // 没有定义高度With最大高度，使用table默认值
       if (!this.height && !this.maxHeight) {
         return null;
       }
@@ -1119,10 +1119,10 @@ export default defineComponent({
       let _row = this.url
         ? this.rowData[this.edit.rowIndex]
         : this.tableData[this.edit.rowIndex];
-      // 结束Edit前
+      // EndEdit前
       if (!this.endEditBefore(_row, column, this.edit.rowIndex)) return false;
       if (this.edit.rowIndex != -1) {
-        //2022.06.26修复表格内容切换后行数不一致时不能Edit的问题
+        //2022.06.26修复FormContent切换后行数不一致时不能Edit的问题
         if (this.edit.rowIndex - 1 > (this.rowData || this.tableData).length) {
           this.edit.rowIndex = -1;
           return;
@@ -1228,12 +1228,12 @@ export default defineComponent({
       let indexArr = this.getSelectedIndex();
       if (indexArr.length == 0) {
         return this.$Message.error(
-          "Del操作必须设置VolTable的属性index='true'"
+          "DelOperation必须SetUpVolTable的属性index='true'"
         );
       }
       // if (indexArr.length == 0 || !this.key) {
       //   return this.$message.error(
-      //     "请设置index=true属性或指columns的字段为key"
+      //     "请SetUpindex=true属性或指columns的字段为key"
       //   );
       // }
       if (indexArr.length == 0) {
@@ -1259,13 +1259,13 @@ export default defineComponent({
         row = {};
       }
       this.columns.forEach((x) => {
-        // 2022.05.06 添加行时，如果列有Edit属性，设置开启Edit(避免关闭Edit后，无法再次启用Edit)??
+        // 2022.05.06 添加行时，如果列有Edit属性，SetUp开启Edit(避免关闭Edit后，None法再次启用Edit)??
         //x.readonly = false;
         if (!row.hasOwnProperty(x.field)) {
           if (x.edit && x.edit.type == 'switch') {
             row[x.field] = x.type == 'bool' ? false : 0;
           } else if (!row.hidden) {
-            // 2020.09.06添加行时，设置默认字段
+            // 2020.09.06添加行时，SetUp默认字段
             row[x.field] = undefined;
           }
         }
@@ -1290,7 +1290,7 @@ export default defineComponent({
     },
     getSelectedIndex() {
       if (!this.index) {
-        // 只有设置了属性index才有索引行
+        // 只有SetUp了属性index才有索引行
         return [];
       }
       let indexArr = this.selectRows.map((x) => {
@@ -1299,7 +1299,7 @@ export default defineComponent({
       return indexArr || [];
     },
     GetTableDictionary(rows) {
-      // 分页或刷新或重新绑定数据源
+      // 分页或刷新或重新绑定Data源
       if (this.remoteColumns.length == 0 || !rows || rows.length == 0) return;
       let remoteInfo = {};
       for (let index = 0; index < this.remoteColumns.length; index++) {
@@ -1335,7 +1335,7 @@ export default defineComponent({
         });
     },
     load(query, isResetPage) {
-      // isResetPage重置分页数据
+      // isResetPage重置分页Data
       if (!this.url) return;
       if (isResetPage) {
         this.resetPage();
@@ -1345,14 +1345,14 @@ export default defineComponent({
         rows: this.paginations.rows,
         sort: this.paginations.sort,
         order: this.paginations.order,
-        wheres: [] // 查询条件，格式为[{ name: "字段", value: "xx" }]
+        wheres: [] // Query条件，格式为[{ name: "字段", value: "xx" }]
       };
       let status = true;
-      // 合并查询信息(包查询分页、OrderNo、查询条件等)
+      // 合并Query信息(包Query分页、OrderNo、Query条件等)
       if (query) {
         param = Object.assign(param, query);
       }
-      /* 查询前处理(如果需要查询条件，实现组件方法loadBefore方法即可:
+      /* Query前处理(如果需要Query条件，实现Component方法loadBefore方法即可:
         loadBefore=(param, callBack)=>{
           param.wheres = [{ name: "PhoneNo", value: "13419098211" }];
           callBack(true);
@@ -1377,8 +1377,8 @@ export default defineComponent({
             this.rowData.splice(0);
           }
           this.loading = false;
-          // 查询返回结果后处理
-          // 2020.10.30增加查询后返回所有的查询信息
+          // Query返回结果后处理
+          // 2020.10.30增加Query后返回所有的Query信息
           this.$emit(
             'loadAfter',
             data.rows || [],
@@ -1459,13 +1459,13 @@ export default defineComponent({
       this.load();
     },
     resetPage() {
-      // 重置查询分页
+      // 重置Query分页
       // this.paginations.rows = 30;
       this.paginations.page = 1;
     },
     selectionChange(selection) {
       // console.log(selection);
-      // 选择行事件,只有单选才触发
+      // 选择行Event,只有Single选才触发
       this.selectRows = selection;
       if (this.single) {
         if (selection.length == 1) {
@@ -1542,7 +1542,7 @@ export default defineComponent({
       }
       let source = column.bind.data.filter((x) => {
         // return x.key != "" && x.key == val;
-        // 2020.06.06修复单独使用table组件时,key为数字0时转换成文本失败的问题
+        // 2020.06.06修复Single独使用tableComponent时,key为数字0时转换成文本失败的问题
         return x.key !== '' && x.key !== undefined && x.key + '' === val + '';
       });
       if (source && source.length > 0) val = source[0].label || source[0].value;
@@ -1556,7 +1556,7 @@ export default defineComponent({
           ?column.bind.orginData
           :column.bind.data)
         .forEach((x) => {
-          // 2020.06.06修复数据源为selectList时,key为数字0时不能转换文本的问题
+          // 2020.06.06修复Data源为selectList时,key为数字0时不能转换文本的问题
           if (x.key !== "" && x.key !== undefined && x.key + "" == valArr[index] + "") {
             valArr[index] = x.label || x.value;
           }
@@ -1575,7 +1575,7 @@ export default defineComponent({
     },
     // input输入实时求和
     getInputSummaries(scope, val, event, column) {
-      // column列设置了summary属性的才计算值
+      // column列SetUp了summary属性的才计算值
       if (!column.summary) return;
       let sum = 0;
       //  let _index = 0;
@@ -1599,7 +1599,7 @@ export default defineComponent({
       return this.summaryData;
     },
     getCellStyle(row) {
-      // 2020.12.13增加设置单元格颜色
+      // 2020.12.13增加SetUpSingle元格颜色
       if (row.column.property) {
         return (
           this.cellStyleColumns[row.column.property] &&
@@ -1621,12 +1621,12 @@ export default defineComponent({
       );
     },
     getDateOptions(date, item) {
-      //2021.07.17设置时间可选范围
+      //2021.07.17SetUp时间可选范围
       if ((!item.min && !item.max) || !date) {
         return false;
       }
       if (item.min && item.min.indexOf(' ') == -1) {
-        //不设置时分秒，后面会自动加上 08:00
+        //不SetUp时分秒，后面会自动加上 08:00
         item.min = item.min + ' 00:00:000';
       }
       return (

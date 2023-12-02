@@ -1,23 +1,23 @@
 import {  defineAsyncComponent } from "vue";
 let extension = {
-    components: { //动态扩充组件或组件路径
-        //Formheader、content、footer对应位置扩充的组件
+    components: { //动态扩充Component或Component路径
+        //Formheader、content、footer对应位置扩充的Component
         gridHeader: defineAsyncComponent(() =>
             import("./Sys_User/Sys_UserGridHeader.vue")),
         gridBody: '',
         gridFooter: '',
-        //弹出框(修改、Edit、查看)header、content、footer对应位置扩充的组件
+        //弹出框(修改、Edit、View)header、content、footer对应位置扩充的Component
         modelHeader: '',
         modelBody: '',
         modelFooter: ''
     },
     text: "只能看到当前Role_Id下的所有UserName",
     buttons: [], //扩展的按钮
-    methods: { //事件扩展
+    methods: { //Event扩展
         onInit() {
             this.boxOptions.height = 530;
             this.columns.push({
-                title: '操作',
+                title: 'Operation',
                 hidden: false,
                 align: "center",
                 fixed: 'right',
@@ -49,14 +49,14 @@ let extension = {
             })
         },
         onInited() { },
-        addAfter(result) { //用户Add后，显示随机生成的UserPwd
+        addAfter(result) { //UserAdd后，显示随机生成的UserPwd
             if (!result.status) {
                 return true;
             }
-            //显示Add用户的UserPwd
+            //显示AddUser的UserPwd
             //2020.08.28优化Add成后提示方式
-            this.$confirm(result.message, 'Add用户成功', {
-                confirmButtonText: '确定',
+            this.$confirm(result.message, 'AddUserSuccess', {
+                confirmButtonText: window.locales[window.localei18n.locale].Confirm,
                 type: 'success',
                 center: true
             }).then(() => { })
@@ -66,7 +66,7 @@ let extension = {
             return false;
         },
         modelOpenAfter() {
-            //点击弹出框后，如果是Edit状态，禁止Edit用户名，如果Add状态，将用户名字段设置为可Edit
+            //点击弹出框后，如果是Edit状态，禁止EditUser名，如果Add状态，将User名字段SetUp为可Edit
             let isEDIT = this.currentAction == this.const.EDIT;
             this.editFormOptions.forEach(item => {
                 item.forEach(x => {
@@ -74,7 +74,7 @@ let extension = {
                         x.disabled=isEDIT;
                     }
                 })
-                //不是Add，Gender默认值设置为男
+                //不是Add，Gender默认值SetUp为男
                 if (!isEDIT) {
                     this.editFormFields.Gender = "0";
                 }

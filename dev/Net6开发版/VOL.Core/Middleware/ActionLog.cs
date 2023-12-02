@@ -10,7 +10,7 @@ namespace VOL.Core.Middleware
     {
         public string LogType { get; set; }
         /// <summary>
-        /// 是否写入日志
+        /// 是否写入Log
         /// </summary>
         public bool Write { get; set; }
         public ActionLog() : this(true)

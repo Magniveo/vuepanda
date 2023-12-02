@@ -2,9 +2,9 @@
  *所有关于Sys_Department类的业务代码应在此处编写
 *可使用repository.调用常用方法，获取EF/Dapper等信息
 *如果需要事务请使用repository.DbContextBeginTransaction
-*也可使用DBServerProvider.手动获取数据库相关信息
-*用户信息、权限、Role_Id等使用UserContext.Current操作
-*Sys_DepartmentService对增、删、改查、导入、导出、审核业务代码扩展参照ServiceFunFilter
+*也可使用DBServerProvider.手动获取Data库相关信息
+*User信息、Authority、Role_Id等使用UserContext.CurrentOperation
+*Sys_DepartmentService对增、删、改查、导入、Export、审核业务代码扩展参照ServiceFunFilter
 */
 using VOL.Core.BaseProvider;
 using VOL.Core.Extensions.AutofacManager;
@@ -26,7 +26,7 @@ namespace VOL.System.Services
     public partial class Sys_DepartmentService
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
-        private readonly ISys_DepartmentRepository _repository;//访问数据库
+        private readonly ISys_DepartmentRepository _repository;//访问Data库
 
         [ActivatorUtilitiesConstructor]
         public Sys_DepartmentService(
@@ -37,7 +37,7 @@ namespace VOL.System.Services
         {
             _httpContextAccessor = httpContextAccessor;
             _repository = dbRepository;
-            //多租户会用到这init代码，其他情况可以Dept_Id
+            //多租户会用到这init代码，Other情况可以Dept_Id
             //base.Init(dbRepository);
         }
 
@@ -49,7 +49,7 @@ namespace VOL.System.Services
 
         private void FilterData()
         {
-            //限制 只能看自己部门及下级组织的数据
+            //限制 只能看自己Department及下级组织的Data
             QueryRelativeExpression = (IQueryable<Sys_Department> queryable) =>
             {
                 if (UserContext.Current.IsSuperAdmin)

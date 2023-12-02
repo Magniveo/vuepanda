@@ -49,7 +49,7 @@ namespace VOL.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //初始化模型验证配置
+            //初始化模型验证Configuration
             services.UseMethodsModelParameters().UseMethodsGeneralParameters();
             services.AddSingleton<IObjectModelValidator>(new NullObjectModelValidator());
             Services = services;
@@ -85,7 +85,7 @@ namespace VOL.WebApi
                      ValidateLifetime = true,//是否验证失效时间
                      ValidateIssuerSigningKey = true,//是否验证SecurityKey
                      ValidAudience = AppSetting.Secret.Audience,//Audience
-                     ValidIssuer = AppSetting.Secret.Issuer,//Issuer，这两项和前面签发jwt的设置一致
+                     ValidIssuer = AppSetting.Secret.Issuer,//Issuer，这两项和前面签发jwt的SetUp一致
                      IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(AppSetting.Secret.JWT))
                  };
                  options.Events = new JwtBearerEvents()
@@ -101,11 +101,11 @@ namespace VOL.WebApi
                      }
                  };
              });
-            //必须appsettings.json中配置
+            //必须appsettings.json中Configuration
             string corsUrls = Configuration["CorsUrls"];
             if (string.IsNullOrEmpty(corsUrls))
             {
-                throw new Exception("请配置跨请求的前端Url");
+                throw new Exception("请Configuration跨请求的前端Url");
             }
             services.AddCors(options =>
             {
@@ -121,20 +121,20 @@ namespace VOL.WebApi
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                //分为2份接口文档
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "VOL.Core后台Api", Version = "v1", Description = "这是对文档的Describe。。" });
-                c.SwaggerDoc("v2", new OpenApiInfo { Title = "VOL.Core对外三方Api", Version = "v2", Description = "xxx接口文档" });  //控制器里使用[ApiExplorerSettings(GroupName = "v2")]              
+                //分为2份接口Document
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "VOL.Core后台Api", Version = "v1", Description = "这是对Document的Describe。。" });
+                c.SwaggerDoc("v2", new OpenApiInfo { Title = "VOL.Core对外三方Api", Version = "v2", Description = "xxx接口Document" });  //控制Device里使用[ApiExplorerSettings(GroupName = "v2")]              
                 //启用中文注释功能
                // var basePath = PlatformServices.Default.Application.ApplicationBasePath;
               //  var xmlPath = Path.Combine(basePath, "VOL.WebApi.xml");
-             //   c.IncludeXmlComments(xmlPath, true);//显示控制器xml注释内容
-                //添加过滤器 可自定义添加对控制器的注释Describe
+             //   c.IncludeXmlComments(xmlPath, true);//显示控制Devicexml注释Content
+                //添加过滤Device 可Customize添加对控制Device的注释Describe
                 //c.DocumentFilter<SwaggerDocTag>();
 
                 var security = new Dictionary<string, IEnumerable<string>> { { AppSetting.Secret.Issuer, new string[] { } } };
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
                 {
-                    Description = "JWT授权token前面需要加上字段Bearer与一个空格,如Bearer token",
+                    Description = "JWT授权token前面需要加上字段BearerWith一个空格,如Bearer token",
                     Name = "Authorization",
                     In = ParameterLocation.Header,
                     Type = SecuritySchemeType.ApiKey,
@@ -175,8 +175,8 @@ namespace VOL.WebApi
             Services.AddSingleton<ISchedulerFactory, StdSchedulerFactory>();
             Services.AddSingleton<Quartz.Spi.IJobFactory, IOCJobFactory>();
 
-            //设置文件上传大小限制
-            //设置文件上传大小限制
+            //SetUpFileUpload大小限制
+            //SetUpFileUpload大小限制
             services.Configure<FormOptions>(x =>
             {
                 x.MultipartBodyLengthLimit = 1024 * 1024 * 100;//100M
@@ -193,13 +193,13 @@ namespace VOL.WebApi
             public void ConfigureContainer(ContainerBuilder builder)
         {
             Services.AddModule(builder, Configuration);
-            //初始化流程表，表里面必须有AuditStatus字段
+            //初始化ProcessTable，Table里面必须有AuditStatus字段
             WorkFlowContainer.Instance
-                   //name= 流程实例ExpertName
-                   //filterFields流程实例ExpertName
-                // .Use<SellOrder>(name: "订单管理",
-                 //    filterFields: x => new { x.OrderType, x.Qty, x.CreateID, x.SellNo }, //审批过滤条件的字段
-                 //    formFields: x => new { x.OrderType, x.TranNo, x.Qty, x.SellNo, x.Creator }//审批界面显示的字段
+                   //name= Process实例ExpertName
+                   //filterFieldsProcess实例ExpertName
+                // .Use<SellOrder>(name: "OrderManagement",
+                 //    filterFields: x => new { x.OrderType, x.Qty, x.CreateID, x.SellNo }, //Approval过滤条件的字段
+                 //    formFields: x => new { x.OrderType, x.TranNo, x.Qty, x.SellNo, x.Creator }//Approval界面显示的字段
                // )
                 // .Use<App_Expert>()
                 //run方法必须写在最后位置
@@ -236,22 +236,22 @@ namespace VOL.WebApi
             {
                 FileProvider = new PhysicalFileProvider(
                 Path.Combine(Directory.GetCurrentDirectory(), @"Upload")),
-                //配置访问虚拟目录时文件夹别名
+                //Configuration访问虚拟目录时文件夹别名
                 RequestPath = "/Upload",
                 OnPrepareResponse = (Microsoft.AspNetCore.StaticFiles.StaticFileResponseContext staticFile) =>
                 {
-                    //可以在此处读取请求的信息进行权限认证
+                    //可以在此处读取请求的信息进行Authority认证
                     //  staticFile.File
                     //  staticFile.Context.Response.StatusCode;
                 }
             });
-            //配置HttpContext
+            //ConfigurationHttpContext
             app.UseStaticHttpContext();
 
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                //2个下拉框选项  选择对应的文档
+                //2个下拉框选项  选择对应的Document
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "VOL.Core后台Api");
                 c.SwaggerEndpoint("/swagger/v2/swagger.json", "Modifier第三方Api");
                 c.RoutePrefix = "";
@@ -263,7 +263,7 @@ namespace VOL.WebApi
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                //配置SignalR
+                //ConfigurationSignalR
                 if (AppSetting.UseSignalR)
                 {
                     string corsUrls = Configuration["CorsUrls"];
@@ -292,11 +292,11 @@ namespace VOL.WebApi
         /// <param name="context"></param>
         public void Apply(OpenApiDocument swaggerDoc, DocumentFilterContext context)
         {
-            //添加对应的控制器Describe
+            //添加对应的控制DeviceDescribe
             swaggerDoc.Tags = new List<OpenApiTag>
             {
                 new OpenApiTag { Name = "Test", Description = "这是Describe" },
-                //new OpenApiTag { Name = "你的控制器名字，不带Controller", Description = "控制器Describe" },
+                //new OpenApiTag { Name = "你的控制Device名字，不带Controller", Description = "控制DeviceDescribe" },
             };
         }
     }

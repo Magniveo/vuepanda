@@ -15,7 +15,7 @@
           id="bar-0001"
         ></div>
       </el-tab-pane>
-      <el-tab-pane name="pie" :lazy="false" label="消息中心">
+      <el-tab-pane name="pie" :lazy="false" label="Message中心">
         <template #label>
           <span><i class="el-icon-date"></i> 饼状图 </span>
         </template>

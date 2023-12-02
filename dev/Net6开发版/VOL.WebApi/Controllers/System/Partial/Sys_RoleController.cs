@@ -80,12 +80,12 @@ namespace VOL.System.Controllers
             {
                 return Json(WebResponseContent.Instance.OK(null, data));
             }
-            //不是超级管理，将自己的Role_Id查出来，在树形菜单上作为根节点
+            //不是超级管理，将自己的Role_Id查出来，在TreeShapedVegetablesSingle上作为根Node
             var self = _repository.FindAsIQueryable(x => x.Role_Id == roleId)
                  .Select(s => new VOL.Core.UserManager.RoleNodes()
                  {
                      Id = s.Role_Id,
-                     ParentId = 0,//将自己的Role_Id作为root节点
+                     ParentId = 0,//将自己的Role_Id作为rootNode
                      RoleName = s.RoleName
                  }).ToList();
             data.AddRange(self);
@@ -95,7 +95,7 @@ namespace VOL.System.Controllers
 
 
         /// <summary>
-        /// treetable 获取子节点数据(2021.05.02)
+        /// treetable 获取子NodeData(2021.05.02)
         /// </summary>
         /// <param name="loadData"></param>
         /// <returns></returns>
@@ -103,7 +103,7 @@ namespace VOL.System.Controllers
         [HttpPost, Route("GetPageData")]
         public override ActionResult GetPageData([FromBody] PageDataOptions loadData)
         {
-            //获取根节点数据(对应Sys_Role1.js中searchBefore方法)
+            //获取根NodeData(对应Sys_Role1.js中searchBefore方法)
             if (loadData.Value.GetInt() == 1)
             {
                 return GetTreeTableRootData(loadData).Result;
@@ -112,14 +112,14 @@ namespace VOL.System.Controllers
         }
 
         /// <summary>
-        /// treetable 获取子节点数据(2021.05.02)
+        /// treetable 获取子NodeData(2021.05.02)
         /// </summary>
         /// <returns></returns>
         [HttpPost, Route("getTreeTableRootData")]
         [ApiActionPermission(ActionPermissionOptions.Search)]
         public async Task<ActionResult> GetTreeTableRootData([FromBody] PageDataOptions options)
         {
-            //页面加载根节点数据条件x => x.ParentId == 0,自己根据需要设置
+            //PageLoad根NodeData条件x => x.ParentId == 0,自己根据需要SetUp
             var query = _repository.FindAsIQueryable(x => true);
             if (UserContext.Current.IsSuperAdmin)
             {
@@ -152,7 +152,7 @@ namespace VOL.System.Controllers
         }
 
         /// <summary>
-        ///treetable 获取子节点数据(2021.05.02)
+        ///treetable 获取子NodeData(2021.05.02)
         /// </summary>
         /// <returns></returns>
         [HttpPost, Route("getTreeTableChildrenData")]
@@ -163,7 +163,7 @@ namespace VOL.System.Controllers
             {
                 return JsonNormal(new { rows = new object[] { } });
             }
-            //点击节点时，加载子节点数据
+            //点击Node时，Load子NodeData
             var roleRepository = Sys_RoleRepository.Instance.FindAsIQueryable(x => true);
             var rows = await roleRepository.Where(x => x.ParentId == roleId)
                 .Select(s => new

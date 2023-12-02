@@ -17,7 +17,7 @@ using VOL.Entity.SystemModels;
 namespace VOL.Entity.DomainModels
 {
     [Table("Sys_Log")]
-    [EntityAttribute(TableCnName = "System日志")]
+    [EntityAttribute(TableCnName = "SystemLog")]
     public class Sys_Log:BaseEntity
     {
         /// <summary>

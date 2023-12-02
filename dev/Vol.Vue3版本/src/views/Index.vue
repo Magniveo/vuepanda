@@ -50,7 +50,7 @@
               <i v-else :class="item.icon"></i>
             </a>
           </div>
-          <!--消息管理-->
+          <!--Message管理-->
           <div class="h-link" @click="messageModel = true">
             <a><i class="el-icon-message-solid"></i></a>
           </div>
@@ -91,7 +91,7 @@
             <span style="display: none">{{ navIndex }}</span>
           </el-tab-pane>
         </el-tabs>
-        <!-- 右键菜单 -->
+        <!-- 右键DishSingle -->
         <div v-show="contextMenuVisible">
           <ul
             :style="{ left: menuLeft + 'px', top: menuTop + 'px' }"
@@ -101,7 +101,7 @@
               <el-button link @click="closeTabs()">
                 <i class="el-icon-close"></i>
                 {{
-                  navigation.length == 2 ? "关闭菜单" : "关闭所有"
+                  navigation.length == 2 ? "关闭DishSingle" : "关闭所有"
                 }}</el-button
               >
             </li>
@@ -120,7 +120,7 @@
               link
                 @click="closeTabs('other')"
              
-                ><i class="el-icon-right"></i>关闭其他
+                ><i class="el-icon-right"></i>关闭Other
               </el-button>
             </li>
           </ul>
@@ -172,7 +172,7 @@
     </el-drawer>
 
     <el-drawer
-      title="消息列表"
+      title="MessageList"
       v-model="messageModel"
       direction="rtl"
       destroy-on-close
@@ -226,7 +226,7 @@ export default defineComponent({
     // 获取全局属性和方法
     const { proxy } = getCurrentInstance();
 
-    // 菜单导航默认宽度
+    // DishSingle导航默认宽度
     const menuWidth = ref(200);
     const contextMenuVisible = ref(false);
     const isCollapse = ref(false);
@@ -250,9 +250,9 @@ export default defineComponent({
         path: "https://www.cctalk.com/m/group/90268531",
         id: -3,
       },
-      { text: "大屏数据", path: "/bigdata", id: -3 },
+      { text: "大屏Data", path: "/bigdata", id: -3 },
       {
-        text: "框架文档",
+        text: "框架Document",
         path: "http://v2.volcore.xyz/document/guide",
         id: -2,
       },
@@ -268,9 +268,9 @@ export default defineComponent({
       'this.src="' + require("@/assets/imgs/error-img.png") + '"'
     );
     const selectId = ref("1");
-    // 【首页】标签序号(当前右键选中的菜单)
+    // 【首页】标签序号(当前右键选中的DishSingle)
     const selectMenuIndex = ref("0");
-    //2022.05.29增加tab选项与菜单联动功能
+    //2022.05.29增加tab选项WithDishSingle联动功能
     const currentMenuId = ref(0);
     const userName = ref("--");
     const userInfo = ref({});
@@ -295,7 +295,7 @@ export default defineComponent({
       isCollapse.value = !isCollapse.value;
       menuWidth.value = isCollapse.value ? 63 : 200;
     };
-    //2021.08.28开放手动折叠菜单方法
+    //2021.08.28开放手动折叠DishSingle方法
     _config.menu = {
       show() {
         toggleLeft();
@@ -341,9 +341,9 @@ export default defineComponent({
         navigation.push({
           //  orderNo: String(navigation.length),// 序号
           id: item.id + "",
-          name: item.name || item.text || "无Title",
+          name: item.name || item.text || "NoneTitle",
           path: item.path,
-          query: item.query, //2021.03.20修复自定义二次打开$tabs时参数丢失的问题
+          query: item.query, //2021.03.20修复Customize二次打开$tabs时参数丢失的问题
         });
         //新打开的tab移至最后一个选项
         selectId.value = navigation.length - 1 + "";
@@ -351,13 +351,13 @@ export default defineComponent({
         selectId.value = _index + "";
       }
       if (useRoute === undefined) {
-        //非标准菜单，记录最后一次跳转的页面，用于刷新
+        //非标准DishSingle，记录最后一次跳转的Page，用于刷新
         setItem(item);
         router.push(item);
         // this.$router.push(item);
       }
       currentMenuId.value = item.id * 1;
-      // tab菜单绑定右键事件
+      // tabDishSingle绑定右键Event
       proxy.$nextTick(function (e) {
         proxy.bindRightClickMenu(true);
       });
@@ -368,7 +368,7 @@ export default defineComponent({
         return x.path == path;
       });
       if (index == -1) {
-        return _config.$Message.error("未找到菜单");
+        return _config.$Message.error("未找到DishSingle");
       }
       removeNav(index);
     };
@@ -402,7 +402,7 @@ export default defineComponent({
 
     const removeNav = (_index) => {
       return new Promise(() => {
-        //关闭的当前项,跳转到前一个页面
+        //关闭的当前项,跳转到前一个Page
         if (selectId.value == _index + "") {
           console.log(navigation[_index - 1]);
           setItem(navigation[_index - 1]);
@@ -439,14 +439,14 @@ export default defineComponent({
     };
 
     /**
-     * 显示右键菜单
-     * @param {*} e 事件对象
+     * 显示右键DishSingle
+     * @param {*} e Event对象
      */
     const openTabsMenu = function (e) {
-      e.preventDefault(); // 防止默认菜单弹出
+      e.preventDefault(); // 防止默认DishSingle弹出
       let tabId = e.target.id.split("-")[1] * 1;
 
-      //记录当前选中的菜单index
+      //记录当前选中的DishSingleindex
       selectMenuIndex.value =
         document.getElementById("pane-" + tabId).children[0].textContent * 1;
       //只有首页时不显示
@@ -454,7 +454,7 @@ export default defineComponent({
         return;
       }
 
-      //首页设置显示关闭右边菜单
+      //首页SetUp显示关闭右边DishSingle
       if (!selectMenuIndex.value) {
         visibleItem.all = false;
         visibleItem.right = true;
@@ -462,22 +462,22 @@ export default defineComponent({
         visibleItem.other = false;
       } else {
         visibleItem.all = true;
-        //不是最后一个显示关闭右边菜单
+        //不是最后一个显示关闭右边DishSingle
         visibleItem.right = selectMenuIndex.value != navigation.length - 1;
-        //只有两个菜单时不显示关闭左边
+        //只有两个DishSingle时不显示关闭左边
         visibleItem.left = navigation.length != 2;
-        //只有两个菜单时不显示关闭其他
+        //只有两个DishSingle时不显示关闭Other
         visibleItem.other = navigation.length != 2;
       }
       contextMenuVisible.value = true;
-      // 设置右键菜单显示的位置
+      // SetUp右键DishSingle显示的位置
       proxy.menuLeft =
         e.target.getBoundingClientRect().left - (isCollapse.value ? 63 : 198); //-e.target.clientWidth
       proxy.menuTop = 36;
     };
 
     /**
-     * 关闭右键菜单
+     * 关闭右键DishSingle
      */
     const closeTabsMenu = () => {
       contextMenuVisible.value = false;
@@ -518,7 +518,7 @@ export default defineComponent({
           break;
         }
         case "other": {
-          // Del其他所有tab标签
+          // DelOther所有tab标签
           navigation.splice(currnetIndex + 1); // Del右侧tab标签(这里必须按照右→左顺序Del)
           navigation.splice(1, currnetIndex - 1); // Del左侧tab标签
           break;
@@ -550,7 +550,7 @@ export default defineComponent({
     );
 
     /**
-     * System创建开始
+     * System创建Start
      */
     const created = () => {
       let _theme = localStorage.getItem("vol3_theme");
@@ -580,7 +580,7 @@ export default defineComponent({
         menuOptions.value = data;
         permissionInited.value = true;
 
-        //开启消息推送（main.js中设置是否开启signalR）2022.05.05
+        //开启MessagePush（main.js中SetUp是否开启signalR）2022.05.05
         if (_config.$global.signalR) {
           MessageConfig(http, (result) => {
             messageList.unshift(result);
@@ -590,7 +590,7 @@ export default defineComponent({
 
         //当前刷新是不是首页
         if (router.currentRoute.value.path != navigation[0].path) {
-          //查找System菜单
+          //查找SystemDishSingle
           let item = menuOptions.value.find((x) => {
             return x.path == router.currentRoute.value.path; //this.$route.path;
           });
@@ -599,7 +599,7 @@ export default defineComponent({
           item = links.value.find((x) => {
             return x.path == router.currentRoute.value.path; //this.$route.path;
           });
-          //查找最后一次跳转的页面
+          //查找最后一次跳转的Page
           if (!item) {
             item = getItem();
           }
@@ -661,14 +661,14 @@ export default defineComponent({
 
   methods: {
     /**
-     * 绑定右键事件
-     * @param {*} enable Enable右键事件[true:启用;false:禁用;]
-     * @param {*} $event 事件
+     * 绑定右键Event
+     * @param {*} enable Enable右键Event[true:启用;false:禁用;]
+     * @param {*} $event Event
      */
     bindRightClickMenu(enable) {
       if (!enable) return;
       let that = this;
-      // 使用原生js 为单个dom绑定鼠标右击事件
+      // 使用原生js 为Single个dom绑定鼠标右击Event
       that.$nextTick(() => {
         let tab_top_dom = Object.assign(
           [],

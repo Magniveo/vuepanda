@@ -19,7 +19,7 @@ namespace VOL.System.Services
         private WebResponseContent _responseContent = new WebResponseContent();
         public override PageGridData<Sys_Role> GetPageData(PageDataOptions pageData)
         {
-            //Role_Id=1默认为超级管理员Role_Id，界面上不显示此Role_Id
+            //Role_Id=1默认为SuperAdministratorRole_Id，界面上不显示此Role_Id
             QueryRelativeExpression = (IQueryable<Sys_Role> queryable) =>
             {
                 if (UserContext.Current.IsSuperAdmin)
@@ -32,7 +32,7 @@ namespace VOL.System.Services
             return base.GetPageData(pageData);
         }
         /// <summary>
-        /// Edit权限时，获取当前用户的所有菜单权限
+        /// EditAuthority时，获取当前User的所有DishSingleAuthority
         /// </summary>
         /// <returns></returns>
         public async Task<WebResponseContent> GetCurrentUserTreePermission()
@@ -41,7 +41,7 @@ namespace VOL.System.Services
         }
 
         /// <summary>
-        /// Edit权限时，获取指定Role_Id的所有菜单权限
+        /// EditAuthority时，获取指定Role_Id的所有DishSingleAuthority
         /// </summary>
         /// <param name="roleId"></param>
         /// <returns></returns>
@@ -51,14 +51,14 @@ namespace VOL.System.Services
             {
                 if (!(await GetAllChildrenAsync(UserContext.Current.RoleId)).Exists(x => x.Id == roleId))
                 {
-                    return _responseContent.Error("没有权限获取此Role_Id的权限信息");
+                    return _responseContent.Error("没有Authority获取此Role_Id的Authority信息");
                 }
             }
-            //获取用户权限
+            //获取UserAuthority
             List<Permissions> permissions = UserContext.Current.GetPermissions(roleId);
-            //权限用户权限查询所有的菜单信息
+            //AuthorityUserAuthorityQuery所有的DishSingle信息
             List<Sys_Menu> menus = await Task.Run(() => Sys_MenuService.Instance.GetUserMenuList(roleId));
-            //获取当前用户权限如:(Add,Search)对应的显示文本信息如:Add：添加，Search:查询
+            //获取当前UserAuthority如:(Add,Search)对应的显示文本信息如:Add：添加，Search:Query
             var data = menus.Select(x => new
             {
                 Id = x.Menu_Id,
@@ -86,7 +86,7 @@ namespace VOL.System.Services
         private List<RoleNodes> rolesChildren = new List<RoleNodes>();
 
         /// <summary>
-        /// Edit权限时获取当前用户下的所有Role_Id与当前用户的菜单权限
+        /// EditAuthority时获取当前User下的所有Role_IdWith当前User的DishSingleAuthority
         /// </summary>
         /// <returns></returns>
         public async Task<WebResponseContent> GetCurrentTreePermission()
@@ -161,13 +161,13 @@ namespace VOL.System.Services
             return RoleContext.GetAllChildren(roleId);
         }
         /// <summary>
-        /// 递归获取所有子节点权限
+        /// 递归获取所有子NodeAuthority
         /// </summary>
         /// <param name="roleId"></param>
 
 
         /// <summary>
-        /// 保存Role_Id权限
+        /// 保存Role_IdAuthority
         /// </summary>
         /// <param name="userPermissions"></param>
         /// <param name="roleId"></param>
@@ -180,29 +180,29 @@ namespace VOL.System.Services
             {
                 UserInfo user = UserContext.Current.UserInfo;
                 if (!(await GetAllChildrenAsync(user.Role_Id)).Exists(x => x.Id == roleId))
-                    return _responseContent.Error("没有权限修改此Role_Id的权限信息");
-                //当前用户的权限
+                    return _responseContent.Error("没有Authority修改此Role_Id的Authority信息");
+                //当前User的Authority
                 List<Permissions> permissions = UserContext.Current.Permissions;
 
                 List<int> originalMeunIds = new List<int>();
-                //被分配Role_Id的权限
+                //被分配Role_Id的Authority
                 List<Sys_RoleAuth> roleAuths = await repository.FindAsync<Sys_RoleAuth>(x => x.Role_Id == roleId);
                 List<Sys_RoleAuth> updateAuths = new List<Sys_RoleAuth>();
                 foreach (UserPermissions x in userPermissions)
                 {
                     Permissions per = permissions.Where(p => p.Menu_Id == x.Id).FirstOrDefault();
-                    //不能分配超过当前用户的权限
+                    //不能分配超过当前User的Authority
                     if (per == null) continue;
-                    //per.UserAuthArr.Contains(a.Value)校验权限范围
+                    //per.UserAuthArr.Contains(a.Value)校验Authority范围
                     string[] arr = x.Actions == null || x.Actions.Count == 0
                       ? new string[0]
                       : x.Actions.Where(a => per.UserAuthArr.Contains(a.Value))
                       .Select(s => s.Value).ToArray();
 
-                    //如果当前权限没有分配过，设置Auth_Id默认为0，表示新增的权限
+                    //如果当前Authority没有分配过，SetUpAuth_Id默认为0，Table示新增的Authority
                     var auth = roleAuths.Where(r => r.Menu_Id == x.Id).Select(s => new { s.Auth_Id, s.AuthValue, s.Menu_Id }).FirstOrDefault();
                     string newAuthValue = string.Join(",", arr);
-                    //权限没有发生变化则不处理
+                    //Authority没有发生变化则不处理
                     if (auth == null || auth.AuthValue != newAuthValue)
                     {
                         updateAuths.Add(new Sys_RoleAuth()
@@ -223,7 +223,7 @@ namespace VOL.System.Services
                     }
 
                 }
-                //更新权限
+                //更新Authority
                 repository.UpdateRange(updateAuths.Where(x => x.Auth_Id > 0), x => new
                 {
                     x.Menu_Id,
@@ -231,10 +231,10 @@ namespace VOL.System.Services
                     x.Modifier,
                     x.ModifyDate
                 });
-                //新增的权限
+                //新增的Authority
                 repository.AddRange(updateAuths.Where(x => x.Auth_Id <= 0));
 
-                //获取权限取消的权限
+                //获取Authority取消的Authority
                 int[] authIds = roleAuths.Where(x => userPermissions.Select(u => u.Id)
                  .ToList().Contains(x.Menu_Id) || originalMeunIds.Contains(x.Menu_Id))
                 .Select(s => s.Auth_Id)
@@ -244,7 +244,7 @@ namespace VOL.System.Services
                 {
                     x.AuthValue = "";
                 });
-                //将取消的权限设置为""
+                //将取消的AuthoritySetUp为""
                 repository.UpdateRange(delAuths, x => new
                 {
                     x.Menu_Id,
@@ -261,7 +261,7 @@ namespace VOL.System.Services
                 //标识缓存已更新
                 base.CacheContext.Add(roleId.GetRoleIdKey(), _version);
 
-                _responseContent.OK($"保存成功：新增加配菜单权限{addCount}条,更新菜单{updateCount}条,Del权限{delAuths.Count()}条");
+                _responseContent.OK($"保存Success：新增加配DishSingleAuthority{addCount}条,更新DishSingle{updateCount}条,DelAuthority{delAuths.Count()}条");
             }
             catch (Exception ex)
             {
@@ -269,7 +269,7 @@ namespace VOL.System.Services
             }
             finally
             {
-                Logger.Info($"权限分配置:{message}{_responseContent.Message}");
+                Logger.Info($"Authority分Configuration:{message}{_responseContent.Message}");
             }
 
             return _responseContent;
@@ -297,7 +297,7 @@ namespace VOL.System.Services
                 var _keys = keys.Select(s => s.GetInt());
                 if (_keys.Any(x => !roleIds.Contains(x)))
                 {
-                    return _responseContent.Error("没有权限Del此Role_Id");
+                    return _responseContent.Error("没有AuthorityDel此Role_Id");
                 }
             }
         
@@ -308,7 +308,7 @@ namespace VOL.System.Services
         {
             if (repository.Exists(predicate))
             {
-                return _responseContent.Error($"Role_Id名【{role.RoleName}】已存在,请设置其他Role_Id名");
+                return _responseContent.Error($"Role_Id名【{role.RoleName}】已存在,请SetUpOtherRole_Id名");
             }
             return _responseContent.OK();
         }
@@ -328,7 +328,7 @@ namespace VOL.System.Services
                 }
                 if (repository.Exists(x => x.Role_Id == role.ParentId && x.ParentId == role.Role_Id))
                 {
-                    return _responseContent.Error($"不能选择此上级Role_Id，选择的上级Role_Id与当前Role_Id形成依赖关系");
+                    return _responseContent.Error($"不能选择此上级Role_Id，选择的上级Role_IdWith当前Role_Id形成依赖关系");
                 }
                 if (!UserContext.Current.IsSuperAdmin)
                 {

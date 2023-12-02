@@ -1,6 +1,6 @@
 /*
  *接口编写处...
-*如果接口需要做Action的权限验证，请在Action上使用属性
+*如果接口需要做Action的Authority验证，请在Action上使用属性
 *如: [ApiActionPermission("Sys_WorkFlowTableAuditLog",Enums.ActionPermissionOptions.Search)]
  */
 using Microsoft.AspNetCore.Mvc;

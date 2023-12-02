@@ -1,8 +1,8 @@
 import { h, resolveComponent } from 'vue';
 let extension = {
-    components: { //动态扩充组件或组件路径
-        //Formheader、content、footer对应位置扩充的组件
-        //扩展组件引入方式
+    components: { //动态扩充Component或Component路径
+        //Formheader、content、footer对应位置扩充的Component
+        //扩展Component引入方式
         gridHeader: '',
         gridBody: {
             render () {
@@ -10,21 +10,21 @@ let extension = {
                     h(resolveComponent('el-alert'), {
                         style: { 'margin-bottom': '12px' },
                         'show-icon': true, type: 'error',
-                        closable: false, title: '界面下拉框、多选、checkbox等数据源都在此处维护，也是代码生成器中的数据源'
+                        closable: false, title: '界面下拉框、多选、checkbox等Data源都在此处维护，也是CodeGenerationDevice中的Data源'
                     }, ''),
                 ]
             }
         },
         gridFooter: '',
-        //弹出框(修改、Edit、查看)header、content、footer对应位置扩充的组件
+        //弹出框(修改、Edit、View)header、content、footer对应位置扩充的Component
         modelHeader: '',
         modelBody: '',
         modelFooter: ''
     },
     buttons: [], //扩展的按钮
-    methods: { //事件扩展
+    methods: { //Event扩展
         onInit () {
-            //点击单元格Edit与结束Edit(默认是点击单元格Edit，鼠标离开结束Edit)
+            //点击Single元格EditWithEndEdit(默认是点击Single元格Edit，鼠标离开EndEdit)
             this.detailOptions.clickEdit = true;
             this.editFormOptions.forEach(x => {
                 x.forEach(item => {
@@ -32,7 +32,7 @@ let extension = {
                         item.min = 0;
                     }
                     if (item.field == "DbSql") {
-                        item.placeholder = "如果从数据库加载数据源，请按此格式配置DbSql：select orderType as key,orderName as value from order  如果需要根据用户信息加载数据源，请配置好此sql,再修改后台DictionaryHandler.GetCustomDBSql方法";
+                        item.placeholder = "如果从Data库LoadData源，请按此格式ConfigurationDbSql：select orderType as key,orderName as value from order  如果需要根据User信息LoadData源，请Configuration好此sql,再修改后台DictionaryHandler.GetCustomDBSql方法";
                     }
                 })
             })

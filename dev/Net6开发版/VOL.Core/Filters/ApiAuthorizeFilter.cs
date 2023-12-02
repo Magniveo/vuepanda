@@ -21,9 +21,9 @@ namespace VOL.Core.Filters
 
         }
         /// <summary>
-        /// 只判断token是否正确，不判断权限
-        /// 如果需要判断权限的在Action上加上ApiActionPermission属性标识权限类别，ActionPermissionFilter作权限处理
-        ///(string,string,string)1、RequestParameter,2、返回消息，3,异常消息,4状态
+        /// 只判断token是否正确，不判断Authority
+        /// 如果需要判断Authority的在Action上加上ApiActionPermission属性标识Authority类别，ActionPermissionFilter作Authority处理
+        ///(string,string,string)1、RequestParameter,2、返回Message，3,异常Message,4状态
         /// </summary>
         /// <param name="context"></param>
         public void OnAuthorization(AuthorizationFilterContext context)
@@ -47,7 +47,7 @@ namespace VOL.Core.Filters
                     tokenFilter.OnAuthorization(context);
                     return;
                 }
-                //匿名并传入了token，需要将用户的ID缓存起来，保证UserHelper里能正确获取到用户信息
+                //匿名并传入了token，需要将User的ID缓存起来，保证UserHelper里能正确获取到User信息
                 if (!context.HttpContext.User.Identity.IsAuthenticated
                     && !string.IsNullOrEmpty(context.HttpContext.Request.Headers[AppSetting.TokenHeaderName]))
                 {

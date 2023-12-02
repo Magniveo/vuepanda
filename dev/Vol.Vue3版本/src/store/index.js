@@ -13,7 +13,7 @@ export default createStore({
   state: {
     data: {},
     permission: [],
-    isLoading: false,//2020.06.03增加路由切换时加载提示
+    isLoading: false,//2020.06.03增加路由切换时Load提示
     userInfo: null,
   },
   mutations: {

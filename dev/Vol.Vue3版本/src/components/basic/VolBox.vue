@@ -19,7 +19,7 @@
         <div class="dia-footer" v-if="footer">
           <slot name="footer"></slot>
           <el-button type="primary" v-if="!footer" size="mini" @click="handleClose()"><i
-              class="el-icon-close"></i>关闭</el-button>
+              class="el-icon-close"></i>{{ $locales[$i18n.locale].Close }}</el-button>
         </div>
       </template>
     </el-dialog>
@@ -33,7 +33,7 @@ export default defineComponent({
   props: {
     modelValue: false,
     lazy: {
-      //是否开启懒加载2020.12.06
+      //是否开启懒Load2020.12.06
       type: Boolean,
       default: false,
     },
@@ -72,7 +72,7 @@ export default defineComponent({
       default: true,
     },
     onModelClose: {
-      //2021.07.11增加弹出框关闭事件
+      //2021.07.11增加弹出框关闭Event
       type: Function,
       default: (iconClick) => {
         return true;        

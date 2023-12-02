@@ -1,6 +1,6 @@
 /*
- *代码由框架生成,任何更改都可能导致被代码生成器覆盖
- *如果数据库字段发生变化，请在代码生器重新生成此Model
+ *代码由框架生成,任何更改都可能导致被CodeGenerationDevice覆盖
+ *如果Data库字段发生变化，请在代码生Device重新生成此Model
  */
 using System;
 using System.Collections.Generic;
@@ -14,7 +14,7 @@ using VOL.Entity.SystemModels;
 namespace VOL.Entity.DomainModels
 {
     [Table("App_News")]
-    [Entity(TableCnName = "新闻列表",TableName = "App_News")]
+    [Entity(TableCnName = "NewsList",TableName = "App_News")]
     public class App_News:BaseEntity
     {
         /// <summary>
@@ -103,18 +103,18 @@ namespace VOL.Entity.DomainModels
        public int NewsType { get; set; }
 
        /// <summary>
-       ///是否今日推荐
+       ///DailyRecommend
        /// </summary>
-       [Display(Name ="是否今日推荐")]
+       [Display(Name ="DailyRecommend")]
        [Column(TypeName="sbyte")]
        [Editable(true)]
        [Required(AllowEmptyStrings=false)]
        public sbyte DailyRecommend { get; set; }
 
        /// <summary>
-       ///推荐OrderNo
+       ///OrderNo
        /// </summary>
-       [Display(Name ="推荐OrderNo")]
+       [Display(Name ="OrderNo")]
        [Column(TypeName="int")]
        [Editable(true)]
        public int? OrderNo { get; set; }

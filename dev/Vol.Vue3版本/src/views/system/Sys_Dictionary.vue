@@ -1,7 +1,7 @@
 <!--
 *Author：jxx
  *Contact：283591387@qq.com
- *代码由框架生成,任何更改都可能导致被代码生成器覆盖
+ *代码由框架生成,任何更改都可能导致被CodeGenerationDevice覆盖
  *业务请在@/extension/system/Sys_Dictionary.js此处编写
  -->
 <template>
@@ -24,7 +24,7 @@
             const table = ref({
                 key: 'Dic_ID',
                 footer: "Foots",
-                cnName: '字典数据',
+                cnName: 'DictionaryData',
                 name: 'Sys_Dictionary',
                 url: "/Sys_Dictionary/",
                 sortName: "Dic_ID"
@@ -57,7 +57,7 @@
                        {field:'Modifier',title:'Modifier',type:'string',width:130,hidden:true,readonly:true,align:'left'},
                        {field:'ModifyDate',title:'ModifyDate',type:'datetime',width:150,readonly:true,align:'left',sort:true}]);
             const detail = ref({
-                cnName: "字典明细",
+                cnName: "DictionaryDetails",
                 table: "Sys_DictionaryList",
                 columns: [{field:'DicList_ID',title:'DicList_ID',type:'int',width:90,hidden:true,readonly:true,require:true,align:'left'},
                        {field:'Dic_ID',title:'Dic_ID',type:'int',width:90,readonly:true,align:'left',sort:true},

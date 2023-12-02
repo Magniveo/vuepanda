@@ -1,9 +1,9 @@
-//从表方法
+//从Table方法
 let detailMethods = {
-  //查询从表前先做内部处理
+  //Query从Table前先做内部处理
   loadInternalDetailTableBefore(param, callBack,data) {
-    //加载明细表数据之前,需要设定查询的主表的ID
-    //每次只要加载明细表格数据就重置Del明细的值
+    //Load明细TableData之前,需要设定Query的主Table的ID
+    //每次只要Load明细FormData就重置Del明细的值
     if (this.detailOptions.delKeys.length > 0) {
       this.detailOptions.delKeys = [];
     }
@@ -17,15 +17,15 @@ let detailMethods = {
     this.detailRowChange(row);
   },
   detailRowChange(row) {
-    //checkbox选中行事件
+    //checkbox选中行Event
   },
   detailRowOnClick({ row, column, event }) {
-    //明细表点击行事件2020.11.07
+    //明细Table点击行Event2020.11.07
     this.detailRowClick({ row, column, event });
   },
   detailRowClick({ row, column, event }) {},
   resetDetailTable(row) {
-    //Edit和查看明细时重置从表数据
+    //Edit和View明细时重置从TableData
     if (!this.detailOptions.columns || this.detailOptions.columns.length == 0) {
       return;
     }
@@ -38,7 +38,7 @@ let detailMethods = {
       }
     });
   },
-  //从后面加载从表数据
+  //从后面Load从TableData
   refreshRow() {
     this.resetDetailTable();
   },
@@ -57,9 +57,9 @@ let detailMethods = {
     }
 
     let tigger = false;
-    this.$confirm('确认要Del选择的数据吗?', '警告', {
-      confirmButtonText: '确定',
-      cancelButtonText: '取消',
+    this.$confirm('确认要Del选择的Data吗?', '警告', {
+      confirmButtonText: window.locales[window.localei18n.locale].Confirm ,
+      cancelButtonText: window.locales[window.localei18n.locale].Cancel,
       type: 'warning',
       center: true
     }).then(() => {
@@ -67,7 +67,7 @@ let detailMethods = {
       tigger = true;
       rows = this.$refs.detail.delRow();
       let key = this.detailOptions.key;
-      //记录Del的行数据
+      //记录Del的行Data
       rows.forEach((x) => {
         if (x.hasOwnProperty(key) && x[key]) {
           this.detailOptions.delKeys.push(x[key]);
@@ -77,14 +77,14 @@ let detailMethods = {
     });
   },
   updateDetailTableSummaryTotal() {
-    //2021.09.25增加明细表Del、修改时重新计算行数与汇总
-    //2021.12.12增加明细表判断(强制刷新合计时会用到)
+    //2021.09.25增加明细TableDel、修改时重新计算行数With汇总
+    //2021.12.12增加明细Table判断(强制刷新合计时会用到)
     if (!this.$refs.detail) {
       return;
     }
-    //Del或新增行时重新设置显示的总行数
+    //Del或新增行时重新SetUp显示的总行数
     this.$refs.detail.paginations.total = this.$refs.detail.rowData.length;
-    //重新设置合计
+    //重新SetUp合计
     if (this.$refs.detail.summary) {
       this.$refs.detail.columns.forEach((column) => {
         if (column.summary) {
@@ -94,7 +94,7 @@ let detailMethods = {
     }
   },
   detailSelectable(row, index){
-    //明细表CheckBox 是否可以勾选
+    //明细TableCheckBox 是否可以勾选
        return true;
   }
 };

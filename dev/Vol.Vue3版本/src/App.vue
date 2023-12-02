@@ -10,7 +10,7 @@ import ru from "element-plus/lib/locale/lang/ru";
 export default {
   name: "vol_app",
   components: {
-    [ElConfigProvider.name]: ElConfigProvider, //添加组件
+    [ElConfigProvider.name]: ElConfigProvider, //添加Component
   },
   data() {
     return {

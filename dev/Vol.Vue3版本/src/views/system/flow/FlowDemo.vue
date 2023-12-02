@@ -11,7 +11,7 @@
       :formFields="fields"
     ></vol-form>
     <div style="text-align:center">
-      <el-button @click="submit" type="primary">提交</el-button>
+      <el-button @click="submit" type="primary">{{ $locales[$i18n.locale].Submit }}</el-button>
     </div>
   </div>
 </template>

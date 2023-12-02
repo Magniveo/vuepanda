@@ -20,7 +20,7 @@ using VOL.Entity.DomainModels;
 namespace VOL.Core.Services
 {
     /// <summary>
-    /// 通过内置队列异步定时写日志
+    /// 通过内置队列异步定时写Log
     /// </summary>
     public static class Logger
     {
@@ -42,7 +42,7 @@ namespace VOL.Core.Services
                 //}
                 //catch (Exception ex)
                 //{
-                //    Console.WriteLine($"日志启动调用mysql数据库异常：{ex.Message},{ex.StackTrace}");
+                //    Console.WriteLine($"Log启动调用mysqlData库异常：{ex.Message},{ex.StackTrace}");
                 //}
             });
         }
@@ -85,7 +85,7 @@ namespace VOL.Core.Services
             Add(loggerType, requestParam, resposeParam, ex, LoggerStatus.Error);
         }
         /// <summary>
-        /// 多线程调用日志
+        /// 多线程调用Log
         /// </summary>
         /// <param name="message"></param>
         public static void AddAsync(string message, string ex = null)
@@ -114,8 +114,8 @@ namespace VOL.Core.Services
         /// </summary>
         /// <param name="requestParameter">RequestParameter</param>
         /// <param name="responseParameter">ResponseParameter</param>
-        /// <param name="success">响应结果1、成功,2、异常，0、其他</param>
-        /// <param name="userInfo">用户数据</param>
+        /// <param name="success">响应结果1、Success,2、异常，0、Other</param>
+        /// <param name="userInfo">UserData</param>
         public static void Add(LoggerType loggerType, string requestParameter, string responseParameter, string ex, LoggerStatus status)
         {
             Add(loggerType.ToString(), requestParameter, responseParameter, ex, status);
@@ -179,7 +179,7 @@ namespace VOL.Core.Services
                     {
                         DequeueToTable(queueTable); continue;
                     }
-                    //每5秒写一次数据
+                    //每5秒写一次Data
                     Thread.Sleep(1000);
                     if (queueTable.Rows.Count == 0) { continue; }
 
@@ -188,7 +188,7 @@ namespace VOL.Core.Services
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"日志批量写入数据时出错:{ex.Message}");
+                    Console.WriteLine($"Log批量写入Data时出错:{ex.Message}");
                     WriteText(ex.Message + ex.StackTrace + ex.Source);
                     // list.Clear();
                 }
@@ -205,7 +205,7 @@ namespace VOL.Core.Services
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"日志写入文件时出错:{ex.Message}");
+                Console.WriteLine($"Log写入文件时出错:{ex.Message}");
             }
         }
 
@@ -282,8 +282,8 @@ namespace VOL.Core.Services
                 }
                 catch (Exception ex)
                 {
-                    log.ExceptionInfo += $"日志读取参数出错:{ex.Message}";
-                    Console.WriteLine($"日志读取参数出错:{ex.Message}");
+                    log.ExceptionInfo += $"Log读取参数出错:{ex.Message}";
+                    Console.WriteLine($"Log读取参数出错:{ex.Message}");
                 }
             }
         }

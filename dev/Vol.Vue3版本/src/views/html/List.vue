@@ -86,7 +86,7 @@ export default {
         row.detailUrl.indexOf(".html") == -1 ||
         !this.base.isUrl(this.http.ipAddress + row.detailUrl)
       ) {
-        return this.$Message.error("未发布页面");
+        return this.$Message.error("未发布Page");
       }
       window.open(this.http.ipAddress + row.detailUrl);
     }

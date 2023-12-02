@@ -1,6 +1,6 @@
 /*
- *代码由框架生成,任何更改都可能导致被代码生成器覆盖
- *如果数据库字段发生变化，请在代码生器重新生成此Model
+ *代码由框架生成,任何更改都可能导致被CodeGenerationDevice覆盖
+ *如果Data库字段发生变化，请在代码生Device重新生成此Model
  */
 using System;
 using System.Collections.Generic;
@@ -13,7 +13,7 @@ using VOL.Entity.SystemModels;
 
 namespace VOL.Entity.DomainModels
 {
-    [Entity(TableCnName = "用户部门",TableName = "Sys_UserDepartment")]
+    [Entity(TableCnName = "UserDepartment",TableName = "Sys_UserDepartment")]
     public partial class Sys_UserDepartment:BaseEntity
     {
         /// <summary>

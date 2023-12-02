@@ -1,7 +1,7 @@
 //对vue参数进行扩展
 var extend = function ($vueParam) {
     $vueParam.methods.volBoxFrom = function () {
-        this.$Message.info("扩展js,增加弹出消息");
+        this.$Message.info("扩展js,增加弹出Message");
         this.$refs.volBoxFrom.show();
     }
     //修改data属性:

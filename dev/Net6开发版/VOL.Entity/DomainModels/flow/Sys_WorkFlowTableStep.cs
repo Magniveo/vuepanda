@@ -1,6 +1,6 @@
 /*
- *代码由框架生成,任何更改都可能导致被代码生成器覆盖
- *如果数据库字段发生变化，请在代码生器重新生成此Model
+ *代码由框架生成,任何更改都可能导致被CodeGenerationDevice覆盖
+ *如果Data库字段发生变化，请在代码生Device重新生成此Model
  */
 using System;
 using System.Collections.Generic;
@@ -13,7 +13,7 @@ using VOL.Entity.SystemModels;
 
 namespace VOL.Entity.DomainModels
 {
-    [Entity(TableCnName = "审批节点",TableName = "Sys_WorkFlowTableStep")]
+    [Entity(TableCnName = "ApprovalNode",TableName = "Sys_WorkFlowTableStep")]
     public partial class Sys_WorkFlowTableStep:BaseEntity
     {
         /// <summary>
@@ -49,17 +49,17 @@ namespace VOL.Entity.DomainModels
        public string StepId { get; set; }
 
        /// <summary>
-       ///节ExpertName
+       ///StepName
        /// </summary>
-       [Display(Name ="节ExpertName")]
+       [Display(Name ="StepName")]
        [MaxLength(200)]
        [Column(TypeName="nvarchar(200)")]
        public string StepName { get; set; }
 
        /// <summary>
-       ///审批AppType
+       ///StepType
        /// </summary>
-       [Display(Name ="审批AppType")]
+       [Display(Name ="StepType")]
        [Column(TypeName="int")]
        public int? StepType { get; set; }
 

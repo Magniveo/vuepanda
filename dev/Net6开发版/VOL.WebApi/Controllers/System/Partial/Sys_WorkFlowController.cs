@@ -1,6 +1,6 @@
 /*
  *接口编写处...
-*如果接口需要做Action的权限验证，请在Action上使用属性
+*如果接口需要做Action的Authority验证，请在Action上使用属性
 *如: [ApiActionPermission("Sys_WorkFlow",Enums.ActionPermissionOptions.Search)]
  */
 using Microsoft.AspNetCore.Mvc;
@@ -57,7 +57,7 @@ namespace VOL.System.Controllers
 
         }
         /// <summary>
-        /// 获取工作流程表数据源
+        /// 获取工作ProcessTableData源
         /// </summary>
         /// <returns></returns>
         [HttpGet, Route("getTableInfo")]
@@ -66,7 +66,7 @@ namespace VOL.System.Controllers
             return Json(WorkFlowContainer.GetDic());
         }
         /// <summary>
-        /// 获取流程节点数据源(用户与Role_Id)
+        /// 获取ProcessNodeData源(UserWithRole_Id)
         /// </summary>
         /// <returns></returns>
         [HttpGet, Route("getNodeDic")]
@@ -81,7 +81,7 @@ namespace VOL.System.Controllers
             return Json(data);
         }
         /// <summary>
-        /// 获取单据的审批流程进度
+        /// 获取Single据的ApprovalProcess进度
         /// </summary>
         /// <param name="tableName"></param>
         /// <param name="id"></param>
@@ -92,27 +92,27 @@ namespace VOL.System.Controllers
             var flows = await _workFlowTableRepository.FindAsIQueryable(x => x.WorkTable == tableName && ids.Contains(x.WorkTableKey))
                                .Include(x => x.Sys_WorkFlowTableStep)
                                .ToListAsync();
-            //不在审核中的数据
+            //不在审核中的Data
             if (flows.Count == 0)
             {
                 return Json(new { status = true });
             }
             if (flows.Count > 1 || flows.Count != ids.Count)
             {
-                return Json(new { status = false, message = "只能选择一条数据进行审核" });
+                return Json(new { status = false, message = "只能选择一条Data进行审核" });
             }
 
             var flow = flows[0];
             var user = UserContext.Current.UserInfo;
-            // 获取按用户审核的id，如果多用户要进行分割
+            // 获取按User审核的id，如果多User要进行分割
             // 转换成int数组
             //var auditUsers = flow.Sys_WorkFlowTableStep
-            //    .Where(x => x.StepType == (int)AuditType.用户审批 && x.StepValue != null)
+            //    .Where(x => x.StepType == (int)AuditType.UserApproval && x.StepValue != null)
             //    .SelectMany(x => x.StepValue.Split(",")).Select(int.Parse).ToArray();
 
-            //未审批时的用户信息
+            //未Approval时的User信息
             var unauditSteps = flow.Sys_WorkFlowTableStep
-                .Where(x => (x.AuditId == null || x.AuditId == 0) && x.StepType == (int)AuditType.用户审批)
+                .Where(x => (x.AuditId == null || x.AuditId == 0) && x.StepType == (int)AuditType.UserApproval)
                 .Select(s => new { s.Sys_WorkFlowTableStep_Id, userIds = s.StepValue.Split(",").Select(s => s.GetInt()) }
                 ).ToList();
 
@@ -132,13 +132,13 @@ namespace VOL.System.Controllers
 
             string GetAuditUsers(Sys_WorkFlowTableStep step)
             {
-                if (step.StepType == (int)AuditType.Role_Id审批)
+                if (step.StepType == (int)AuditType.Role_IdApproval)
                 {
                     int roleId = step.StepValue.GetInt();
                     return RoleContext.GetAllRoleId().Where(c => c.Id == roleId).Select(c => c.RoleName).FirstOrDefault();
                 }
-                //按部门审批
-                if (step.StepType == (int)AuditType.部门审批)
+                //按DepartmentApproval
+                if (step.StepType == (int)AuditType.DepartmentApproval)
                 {
                     var deptId = step.StepValue.GetGuid();
                     return DepartmentContext.GetAllDept().Where(c => c.id == deptId).Select(c => c.value).FirstOrDefault();
@@ -169,7 +169,7 @@ namespace VOL.System.Controllers
                         c.StepAttrType,
                         c.CreateDate,
                         c.Creator,
-                        //判断是按Role_Id审批 还是用户UserName审批
+                        //判断是按Role_IdApproval 还是UserUserNameApproval
                         isCurrentUser = (c.AuditStatus == null || c.AuditStatus == (int)AuditStatus.审核中 || c.AuditStatus == (int)AuditStatus.待审核)
                                         && c.StepId == flow.CurrentStepId && GetAuditStepValue(c),
                         isCurrent = c.StepId == flow.CurrentStepId && c.AuditStatus != (int)AuditStatus.审核通过
@@ -229,16 +229,16 @@ namespace VOL.System.Controllers
 
         private bool GetAuditStepValue(Sys_WorkFlowTableStep flow)
         {
-            if (flow.StepType == (int)AuditType.Role_Id审批)
+            if (flow.StepType == (int)AuditType.Role_IdApproval)
             {
                 return UserContext.Current.RoleId.ToString() == flow.StepValue;
             }
-            //按部门审批
-            if (flow.StepType == (int)AuditType.部门审批)
+            //按DepartmentApproval
+            if (flow.StepType == (int)AuditType.DepartmentApproval)
             {
                 return UserContext.Current.UserInfo.DeptIds.Select(s => s.ToString()).Contains(flow.StepValue);
             }
-            //按用户审批
+            //按UserApproval
             //return UserContext.Current.UserId.ToString() == flow.StepValue;
             return flow.StepValue.Split(",").Contains(UserContext.Current.UserId.ToString());
 

@@ -41,7 +41,7 @@ namespace VOL.Core.Configuration
         public static string TokenHeaderName = "Authorization";
 
         /// <summary>
-        /// Actions权限过滤
+        /// ActionsAuthority过滤
         /// </summary>
         public static GlobalFilter GlobalFilter { get; set; }
 
@@ -74,7 +74,7 @@ namespace VOL.Core.Configuration
 
             Secret = provider.GetRequiredService<IOptions<Secret>>().Value;
 
-            //设置修改或Del时需要设置为默认用户信息的字段
+            //SetUp修改或Del时需要SetUp为默认User信息的字段
             CreateMember = provider.GetRequiredService<IOptions<CreateMember>>().Value ?? new CreateMember();
             ModifyMember = provider.GetRequiredService<IOptions<ModifyMember>>().Value ?? new ModifyMember();
 
@@ -91,7 +91,7 @@ namespace VOL.Core.Configuration
 
             DBType.Name = _connection.DBType;
             if (string.IsNullOrEmpty(_connection.DbConnectionString))
-                throw new System.Exception("未配置好数据库默认连接");
+                throw new System.Exception("未配置好Data库默认连接");
 
             try
             {
@@ -109,12 +109,12 @@ namespace VOL.Core.Configuration
             }
 
         }
-        // 多个节点name格式 ：["key:key1"]
+        // 多个Nodename格式 ：["key:key1"]
         public static string GetSettingString(string key)
         {
             return Configuration[key];
         }
-        // 多个节点,通过.GetSection("key")["key1"]获取
+        // 多个Node,通过.GetSection("key")["key1"]获取
         public static IConfigurationSection GetSection(string key)
         {
             return Configuration.GetSection(key);

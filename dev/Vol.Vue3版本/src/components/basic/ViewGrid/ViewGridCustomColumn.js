@@ -1,6 +1,6 @@
 export default {
   initViewColumns(isReset) {
-    //初始化自定列配置
+    //初始化自定列Configuration
     if (isReset) {
       this.resetViewColumns();
     }
@@ -54,20 +54,20 @@ export default {
           sortTableColumns.push(tableColumn);
         }
       });
-      //重新排版弹出框自定义列
+      //重新排版弹出框Customize列
       let otherColumns = this.viewColumns.filter((c) => {
         return !_viewColumns.some((s) => {
           return c.field == s.field;
         });
       });
-            //重新排版弹出框自定义列
+            //重新排版弹出框Customize列
       _viewColumns.push(...otherColumns);
       this.viewColumns.splice(0);
       this.viewColumns.push(..._viewColumns);
 
       this.sortViewColumns(sortTableColumns);
     } catch (error) {
-      console.log('设置默认自定义列异常:' + error.message);
+      console.log('SetUp默认Customize列异常:' + error.message);
     }
   },
   sortViewColumns(sortColumns) {
@@ -145,7 +145,7 @@ export default {
     try {
       localStorage.setItem(this.getViewCacheKey(), JSON.stringify(this.viewColumns));
     } catch (error) {
-      console.log('获取自定义列异常:' + error.message);
+      console.log('获取Customize列异常:' + error.message);
     }
   }
 };

@@ -1,5 +1,5 @@
 /*
- *代码由框架生成,任何更改都可能导致被代码生成器覆盖
+ *代码由框架生成,任何更改都可能导致被CodeGenerationDevice覆盖
  *如果要增加方法请在当前目录下Partial文件夹Sys_WorkFlowController编写
  */
 using Microsoft.AspNetCore.Mvc;

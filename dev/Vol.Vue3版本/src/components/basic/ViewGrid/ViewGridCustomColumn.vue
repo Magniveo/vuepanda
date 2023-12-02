@@ -1,6 +1,6 @@
 <template>
   <el-alert
-    title="拖动列名可调整表格列显示顺序"
+    title="拖动列名可调整Form列显示顺序"
     type="success"
     :show-icon="false"
   >

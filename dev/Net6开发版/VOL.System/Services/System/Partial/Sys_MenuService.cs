@@ -14,24 +14,24 @@ namespace VOL.System.Services
     public partial class Sys_MenuService
     {
         /// <summary>
-        /// 菜单静态化处理，每次获取菜单时先比较菜单是否发生变化，如果发生变化从数据库重新获取，否则直接获取_menus菜单
+        /// DishSingleStatic化处理，每次获取DishSingle时先比较DishSingle是否发生变化，如果发生变化从Data库重新获取，否则直接获取_menusDishSingle
         /// </summary>
         private static List<Sys_Menu> _menus { get; set; }
 
         /// <summary>
-        /// 从数据库获取菜单时锁定的对象
+        /// 从Data库获取DishSingle时锁定的对象
         /// </summary>
         private static object _menuObj = new object();
 
         /// <summary>
-        /// 当前服务器的菜单版本
+        /// 当前服务Device的DishSingle版本
         /// </summary>
         private static string _menuVersionn = "";
 
         private const string _menuCacheKey = "inernalMenu";
 
         /// <summary>
-        /// Edit修改菜单时,获取所有菜单
+        /// Edit修改DishSingle时,获取所有DishSingle
         /// </summary>
         /// <returns></returns>
         public async Task<object> GetMenu()
@@ -52,7 +52,7 @@ namespace VOL.System.Services
 
         private List<Sys_Menu> GetAllMenu()
         {
-            //每次比较缓存是否更新过，如果更新则重新获取数据
+            //每次比较缓存是否更新过，如果更新则重新获取Data
             string _cacheVersion = CacheContext.Get(_menuCacheKey);
             if (_menuVersionn != "" && _menuVersionn == _cacheVersion)
             {
@@ -61,14 +61,14 @@ namespace VOL.System.Services
             lock (_menuObj)
             {
                 if (_menuVersionn != "" && _menus != null && _menuVersionn == _cacheVersion) return _menus;
-                //2020.12.27增加菜单界面上不显示，但可以分配权限
+                //2020.12.27增加DishSingle界面上不显示，但可以分配Authority
                 _menus = repository.FindAsIQueryable(x => x.Enable == 1 || x.Enable == 2)
                     .OrderByDescending(a => a.OrderNo)
                     .ThenByDescending(q => q.ParentId).ToList();
 
                 _menus.ForEach(x =>
                 {
-                    // 2022.03.26增移动端加菜单AppType
+                    // 2022.03.26增移动端加DishSingleAppType
                     x.MenuType ??= 0;
                     if (!string.IsNullOrEmpty(x.Auth) && x.Auth.Length > 10)
                     {
@@ -96,7 +96,7 @@ namespace VOL.System.Services
         }
 
         /// <summary>
-        /// 获取当前用户有权限查看的菜单
+        /// 获取当前User有AuthorityView的DishSingle
         /// </summary>
         /// <returns></returns>
         public List<Sys_Menu> GetCurrentMenuList()
@@ -117,7 +117,7 @@ namespace VOL.System.Services
         }
 
         /// <summary>
-        /// 获取当前用户所有菜单与权限
+        /// 获取当前User所有DishSingleWithAuthority
         /// </summary>
         /// <returns></returns>
         public async Task<object> GetCurrentMenuActionList()
@@ -126,13 +126,13 @@ namespace VOL.System.Services
         }
 
         /// <summary>
-        /// 根据Role_Id获取菜单与权限
+        /// 根据Role_Id获取DishSingleWithAuthority
         /// </summary>
         /// <param name="roleId"></param>
         /// <returns></returns>
         public async Task<object> GetMenuActionList(int roleId)
         {
-            //2020.12.27增加菜单界面上不显示，但可以分配权限
+            //2020.12.27增加DishSingle界面上不显示，但可以分配Authority
             if (UserContext.IsRoleIdSuperAdmin(roleId))
             {
                 return await Task.Run(() => GetAllMenu()
@@ -146,7 +146,7 @@ namespace VOL.System.Services
                     parentId = x.ParentId,
                     icon = x.Icon,
                     x.Enable,
-                    x.TableName, // 2022.03.26增移动端加菜单AppType
+                    x.TableName, // 2022.03.26增移动端加DishSingleAppType
                     permission = x.Actions.Select(s => s.Value).ToArray()
                 }).ToList());
             }
@@ -163,14 +163,14 @@ namespace VOL.System.Services
                            parentId = b.ParentId,
                            icon = b.Icon,
                            b.Enable,
-                           b.TableName, // 2022.03.26增移动端加菜单AppType
+                           b.TableName, // 2022.03.26增移动端加DishSingleAppType
                            permission = a.UserAuthArr
                        };
             return menu.ToList();
         }
 
         /// <summary>
-        /// Add或Edit菜单
+        /// Add或EditDishSingle
         /// </summary>
         /// <param name="menu"></param>
         /// <returns></returns>
@@ -178,14 +178,14 @@ namespace VOL.System.Services
         {
             WebResponseContent webResponse = new WebResponseContent();
             if (menu == null) return webResponse.Error("没有获取到提交的参数");
-            if (menu.Menu_Id > 0 && menu.Menu_Id == menu.ParentId) return webResponse.Error("ParentId不能是当前菜单的ID");
+            if (menu.Menu_Id > 0 && menu.Menu_Id == menu.ParentId) return webResponse.Error("ParentId不能是当前DishSingle的ID");
             try
             {
                 webResponse = menu.ValidationEntity(x => new { x.MenuName, x.TableName });
                 if (!webResponse.Status) return webResponse;
                 if (menu.TableName != "/" && menu.TableName != ".")
                 {
-                    // 2022.03.26增移动端加菜单AppType判断
+                    // 2022.03.26增移动端加DishSingleAppType判断
                     Sys_Menu sysMenu = await repository.FindAsyncFirst(x => x.TableName == menu.TableName);
                     if (sysMenu != null)
                     {
@@ -195,7 +195,7 @@ namespace VOL.System.Services
                             if ((menu.Menu_Id > 0 && sysMenu.Menu_Id != menu.Menu_Id)
                             || menu.Menu_Id <= 0)
                             {
-                                return webResponse.Error($"视图/WorkTable【{menu.TableName}】已被其他菜单使用");
+                                return webResponse.Error($"视图/WorkTable【{menu.TableName}】已被OtherDishSingle使用");
                             }
                         }
                     }
@@ -214,7 +214,7 @@ namespace VOL.System.Services
                     }
                     if (repository.Exists(x => x.ParentId == menu.Menu_Id && menu.ParentId == x.Menu_Id))
                     {
-                        return webResponse.Error($"不能选择此ParentId，选择的ParentId与当前菜单形成依赖关系");
+                        return webResponse.Error($"不能选择此ParentId，选择的ParentIdWith当前DishSingle形成依赖关系");
                     }
 
                     _changed = repository.FindAsIQueryable(c => c.Menu_Id == menu.Menu_Id).Select(s => s.Auth).FirstOrDefault() != menu.Auth;
@@ -228,7 +228,7 @@ namespace VOL.System.Services
                         p.OrderNo,
                         p.Icon,
                         p.Enable,
-                        p.MenuType,// 2022.03.26增移动端加菜单AppType
+                        p.MenuType,// 2022.03.26增移动端加DishSingleAppType
                         p.TableName,
                         p.ModifyDate,
                         p.Modifier
@@ -242,7 +242,7 @@ namespace VOL.System.Services
                     UserContext.Current.RefreshWithMenuActionChange(menu.Menu_Id);
                 }
                 _menus = null;
-                webResponse.OK("保存成功", menu);
+                webResponse.OK("保存Success", menu);
             }
             catch (Exception ex)
             {
@@ -250,7 +250,7 @@ namespace VOL.System.Services
             }
             finally
             {
-                Logger.Info($"表:{menu.TableName},菜单：{menu.MenuName},权限{menu.Auth},{(webResponse.Status ? "成功" : "失败")}{webResponse.Message}");
+                Logger.Info($"Table:{menu.TableName},DishSingle：{menu.MenuName},Authority{menu.Auth},{(webResponse.Status ? "Success" : "失败")}{webResponse.Message}");
             }
             return webResponse;
 
@@ -262,17 +262,17 @@ namespace VOL.System.Services
       
             if (await repository.ExistsAsync(x => x.ParentId == menuId))
             {
-                return webResponse.Error("当前菜单存在子菜单,请先Del子菜单!");
+                return webResponse.Error("当前DishSingle存在子DishSingle,请先Del子DishSingle!");
             }
             repository.Delete(new Sys_Menu()
             {
                 Menu_Id = menuId
             }, true);
             CacheContext.Add(_menuCacheKey, DateTime.Now.ToString("yyyyMMddHHMMssfff"));
-            return webResponse.OK("Del成功");
+            return webResponse.OK("DelSuccess");
         }
         /// <summary>
-        /// Edit菜单时，获取菜单信息
+        /// EditDishSingle时，获取DishSingle信息
         /// </summary>
         /// <param name="menuId"></param>
         /// <returns></returns>
@@ -290,7 +290,7 @@ namespace VOL.System.Services
                     p.OrderNo,
                     p.Icon,
                     p.Enable,
-                    // 2022.03.26增移动端加菜单AppType
+                    // 2022.03.26增移动端加DishSingleAppType
                     MenuType = p.MenuType ?? 0,
                     p.CreateDate,
                     p.Creator,

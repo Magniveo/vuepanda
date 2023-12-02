@@ -14,13 +14,13 @@ namespace VOL.Entity.DomainModels
         public string MenuAuth { get; set; }
         public string UserAuth { get; set; }
         /// <summary>
-        /// 当前用户权限,存储的是权限的值，如:Add,Search等
+        /// 当前UserAuthority,存储的是Authority的值，如:Add,Search等
         /// </summary>
         public string[] UserAuthArr { get; set; }
 
         /// <summary>
         /// 2022.03.26
-        /// 菜单AppType1:移动端，0:PC端
+        /// DishSingleAppType1:移动端，0:PC端
         /// </summary>
         public int MenuType { get; set; }
     }

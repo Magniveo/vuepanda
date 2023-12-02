@@ -11,7 +11,7 @@ module.exports = {
     }
   },
   css: {
-    //查看CSS属于哪个css文件
+    //ViewCSS属于哪个css文件
     sourceMap: true
   },
   configureWebpack: {

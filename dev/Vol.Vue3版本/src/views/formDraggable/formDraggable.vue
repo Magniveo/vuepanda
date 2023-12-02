@@ -12,7 +12,7 @@ export default {
   },
   methods: {
     save(options) {
-      this.$Message.success("可以将当前配置保存到数据库中用于二次维护");
+      this.$Message.success("可以将当前Configuration保存到Data库中用于二次维护");
       console.log(JSON.stringify(options))
     },
   },
@@ -22,7 +22,7 @@ export default {
       }
   },
   created() {
-    //收起左侧菜单
+    //收起左侧DishSingle
     this.menu.hide();
   },
 };

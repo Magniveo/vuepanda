@@ -94,7 +94,7 @@ export default {
       default: false
     },
     fileInfo: {
-      //用于接收上传的文件，也可以加以默认值，显示已上传的文件，用户上传后会覆盖默认值
+      //用于接收上传的文件，也可以加以默认值，显示已上传的文件，User上传后会覆盖默认值
       type: Array,
       default: () => {
         return [];
@@ -149,7 +149,7 @@ export default {
       default: ''
     },
     uploadBefore: {
-      //返回false会中止执行
+      //返回false会中止Execute
       //上传前
       type: Function,
       default: (files) => {
@@ -157,7 +157,7 @@ export default {
       }
     },
     uploadAfter: {
-      //返回false会中止执行
+      //返回false会中止Execute
       //上传后
       type: Function,
       default: (result, files) => {
@@ -165,38 +165,38 @@ export default {
       }
     },
     onChange: {
-      //选择文件时  //返回false会中止执行
+      //选择文件时  //返回false会中止Execute
       type: Function,
       default: (files) => {
         return true;
       }
     },
     // clear: {
-    //   //上传完成后是否清空文件列表
+    //   //上传完成后是否清空文件List
     //   type: Boolean,
     //   default: true
     // },
     fileList: {
-      //是否显示选择的文件列表
+      //是否显示选择的文件List
       type: Boolean,
       default: true
     },
     fileClick: {
-      //点击文件事件
+      //点击文件Event
       type: Function,
       default: (index, file, files) => {
         return true;
       }
     },
     removeBefore: {
-      //移除文件事件
+      //移除文件Event
       type: Function,
       default: (index, file, files) => {
         return true;
       }
     },
     append: {
-      //此属性已废弃，多文件上传，默认追加文件
+      //此属性已废弃，多FileUpload，默认追加文件
       type: Boolean,
       default: false
     },
@@ -214,7 +214,7 @@ export default {
   data() {
     return {
       errorImg: 'this.src="' + require('@/assets/imgs/error-img.png') + '"',
-      changed: false, //手动上传成功后禁止重复上传，必须重新选择
+      changed: false, //手动上传Success后禁止重复上传，必须重新选择
       model: true,
       files: [],
       bigImg: '',
@@ -224,7 +224,7 @@ export default {
     };
   },
   created() {
-    //默认有图片的禁止上传操作
+    //默认有图片的禁止上传Operation
     if (this.fileInfo) {
       this.changed = true;
     }
@@ -255,7 +255,7 @@ export default {
       return path.substring(_index + 1);
     },
     previewImg(index) {
-      //查看大图预览模式待完
+      //View大图Preview模式待完
       this.base.previewImg(this.getImgSrc(this.files[index]));
       //  window.open(this.getImgSrc((this.files.length>0?this.files:this.fileInfo)[index]));
     },
@@ -270,7 +270,7 @@ export default {
         if (this.base.isUrl(file.path)) {
           return file.path;
         }
-        //2020.12.27增加base64图片操作
+        //2020.12.27增加base64图片Operation
         if (file.path.indexOf('/9j/') != -1) {
           return 'data:image/jpeg;base64,' + file.path;
         }
@@ -370,7 +370,7 @@ export default {
         u8arr[n] = bstr.charCodeAt(n);
       }
       // new File返回File对象 第一个参数是 ArraryBuffer 或 Bolb 或Arrary 第二个参数是文件名
-      // 第三个参数是 要放到文件中的内容的 MIME AppType
+      // 第三个参数是 要放到文件中的Content的 MIME AppType
       return new File([u8arr], `${filename}.${suffix}`, {
         type: mime,
         input: true
@@ -446,7 +446,7 @@ export default {
           };
         });
         this.fileInfo.push(..._files);
-        //2021.09.25修复文件上传后不能同时下载的问题
+        //2021.09.25修复FileUpload后不能同时下载的问题
         this.files = _files;
       });
       return;
@@ -454,12 +454,12 @@ export default {
     async upload(vail) {
       if (vail && !this.checkFile()) return false;
       if (!this.url) {
-        return this.$message.error('没有配置好Url');
+        return this.$message.error('没有Configuration好Url');
       }
       if (!this.files || this.files.length == 0) {
         return this.$message.error('请选择文件');
       }
-      //增加上传时自定义参数，后台使用获取Utilities.HttpContext.Current.Request.Query["字段"]
+      //增加上传时Customize参数，后台使用获取Utilities.HttpContext.Current.Request.Query["字段"]
       let params={};
       if (!this.uploadBefore(this.files,params)) {
         return;
@@ -488,7 +488,7 @@ export default {
         } else {
           this.changed = true;
         }
-        this.$message.success('上传成功');
+        this.$message.success('上传Success');
         return;
       }
 
@@ -535,7 +535,7 @@ export default {
               // this.files = null;
               return;
             }
-            //单选清除以前的数据
+            //Single选清除以前的Data
             //  if (!this.multiple) {
             this.fileInfo.splice(0);
             // }
@@ -546,7 +546,7 @@ export default {
               };
             });
             this.fileInfo.push(..._files);
-            //2021.09.25修复文件上传后不能同时下载的问题
+            //2021.09.25修复FileUpload后不能同时下载的问题
             this.files = _files;
           },
           (error) => {

@@ -2,9 +2,9 @@
  *所有关于Sys_WorkFlowTable类的业务代码应在此处编写
 *可使用repository.调用常用方法，获取EF/Dapper等信息
 *如果需要事务请使用repository.DbContextBeginTransaction
-*也可使用DBServerProvider.手动获取数据库相关信息
-*用户信息、权限、Role_Id等使用UserContext.Current操作
-*Sys_WorkFlowTableService对增、删、改查、导入、导出、审核业务代码扩展参照ServiceFunFilter
+*也可使用DBServerProvider.手动获取Data库相关信息
+*User信息、Authority、Role_Id等使用UserContext.CurrentOperation
+*Sys_WorkFlowTableService对增、删、改查、导入、Export、审核业务代码扩展参照ServiceFunFilter
 */
 using VOL.Core.BaseProvider;
 using VOL.Core.Extensions.AutofacManager;
@@ -26,8 +26,8 @@ namespace VOL.System.Services
     public partial class Sys_WorkFlowTableService
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
-        private readonly ISys_WorkFlowTableRepository _repository;//访问数据库
-        private readonly ISys_WorkFlowTableStepRepository _stepRepository;//访问数据库
+        private readonly ISys_WorkFlowTableRepository _repository;//访问Data库
+        private readonly ISys_WorkFlowTableStepRepository _stepRepository;//访问Data库
         [ActivatorUtilitiesConstructor]
         public Sys_WorkFlowTableService(
             ISys_WorkFlowTableRepository dbRepository,
@@ -39,7 +39,7 @@ namespace VOL.System.Services
             _httpContextAccessor = httpContextAccessor;
             _repository = dbRepository;
             _stepRepository = stepRepository;
-            //多租户会用到这init代码，其他情况可以Dept_Id
+            //多租户会用到这init代码，Other情况可以Dept_Id
             //base.Init(dbRepository);
         }
 
@@ -50,12 +50,12 @@ namespace VOL.System.Services
             if (options.Value != null)
             {
                 int value = options.Value.GetInt();
-                //待审批
+                //待Approval
                 if (value == 0)
                 {
                     expression = x => x.AuditStatus == (int)AuditStatus.审核中|| x.AuditStatus == (int)AuditStatus.待审核;
                 }
-                //已审批
+                //已Approval
                 else if (value == 1)
                 {
                     expression = x => x.AuditStatus != (int)AuditStatus.审核中&&x.AuditStatus!= (int)AuditStatus.待审核;
@@ -71,11 +71,11 @@ namespace VOL.System.Services
                 if (!UserContext.Current.IsSuperAdmin)
                 {
                     var user = UserContext.Current.UserInfo;
-                        //显示当前用户需要审批的数据
+                        //显示当前User需要Approval的Data
                         var deptIds = user.DeptIds.Select(s => s.ToString());
-                    var stepQuery = _stepRepository.FindAsIQueryable(x => (x.StepType == (int)AuditType.用户审批 && x.StepValue == user.User_Id.ToString())
-                      || (x.StepType == (int)AuditType.Role_Id审批 && x.StepValue == user.Role_Id.ToString())
-                      || (x.StepType == (int)AuditType.部门审批 && deptIds.Contains(x.StepValue))
+                    var stepQuery = _stepRepository.FindAsIQueryable(x => (x.StepType == (int)AuditType.UserApproval && x.StepValue == user.User_Id.ToString())
+                      || (x.StepType == (int)AuditType.Role_IdApproval && x.StepValue == user.Role_Id.ToString())
+                      || (x.StepType == (int)AuditType.DepartmentApproval && deptIds.Contains(x.StepValue))
                        );
                     queryable = queryable.Where(x => stepQuery.Any(c => x.WorkFlowTable_Id == c.WorkFlowTable_Id));
                 }

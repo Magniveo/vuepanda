@@ -16,7 +16,7 @@ namespace VOL.WebApi.Controllers
     /// 2、model校验只需要标识属性[ObjectModelValidatorFilter(ValidatorModel.xxx)]
     /// 需要在ValidatorModel枚举中添加枚举值(参数名)，
     /// 并在UseMethodsModelParameters方法中注入进去(注入时可以指定需要验证的字段)即可在任何地方重复使用
-    /// --如果其他方法使用的是同一个model，但验证的字段不同，在ValidatorModel重新添加一个枚举值，
+    /// --如果Other方法使用的是同一个model，但验证的字段不同，在ValidatorModel重新添加一个枚举值，
     /// --并在UseMethodsModelParameters方法注入,添加新的指定字段即可
     /// </summary>
     [JWTAuthorize, ApiController]
@@ -29,7 +29,7 @@ namespace VOL.WebApi.Controllers
         }
 
         /// <summary>
-        /// 验证UserName与PhoneNo为必填
+        /// 验证UserNameWithPhoneNo为必填
         /// </summary>
         /// <param name="userName"></param>
         /// <param name="phoneNo"></param>
@@ -56,7 +56,7 @@ namespace VOL.WebApi.Controllers
 
 
         /// <summary>
-        /// 验证字符长度与值大小
+        /// 验证字符长度With值大小
         /// </summary>
         /// <param name="userName"></param>
         /// <param name="phoneNo"></param>
@@ -69,7 +69,7 @@ namespace VOL.WebApi.Controllers
         }
 
         /// <summary>
-        /// Login配置的规则用户名与UserPwd必填
+        /// LoginConfiguration的规则User名WithUserPwd必填
         /// </summary>
         /// <param name="loginInfo"></param>
         /// <returns></returns>
@@ -81,7 +81,7 @@ namespace VOL.WebApi.Controllers
         }
 
         /// <summary>
-        /// LoginOnlyPassWord配置的规则UserPwd必填
+        /// LoginOnlyPassWordConfiguration的规则UserPwd必填
         /// </summary>
         /// <param name="loginInfo"></param>
         /// <returns></returns>
@@ -94,8 +94,8 @@ namespace VOL.WebApi.Controllers
 
 
         /// <summary>
-        /// 同时验证实体LoginInfo与单个参数phoneNo
-        ///  Login配置的规则用户名与UserPwd必填,PhoneNo必填
+        /// 同时验证实体LoginInfoWithSingle个参数phoneNo
+        ///  LoginConfiguration的规则User名WithUserPwd必填,PhoneNo必填
         /// </summary>
         /// <param name="loginInfo"></param>
         /// <returns></returns>

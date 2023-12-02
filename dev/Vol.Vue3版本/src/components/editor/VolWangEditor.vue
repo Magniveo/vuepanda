@@ -82,7 +82,7 @@ export default {
       this.$emit("update:modelValue", html);
     };
     // editor.config.uploadFileName = "fileInput";
-    // //设置header
+    // //SetUpheader
     // editor.config.uploadImgHeaders = {
     //   Accept: "application/json",
     //   Authorization: this.$store.getters.getToken(),
@@ -91,12 +91,12 @@ export default {
     editor.config.uploadImgServer = this.http.ipAddress + this.url;
     // console.log(editor.config.uploadImgServer);
     editor.config.customUploadImg = async function (resultFiles, insertImgFn) {
-      // 自定义上传
+      // Customize上传
       if ($this.upload) {
-        console.log("调用自定义的上传方法");
+        console.log("调用Customize的上传方法");
         console.log(resultFiles);
-        // resultFiles 是 input 中选中的文件列表
-        // insertImgFn 是获取图片 url 后，插入到Edit器的方法
+        // resultFiles 是 input 中选中的文件List
+        // insertImgFn 是获取图片 url 后，插入到EditDevice的方法
         //有可能会上传多张图片,上传多张图片就需要进行遍历
         resultFiles.map((item) => {
           // _this.getUploadImg(item, insertImgFn);
@@ -105,7 +105,7 @@ export default {
       } else {
         if (window.oss && window.oss.ali.use) {
           await $this.uploadOSS(resultFiles, insertImgFn);
-          $this.$message.success('上传成功');
+          $this.$message.success('上传Success');
           return;
         } else {
           let formData = new FormData();
@@ -115,7 +115,7 @@ export default {
             nameArr.push(file.name);
           });
           if (!$this.url) {
-            $this.$message.error("未配置url");
+            $this.$message.error("未Configurationurl");
             return;
           }
           $this.http.post($this.url, formData, true).then((x) => {

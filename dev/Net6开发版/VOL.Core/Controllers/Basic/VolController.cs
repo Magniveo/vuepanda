@@ -13,7 +13,7 @@ namespace VOL.Core.Controllers.Basic
 
         }
         /// <summary>
-        /// 2020.11.21增加json原格式返回数据(默认是驼峰格式)
+        /// 2020.11.21增加json原格式返回Data(默认是驼峰格式)
         /// </summary>
         /// <param name="data"></param>
         /// <param name="serializerSettings"></param>

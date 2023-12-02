@@ -42,7 +42,7 @@
     </div>
 
     <div v-if="file">
-      <h3>文件列表</h3>
+      <h3>文件List</h3>
       <div class="file-info">
         <span>文件名：{{ file.name }}</span>
         <span>大小{{ (file.size / 1024).toFixed(2) }}KB</span>
@@ -56,7 +56,7 @@
   </div>
 </template>
 <script>
-//目前只支持单个Excel上传，其他功能开发中...
+//目前只支持Single个Excel上传，Other功能开发中...
 export default {
   components: {},
   props: {
@@ -65,7 +65,7 @@ export default {
       default: ''
     },
     template: {
-      //下载模板配置
+      //下载模板Configuration
       type: Object,
       default: () => {
         return {
@@ -122,7 +122,7 @@ export default {
     upload() {
       let _url = this.url;
       if (!_url) {
-        return this.$Message.error('没有配置好Url');
+        return this.$Message.error('没有Configuration好Url');
       }
 
       if (!this.file) {

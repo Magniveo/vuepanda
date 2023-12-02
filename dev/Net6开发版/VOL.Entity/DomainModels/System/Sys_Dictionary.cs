@@ -1,6 +1,6 @@
 /*
- *代码由框架生成,任何更改都可能导致被代码生成器覆盖
- *如果数据库字段发生变化，请在代码生器重新生成此Model
+ *代码由框架生成,任何更改都可能导致被CodeGenerationDevice覆盖
+ *如果Data库字段发生变化，请在代码生Device重新生成此Model
  */
 using System;
 using System.Collections.Generic;
@@ -14,7 +14,7 @@ using VOL.Entity.SystemModels;
 namespace VOL.Entity.DomainModels
 {
     [Table("Sys_Dictionary")]
-    [Entity(TableCnName = "字典数据",DetailTable =  new Type[] { typeof(Sys_DictionaryList)},DetailTableCnName = "字典明细")]
+    [Entity(TableCnName = "DictionaryData",DetailTable =  new Type[] { typeof(Sys_DictionaryList)},DetailTableCnName = "DictionaryDetails")]
     public class Sys_Dictionary:BaseEntity
     {
         /// <summary>
@@ -152,7 +152,7 @@ namespace VOL.Entity.DomainModels
        [Column(TypeName="datetime")]
        public DateTime? ModifyDate { get; set; }
 
-       [Display(Name ="字典明细")]
+       [Display(Name ="DictionaryDetails")]
        [ForeignKey("Dic_ID")]
        public List<Sys_DictionaryList> Sys_DictionaryList { get; set; }
 

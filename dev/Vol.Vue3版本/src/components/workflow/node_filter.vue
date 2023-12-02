@@ -1,12 +1,12 @@
 <template>
     <div class="node-filter-container">
         <!-- <div class="add-btn">
-          <span class="name">条件设置</span>  <el-button @click="addItem" link><i>+</i>添加字段</el-button>
+          <span class="name">条件SetUp</span>  <el-button @click="addItem" link><i>+</i>添加字段</el-button>
         </div> -->
         <!-- {{ $store.getters.data().flowTable.WorkTable }} -->
         <div class="ef-node-pmenu-item" style="display: flex;">
             <div style="flex:1;">
-                <span class="name"><i class="el-icon-news"></i>条件设置</span>
+                <span class="name"><i class="el-icon-news"></i>条件SetUp</span>
             </div>
             <div><el-button link size="small" @click="addItem" type="primary" v-if="!disabled">
                     + 添加字段</el-button></div>
@@ -18,7 +18,7 @@
                     <td>字段</td>
                     <td style="width:90px">条件</td>
                     <td class="value">值</td>
-                    <td style="width: 40px;" v-if="!disabled">操作</td>
+                    <td style="width: 40px;" v-if="!disabled">Operation</td>
                 </tr>
                 <tr v-for="(item, index) in filters" :key="index">
 
@@ -49,7 +49,7 @@
             </table>
         </div>
         <!-- <div>
-            <label>自定义sql</label>
+            <label>Customizesql</label>
             <div><el-input type="textarea" v-model="customSql"></el-input></div>
         </div> -->
     </div>
@@ -100,9 +100,9 @@ export default {
     },
     methods: {
         delItem(index) {
-            this.$confirm('确认要Del字配置条件配置吗?', '警告', {
-                confirmButtonText: '确定',
-                cancelButtonText: '取消',
+            this.$confirm('确认要Del字Configuration条件Configuration吗?', '警告', {
+                confirmButtonText: window.locales[window.localei18n.locale].Confirm,
+                cancelButtonText: window.locales[window.localei18n.locale].Cancel,
                 type: 'warning',
                 center: true
             }).then(() => {

@@ -18,7 +18,7 @@ namespace VOL.System.Services
         {
         }
         /// <summary>
-        /// 代码生成器获取所有字典项编号(超级管理权限)
+        /// CodeGenerationDevice获取所有字典项编号(超级管理Authority)
         /// </summary>
         /// <returns></returns>
         public async Task<List<string>> GetBuilderDictionary()
@@ -45,7 +45,7 @@ namespace VOL.System.Services
 
             object GetSourceData(string dicNo, string dbSql, object data)
             {
-                //  2020.05.01增加根据用户信息加载字典数据源sql
+                //  2020.05.01增加根据User信息LoadDictionaryData源sql
                 dbSql = DictionaryHandler.GetCustomDBSql(dicNo, dbSql);
                 if (string.IsNullOrEmpty(dbSql))
                 {
@@ -74,7 +74,7 @@ namespace VOL.System.Services
             {
                 return null;
             }
-            //  2020.05.01增加根据用户信息加载字典数据源sql
+            //  2020.05.01增加根据User信息LoadDictionaryData源sql
             string sql = Dictionaries.Where(x => x.DicNo == dicNo).FirstOrDefault()?.DbSql;
             sql = DictionaryHandler.GetCustomDBSql(dicNo, sql);
             if (string.IsNullOrEmpty(sql))
@@ -86,7 +86,7 @@ namespace VOL.System.Services
         }
 
         /// <summary>
-        /// Form设置为Enable查询，重置或第一次添加Form时，获取字典的key、value
+        /// FormSetUp为EnableQuery，重置或第一次添加Form时，获取字典的key、value
         /// </summary>
         /// <param name="dicNo"></param>
         /// <param name="value"></param>
@@ -109,13 +109,13 @@ namespace VOL.System.Services
 
 
         /// <summary>
-        ///  table加载数据后刷新当前table数据的字典项(适用字典数据量比较大的情况)
+        ///  tableLoadData后刷新当前tableData的字典项(适用DictionaryData量比较大的情况)
         /// </summary>
         /// <param name="keyData"></param>
         /// <returns></returns>
         public object GetTableDictionary(Dictionary<string, object[]> keyData)
         {
-            // 2020.08.06增加pgsql获取数据源
+            // 2020.08.06增加pgsql获取Data源
             if (DBType.Name == DbCurrentType.PgSql.ToString())
             {
                 return GetPgSqlTableDictionary(keyData);
@@ -129,7 +129,7 @@ namespace VOL.System.Services
             {
                 if (keyData.TryGetValue(x.DicNo, out object[] data))
                 {
-                    //  2020.05.01增加根据用户信息加载字典数据源sql
+                    //  2020.05.01增加根据User信息LoadDictionaryData源sql
                     string sql = DictionaryHandler.GetCustomDBSql(x.DicNo, x.DbSql);
                     sql = $"SELECT * FROM ({sql}) AS t WHERE " +
                    $"{keySql}" +
@@ -141,7 +141,7 @@ namespace VOL.System.Services
         }
 
         /// <summary>
-        ///  2020.08.06增加pgsql获取数据源
+        ///  2020.08.06增加pgsql获取Data源
         /// </summary>
         /// <param name="keyData"></param>
         /// <returns></returns>
@@ -167,7 +167,7 @@ namespace VOL.System.Services
 
         public override PageGridData<Sys_Dictionary> GetPageData(PageDataOptions pageData)
         {
-            //增加查询条件
+            //增加Query条件
             base.QueryRelativeExpression = (IQueryable<Sys_Dictionary> fun) =>
             {
                 return fun.Where(x => 1 == 1);
@@ -179,7 +179,7 @@ namespace VOL.System.Services
             if (saveDataModel.MainData.DicKeyIsNullOrEmpty("DicNo")
                 || saveDataModel.MainData.DicKeyIsNullOrEmpty("Dic_ID"))
                 return base.Add(saveDataModel);
-            //判断修改的DicNo是否在其他ID存在
+            //判断修改的DicNo是否在OtherID存在
             string dicNo = saveDataModel.MainData["DicNo"].ToString().Trim();
             if (base.repository.Exists(x => x.DicNo == dicNo && x.Dic_ID != saveDataModel.MainData["Dic_ID"].GetInt()))
                 return new WebResponseContent().Error($"DicNo:{ dicNo}已存在。!");
@@ -221,7 +221,7 @@ namespace VOL.System.Services
 
             //   source = source.Replace("'", "''");
             source = Regex.Replace(source, "-", "", RegexOptions.IgnoreCase);
-            //去除执行DbSql的命令关键字
+            //去除ExecuteDbSql的命令关键字
             source = Regex.Replace(source, "insert ", "", RegexOptions.IgnoreCase);
             // source = Regex.Replace(source, "sys.", "", RegexOptions.IgnoreCase);
             source = Regex.Replace(source, "update ", "", RegexOptions.IgnoreCase);
@@ -232,7 +232,7 @@ namespace VOL.System.Services
             source = Regex.Replace(source,  "xp_cmdshell ", "", RegexOptions.IgnoreCase);
             source = Regex.Replace(source, "/add ", "", RegexOptions.IgnoreCase);
             source = Regex.Replace(source, " net user ", "", RegexOptions.IgnoreCase);
-            //去除执行存储过程的命令关键字 
+            //去除Execute存储过程的命令关键字 
             source = Regex.Replace(source, " exec ", "", RegexOptions.IgnoreCase);
             source = Regex.Replace(source, " execute ", "", RegexOptions.IgnoreCase);
             //防止16进制注入
@@ -266,7 +266,7 @@ namespace VOL.System.Services
             {
                 return new WebResponseContent(true);
             };
-            //true将子表数据同时Del
+            //true将子TableData同时Del
             return RemoveCache(base.Del(keys, true));
         }
 

@@ -13,7 +13,7 @@
         <div class="login-text-small">WELCOME TO LOGIN</div>
         <div class="item">
           <div class="input-icon el-icon-user"></div>
-          <input type="text" v-focus v-model="userInfo.userName" placeholder="请输入账号" />
+          <input type="text" v-focus v-model="userInfo.userName" placeholder="请输入AccountNumber" />
         </div>
         <div class="item">
           <div class="input-icon el-icon-lock"></div>
@@ -35,14 +35,14 @@
         </el-button>
       </div>
 
-      <!-- 账号信息 -->
+      <!-- AccountNumber信息 -->
       <div class="account-info">
-        <p>演示账号：admin666 &nbsp; &nbsp;UserPwd:123456</p>
-        <p>本地账号：admin &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;UserPwd:123456</p>
+        <p>演示AccountNumber：admin666 &nbsp; &nbsp;UserPwd:123456</p>
+        <p>本地AccountNumber：admin &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;UserPwd:123456</p>
         <p><a href="https://jq.qq.com/?_wv=1027&k=Sqstuy0M" style="text-decoration: none"
             target="_blank">QQ3群:743852316</a>
           &nbsp; &nbsp;&nbsp; &nbsp;
-          <a href="http://v2.volcore.xyz/document/guide" style="text-decoration: none" target="_blank">框架文档</a>
+          <a href="http://v2.volcore.xyz/document/guide" style="text-decoration: none" target="_blank">框架Document</a>
         </p>
       </div>
       <!-- 链接位置 -->
@@ -62,7 +62,7 @@
       </div>
     </div>
 
-    <!-- 页面底部 -->
+    <!-- Page底部 -->
     <div class="login-footer">
       <a style="text-decoration: none" href="https://beian.miit.gov.cn/" target="_blank">京ICP备19056538号-1</a>
 
@@ -115,7 +115,7 @@ export default defineComponent({
     let router = useRouter();
     
     const login = () => {
-      if (!userInfo.userName) return $message.error('请输入用户名');
+      if (!userInfo.userName) return $message.error('请输入User名');
       if (!userInfo.password) return $message.error('请输入UserPwd');
       if (!userInfo.verificationCode) {
         return $message.error('请输入验证码');
@@ -127,7 +127,7 @@ export default defineComponent({
           getVierificationCode();
           return $message.error(result.message);
         }
-        $message.success('登录成功,正在跳转!');
+        $message.success('登录Success,正在跳转!');
         store.commit('setUserInfo', result.data);
         router.push({ path: '/' });
       });

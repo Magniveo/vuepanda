@@ -1,6 +1,6 @@
 /*
  *接口编写处...
-*如果接口需要做Action的权限验证，请在Action上使用属性
+*如果接口需要做Action的Authority验证，请在Action上使用属性
 *如: [ApiActionPermission("Sys_DictionaryList",Enums.ActionPermissionOptions.Search)]
  */
 using Microsoft.AspNetCore.Mvc;
@@ -31,8 +31,8 @@ namespace VOL.System.Controllers
             _httpContextAccessor = httpContextAccessor;
         }
         /// <summary>
-        /// 导出明细
-        /// （重写权限）将子表的权限指向主表权限
+        /// Export明细
+        /// （重写Authority）将子Table的Authority指向主TableAuthority
         /// </summary>
         /// <param name="loadData"></param>
         /// <returns></returns>
@@ -44,8 +44,8 @@ namespace VOL.System.Controllers
             return base.Export(loadData);
         }
         /// <summary>
-        /// 导入表数据Excel
-        ///  （重写权限）将子表的权限指向主表权限
+        /// 导入TableDataExcel
+        ///  （重写Authority）将子Table的Authority指向主TableAuthority
         /// </summary>
         /// <param name="fileInput"></param>
         /// <returns></returns>
@@ -58,7 +58,7 @@ namespace VOL.System.Controllers
         }
         /// <summary>
         /// 下载导入Excel模板
-        /// （重写权限）将子表的权限指向主表权限
+        /// （重写Authority）将子Table的Authority指向主TableAuthority
         /// </summary>
         /// <returns></returns>
         [HttpGet, Route("DownLoadTemplate")]

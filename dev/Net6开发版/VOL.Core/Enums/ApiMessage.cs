@@ -41,10 +41,10 @@ namespace VOL.Core.Enums
 
 
         public const string PINTypeNotRange= "获取验证的AppType不正确";
-        public const string OperToBusy = "操作太频繁，请稍后再试";
+        public const string OperToBusy = "Operation太频繁，请稍后再试";
 
-        public const string SendSTKError = "短信发送异常,请稍后再试";
-        public const string SendSTKSuccess = "短信发送成功";
+        public const string SendSTKError = "短信Send异常,请稍后再试";
+        public const string SendSTKSuccess = "短信SendSuccess";
         public const string STKNotSend = "请先获取验证码";
         public const string AccountExists = "PhoneNo已经被注册";
 

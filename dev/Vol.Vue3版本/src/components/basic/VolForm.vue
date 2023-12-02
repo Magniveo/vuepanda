@@ -31,7 +31,7 @@
             "
             >{{ formFields[item.field]() }}</span
           >
-          <!-- 只读图片或文件  -->
+          <!-- ReadOnly图片或文件  -->
           <div v-else-if="isReadonlyImgFile(item, formFields)">
             <div v-if="item.type == 'img'" class="form-imgs">
               <div
@@ -59,7 +59,7 @@
           </div>
 
           <div v-else :class="{ 'form-item-extra': item.extra }">
-            <!-- 只读属性 -->
+            <!-- ReadOnly属性 -->
             <label
               :style="item.inputStyle"
               v-if="item.type == 'label'"
@@ -275,7 +275,7 @@
               >
               </el-date-picker>
             </div>
-            <!-- v-show不添加根节点就会报错没有根点节 -->
+            <!-- v-show不添加根Node就会报错没有根点节 -->
             <div
               v-show="!item.hidden"
               style="width: 100%"
@@ -449,7 +449,7 @@
               v-show="!item.hidden"
               :placeholder="item.placeholder ? item.placeholder : item.title"
             />
-            <!-- 2021.11.18修复el-input没有默认enter事件时回车异常 -->
+            <!-- 2021.11.18修复el-input没有默认enterEvent时回车异常 -->
             <el-input
               :size="size"
               clearable
@@ -538,7 +538,7 @@ const types = {
   date: 'date',
   mail: 'email'
 };
-//Form验证注意：每次验证都必须执行callback,否则验证不执行回调方法
+//Form验证注意：每次验证都必须Executecallback,否则验证不Execute回调方法
 const colPow = Math.pow(10, 3);
 import FormExpand from './VolForm/VolFormRender';
 import {
@@ -563,7 +563,7 @@ export default defineComponent({
   },
   props: {
     loadKey: {
-      // 是否加载formRules字段配置的数据源
+      // 是否LoadformRules字段Configuration的Data源
       type: Boolean,
       default: true
     },
@@ -589,7 +589,7 @@ export default defineComponent({
       }
     },
     editor: {
-      // 2021.01.16Edit器信息 {uploadImgUrl:"",upload:null//上传方法}
+      // 2021.01.16EditDevice信息 {uploadImgUrl:"",upload:null//上传方法}
       type: Object,
       default: () => {
         return {};
@@ -600,7 +600,7 @@ export default defineComponent({
       default: 'large'
     },
     select2Count: {
-      //超出Quantity显示select2组件
+      //超出Quantity显示select2Component
       type: Number,
       default: 2000
     }
@@ -655,7 +655,7 @@ export default defineComponent({
           if (item.type == 'number') {
             numberFields.push(item.field);
           }
-          // 目前只支持select单选Enable搜索，remoteEnable从后台字典数据源进行搜索，url从指定的url搜索
+          // 目前只支持selectSingle选Enable搜索，remoteEnable从后台DictionaryData源进行搜索，url从指定的url搜索
           if (item.remote || item.url) {
             // item.remoteData = [];
             item.loading = false;
@@ -663,9 +663,9 @@ export default defineComponent({
           }
           // 初始化上传文件信息
           initUpload(item, init);
-          // 初始化数据源空对象
+          // 初始化Data源空对象
           if (item.dataKey) {
-            // 下拉框都强制设置为字符串AppType
+            // 下拉框都强制SetUp为字符串AppType
             item.columnType = 'string';
             if (!item.data) {
               item.data = [];
@@ -688,7 +688,7 @@ export default defineComponent({
     const initSource = () => {
       let keys = [],
         binds = [];
-      // 初始化字典数据源
+      // 初始化DictionaryData源
       props.formRules.forEach((item) => {
         item.forEach((x) => {
           if (x.dataKey && (!x.data || x.data.length == 0) && !x.remote) {
@@ -725,9 +725,9 @@ export default defineComponent({
         }
         binds.forEach((x) => {
           if (x.key != d.dicNo) return true;
-          // 如果有数据的则不查询
+          // 如果有Data的则不Query
           if (x.data.length > 0) return true;
-          //2022.03.13增加级联数据源自动转换
+          //2022.03.13增加级联Data源自动转换
           if (x.type == 'cascader' || x.type == 'treeSelect') {
             let _data = JSON.parse(JSON.stringify(d.data));
             let cascaderArr = appContext.config.globalProperties.base.convertTree(
@@ -771,7 +771,7 @@ export default defineComponent({
         ['img', 'excel', 'file'].indexOf(item.type != -1) ||
         item.columnType == 'img'
       ) {
-        // 只是没设置是否自动上传的，默认都是选择文件后自动上传
+        // 只是没SetUp是否自动上传的，默认都是选择文件后自动上传
         if (!item.hasOwnProperty('autoUpload')) {
           item.autoUpload = true;
         }
@@ -812,7 +812,7 @@ export default defineComponent({
       let result = true;
       await volform.value.validate((valid) => {
         if (!valid) {
-          appContext.config.globalProperties.$message.error('数据验证未通过!');
+          appContext.config.globalProperties.$message.error('Data验证未通过!');
           result = false;
         } else if (typeof callback === 'function') {
           try {
@@ -862,7 +862,7 @@ export default defineComponent({
       //2021.08.30 增加动态计算Form宽度
       let _span = 0;
       this.formRules.forEach((row, xIndex) => {
-        //2022.05.06 追加Form中隐藏的元素不参与动态计算Form宽度
+        //2022.05.06 追加Form中隐藏的元素不参With动态计算Form宽度
         let rowLength = row.filter((item) => {
           return !item.hidden;
         }).length;
@@ -906,7 +906,7 @@ export default defineComponent({
     },
     convertFileToArray(item, formFields) {
       if (!item.maxFile) {
-        item.maxFile = 1; // 默认只能上传一个文件，可以在onInit中设置
+        item.maxFile = 1; // 默认只能上传一个文件，可以在onInit中SetUp
       }
 
       let fileInfo = formFields[item.field];
@@ -968,7 +968,7 @@ export default defineComponent({
     convertArrayValue(data, val) {
       // 2020.12.13增加Form多选只转换字典
       // Edit多选table显示
-      //2023.04.20修复只读为label时原数据被字典替换了的问题
+      //2023.04.20修复ReadOnly为label时原Data被字典替换了的问题
       let valArr = Array.isArray(val)
         ? val.map((x) => {
             return x;
@@ -985,16 +985,16 @@ export default defineComponent({
       return valArr.join(',');
     },
     getText(formFields, item) {
-      // 2019.10.24修复Formselect组件为只读的属性时没有绑定数据源
+      // 2019.10.24修复FormselectComponent为ReadOnly的属性时没有绑定Data源
       let text = formFields[item.field];
       if (typeof text === 'function') return text(formFields);
       if (text === 'null' || text === '' || text === null || text === undefined)
         return '--';
-      //2021.03.02增加只读时Date处理
+      //2021.03.02增加ReadOnly时Date处理
       if (item.type == 'date') {
         return text.replace('T', ' ').split(' ')[0];
       }
-      //2021.03.31修复Formswitch只读时没有转换值的问题
+      //2021.03.31修复FormswitchReadOnly时没有转换值的问题
       if (item.type == 'switch') {
         return text ? '是' : '否';
       }
@@ -1044,8 +1044,8 @@ export default defineComponent({
       ) {
         return;
       }
-      // 弹出框或初始化Form时给data设置数组默认值2
-      // 2020.09.26修复Enable搜索自定义url不起作用的问题
+      // 弹出框或初始化Form时给dataSetUp数组默认值2
+      // 2020.09.26修复Enable搜索Customizeurl不起作用的问题
       let url;
       if (typeof item.url === 'function') {
         url = item.url(val, item.dataKey, item);
@@ -1071,7 +1071,7 @@ export default defineComponent({
       return new Date(date);
     },
     reset(sourceObj) {
-      // 重置Form时，禁用Enable查询
+      // 重置Form时，禁用EnableQuery
       this.$refs['volform'].resetFields();
       if (this.rangeFields.length) {
         this.rangeFields.forEach((key) => {
@@ -1102,8 +1102,8 @@ export default defineComponent({
       return item.readonly || item.disabled;
     },
     getRule(item, formFields) {
-      //2021.07.17增加只读Form不验证
-      //range与swtich暂时不做校验
+      //2021.07.17增加ReadOnlyForm不验证
+      //rangeWithswtich暂时不做校验
       if (
         // item.readonly ||
         // item.disabled ||
@@ -1111,11 +1111,11 @@ export default defineComponent({
         item.type == 'range'
       )
         return { required: false };
-      // 用户设置的自定义方法
+      // UserSetUp的Customize方法
       if (item.validator && typeof item.validator === 'function') {
         return {
           validator: (rule, val, callback) => {
-            // 用户自定义的方法，如果返回了值，直接显示返回的值，验证不通过
+            // UserCustomize的方法，如果返回了值，直接显示返回的值，验证不通过
             let message = item.validator(rule, val);
             if (message) return callback(new Error(message + ''));
             return callback();
@@ -1127,7 +1127,7 @@ export default defineComponent({
       if (['img', 'excel', 'file'].indexOf(item.type) != -1) {
         return {
           validator: (rule, val, callback) => {
-            //2021.09.05移除文件上传默认必填
+            //2021.09.05移除FileUpload默认必填
             if (
               item.required &&
               !this.isReadonly(item) &&
@@ -1143,14 +1143,14 @@ export default defineComponent({
           trigger: 'change'
         };
       }
-      // 设置数字的最大值民最小值
+      // SetUp数字的最大值民最小值
       if (
         item.type == 'number' ||
         item.columnType == 'number' ||
         item.columnType == 'int' ||
         item.type == 'decimal'
       ) {
-        // 如果是必填项的数字，设置一个默认最大与最值小
+        // 如果是必填项的数字，SetUp一个默认最大With最值小
         if (item.required && typeof item.min !== 'number') {
           item.min = 0; //item.type == "decimal" ? 0.1 : 1;
         }
@@ -1282,7 +1282,7 @@ export default defineComponent({
           type: item.range ? 'array' : 'string',
           validator: (rule, val, callback) => {
             if (this.isReadonly(item)) return callback();
-            // 用户自定义的方法，如果返回了值，直接显示返回的值，验证不通过
+            // UserCustomize的方法，如果返回了值，直接显示返回的值，验证不通过
             if (!val || (item.range && !val.length)) {
               return callback(new Error('请选择Date'));
             }
@@ -1300,7 +1300,7 @@ export default defineComponent({
           trigger: 'change',
           validator: (rule, val, callback) => {
             if (this.isReadonly(item)) return callback();
-            // 用户自定义的方法，如果返回了值，直接显示返回的值，验证不通过
+            // UserCustomize的方法，如果返回了值，直接显示返回的值，验证不通过
             let _arr = this.formFields[item.field];
             if (!_arr || !_arr.length) {
               return callback(new Error('请选择' + item.title));
@@ -1356,12 +1356,12 @@ export default defineComponent({
       );
     },
     getDateOptions(date, item) {
-      //2021.07.17设置时间可选范围
+      //2021.07.17SetUp时间可选范围
       if ((!item.min && !item.max) || !date) {
         return false;
       }
       if (item.min && item.min.indexOf(' ') == -1) {
-        //不设置时分秒，后面会自动加上 08:00
+        //不SetUp时分秒，后面会自动加上 08:00
         item.min = item.min + ' 00:00:000';
       }
       return (

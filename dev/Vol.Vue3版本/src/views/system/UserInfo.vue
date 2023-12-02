@@ -166,7 +166,7 @@ export default {
         [
           {
             columnType: "string",
-            title: "账号",
+            title: "AccountNumber",
             field: "userName",
             disabled: true,
           },

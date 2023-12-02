@@ -1,7 +1,7 @@
 <!--
 *Author：jxx
  *Contact：283591387@qq.com
- *代码由框架生成,任何更改都可能导致被代码生成器覆盖
+ *代码由框架生成,任何更改都可能导致被CodeGenerationDevice覆盖
  *业务请在@/extension/system/Sys_Log.js此处编写
  -->
 <template>
@@ -24,7 +24,7 @@
             const table = ref({
                 key: 'Id',
                 footer: "Foots",
-                cnName: 'System日志',
+                cnName: 'SystemLog',
                 name: 'Sys_Log',
                 url: "/Sys_Log/",
                 sortName: "Id"

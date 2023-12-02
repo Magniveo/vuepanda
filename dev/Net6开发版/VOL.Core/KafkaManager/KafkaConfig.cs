@@ -25,7 +25,7 @@
 //            //{
 //            //    BootstrapServers = AppSetting.Kafka.ConsumerSettings.BootstrapServers,
 //            //    GroupId = AppSetting.Kafka.ConsumerSettings.GroupId,
-//            //    AutoOffsetReset = AutoOffsetReset.Earliest,//当各分区下有已提交的offset时，从提交的offset开始消费；无提交的offset时，从头开始消费
+//            //    AutoOffsetReset = AutoOffsetReset.Earliest,//当各分区下有已提交的offset时，从提交的offsetStart消费；None提交的offset时，从头Start消费
 //            //    EnableAutoCommit = false,
 //            //    //Kafka配置安全认证
 //            //    //SecurityProtocol = SecurityProtocol.SaslPlaintext,

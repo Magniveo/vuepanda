@@ -1,6 +1,6 @@
 /*
  *接口编写处...
-*如果接口需要做Action的权限验证，请在Action上使用属性
+*如果接口需要做Action的Authority验证，请在Action上使用属性
 *如: [ApiActionPermission("FormDesignOptions",Enums.ActionPermissionOptions.Search)]
  */
 using Microsoft.AspNetCore.Mvc;
@@ -63,7 +63,7 @@ namespace VOL.System.Controllers
             return Json(result);
         }
         /// <summary>
-        ///获取有数据的设计器
+        ///获取有Data的设计Device
         /// </summary>
         /// <returns></returns>
         [Route("getList"), HttpGet]

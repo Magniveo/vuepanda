@@ -4,10 +4,10 @@
             <div class="ef-node-pmenu-item">
                 <div style="flex:1;">
                     <span class="name"><i class="el-icon-news"></i>StepAttrType</span>
-                    <!-- <span @click="nameClick(1)" :class="{ active: index === 1 }" class="name">审批条件</span> -->
+                    <!-- <span @click="nameClick(1)" :class="{ active: index === 1 }" class="name">Approval条件</span> -->
                 </div>
                 <!-- <div><el-button link size="small" type="primary" @click="save"><i class="el-icon-check"></i>
-                        保存配置</el-button></div> -->
+                        保存Configuration</el-button></div> -->
             </div>
             <div class="ef-node-form-body">
                 <div class="form-info">
@@ -50,7 +50,7 @@ export default {
         //             deptId: null,
         //             auditRefuse: null,//审核未通过
         //             auditBack: null, //驳回
-        //             auditMethod: 0,//审批方式(会签)
+        //             auditMethod: 0,//Approval方式(会签)
         //             stepValue: null,
         //             sendMail: 0,
         //             filters: [] //字段过滤条件
@@ -88,7 +88,7 @@ export default {
                 deptId: null,
                 auditRefuse: null,//审核未通过
                 auditBack: null, //驳回
-                auditMethod: 0,//审批方式(会签)
+                auditMethod: 0,//Approval方式(会签)
                 //  nodeValue: null,
                 sendMail: 0,
                 filters: []
@@ -104,14 +104,14 @@ export default {
                 [
                     {
                         dataKey: '',
-                        title: '审批AppType',
+                        title: 'StepType',
                         required: true,
                         hidden: false,
                         field: 'auditType',
                         data: [
-                            { key: 1, value: '按用户审批' },
-                            { key: 2, value: '按Role_Id审批' },
-                            { key: 3, value: '按部门审批' }
+                            { key: 1, value: '按UserApproval' },
+                            { key: 2, value: '按Role_IdApproval' },
+                            { key: 3, value: '按DepartmentApproval' }
                         ],
                         type: 'select',
                         onChange: this.nodeTypeChange,
@@ -122,7 +122,7 @@ export default {
                     {
                         dataKey: 'users',
                         hidden: false,
-                        title: '审批用户',
+                        title: 'ApprovalUser',
                         required: true,
                         field: 'userId',
                         data: [],
@@ -145,7 +145,7 @@ export default {
                     {
                         dataKey: 'dept',
                         hidden: true,
-                        title: '部门信息',
+                        title: 'Department信息',
                         required: true,
                         field: 'deptId',
                         data: [],
@@ -155,14 +155,14 @@ export default {
                 ], [
                     {
                         dataKey: '',
-                        title: '审批未通过',
+                        title: 'Approval未通过',
                         required: false,
                         field: 'auditRefuse',
                         hidden: false,
                         data: [
-                            { key: 1, value: '返回上一节点' },
-                            { key: 2, value: '流程重新开始' },
-                            { key: 0, value: '流程结束' },
+                            { key: 1, value: '返回上一Node' },
+                            { key: 2, value: 'Process重新Start' },
+                            { key: 0, value: 'ProcessEnd' },
                         ],
                         type: 'select',
                         colSize: 6
@@ -170,14 +170,14 @@ export default {
                     ,
                     {
                         dataKey: '',
-                        title: '审批驳回',
+                        title: 'Approval驳回',
                         required: false,
                         hidden: false,
                         field: 'auditBack',
                         data: [
-                            { key: 1, value: '返回上一节点' },
-                            { key: 2, value: '流程重新开始' },
-                            { key: 0, value: '流程结束' },
+                            { key: 1, value: '返回上一Node' },
+                            { key: 2, value: 'Process重新Start' },
+                            { key: 0, value: 'ProcessEnd' },
                         ],
                         type: 'select',
                         colSize: 6
@@ -202,7 +202,7 @@ export default {
                         title: '启用会签',
                         required: false,
                         hidden: false,
-                        field: 'auditMethod',//审批方式
+                        field: 'auditMethod',//Approval方式
                         data: [
                             { key: 1, value: '是' },
                             { key: 0, value: '否' }
@@ -261,9 +261,9 @@ export default {
             // });
         },
         nodeTypeChange(value) {
-            // { key: 1, value: '按用户审批' },
-            //   { key: 2, value: '按Role_Id审批' },
-            //   { key: 3, value: '按部门审批' }
+            // { key: 1, value: '按UserApproval' },
+            //   { key: 2, value: '按Role_IdApproval' },
+            //   { key: 3, value: '按DepartmentApproval' }
             this.formRules.forEach((options) => {
                 options.forEach((option) => {
                     if (option.field == 'userId') {
@@ -297,7 +297,7 @@ export default {
                 }
 
             });
-            this.$message.success('保存成功')
+            this.$message.success('保存Success')
         }
     }
 }

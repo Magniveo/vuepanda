@@ -32,7 +32,7 @@ namespace VOL.Core.Middleware
                 context.Request.EnableBuffering();
                 (context.RequestServices.GetService(typeof(ActionObserver)) as ActionObserver).RequestDate = DateTime.Now;
                 await next(context);
-                //app.UseMiddleware<ExceptionHandlerMiddleWare>()放在  app.UseRouting()后才可以在await next(context);前执行
+                //app.UseMiddleware<ExceptionHandlerMiddleWare>()放在  app.UseRouting()后才可以在await next(context);前Execute
                 Endpoint endpoint = context.Features.Get<IEndpointFeature>()?.Endpoint;
                 if (endpoint != null && endpoint is RouteEndpoint routeEndpoint)
                 {
@@ -54,11 +54,11 @@ namespace VOL.Core.Middleware
                 Logger.Error(LoggerType.Exception, message);
                 if (!env.IsDevelopment())
                 {
-                    message = "服务器处理异常";
+                    message = "服务Device处理异常";
                 }
                 else
                 {
-                    Console.WriteLine($"服务器处理出现异常:{message}");
+                    Console.WriteLine($"服务Device处理出现异常:{message}");
                 }
                 context.Response.StatusCode = 500;
                 context.Response.ContentType = ApplicationContentType.JSON;

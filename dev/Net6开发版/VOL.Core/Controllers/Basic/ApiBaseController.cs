@@ -32,7 +32,7 @@ namespace VOL.Core.Controllers.Basic
         {
             Service = service;
         }
-        [ActionLog("查询")]
+        [ActionLog("Query")]
         [ApiActionPermission(Enums.ActionPermissionOptions.Search)]
         [HttpPost, Route("GetPageData")]
         public virtual ActionResult GetPageData([FromBody] PageDataOptions loadData)
@@ -41,11 +41,11 @@ namespace VOL.Core.Controllers.Basic
         }
 
         /// <summary>
-        /// 获取明细grid分页数据
+        /// 获取明细grid分页Data
         /// </summary>
         /// <param name="loadData"></param>
         /// <returns></returns>
-        [ActionLog("明细查询")]
+        [ActionLog("明细Query")]
         [ApiActionPermission(Enums.ActionPermissionOptions.Search)]
         [HttpPost, Route("GetDetailPage")]
         [ApiExplorerSettings(IgnoreApi = true)]
@@ -87,7 +87,7 @@ namespace VOL.Core.Controllers.Basic
                 );
         }
         /// <summary>
-        /// 导入表数据Excel
+        /// 导入TableDataExcel
         /// </summary>
         /// <param name="fileInput"></param>
         /// <returns></returns>
@@ -101,11 +101,11 @@ namespace VOL.Core.Controllers.Basic
         }
 
         /// <summary>
-        /// 导出文件，返回Date+文件名
+        /// Export文件，返回Date+文件名
         /// </summary>
         /// <param name="loadData"></param>
         /// <returns></returns>
-        [ActionLog("导出Excel")]
+        [ActionLog("ExportExcel")]
         [ApiActionPermission(Enums.ActionPermissionOptions.Export)]
         [ApiExplorerSettings(IgnoreApi = true)]
         [HttpPost, Route("Export")]
@@ -151,7 +151,7 @@ namespace VOL.Core.Controllers.Basic
             return Json(_baseWebResponseContent);
         }
         /// <summary>
-        /// 新增支持主子表
+        /// 新增支持主子Table
         /// </summary>
         /// <param name="saveDataModel"></param>
         /// <returns></returns>
@@ -169,7 +169,7 @@ namespace VOL.Core.Controllers.Basic
             return Json(_baseWebResponseContent);
         }
         /// <summary>
-        /// Edit支持主子表
+        /// Edit支持主子Table
         /// [ModelBinder(BinderType =(typeof(ModelBinder.BaseModelBinder)))]可指定绑定modelbinder
         /// </summary>
         /// <param name="saveDataModel"></param>

@@ -43,9 +43,9 @@ namespace VOL.Entity.DomainModels
        public int Menu_Id { get; set; }
 
        /// <summary>
-       ///用户权限
+       ///UserAuthority
        /// </summary>
-       [Display(Name ="用户权限")]
+       [Display(Name ="UserAuthority")]
        [MaxLength(1000)]
        [Column(TypeName="nvarchar(1000)")]
        [Required(AllowEmptyStrings=false)]

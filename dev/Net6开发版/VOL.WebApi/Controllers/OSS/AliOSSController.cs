@@ -32,12 +32,12 @@ namespace VOL.WebApi.Controllers.OSS
         public object GetAccessToken()
         {
 
-            // //Region对照(创建创建 Bucket时选择的地域)https://oss.console.aliyun.com/bucket列表中的【地域】列，根据地域在下面的链接里面【Region ID】值 
+            // //Region对照(创建创建 Bucket时选择的地域)https://oss.console.aliyun.com/bucketList中的【地域】列，根据地域在下面的链接里面【Region ID】值 
             // //https://help.aliyun.com/document_detail/31837.htm?spm=a2c4g.11186623.0.0.57a8396cwRnyQV#section-plb-2vy-5db
             // string region = "oss-cn-beijing";
 
              
-            ////https://ram.console.aliyun.com/users 用户点击进去里面找
+            ////https://ram.console.aliyun.com/users User点击进去里面找
             // string accessKeyID = "LTAI5tR4bQnBZqF8ruGiw123";
             // string accessKeySecret = "gZUwXdy1mVsPvROfNCsvmVWOeqi123";
 

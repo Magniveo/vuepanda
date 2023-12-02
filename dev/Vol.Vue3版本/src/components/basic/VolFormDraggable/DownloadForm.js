@@ -101,7 +101,7 @@ export default function () {
       },`)
         code = code.replace('{#tables}',
             `
-      <!--table配置 -->
+      <!--tableConfiguration -->
       <div class="tables">
           <div class="table-item"
               v-for="(item, index) in tables"

@@ -1,7 +1,7 @@
 <template>
   <div class="com-el-tree">
 
-      <div class="m-title"><i class="el-icon-warning-outline"></i>Role_Id列表</div>
+      <div class="m-title"><i class="el-icon-warning-outline"></i>Role_IdList</div>
 
     <el-scrollbar style="height: 100%; width: 200px" class="el-role-tree">
       <el-tree
@@ -77,7 +77,7 @@ export default {
         });
         this.openKeys.push(this.tree[0].id);
         this.selectId = this.openKeys[0];
-        //默认加载第一个树形菜单下面的数据
+        //默认Load第一个TreeShapedVegetablesSingle下面的Data
 
         //this.onChange(this.selectId);
       });
@@ -95,7 +95,7 @@ export default {
     nodeClick(node, selected) {
       //  console.log(node);
       this.selectId = node.id;
-      //缓存当前选中的节点
+      //缓存当前选中的Node
       //  this.$store.getters.data().treeDemo1.treeId = node.id;
       this.onChange(node);
     },

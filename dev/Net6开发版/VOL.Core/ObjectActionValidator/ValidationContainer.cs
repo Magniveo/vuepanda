@@ -10,21 +10,21 @@ namespace VOL.Core.ObjectActionValidator
 {
     /// <summary>
     /// 对方法指定属性校验,此处配置完成就Dept_Id每处都写if esle判断值是合法
-    /// 与自带模型校验相比，此处可以通过表达式校验指定字段，也Dept_Id担心model字段变化后还去手动修改配置的问题
+    /// With自带模型校验相比，此处可以通过Table达式校验指定字段，也Dept_Id担心model字段变化后还去手动修改配置的问题
     /// 目前只支持普通属性，不支持复杂AppType
     /// </summary>
     public static class ValidatorContainer
     {
         /// <summary>
         /// model校验配置
-        /// 方法参数名必须与枚举ExpertName一致（不区分大小写）,如：public void Test(LoginInfo login)
-        /// 表达式是model必须要验证的字段，如果不填，默认验证整个model
+        /// 方法参数名必须With枚举ExpertName一致（不区分大小写）,如：public void Test(LoginInfo login)
+        /// Table达式是model必须要验证的字段，如果不填，默认验证整个model
         /// </summary>
         /// <param name="services"></param>
         /// <returns></returns>
         public static IServiceCollection UseMethodsModelParameters(this IServiceCollection services)
         {
-            //Login方法校验参数,只验证UserPwd与用户名
+            //Login方法校验参数,只验证UserPwdWithUser名
             ValidatorModel.Login.Add<LoginInfo>(x => new { x.Password, x.UserName,x.VerificationCode,x.UUID });
 
             //只验证LoginInfo的UserPwd字段必填
@@ -42,13 +42,13 @@ namespace VOL.Core.ObjectActionValidator
         /// <returns></returns>
         public static IServiceCollection UseMethodsGeneralParameters(this IServiceCollection services)
         {
-            //配置用户名最多30个字符
-            ValidatorGeneral.UserName.Add("用户名", 30);
+            //配置User名最多30个字符
+            ValidatorGeneral.UserName.Add("User名", 30);
 
             //方法参数名为newPwd，直接在方法加上[ObjectGeneralValidatorFilter(ValidatorGeneral.NewPwd)]进行参数验证
             //如果newPwd为空会提示：新UserPwd不能为空
-            //6,50代表newPwd参数最少6个字符，最多50个符
-            //其他需要验证的参数同样配置即可
+            //6,50代TablenewPwd参数最少6个字符，最多50个符
+            //Other需要验证的参数同样配置即可
             ValidatorGeneral.NewPwd.Add("新UserPwd", 6, 50);
 
             //如果OldPwd为空会提示：旧UserPwd不能为空
@@ -81,7 +81,7 @@ namespace VOL.Core.ObjectActionValidator
         LoginOnlyPassWord//只验证UserPwd
     }
     /// <summary>
-    /// 方法普通参数名配置(枚举的名字必须与参数名字一样，不区分大小写)
+    /// 方法普通参数名配置(枚举的名字必须With参数名字一样，不区分大小写)
     /// 通过在方法加上[ObjectGeneralValidatorFilter(ValidatorGeneral.UserName, ValidatorGeneral.PassWord)]指定要验证的参数
     /// </summary>
     public enum ValidatorGeneral

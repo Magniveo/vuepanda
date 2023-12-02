@@ -10,7 +10,7 @@
       <el-alert type="success">
         <h3>
           <span>UserName：{{ row.UserName }}</span>
-          <span>用户：{{ row.UserTrueName }}</span>
+          <span>User：{{ row.UserTrueName }}</span>
         </h3>
       </el-alert>
       <div>
@@ -29,7 +29,7 @@
         >
         <el-button
           @click="model = false"
-          >关闭</el-button
+          >{{ $locales[$i18n.locale].Close }}</el-button
         >
       </template>
     </vol-box>

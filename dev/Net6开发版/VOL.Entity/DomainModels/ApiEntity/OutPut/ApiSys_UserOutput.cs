@@ -12,9 +12,9 @@ namespace VOL.Entity.DomainModels
     public class ApiSys_UserOutput
     {
         /// <summary>
-       ///用户名
+       ///User名
        /// </summary>
-       [Display(Name ="用户名")]
+       [Display(Name ="User名")]
        [MaxLength(200)]
        [Column(TypeName="nvarchar(200)")]
        [Editable(true)]
@@ -22,9 +22,9 @@ namespace VOL.Entity.DomainModels
        public string UserName { get; set; }
 
        /// <summary>
-       ///部门
+       ///Department
        /// </summary>
-       [Display(Name ="部门")]
+       [Display(Name ="Department")]
        [MaxLength(300)]
        [Column(TypeName="nvarchar(300)")]
        [Editable(true)]

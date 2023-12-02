@@ -1,20 +1,20 @@
 //author:jxx
-//此处是对Form的方法，组件，权限操作按钮等进行任意扩展(方法扩展可参照SellOrder.js)
+//此处是对Form的方法，Component，AuthorityOperation按钮等进行任意扩展(方法扩展可参照SellOrder.js)
 let extension = {
-    components: {//动态扩充组件或组件路径
-        //Formheader、content、footer对应位置扩充的组件
+    components: {//动态扩充Component或Component路径
+        //Formheader、content、footer对应位置扩充的Component
         gridHeader: '',//{ template: "<div>扩展组xx件</div>" },
         gridBody: '',
         gridFooter: '',
-        //弹出框(修改、Edit、查看)header、content、footer对应位置扩充的组件
+        //弹出框(修改、Edit、View)header、content、footer对应位置扩充的Component
         modelHeader: '',
         modelBody: '',
         modelFooter: ''
     },
-    text: "点击左侧Form名名字即可加载收集的数据",
+    text: "点击左侧Form名名字即可Load收集的Data",
     tableAction: "formCollectionResultTree",
     buttons: { view: [], box: [], detail: [] },//扩展的按钮
-    methods: {//事件扩展
+    methods: {//Event扩展
         onInit() {
             this.textInline = false;
             // this.ck = false;

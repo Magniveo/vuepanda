@@ -20,8 +20,8 @@ export default {
   created() {
     if (!this.list.length) {
       this.list.push({
-        title: '消息ModifierTitle',
-        message: '消息Modifier内容消息Modifier内容消息Modifier内容消息Modifier内容',
+        title: 'MessageModifierTitle',
+        message: 'MessageModifierContentMessageModifierContentMessageModifierContentMessageModifierContent',
         date: '2022-05-02 03:10'
       });
     }

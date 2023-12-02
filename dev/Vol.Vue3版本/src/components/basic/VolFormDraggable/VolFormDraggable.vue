@@ -2,7 +2,7 @@
   <div class="drag-container">
     <!-- @start="onStart" -->
     <div class="drag-left">
-      <div class="left-title">组件列表</div>
+      <div class="left-title">ComponentList</div>
       <draggable
         v-model="components"
         @end="end1"
@@ -39,7 +39,7 @@
           ><i class="el-icon-check"> </i>保存</el-button
         >
         <el-button type="primary" size="mini" plain @click="preview(true)"
-          ><i class="el-icon-view"> </i>预览</el-button
+          ><i class="el-icon-view"> </i>Preview</el-button
         >
         <el-button type="primary" size="mini" plain @click="download"
           ><i class="el-icon-view"> </i>下载</el-button
@@ -51,27 +51,27 @@
           style="margin-left: 15px"
           href="http://v2.volcore.xyz/document/api"
           target="_blank"
-          >设计器基于框架volform、voltable、volupload、volbox定制开发</a
+          >设计Device基于框架volform、voltable、volupload、volbox定制开发</a
         >
       </div>
       <div>
         <el-alert
-          title="关于FormDesign器"
+          title="关于FormDesignDevice"
           type="success"
           :show-icon="true"
           :closable="false"
         >
           <div>
-            1、FormDesign器基于draggable开发,为本框架自定义页面功能的补充,框架仍以可视化代码生成器为核心
+            1、FormDesignDevice基于draggable开发,为本框架CustomizePage功能的补充,框架仍以可视化CodeGenerationDevice为核心
           </div>
           <div>
-            2、支持可视化设计1对1、1对多及Form下拉框自动绑定、table自动加载数据(分页、Edit)、自动上传文件、富文本Edit
+            2、支持可视化设计1对1、1对多及Form下拉框自动绑定、table自动LoadData(分页、Edit)、自动上传文件、富文本Edit
           </div>
         </el-alert>
       </div>
       <el-scrollbar style="flex: 1">
         <div class="tips" key="empty" v-show="!currentComponents.length">
-          请将左边组件拖入此容器中
+          请将左边Component拖入此容Device中
         </div>
         <el-form label-position="top">
           <draggable
@@ -107,7 +107,7 @@
                     <!-- {{ item.name }} -->
                     <el-input
                       v-if="item.type == 'text'"
-                      placeholder="请输入内容"
+                      placeholder="请输入Content"
                       v-model="item.value"
                       :disabled="item.readonly"
                       size="medium"
@@ -117,7 +117,7 @@
                       type="textarea"
                       v-model="item.value"
                       :disabled="item.readonly"
-                      placeholder="请输入内容"
+                      placeholder="请输入Content"
                     ></el-input>
                     <el-date-picker
                       v-else-if="item.type == 'date'"
@@ -271,7 +271,7 @@
       </el-scrollbar>
     </div>
     <div class="drag-right">
-      <div class="left-title">组件属性</div>
+      <div class="left-title">Component属性</div>
       <div class="attr" v-show="currentIndex != -1">
         <div class="attr-item">
           <div class="text">字段ExpertName</div>
@@ -282,7 +282,7 @@
           <el-input size="medium" v-model="currentItem.field" />
         </div>
         <div class="attr-item" v-show="currentItem.type == 'table'">
-          <div class="text">后台返回数据接口Address</div>
+          <div class="text">后台返回Data接口Address</div>
           <el-input
             size="medium"
             placeholder="例:api/WorkTable/getPageData"
@@ -303,7 +303,7 @@
           />
           <div class="text" style="margin-top: 10px">文件大小限制(M)</div>
           <el-input size="medium" v-model="currentItem.maxSize" />
-          <div class="text" style="margin-top: 10px">是否多文件上传</div>
+          <div class="text" style="margin-top: 10px">是否多FileUpload</div>
           <el-switch
             v-model="currentItem.multiple"
             style="width: 100%"
@@ -325,7 +325,7 @@
           </el-switch>
         </div>
         <div class="attr-item" v-show="currentItem.data">
-          <div class="text">数据源(下拉框绑定设置中维护)</div>
+          <div class="text">Data源(Drop-down box binding settings中维护)</div>
 
           <!-- dicList -->
           <el-select
@@ -333,7 +333,7 @@
             v-model="currentItem.key"
             size="medium"
             @change="dicChange"
-            placeholder="请选择数据源字典"
+            placeholder="请选择Data源字典"
           >
             <el-option
               v-for="item in dicList"
@@ -372,7 +372,7 @@
           <div>
             <!-- active-text="是"
               inactive-text="否" -->
-            <div class="text">只读</div>
+            <div class="text">ReadOnly</div>
             <el-switch
               v-model="currentItem.readonly"
               style="width: 100%"
@@ -407,7 +407,7 @@
               @click="openTableModel"
               type="primary"
               size="medium"
-              >table配置</el-button
+              >tableConfiguration</el-button
             >
           </div>
         </div>
@@ -422,7 +422,7 @@
     title="弹出框"
   >
     <template #content>
-      <div>弹出框内容</div>
+      <div>弹出框Content</div>
     </template>
     <template #footer>
       <div>
@@ -430,7 +430,7 @@
           ><i class="el-icon-close"></i>点击关闭</el-button
         >
         <el-button size="mini" @click="model = false"
-          ><i class="el-icon-close"></i>关闭</el-button
+          ><i class="el-icon-close"></i>{{ $locales[$i18n.locale].Close }}</el-button
         >
       </div>
     </template>
@@ -443,7 +443,7 @@
     :lazy="true"
     :padding="1"
     :close="false"
-    title="预览"
+    title="Preview"
   >
     <preview style="height:600px" :options="viewFormData"></preview>
   </vol-box>
@@ -458,8 +458,8 @@
   >
     <template #content>
       <div style="height:600px" >
-      <el-alert title="关于table配置" type="info" :closable="false" show-icon>
-        此处table是对框架voltable基本操作的配置,如果需要事件触发、数据加载等更多功能，请在生成后的代码添加需要的功能，完整配置见文档<a
+      <el-alert title="关于tableConfiguration" type="info" :closable="false" show-icon>
+        此处table是对框架voltable基本Operation的Configuration,如果需要Event触发、DataLoad等更多功能，请在生成后的代码添加需要的功能，完整Configuration见Document<a
           href="http://v2.volcore.xyz/document/api"
           style="color: #1e88e5; margin-left: 9px"
           target="_blank"
@@ -468,7 +468,7 @@
       </el-alert>
       <div class="btns">
         <div class="btns-left">
-          表格默认功能按钮：
+          Form默认功能按钮：
           <el-checkbox
             v-for="item in currentItem.buttons"
             :label="item.name"
@@ -504,7 +504,7 @@
     <template #footer>
       <div style="text-align: center">
         <el-button size="mini" @click="tableModel = false"
-          ><i class="el-icon-close"></i>关闭</el-button
+          ><i class="el-icon-close"></i>{{ $locales[$i18n.locale].Close }}</el-button
         >
         <el-button type="primary" size="mini" @click="saveConfigOptions"
           ><i class="el-icon-check"></i>保存</el-button
@@ -611,10 +611,10 @@ export default {
               },
             },
             title
-            //也可以在这里放一些组件，例如：
+            //也可以在这里放一些Component，例如：
             // resolveComponent("el-tooltip"),
             // {
-            //   content: "这里是提示的内容",
+            //   content: "这里是提示的Content",
             //   props: { effect: "dark", placement: "top-start" },
             //   style: {},
             // },
@@ -731,11 +731,11 @@ export default {
         })
         .map((m) => {
           m.pagination = !m.url;
-          if (m.name == "表格") {
+          if (m.name == "Form") {
             tableIndex++;
           }
           return {
-            name: m.name + (m.name == "表格" ? tableIndex : ""),
+            name: m.name + (m.name == "Form" ? tableIndex : ""),
             url: m.url,
             tabs: m.tabs,
             pagination: m.pagination,
@@ -829,9 +829,9 @@ export default {
       this.currnetTableData.push({ field: this.getField() });
     },
     delRow() {
-      this.$confirm("确认要Del选择的数据吗?", "警告", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
+      this.$confirm("确认要Del选择的Data吗?", "警告", {
+        confirmButtonText: window.locales[window.localei18n.locale].Confirm,
+        cancelButtonText: window.locales[window.localei18n.locale].Cancel,
         type: "warning",
         center: true,
       }).then(() => {
@@ -842,7 +842,7 @@ export default {
       this.currnetTableData = this.currnetTableData.sort((a, b) => {
         return a.orderNo - b.orderNo;
       }); //.reverse();
-      this.$Message.success("列显示顺序已重新排列,点击预览可查看");
+      this.$Message.success("列显示顺序已重新排列,点击Preview可View");
     },
     saveConfigOptions() {
       this.currentItem.columns = JSON.parse(
@@ -872,14 +872,14 @@ export default {
       this.colWidth = this.currentComponents[this.currentIndex].width;
       this.currentItem = this.currentComponents[this.currentIndex];
     },
-    //开始拖拽事件
+    //Start拖拽Event
     onStart(e, e1) {
       this.drag = true;
     },
     getField() {
       return "field" + new Date().valueOf();
     },
-    //左边往右边拖动时的事件
+    //左边往右边拖动时的Event
     end1(e) {
       if (1 == 1 && e.from !== e.to) {
         let obj = JSON.parse(JSON.stringify(this.components[e.oldIndex]));
@@ -898,7 +898,7 @@ export default {
         this.currentItem = this.currentComponents[this.currentIndex];
       }
     },
-    //右边往左边拖动时的事件
+    //右边往左边拖动时的Event
     end2(e) {},
     onMove1(e, originalEvent) {
       // this.moveId = e.relatedContext.element.id;

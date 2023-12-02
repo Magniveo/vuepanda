@@ -34,7 +34,7 @@ namespace VOL.Core.DBManager
             ConnectionPool.Add(key, val);
         }
         /// <summary>
-        /// 设置默认数据库连接
+        /// SetUp默认Data库连接
         /// </summary>
         /// <param name="val"></param>
         public static void SetDefaultConnection(string val)
@@ -52,7 +52,7 @@ namespace VOL.Core.DBManager
             return key;
         }
         /// <summary>
-        /// 获取默认数据库连接
+        /// 获取默认Data库连接
         /// </summary>
         /// <returns></returns>
         public static string GetConnectionString()
@@ -78,10 +78,10 @@ namespace VOL.Core.DBManager
 
 
         /// <summary>
-        /// 扩展dapper 获取MSSQL数据库DbConnection，默认System获取配置文件的DBType数据库AppType，
+        /// 扩展dapper 获取MSSQLData库DbConnection，默认System获取配置文件的DBTypeData库AppType，
         /// </summary>
-        /// <param name="connString">如果connString为null 执行重载GetDbConnection(string connString = null)</param>
-        /// <param name="dapperType">指定连接数据库的AppType：MySql/MsSql/PgSql</param>
+        /// <param name="connString">如果connString为null Execute重载GetDbConnection(string connString = null)</param>
+        /// <param name="dapperType">指定连接Data库的AppType：MySql/MsSql/PgSql</param>
         /// <returns></returns>
         public static IDbConnection GetDbConnection(string connString = null, DbCurrentType dbCurrentType=DbCurrentType.Default)
         {
@@ -117,7 +117,7 @@ namespace VOL.Core.DBManager
             {
                 if (!ConnectionPool.ContainsKey(dbName))
                 {
-                    throw new Exception("数据库连接ExpertName错误");
+                    throw new Exception("Data库连接ExpertName错误");
                 }
                 context.Database.GetDbConnection().ConnectionString = ConnectionPool[dbName];
             }
@@ -128,12 +128,12 @@ namespace VOL.Core.DBManager
         {
             if (!ConnectionPool.ContainsKey(dbName))
             {
-                throw new Exception("数据库连接ExpertName错误");
+                throw new Exception("Data库连接ExpertName错误");
             }
             beefContext.Database.GetDbConnection().ConnectionString = ConnectionPool[dbName];
         }
         /// <summary>
-        /// 获取实体的数据库连接
+        /// 获取实体的Data库连接
         /// </summary>
         /// <typeparam name="TEntity"></typeparam>
         /// <param name="defaultDbContext"></param>
@@ -161,8 +161,8 @@ namespace VOL.Core.DBManager
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="dbCurrentType">指定数据库AppType：MySql/MsSql/PgSql</param>
-        /// <param name="dbName">指定数据连串ExpertName</param>
+        /// <param name="dbCurrentType">指定Data库AppType：MySql/MsSql/PgSql</param>
+        /// <param name="dbName">指定Data连串ExpertName</param>
         /// <returns></returns>
         public static ISqlDapper GetSqlDapper(DbCurrentType dbCurrentType, string dbName = null)
         {
@@ -174,7 +174,7 @@ namespace VOL.Core.DBManager
         }
         public static ISqlDapper GetSqlDapper<TEntity>()
         {
-            //获取实体真实的数据库连接池对象名，如果不存在则用默认数据连接池名
+            //获取实体真实的Data库连接池对象名，如果不存在则用默认Data连接池名
             string dbName = typeof(TEntity).GetTypeCustomValue<DBConnectionAttribute>(x => x.DBName) ?? DefaultConnName;
             return GetSqlDapper(dbName);
         }

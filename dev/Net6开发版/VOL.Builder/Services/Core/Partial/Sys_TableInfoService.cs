@@ -50,7 +50,7 @@ namespace VOL.Builder.Services
                 webProject = ProjectPath.GetLastIndexOfDirectoryName(".WebApi") ?? ProjectPath.GetLastIndexOfDirectoryName("Api") ?? ProjectPath.GetLastIndexOfDirectoryName(".Web");
                 if (webProject == null)
                 {
-                    throw new Exception("未获取到以.WebApi结尾的项目ExpertName,无法创建页面");
+                    throw new Exception("未获取到以.WebApi结尾的项目ExpertName,None法创建Page");
                 }
                 return webProject;
             }
@@ -64,14 +64,14 @@ namespace VOL.Builder.Services
                 apiNameSpace = ProjectPath.GetLastIndexOfDirectoryName(".WebApi");
                 if (apiNameSpace == null)
                 {
-                    throw new Exception("未获取到以.WebApi,无法创建Api控制器");
+                    throw new Exception("未获取到以.WebApi,None法创建Api控制Device");
                 }
                 return apiNameSpace;
             }
         }
 
         /// <summary>
-        /// 获取生成配置的树开菜单
+        /// 获取生成配置的树开DishSingle
         /// </summary>
         /// <returns></returns>
         public async Task<(string, string)> GetTableTree()
@@ -100,7 +100,7 @@ namespace VOL.Builder.Services
         }
 
         /// <summary>
-        /// 2020.05.17增加mysql获取表结构时区分当前所在数据库
+        /// 2020.05.17增加mysql获取Table结构时区分当前所在Data库
         /// </summary>
         /// <returns></returns>
         private string GetMysqlTableSchema()
@@ -116,14 +116,14 @@ namespace VOL.Builder.Services
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"获取mysql数据库名异常:{ex.Message}");
+                Console.WriteLine($"获取mysqlData库名异常:{ex.Message}");
                 return "";
             }
         }
 
         /// <summary>
-        /// 获取Mysql表结构信息
-        /// 2020.06.14增加对mysql数据AppTypedouble区分
+        /// 获取MysqlTable结构信息
+        /// 2020.06.14增加对mysqlDataAppTypedouble区分
         /// </summary>
         /// <returns></returns>
         private string GetMySqlModelInfo()
@@ -157,7 +157,7 @@ DISTINCT
 
 
         /// <summary>
-        /// 获取SqlServer表结构信息
+        /// 获取SqlServerTable结构信息
         /// </summary>
         /// <returns></returns>
         private string GetSqlServerModelInfo()
@@ -183,7 +183,7 @@ DISTINCT
                                       WHERE     obj.name =@tableName) AS t";
         }
         /// <summary>
-        /// 获取PgSQl表结构信息
+        /// 获取PgSQlTable结构信息
         /// 2020.08.07完善PGSQL
         /// </summary>
         /// <param name="tableName"></param>
@@ -224,7 +224,7 @@ DISTINCT
         private WebResponseContent ExistsTable(string tableName, string tableTrueName)
         {
             WebResponseContent webResponse = new WebResponseContent(true);
-            //如果是第一次创建model，此处反射获取到的是已经缓存过的文件，必须重新运行项目否则新增的文件无法做判断文件是否创建，需要重新做反射实际文件，待修改...
+            //如果是第一次创建model，此处反射获取到的是已经缓存过的文件，必须重新运行项目否则新增的文件None法做判断文件是否创建，需要重新做反射实际文件，待修改...
             var compilationLibrary = DependencyContext
                 .Default
                 .CompileLibraries
@@ -271,7 +271,7 @@ DISTINCT
             if (sysTableInfo == null
                 || sysTableInfo.TableColumns == null
                 || sysTableInfo.TableColumns.Count == 0)
-                return "提交的配置数据不完整";
+                return "提交的配置Data不完整";
 
             WebResponseContent webResponse = ValidColumnString(sysTableInfo);
             if (!webResponse.Status)
@@ -314,7 +314,7 @@ DISTINCT
             //{
             //    CreateEntityModel(list.Where(c => c.ApiOutPut > 0).ToList(), sysTableInfo, tableColumnInfoList, 3);
             //}
-            return "Model创建成功!";
+            return "Model创建Success!";
         }
 
         /// <summary>
@@ -333,7 +333,7 @@ DISTINCT
             }
             if (sysTableInfo.TableColumns != null && sysTableInfo.TableColumns.Any(x => !string.IsNullOrEmpty(x.DropNo) && x.ColumnName == sysTableInfo.ExpressField))
             {
-                return WebResponseContent.Instance.Error($"不能将字段【{sysTableInfo.ExpressField}】设置为快捷Edit,因为已经设置了数据源");
+                return WebResponseContent.Instance.Error($"不能将字段【{sysTableInfo.ExpressField}】SetUp为快捷Edit,因为已经SetUp了Data源");
             }
             if (sysTableInfo.TableColumns != null)
             {
@@ -377,7 +377,7 @@ DISTINCT
         }
 
         /// <summary>
-        /// 将表结构重新同步到代码生成配置
+        /// 将Table结构重新同步到CodeGeneration配置
         /// </summary>
         /// <param name="tableName"></param>
         /// <returns></returns>
@@ -397,14 +397,14 @@ DISTINCT
 
             string sql = GetCurrentSql(tableName);
 
-            //获取表结构
+            //获取Table结构
             List<Sys_TableColumn> columns = repository.DapperContext
                   .QueryList<Sys_TableColumn>(sql, new { tableName });
             if (columns == null || columns.Count == 0)
-                return webResponse.Error("未获取到【" + tableName + "】表结构信息，请确认表是否存在");
+                return webResponse.Error("未获取到【" + tableName + "】Table结构信息，请确认Table是否存在");
 
 
-            //获取现在配置好的表结构
+            //获取现在配置好的Table结构
             List<Sys_TableColumn> detailList = tableInfo.TableColumns ?? new List<Sys_TableColumn>();
             List<Sys_TableColumn> addColumns = new List<Sys_TableColumn>();
             List<Sys_TableColumn> updateColumns = new List<Sys_TableColumn>();
@@ -420,7 +420,7 @@ DISTINCT
                     addColumns.Add(item);
                     continue;
                 }
-                //修改了数据类库或字段长度
+                //修改了Data类库或字段长度
                 if (item.ColumnType != tableColumn.ColumnType || item.Maxlength != tableColumn.Maxlength || (item.IsNull ?? 0) != (tableColumn.IsNull ?? 0))
                 {
                     tableColumn.ColumnType = item.ColumnType;
@@ -433,7 +433,7 @@ DISTINCT
             List<Sys_TableColumn> delColumns = detailList.Where(a => !columns.Select(c => c.ColumnName).Contains(a.ColumnName)).ToList();
             if (addColumns.Count + delColumns.Count + updateColumns.Count == 0)
             {
-                return webResponse.Error("【" + tableName + "】表结构未发生变化");
+                return webResponse.Error("【" + tableName + "】Table结构未发生变化");
             }
             repository.AddRange(addColumns);
             repository.DbContext.Set<Sys_TableColumn>().RemoveRange(delColumns);
@@ -444,7 +444,7 @@ DISTINCT
         }
 
         /// <summary>
-        /// 生成Services/Repository与对应的Partial类
+        /// 生成Services/RepositoryWith对应的Partial类
         /// </summary>
         /// <param name="tableName"></param>
         /// <param name="nameSpace"></param>
@@ -458,7 +458,7 @@ DISTINCT
 
             if (tableColumn == null)
             {
-                return $"没有查到{tableName}表信息";
+                return $"没有查到{tableName}Table信息";
             }
 
             if (string.IsNullOrEmpty(nameSpace) || string.IsNullOrEmpty(foldername))
@@ -481,14 +481,14 @@ DISTINCT
                     return "未找到webapi类库,请确认是存在weiapi类库命名以.webapi结尾";
                 }
                 apiPath += $"\\Controllers\\{projectName}\\";
-                //生成Partial Api控制器
+                //生成Partial Api控制Device
                 if (!FileHelper.FileExists($"{apiPath}Partial\\{tableName}Controller.cs"))
                 {
                     string partialController = FileHelper.ReadFile(@"Template\\Controller\\ControllerApiPartial.html")
                        .Replace("{Namespace}", nameSpace).Replace("{TableName}", tableName).Replace("{StartName}", StratName);
                     FileHelper.WriteFile($"{apiPath}Partial\\", tableName + "Controller.cs", partialController);
                 }
-                //生成Api控制器
+                //生成Api控制Device
                 domainContent = FileHelper.ReadFile(@"Template\\Controller\\ControllerApi.html")
                     .Replace("{Namespace}", nameSpace).Replace("{TableName}", tableName).Replace("{StartName}", StratName).Replace("{BaseOptions}", baseOptions);
                 FileHelper.WriteFile(apiPath, tableName + "Controller.cs", domainContent);
@@ -543,22 +543,22 @@ DISTINCT
             {
                 path = $"{frameworkFolder}\\{nameSpace}\\Controllers\\{ foldername}\\";
                 fileName = tableName + "Controller.cs";
-                //生成Partial web控制器
+                //生成Partial web控制Device
                 if (!FileHelper.FileExists(path + "Partial\\" + fileName))
                 {
                     domainContent = FileHelper.ReadFile("Template\\Controller\\ControllerPartial.html").Replace("{Namespace}", nameSpace).Replace("{TableName}", tableName).Replace("{BaseOptions}", baseOptions).Replace("{StartName}", StratName);
                     FileHelper.WriteFile(path + "Partial\\", tableName + "Controller.cs", domainContent);
                 }
 
-                //生成web控制器
+                //生成web控制Device
                 domainContent = FileHelper.ReadFile("Template\\Controller\\Controller.html").Replace("{Namespace}", nameSpace).Replace("{TableName}", tableName).Replace("{BaseOptions}", baseOptions).Replace("{StartName}", StratName);
                 FileHelper.WriteFile(path, tableName + "Controller.cs", domainContent);
             }
-            return "业务类创建成功!";
+            return "业务类创建Success!";
         }
 
         /// <summary>
-        /// 获取界面查询字段
+        /// 获取界面Query字段
         /// </summary>
         /// <param name="panelHtml"></param>
         /// <param name="sysColumnList"></param>
@@ -601,7 +601,7 @@ DISTINCT
                             {
                                 keyValues.Add("dataKey", s.dataSource);
                             }
-                            //2020.09.11增加vue页面数据源配置默认空数据源
+                            //2020.09.11增加vuePageData源配置默认空Data源
                             keyValues.Add("data", new string[] { });
                         }
                         keyValues.Add("title", s.text);
@@ -653,7 +653,7 @@ DISTINCT
                 }
                 else
                 {
-                    //app页面添加分组
+                    //appPage添加分组
                     if (index != panelHtml.Count() && group)
                     {
                         list.Add(new { type = "group" });
@@ -664,7 +664,7 @@ DISTINCT
         }
 
         /// <summary>
-        /// 生成Vue页面
+        /// 生成VuePage
         /// </summary>
         /// <param name="sysTableInfo"></param>
         /// <param name="vuePath">为本地Vue项目Views所在的绝对路径:E:/web/myProject/Views</param>
@@ -674,7 +674,7 @@ DISTINCT
             bool isApp = HttpContext.Current.Request.Query["app"].GetInt() > 0;
             if (string.IsNullOrEmpty(vuePath))
             {
-                return isApp ? "请设置App路径" : "请设置Vue所在Views的绝对路径!";
+                return isApp ? "请SetUpApp路径" : "请SetUpVue所在Views的绝对路径!";
             }
 
             if (!FileHelper.DirectoryExists(vuePath)) return $"未找项目路径{vuePath}!";
@@ -682,7 +682,7 @@ DISTINCT
             if (sysTableInfo == null
               || sysTableInfo.TableColumns == null
               || sysTableInfo.TableColumns.Count == 0)
-                return "提交的配置数据不完整";
+                return "提交的配置Data不完整";
 
             vuePath = vuePath.Trim().TrimEnd('/').TrimEnd('\\');
 
@@ -690,28 +690,28 @@ DISTINCT
             string[] eidtTye = new string[] { "select", "selectList", "drop", "dropList", "checkbox" };
             if (sysColumnList.Exists(x => eidtTye.Contains(x.EditType) && string.IsNullOrEmpty(x.DropNo)))
             {
-                return $"EditAppType为[{string.Join(',', eidtTye)}]时必须选择数据源";
+                return $"EditAppType为[{string.Join(',', eidtTye)}]时必须选择Data源";
             }
             if (sysColumnList.Exists(x => eidtTye.Contains(x.SearchType) && string.IsNullOrEmpty(x.DropNo)))
             {
-                return $"查询AppType为[{string.Join(',', eidtTye)}]时必须选择数据源";
+                return $"QueryAppType为[{string.Join(',', eidtTye)}]时必须选择Data源";
             }
             if (isApp && !sysColumnList.Exists(x => x.Enable > 0))
             {
-                return $"请设置[app列]";
+                return $"请SetUp[app列]";
             }
             StringBuilder sb = GetGridColumns(sysColumnList, sysTableInfo.ExpressField, false, true, app: isApp);
-            if (sb.Length == 0) return "未获取到数据!";
+            if (sb.Length == 0) return "未获取到Data!";
             string columns = sb.ToString().Trim();
             columns = columns.Substring(0, columns.Length - 1);
             string key = sysColumnList.Where(c => c.IsKey == 1).Select(x => x.ColumnName).First() ?? "";
 
-            //{ key: 1, value: "显示/查询/Edit" },
+            //{ key: 1, value: "显示/Query/Edit" },
             //{ key: 2, value: "显示/Edit" },
-            //{ key: 3, value: "显示/查询" },
+            //{ key: 3, value: "显示/Query" },
             //{ key: 4, value: "显示" },
-            //{ key: 5, value: "查询/Edit" },
-            //{ key: 6, value: "查询" },
+            //{ key: 5, value: "Query/Edit" },
+            //{ key: 6, value: "Query" },
             //{ key: 7, value: "Edit" },
             Func<Sys_TableColumn, bool> editFunc = c => c.EditRowNo != null && c.EditRowNo > 0;
             if (isApp)
@@ -734,7 +734,7 @@ DISTINCT
             {
                 pageContent = FileHelper.ReadFile("Template\\Page\\app\\options.html");
             }
-            else if (HttpContext.Current.Request.Query.ContainsKey("v3"))   //2021.08.01增加vue3页面模板
+            else if (HttpContext.Current.Request.Query.ContainsKey("v3"))   //2021.08.01增加vue3Page模板
             {
                 pageContent = FileHelper.ReadFile("Template\\Page\\Vue3SearchPage.html");
             }
@@ -749,12 +749,12 @@ DISTINCT
                 return "未找到Template模板文件";
             }
 
-            //{ key: 1, value: "显示/查询/Edit" },
+            //{ key: 1, value: "显示/Query/Edit" },
             //{ key: 2, value: "显示/Edit" },
-            //{ key: 3, value: "显示/查询" },
+            //{ key: 3, value: "显示/Query" },
             //{ key: 4, value: "显示" },
-            //{ key: 5, value: "查询/Edit" },
-            //{ key: 6, value: "查询" },
+            //{ key: 5, value: "Query/Edit" },
+            //{ key: 6, value: "Query" },
             //{ key: 7, value: "Edit" },
             Func<Sys_TableColumn, bool> func = c => c.SearchRowNo != null && c.SearchRowNo > 0;
 
@@ -794,23 +794,23 @@ DISTINCT
 
 
 
-            //如果有明细，加载明细的数据
+            //如果有明细，Load明细的Data
             if (!string.IsNullOrEmpty(sysTableInfo.DetailName) && !isApp)
             {
                 Sys_TableInfo detailTable = repository.FindAsIQueryable(x => x.TableName == sysTableInfo.DetailName)
                     .Include(x => x.TableColumns).FirstOrDefault();
                 if (detailTable == null)
-                    return $"请先生成明细表{ sysTableInfo.DetailName}的配置!";
+                    return $"请先生成明细Table{ sysTableInfo.DetailName}的配置!";
                 if (detailTable.TableColumns == null || detailTable.TableColumns.Count == 0)
-                    return $"明细表{ sysTableInfo.DetailName}没有列的信息,请确认是否有列数据或列数据是否被Del!";
+                    return $"明细Table{ sysTableInfo.DetailName}没有列的信息,请确认是否有列Data或列Data是否被Del!";
                 var _name = detailTable.TableColumns.Where(x => x.IsImage < 4 && x.EditRowNo > 0).Select(s => s.ColumnName).FirstOrDefault();
                 //if (!string.IsNullOrEmpty(_name))
                 //{
-                //    return $"明细表【{_name}】字段【table显示AppType】设置为了【文件或图片】,Edit行只能设置为0或不设置";
+                //    return $"明细Table【{_name}】字段【table显示AppType】SetUp为了【文件或图片】,Edit行只能SetUp为0或不SetUp";
                 //}
-                //明细列数据
+                //明细列Data
                 List<Sys_TableColumn> detailList = detailTable.TableColumns;
-                //替换明细列数据
+                //替换明细列Data
                 sb = GetGridColumns(detailList, detailTable.ExpressField, true, true);
                 key = detailList.Where(c => c.IsKey == 1).Select(x => x.ColumnName).First();
                 columns = sb.ToString().Trim();
@@ -829,7 +829,7 @@ DISTINCT
             }
 
 
-            //生成扩展逻辑页面(只创建一次)
+            //生成扩展逻辑Page(只创建一次)
             //获取view的上一级目录
             string srcPath = new DirectoryInfo(vuePath.MapPath()).Parent.FullName;
             string extensionPath = isApp ? $"{srcPath}\\pages\\{spaceFolder}\\" : $"{srcPath}\\extension\\{spaceFolder}\\";
@@ -900,7 +900,7 @@ DISTINCT
             else
             {
                 //   spaceFolder = spaceFolder; //+ "\\" + sysTableInfo.FolderName.ToLower();
-                //生成vue页面
+                //生成vuePage
                 FileHelper.WriteFile($"{vuePath}\\{ spaceFolder}\\", sysTableInfo.TableName + ".vue", pageContent);
 
                 //生成路由
@@ -915,7 +915,7 @@ DISTINCT
                     FileHelper.WriteFile($"{srcPath}\\router\\", "viewGird.js", routerContent);
                 }
             }
-            return "页面创建成功!";
+            return "Page创建Success!";
         }
 
 
@@ -930,7 +930,7 @@ DISTINCT
         }
 
         /// <summary>
-        /// 获取Mysql表结构信息
+        /// 获取MysqlTable结构信息
         /// </summary>
         /// <param name="tableName"></param>
         /// <returns></returns>
@@ -986,7 +986,7 @@ DISTINCT
         }
 
         /// <summary>
-        /// 获取SqlServer表结构信息
+        /// 获取SqlServerTable结构信息
         /// </summary>
         /// <param name="tableName"></param>
         /// <returns></returns>
@@ -1205,7 +1205,7 @@ DISTINCT
         }
 
         /// <summary>
-        /// 设置界面table td单元格的宽度
+        /// SetUp界面table tdSingle元格的宽度
         /// </summary>
         /// <param name="columns"></param>
         private void SetMaxLength(List<Sys_TableColumn> columns)
@@ -1244,7 +1244,7 @@ DISTINCT
         }
 
         /// <summary>
-        /// 初始化生成配置对应表的数据信息
+        /// 初始化生成配置对应Table的Data信息
         /// </summary>
         /// <param name="parentId"></param>
         /// <param name="tableName"></param>
@@ -1289,13 +1289,13 @@ DISTINCT
             var result = base.Add<Sys_TableColumn>(tableInfo, columns, false);
             if (!result.Status)
             {
-                throw new Exception($"加载表结构写入异常：{result.Message}");
+                throw new Exception($"LoadTable结构写入异常：{result.Message}");
             }
             return tableInfo.Table_Id;
         }
 
         /// <summary>
-        /// 界面加载表的配置信息
+        /// 界面LoadTable的配置信息
         /// </summary>
         /// <param name="parentId"></param>
         /// <param name="tableName"></param>
@@ -1303,13 +1303,13 @@ DISTINCT
         /// <param name="nameSpace"></param>
         /// <param name="foldername"></param>
         /// <param name="tableId"></param>
-        /// <param name="isTreeLoad">true只加载表数据</param>
+        /// <param name="isTreeLoad">true只LoadTableData</param>
         /// <returns></returns>
         public object LoadTable(int parentId, string tableName, string columnCNName, string nameSpace, string foldername, int tableId, bool isTreeLoad)
         {
             if (!UserContext.Current.IsSuperAdmin && !isTreeLoad)
             {
-                return new WebResponseContent().Error("只有超级管理员才能进行此操作");
+                return new WebResponseContent().Error("只有SuperAdministrator才能进行此Operation");
             }
             tableId = InitTable(parentId, tableName?.Trim(), columnCNName, nameSpace, foldername, tableId, isTreeLoad);
             Sys_TableInfo tableInfo = repository
@@ -1332,18 +1332,18 @@ DISTINCT
             if (tableInfo == null) return new WebResponseContent().OK();
             if (tableInfo.TableColumns != null && tableInfo.TableColumns.Count > 0)
             {
-                return new WebResponseContent().Error("当前Del的节点存在表结构信息,只能Del空节点");
+                return new WebResponseContent().Error("当前Del的Node存在Table结构信息,只能Del空Node");
             }
             if (repository.Exists(x => x.ParentId == table_Id))
             {
-                return new WebResponseContent().Error("当前Del的节点存在子节点，不能Del");
+                return new WebResponseContent().Error("当前Del的Node存在子Node，不能Del");
             }
             repository.Delete(tableInfo, true);
             return new WebResponseContent().OK();
         }
 
         /// <summary>
-        /// 生成表格的columns的配置信息
+        /// 生成Form的columns的配置信息
         /// </summary>
         /// <param name="list"></param>
         /// <param name="expressField"></param>
@@ -1356,12 +1356,12 @@ DISTINCT
             totalWidth = 0;
             StringBuilder sb = new StringBuilder();
 
-            //{ key: 1, value: "显示/查询/Edit" },
+            //{ key: 1, value: "显示/Query/Edit" },
             //{ key: 2, value: "显示/Edit" },
-            //{ key: 3, value: "显示/查询" },
+            //{ key: 3, value: "显示/Query" },
             //{ key: 4, value: "显示" },
-            //{ key: 5, value: "查询/Edit" },
-            //{ key: 6, value: "查询" },
+            //{ key: 5, value: "Query/Edit" },
+            //{ key: 6, value: "Query" },
             //{ key: 7, value: "Edit" },
             Func<Sys_TableColumn, bool> func = x => true;
             bool sort = false;
@@ -1389,7 +1389,7 @@ DISTINCT
                     {
                         colType = "file";
                     }
-                    //2021.07.27增加table列显示AppTypedate(自动格式化)
+                    //2021.07.27增加table列显示AppTypedate(自动Format)
                     else if (item.IsImage == 4)
                     {
                         colType = "date";
@@ -1403,7 +1403,7 @@ DISTINCT
                     {
                         sb.Append("link:true,");
                     }
-                    //2021.01.09增加代码生成器设置tableOrderNo功能
+                    //2021.01.09增加CodeGenerationDeviceSetUptableOrderNo功能
                     if (item.Sortable == 1 && !app)
                     {
                         sb.Append("sort:true,");
@@ -1471,7 +1471,7 @@ DISTINCT
                 }
                 if (!vue)
                 {
-                    //快速查看字段
+                    //快速View字段
                     if (expressField != null && expressField.ToLower() == item.ColumnName.ToLower())
                     {
                         sb.Append("formatter:function (val, row, index) { return $.fn.layOut('createViewField',{row:row,val:val,index:index})},");
@@ -1578,14 +1578,14 @@ DISTINCT
                     AttributeBuilder.Append("       [MaxLength(" + column.Maxlength + ")]");
                     AttributeBuilder.Append("\r\n");
                 }
-                //不是数据列的，返回页面数据前不包含此列的数据
+                //不是Data列的，返回PageData前不包含此列的Data
                 if (column.IsColumnData == 0 && createType == 1)
                 {
                     addIgnore = true;
                     AttributeBuilder.Append("       [JsonIgnore]");
                     AttributeBuilder.Append("\r\n");
                 }
-                //[Column(TypeName="bigint")]如果与字段AppType不同会产生异常
+                //[Column(TypeName="bigint")]如果With字段AppType不同会产生异常
 
                 if (tableColumnInfo != null)
                 {
@@ -1660,7 +1660,7 @@ DISTINCT
                 {
                     columnType = columnType + "?";
                 }
-                //如果主键是string,则默认为是Guid或者使用的是mysql数据，字段AppType是字符串并且长度是36则默认为是Guid
+                //如果主键是string,则默认为是Guid或者使用的是mysqlData，字段AppType是字符串并且长度是36则默认为是Guid
                 if ((column.IsKey == 1
                     && (column.ColumnType == "uniqueidentifier"))
                        || column.ColumnType == "guid"
@@ -1675,7 +1675,7 @@ DISTINCT
             {
                 AttributeBuilder.Append("[Display(Name =\"" + tableInfo.DetailCnName + "\")]");
                 AttributeBuilder.Append("\r\n       ");
-                //2019.12.20增加明细表属性的ForeignKey配置(EF Core 3.1配项)
+                //2019.12.20增加明细Table属性的ForeignKey配置(EF Core 3.1配项)
                 AttributeBuilder.Append("[ForeignKey(\"" + sysColumn.Where(x => x.IsKey == 1).FirstOrDefault().ColumnName + "\")]");
                 AttributeBuilder.Append("\r\n       ");
                 AttributeBuilder.Append("public List<" + tableInfo.DetailName + "> " + tableInfo.DetailName + " { get; set; }");
@@ -1701,7 +1701,7 @@ DISTINCT
             entityAttribute.Add("TableCnName = \"" + tableInfo.ColumnCNName + "\"");
             if (!string.IsNullOrEmpty(tableInfo.TableTrueName))
             {
-                //如果使用的是pgsql数据库，并且数据库表都是小写，请将下面的.ToLower()这段开启.2020.08.07
+                //如果使用的是pgsqlData库，并且Data库Table都是小写，请将下面的.ToLower()这段开启.2020.08.07
                 //entityAttribute.Add("TableName = \"" + tableInfo.TableTrueName.ToLower() + "\"");
                 entityAttribute.Add("TableName = \"" + tableInfo.TableTrueName + "\"");
             }
@@ -1747,7 +1747,7 @@ DISTINCT
             if (!string.IsNullOrEmpty(tableInfo.TableTrueName) && tableInfo.TableName != tableInfo.TableTrueName)
             {
                 string tableTrueName = tableInfo.TableTrueName;
-                //2020.06.14 pgsql数据库，设置WorkTable为小写(数据库创建表的时候也要使用小写)
+                //2020.06.14 pgsqlData库，SetUpWorkTable为小写(Data库创建Table的时候也要使用小写)
                 if (DBType.Name == DbCurrentType.PgSql.ToString())
                 {
                     tableTrueName = tableTrueName.ToLower();
@@ -1779,7 +1779,7 @@ DISTINCT
             if (!FileHelper.FileExists(modelPath + tableName + ".cs"))
             {
                 partialContent = partialContent.Replace("{AttributeManager}", "")
-                    .Replace("{AttributeList}", @"//此处配置字段(字段配置见此model的另一个partial),如果表中没有此字段请加上 [NotMapped]属性，否则会异常")
+                    .Replace("{AttributeList}", @"//此处配置字段(字段配置见此model的另一个partial),如果Table中没有此字段请加上 [NotMapped]属性，否则会异常")
                     .Replace(":BaseEntity", "")
                     .Replace("{TableName}", tableInfo.TableName).Replace("{Namespace}", modelNameSpace);
                 FileHelper.WriteFile(modelPath, tableName + ".cs", partialContent);
@@ -1805,11 +1805,11 @@ DISTINCT
             string type = "";
             if (search)
             {
-                type = searchType == "无" ? "" : searchType ?? "";
+                type = searchType == "None" ? "" : searchType ?? "";
             }
             else
             {
-                type = editType == "无" ? "" : editType ?? "";
+                type = editType == "None" ? "" : editType ?? "";
             }
             if (type == "" && formType.Contains(columnType))
             {
@@ -1835,7 +1835,7 @@ DISTINCT
         }
 
         /// <summary>
-        /// 生成查询面板的数据对象结构
+        /// 生成Query面板的Data对象结构
         /// </summary>
         /// <param name="list"></param>
         /// <param name="panelHtml"></param>
@@ -1846,12 +1846,12 @@ DISTINCT
         /// <param name="vue"></param>
         private void GetPanelData(List<Sys_TableColumn> list, List<List<PanelHtml>> panelHtml, Func<Sys_TableColumn, int?> keySelector, Func<Sys_TableColumn, bool> predicate, bool search, Func<Sys_TableColumn, int?> orderBy, bool vue = false, bool app = false)
         {
-            //{ key: 1, value: "显示/查询/Edit" },
+            //{ key: 1, value: "显示/Query/Edit" },
             //{ key: 2, value: "显示/Edit" },
-            //{ key: 3, value: "显示/查询" },
+            //{ key: 3, value: "显示/Query" },
             //{ key: 4, value: "显示" },
-            //{ key: 5, value: "查询/Edit" },
-            //{ key: 6, value: "查询" },
+            //{ key: 5, value: "Query/Edit" },
+            //{ key: 6, value: "Query" },
             //{ key: 7, value: "Edit" },
 
             if (app)
@@ -1902,21 +1902,21 @@ DISTINCT
                      // .Select(s => s.ColumnName)
                      .FirstOrDefault();
                 if (mainTableColumn == null)
-                    return webResponse.Error($"请勾选表[{tableInfo.TableName}]的主键");
+                    return webResponse.Error($"请勾选Table[{tableInfo.TableName}]的主键");
 
                 string key = mainTableColumn.ColumnName;
 
-                //明细表外键列的配置信息
+                //明细Table外键列的配置信息
                 Sys_TableColumn tableColumn = repository
                     .Find<Sys_TableColumn>(x => x.TableName == tableInfo.DetailName && x.ColumnName == key)
                     ?.FirstOrDefault();
 
                 if (tableColumn == null)
-                    return webResponse.Error($"明细表必须包括[{tableInfo.TableName}]主键字段[{key}]");
+                    return webResponse.Error($"明细Table必须包括[{tableInfo.TableName}]主键字段[{key}]");
 
                 if (mainTableColumn.ColumnType?.ToLower() != tableColumn.ColumnType?.ToLower())
                 {
-                    return webResponse.Error($"明细表的字段[{tableColumn.ColumnName}]AppType必须与主表的主键的AppType相同");
+                    return webResponse.Error($"明细Table的字段[{tableColumn.ColumnName}]AppType必须With主Table的主键的AppType相同");
                 }
 
                 if (!IsMysql()) return webResponse;
@@ -1924,18 +1924,18 @@ DISTINCT
                 if (mainTableColumn.ColumnType?.ToLower() == "string"
                     && tableColumn.Maxlength != 36)
                 {
-                    return webResponse.Error($"主表主键AppType为Guid，明细表[{tableInfo.DetailName}]配置的字段[{key}]长度必须是36，请重将明细表字段[{key}]长度设置为36，点击保存与生成Model");
+                    return webResponse.Error($"主Table主键AppType为Guid，明细Table[{tableInfo.DetailName}]配置的字段[{key}]长度必须是36，请重将明细Table字段[{key}]长度SetUp为36，点击保存With生成Model");
                 }
 
 
-                //mysql如果主键使用的是guid，需要判断明细表的外键是否配置正确
+                //mysql如果主键使用的是guid，需要判断明细Table的外键是否配置正确
 
 
             }
 
             //if (tableInfo.TableColumns.Exists(x => x.ColumnType == "string" && (x.Maxlength ?? 0) <= 0))
             //{
-            //    webResponse.Error("数据AppType为string的列，必须输入[列最大长度]的值");
+            //    webResponse.Error("DataAppType为string的列，必须输入[列最大长度]的值");
             //}
             return webResponse;
         }

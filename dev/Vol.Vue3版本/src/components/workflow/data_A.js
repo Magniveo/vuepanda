@@ -1,9 +1,9 @@
 let dataA = {
-    "name": "流程A",
+    "name": "ProcessA",
     "nodeList": [
         {
             "id": "0",
-            "name": "流程开始",
+            "name": "ProcessStart",
             "type": "start",
             "left": "346px",
             "top": "22px",
@@ -11,7 +11,7 @@ let dataA = {
         },
         {
             "id": "nodeA",
-            "name": "流程A-节点A",
+            "name": "ProcessA-NodeA",
             "type": "node",
             "left": "346px",
             "top": "132px",
@@ -19,7 +19,7 @@ let dataA = {
         },
     //     {
     //         "id": "nodeB",
-    //         "name": "流程A-节点B",
+    //         "name": "ProcessA-NodeB",
     //         "type": "node",
     //         "left": "347px",
     //         "top": "235px",
@@ -27,7 +27,7 @@ let dataA = {
     //     },
     //     {
     //         "id": "nodeC",
-    //         "name": "流程A-节点C",
+    //         "name": "ProcessA-NodeC",
     //         "type": "node",
     //         "left": "323px",
     //         "top": "399px",

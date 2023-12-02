@@ -2,7 +2,7 @@
   <vol-box
     :lazy="true"
     v-model="model"
-    title="执行日志"
+    title="ExecuteLog"
     :height="500"
     :width="1200"
     :padding="0"
@@ -11,23 +11,23 @@
     <template #footer>
       <div>
         <el-button type="default" size="mini" @click="model = false"
-          >关闭</el-button
+          >{{ $locales[$i18n.locale].Close }}</el-button
         >
       </div></template
     >
   </vol-box>
   <el-alert style="margin-bottom:10px;" :show-icon="false" type="success">
-    ScheduledTasks只有发布后才会运行(本地不会执行),<a
+    ScheduledTasks只有发布后才会运行(本地不会Execute),<a
       style="color:#2d8cf0;margin-left:20px;"
       target="blank"
       href="http://v2.volcore.xyz/document/netCoreDev"
-      >查看配置文档</a
+      >ViewConfigurationDocument</a
     >
     <a
       style="color:#2d8cf0;margin-left:20px;"
       target="blank"
       href="http://v2.volcore.xyz/document/log"
-      >查看更新方式</a
+      >View更新方式</a
     >
   </el-alert>
 </template>

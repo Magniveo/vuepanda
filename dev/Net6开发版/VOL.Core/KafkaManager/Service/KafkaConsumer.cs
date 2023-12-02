@@ -11,11 +11,11 @@
 //namespace VOL.Core.KafkaManager.Service
 //{
 //    /// <summary>
-//    /// 消费者 (Message.Key的数据AppType为string、Message.Value的数据AppType为string）
-//    /// 消费者实现三种消费方式：1.订阅回调模式 2.批量消费模式 3.单笔消费模式
+//    /// 消费者 (Message.Key的DataAppType为string、Message.Value的DataAppType为string）
+//    /// 消费者实现三种消费方式：1.订阅回调模式 2.批量消费模式 3.Single笔消费模式
 //    /// </summary>
-//    /// <typeparam name="TKey">Message.Key 的数据AppType</typeparam>
-//    /// <typeparam name="TValue">Message.Value 的数据AppType</typeparam>
+//    /// <typeparam name="TKey">Message.Key 的DataAppType</typeparam>
+//    /// <typeparam name="TValue">Message.Value 的DataAppType</typeparam>
 //    public class KafkaConsumer<TKey, TValue> : KafkaConfig, IKafkaConsumer<TKey, TValue>
 //    {
 //        /// <summary>
@@ -73,14 +73,14 @@
 //            Task.Factory.StartNew(() =>
 //            {
 //                var builder = new ConsumerBuilder<TKey, TValue>(ConsumerConfig);
-//                //设置反序列化方式
+//                //SetUp反序列化方式
 //                builder.SetValueDeserializer(new KafkaDConverter<TValue>());
 //                builder.SetErrorHandler((_, e) =>
 //                {
 //                    Logger.Error(LoggerType.KafkaException, null, null, $"Error:{e.Reason}");
 //                }).SetStatisticsHandler((_, json) =>
 //                {
-//                    Console.WriteLine($"-{DateTime.Now:yyyy-MM-dd HH:mm:ss} > 消息监听中..");
+//                    Console.WriteLine($"-{DateTime.Now:yyyy-MM-dd HH:mm:ss} > Message监听中..");
 //                }).SetPartitionsAssignedHandler((c, partitions) =>
 //                {
 //                    string partitionsStr = string.Join(", ", partitions);
@@ -103,7 +103,7 @@
 //                        {
 //                            if (!(bool)ConsumerConfig.EnableAutoCommit)
 //                            {
-//                                //手动提交，如果上面的EnableAutoCommit=true表示自动提交，则无需调用Commit方法
+//                                //手动提交，如果上面的EnableAutoCommit=trueTable示自动提交，则None需调用Commit方法
 //                                consumer.Commit(result);
 //                            }
 //                        }
@@ -130,14 +130,14 @@
 //            Task.Factory.StartNew(() =>
 //            {
 //                var builder = new ConsumerBuilder<TKey, TValue>(ConsumerConfig);
-//                //设置反序列化方式
+//                //SetUp反序列化方式
 //                builder.SetValueDeserializer(new KafkaDConverter<TValue>());
 //                builder.SetErrorHandler((_, e) =>
 //                {
 //                    Logger.Error(LoggerType.KafkaException, null, null, $"Error:{e.Reason}");
 //                }).SetStatisticsHandler((_, json) =>
 //                {
-//                    Console.WriteLine($"-{DateTime.Now:yyyy-MM-dd HH:mm:ss} > 消息监听中..");
+//                    Console.WriteLine($"-{DateTime.Now:yyyy-MM-dd HH:mm:ss} > Message监听中..");
 //                }).SetPartitionsAssignedHandler((c, partitions) =>
 //                {
 //                    string partitionsStr = string.Join(", ", partitions);
@@ -160,7 +160,7 @@
 //                        {
 //                            if (!(bool)ConsumerConfig.EnableAutoCommit)
 //                            {
-//                                //手动提交，如果上面的EnableAutoCommit=true表示自动提交，则无需调用Commit方法
+//                                //手动提交，如果上面的EnableAutoCommit=trueTable示自动提交，则None需调用Commit方法
 //                                consumer.Commit(result);
 //                            }
 //                        }
@@ -178,16 +178,16 @@
 //        }
 
 //        /// <summary>
-//        /// 批量消费模式-单次消费(消费出当前Kafka缓存的所有数据,并持续监听 300ms,如无新数据生产,则返回(最多一次消费 100条)
+//        /// 批量消费模式-Single次消费(消费出当前Kafka缓存的所有Data,并持续监听 300ms,如None新Data生产,则返回(最多一次消费 100条)
 //        /// </summary>
 //        /// <param name="Topic">主题</param>
-//        /// <param name="TimeOut">持续监听时间,单位ms 默认值:300ms</param>
-//        /// <param name="MaxRow">最多单次消费行数 默认值:100行</param>
-//        /// <returns>待消费数据</returns>
+//        /// <param name="TimeOut">持续监听时间,Single位ms 默认值:300ms</param>
+//        /// <param name="MaxRow">最多Single次消费行数 默认值:100行</param>
+//        /// <returns>待消费Data</returns>
 //        public List<ConsumeResult<TKey, TValue>> ConsumeOnce(string Topic, int TimeOut = 300, int MaxRow = 100)
 //        {
 //            var builder = new ConsumerBuilder<TKey, TValue>(ConsumerConfig);
-//            //设置反序列化方式
+//            //SetUp反序列化方式
 //            builder.SetValueDeserializer(new KafkaDConverter<TValue>());
 //            using var consumer = builder.Build();
 //            consumer.Subscribe(Topic);
@@ -201,7 +201,7 @@
 //                    else
 //                    {
 //                        Res.Add(result);
-//                        //手动提交，如果上面的EnableAutoCommit=true表示自动提交，则无需调用Commit方法
+//                        //手动提交，如果上面的EnableAutoCommit=trueTable示自动提交，则None需调用Commit方法
 //                        consumer.Commit();
 //                    }
 //                    if (Res.Count > MaxRow) break;
@@ -216,15 +216,15 @@
 //        }
 
 //        /// <summary>
-//        /// 单笔消费模式-单行消费
+//        /// Single笔消费模式-Single行消费
 //        /// </summary>
 //        /// <param name="Topic">主题</param>
-//        /// <param name="TimeOut">持续监听时间,单位ms 默认值:300ms</param>
-//        /// <returns>待消费数据</returns>
+//        /// <param name="TimeOut">持续监听时间,Single位ms 默认值:300ms</param>
+//        /// <returns>待消费Data</returns>
 //        public ConsumeResult<TKey, TValue> ConsumeOneRow(string Topic, int TimeOut = 300)
 //        {
 //            var builder = new ConsumerBuilder<TKey, TValue>(ConsumerConfig);
-//            //设置反序列化方式
+//            //SetUp反序列化方式
 //            builder.SetValueDeserializer(new KafkaDConverter<TValue>());
 //            using var consumer = builder.Build();
 //            consumer.Subscribe(Topic);
@@ -233,7 +233,7 @@
 //                var result = consumer.Consume(TimeSpan.FromMilliseconds(TimeOut));
 //                if (result != null)
 //                {
-//                    //手动提交，如果上面的EnableAutoCommit=true表示自动提交，则无需调用Commit方法
+//                    //手动提交，如果上面的EnableAutoCommit=trueTable示自动提交，则None需调用Commit方法
 //                    consumer.Commit();
 //                }
 //                return result;

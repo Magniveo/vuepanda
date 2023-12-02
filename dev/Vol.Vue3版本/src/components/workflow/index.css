@@ -1,4 +1,4 @@
-/*画布容器*/
+/*画布容Device*/
 .efContainer {
   position: relative;
   overflow: scroll;
@@ -41,7 +41,7 @@
   border-bottom: 1px solid #eee;
   border-right: 1px solid #eee;
 }
-/*节点菜单*/
+/*NodeDishSingle*/
 .ef-node-pmenu {
   cursor: pointer;
   height: 32px;
@@ -80,7 +80,7 @@
 }
 
 .ef-node-menu-li:hover {
-  /* 设置移动样式*/
+  /* SetUp移动样式*/
   cursor: move;
   border: 1px dashed #787be8;
   color: #787be8;
@@ -96,7 +96,7 @@
   margin: 0;
 }
 
-/*节点的最外层容器*/
+/*Node的最外层容Device*/
 .ef-node-container {
   position: absolute;
   display: flex;
@@ -108,7 +108,7 @@
 }
 
 .ef-node-container:hover {
-  /* 设置移动样式*/
+  /* SetUp移动样式*/
   cursor: move;
   background-color: #f0f7ff;
   /*box-shadow: #1879FF 0px 0px 12px 0px;*/
@@ -116,7 +116,7 @@
   border: 1px dashed #1879ff;
 }
 
-/*节点激活样式*/
+/*Node激活样式*/
 .ef-node-active {
   background-color: #f0f7ff;
   /*box-shadow: #1879FF 0px 0px 12px 0px;*/
@@ -124,39 +124,39 @@
   border: 1px solid #1879ff;
 }
 
-/*节点左侧的竖线*/
+/*Node左侧的竖线*/
 .ef-node-left {
   width: 4px;
   background-color: #1879ff;
   border-radius: 4px 0 0 4px;
 }
 
-/*节点左侧的图标*/
+/*Node左侧的图标*/
 .ef-node-left-ico {
   line-height: 32px;
   margin-left: 8px;
 }
 
 .ef-node-left-ico:hover {
-  /* 设置拖拽的样式 */
+  /* SetUp拖拽的样式 */
   cursor: crosshair;
 }
 
-/*节点显示的文字*/
+/*Node显示的文字*/
 .ef-node-text {
   color: #565758;
   font-size: 12px;
   line-height: 32px;
   margin-left: 8px;
   width: 100px;
-  /* 设置超出宽度文本显示方式*/
+  /* SetUp超出宽度文本显示方式*/
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   text-align: center;
 }
 
-/*节点右侧的图标*/
+/*Node右侧的图标*/
 .ef-node-right-ico {
   line-height: 32px;
   position: absolute;
@@ -165,7 +165,7 @@
   cursor: default;
 }
 
-/*节点的几种状态样式*/
+/*Node的几种状态样式*/
 .el-node-state-success {
   line-height: 32px;
   position: absolute;

@@ -24,7 +24,7 @@ namespace VOL.Core.BaseProvider
 
         ISqlDapper DapperContext { get; }
         /// <summary>
-        /// 执行事务。将在执行的方法带入Action
+        /// Execute事务。将在Execute的方法带入Action
         /// </summary>
         /// <param name="action"></param>
         /// <returns></returns>
@@ -32,7 +32,7 @@ namespace VOL.Core.BaseProvider
 
     
         /// <summary>
-        /// 通过条件查询数据
+        /// 通过条件QueryData
         /// </summary>
         /// <param name="where"></param>
         /// <returns></returns>
@@ -42,7 +42,7 @@ namespace VOL.Core.BaseProvider
         /// 
         /// </summary>
         /// <param name="predicate"></param>
-        /// <param name="orderBySelector">OrderNo字段,数据格式如:
+        /// <param name="orderBySelector">OrderNo字段,Data格式如:
         ///  orderBy = x => new Dictionary<object, bool>() {
         ///          { x.BalconyName,QueryOrderBy.Asc},
         ///          { x.TranCorpCode1,QueryOrderBy.Desc}
@@ -58,7 +58,7 @@ namespace VOL.Core.BaseProvider
         /// 
         /// </summary>
         /// <param name="predicate">where条件</param>
-        /// <param name="orderBy">OrderNo字段,数据格式如:
+        /// <param name="orderBy">OrderNo字段,Data格式如:
         ///  orderBy = x => new Dictionary<object, bool>() {
         ///          { x.BalconyName,QueryOrderBy.Asc},
         ///          { x.TranCorpCode1,QueryOrderBy.Desc}
@@ -67,10 +67,10 @@ namespace VOL.Core.BaseProvider
         /// <returns></returns>
         IQueryable<TEntity> FindAsIQueryable(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, Dictionary<object, QueryOrderBy>>> orderBy = null);
         /// <summary>
-        /// 通过条件查询数据
+        /// 通过条件QueryData
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="predicate">查询条件</param>
+        /// <param name="predicate">Query条件</param>
         /// <param name="selector">返回AppType如:Find(x => x.UserName == loginInfo.userName, p => new { uname = p.UserName });</param>
         /// <returns></returns>
         List<T> Find<T>(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, T>> selector);
@@ -78,7 +78,7 @@ namespace VOL.Core.BaseProvider
 
 
         /// <summary>
-        /// 根据条件，返回查询的类
+        /// 根据条件，返回Query的类
         /// </summary>
         /// <typeparam name="TFind"></typeparam>
         /// <param name="predicate"></param>
@@ -99,22 +99,22 @@ namespace VOL.Core.BaseProvider
         Task<T> FindFirstAsync<T>(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, T>> selector);
 
         /// <summary>
-        /// 多条件查询
+        /// 多条件Query
         /// </summary>
         /// <typeparam name="Source"></typeparam>
-        /// <param name="sources">要查询的多个条件的数据源</param>
-        /// <param name="predicate">生成的查询条件</param>
+        /// <param name="sources">要Query的多个条件的Data源</param>
+        /// <param name="predicate">生成的Query条件</param>
         /// <returns></returns>
         List<TEntity> Find<Source>(IEnumerable<Source> sources,
             Func<Source, Expression<Func<TEntity, bool>>> predicate)
             where Source : class;
         /// <summary>
-        /// 多条件查询
+        /// 多条件Query
         /// </summary>
         /// <typeparam name="Source"></typeparam>
-        /// <param name="sources">要查询的多个条件的数据源</param>
-        /// <param name="predicate">生成的查询条件</param>
-        /// <param name="selector">自定义返回结果</param>
+        /// <param name="sources">要Query的多个条件的Data源</param>
+        /// <param name="predicate">生成的Query条件</param>
+        /// <param name="selector">Customize返回结果</param>
         /// <returns></returns>
         List<TResult> Find<Source, TResult>(IEnumerable<Source> sources,
             Func<Source, Expression<Func<TEntity, bool>>> predicate,
@@ -122,11 +122,11 @@ namespace VOL.Core.BaseProvider
             where Source : class;
 
         /// <summary>
-        /// 多条件查询
+        /// 多条件Query
         /// </summary>
         /// <typeparam name="Source"></typeparam>
-        /// <param name="sources">要查询的多个条件的数据源</param>
-        /// <param name="predicate">生成的查询条件</param>
+        /// <param name="sources">要Query的多个条件的Data源</param>
+        /// <param name="predicate">生成的Query条件</param>
         /// <returns></returns>
         IQueryable<TEntity> FindAsIQueryable<Source>(IEnumerable<Source> sources,
             Func<Source, Expression<Func<TEntity, bool>>> predicate)
@@ -155,7 +155,7 @@ namespace VOL.Core.BaseProvider
         ///          { x.BalconyName,QueryOrderBy.Asc},
         ///          { x.TranCorpCode1,QueryOrderBy.Desc}
         ///         };
-        /// <param name="selectorResult">查询返回的对象</param>
+        /// <param name="selectorResult">Query返回的对象</param>
         /// <returns></returns>
         List<TResult> QueryByPage<TResult>(int pageIndex, int pagesize, out int rowcount, Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, Dictionary<object, QueryOrderBy>>> orderBySelector, Expression<Func<TEntity, TResult>> selectorResult, bool returnRowCount = true);
 
@@ -222,8 +222,8 @@ namespace VOL.Core.BaseProvider
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="updateDetail">是否修改明细</param>
-        /// <param name="delNotExist">是否Del明细不存在的数据</param>
-        /// <param name="updateMainFields">主表指定修改字段</param>
+        /// <param name="delNotExist">是否Del明细不存在的Data</param>
+        /// <param name="updateMainFields">主Table指定修改字段</param>
         /// <param name="updateDetailFields">明细指定修改字段</param>
         /// <param name="saveChange">是否保存</param>
         /// <returns></returns>
@@ -240,7 +240,7 @@ namespace VOL.Core.BaseProvider
         /// 
         /// </summary>
         /// <param name="keys"></param>
-        /// <param name="delList">是否将子表的数据也Del</param>
+        /// <param name="delList">是否将子Table的Data也Del</param>
         /// <returns></returns>
         int DeleteWithKeys(object[] keys, bool delList = false);
 
@@ -267,7 +267,7 @@ namespace VOL.Core.BaseProvider
         List<TEntity> FromSql(string sql, params SqlParameter[] sqlParameters);
 
         /// <summary>
-        /// 执行sql
+        /// Executesql
         /// 使用方式 FormattableString sql=$"select * from xx where name ={xx} and pwd={xx1} "，
         /// FromSqlInterpolated内部处理sql注入的问题，直接在{xx}写对应的值即可
         /// 注意：sql必须 select * 返回所有TEntity字段，
@@ -290,9 +290,9 @@ namespace VOL.Core.BaseProvider
         IQueryable<TEntity> WhereIF([NotNull] Expression<Func<TEntity, object>> field, string value, LinqExpressionType linqExpression = LinqExpressionType.Equal);
 
         /// <summary>
-        ///  if判断查询
+        ///  if判断Query
         /// </summary>
-        /// 查询示例，value不为null时参与条件查询
+        /// Query示例，value不为null时参With条件Query
         ///    string value = null;
         ///    repository.WhereIF(value!=null,x=>x.Creator==value);
         /// <param name="checkCondition"></param>
@@ -301,9 +301,9 @@ namespace VOL.Core.BaseProvider
         IQueryable<TEntity> WhereIF(bool checkCondition, Expression<Func<TEntity, bool>> predicate);
 
         /// <summary>
-        ///  if判断查询
+        ///  if判断Query
         /// </summary>
-        /// 查询示例，value不为null时参与条件查询
+        /// Query示例，value不为null时参With条件Query
         ///    string value = null;
         ///    repository.WhereIF<Sys_User>(value!=null,x=>x.Creator==value);
         /// <param name="checkCondition"></param>

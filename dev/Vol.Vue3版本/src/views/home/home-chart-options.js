@@ -10,9 +10,9 @@ var chart1 = {
     legend: {
         top: 'bottom',
         icon: "circle",   //  这个字段控制形状  AppType包括 circle，rect ，roundRect，triangle，diamond，pin，arrow，none
-        itemWidth: 10,  // 设置宽度
-        itemHeight: 10, // 设置高度
-        itemGap: 7,// 设置间距
+        itemWidth: 10,  // SetUp宽度
+        itemHeight: 10, // SetUp高度
+        itemGap: 7,// SetUp间距
         padding: [0, 0, 15, 0] //图例距离
     },
     series: [
@@ -61,7 +61,7 @@ var chart2 = {
     },
     tooltip: {
         trigger: 'axis',
-        axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+        axisPointer: {            // 坐标轴指示Device，坐标轴触发有效
             type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
         }
     },
@@ -126,9 +126,9 @@ var chart3 = {
     legend: {
         top: 'bottom',
         icon: "circle",   //  这个字段控制形状  AppType包括 circle，rect ，roundRect，triangle，diamond，pin，arrow，none
-        itemWidth: 10,  // 设置宽度
-        itemHeight: 10, // 设置高度
-        itemGap: 7,// 设置间距
+        itemWidth: 10,  // SetUp宽度
+        itemHeight: 10, // SetUp高度
+        itemGap: 7,// SetUp间距
         padding: [0, 0, 10, 0] //图例距离
     },
     series: [
@@ -140,7 +140,7 @@ var chart3 = {
             data: [
                 { value: 748, name: '多租户' },
                 { value: 435, name: '多Role_Id' },
-                { value: 580, name: '多数据库' },
+                { value: 580, name: '多Data库' },
                 { value: 280, name: '主从分库' },
                 { value: 284, name: '国际化' },
                 { value: 300, name: 'App/H5开发' },

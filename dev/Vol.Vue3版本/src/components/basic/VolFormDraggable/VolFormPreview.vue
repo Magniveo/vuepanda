@@ -98,14 +98,14 @@
 
     <div class="form-btns">
       <el-button type="primary" @click="submit" icon="el-icon-check" size="small"
-        >提交</el-button>
+        >{{ $locales[$i18n.locale].Submit }}</el-button>
       <el-button
         type="primary"
         @click="reset"
         plain
         icon="el-icon-refresh-right"
         size="small"
-        >重置</el-button
+        >{{ $locales[$i18n.locale].Reset }}</el-button
       >
       <el-button
         type="primary"
@@ -113,7 +113,7 @@
         plain
         icon="el-icon-refresh-right"
         size="small"
-        >下载代码</el-button
+        >{{ $locales[$i18n.locale].Download }}</el-button
       >
     </div>
   </div>

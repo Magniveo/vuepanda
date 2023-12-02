@@ -1,6 +1,6 @@
 /*
- *代码由框架生成,任何更改都可能导致被代码生成器覆盖
- *如果数据库字段发生变化，请在代码生器重新生成此Model
+ *代码由框架生成,任何更改都可能导致被CodeGenerationDevice覆盖
+ *如果Data库字段发生变化，请在代码生Device重新生成此Model
  */
 using System;
 using System.Collections.Generic;
@@ -13,7 +13,7 @@ using VOL.Entity.SystemModels;
 
 namespace VOL.Entity.DomainModels
 {
-    [Entity(TableCnName = "审批节点配置",TableName = "Sys_WorkFlowStep")]
+    [Entity(TableCnName = "ApprovalNode配置",TableName = "Sys_WorkFlowStep")]
     public partial class Sys_WorkFlowStep:BaseEntity
     {
         /// <summary>
@@ -206,9 +206,9 @@ namespace VOL.Entity.DomainModels
        public string StepAttrType { get; set; }
 
        /// <summary>
-       ///Weight(相同条件Weight大的优先匹配)
+       ///Weight
        /// </summary>
-       [Display(Name ="Weight(相同条件Weight大的优先匹配)")]
+       [Display(Name ="Weight")]
        [Column(TypeName="int")]
        [Editable(true)]
        public int? Weight { get; set; }
